@@ -1,10 +1,10 @@
 import { Input, ChangeDetectorRef } from "@angular/core";
-import { Message } from "primeng/primeng";
-import { BaseService } from "../service/base-service";
+import { BaseService } from "./base-service";
 
 export class BaseTable {
-    loading: number = 0;
+    @Input() loading: number = 0;
     list: any[];
+    colunas: any[];
     constructor(private service: BaseService, protected ref: ChangeDetectorRef){ 
         this.loading = 1;
         service.Listar().subscribe(data => {

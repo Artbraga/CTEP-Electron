@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, Input } from "@angular/core";
-import { Aluno } from "src/app/entities/aluno";
-import { Message } from "primeng/primeng";
 import { BaseTable } from "src/app/base/baseTable";
-import { AlunoService } from "../../../service/aluno/aluno.service";
+import { AlunoService } from "src/app/service/aluno/aluno.service";
+import { Column } from "node_modules/primeng/primeng";
 
 @Component({
     selector: 'table-listar-aluno',
@@ -10,12 +9,19 @@ import { AlunoService } from "../../../service/aluno/aluno.service";
 })
 export class TableListarAlunoComponent extends BaseTable implements OnInit {
     
-    @Input() loading;
-
     constructor(alunoService: AlunoService, ref: ChangeDetectorRef){
         super(alunoService, ref);
     }
+
+
     ngOnInit(): void {
-        
+        this.colunas = [
+            { field: 'matricula', header: 'Matricula'},
+            { field: 'nome', header: 'Nome'},
+            { field: 'telefone', header: 'Telefone'},
+            { field: 'celular', header: 'Celular'},
+            { field: 'turma.codigo', header: 'Turma'},
+        ];
     }
+
 }

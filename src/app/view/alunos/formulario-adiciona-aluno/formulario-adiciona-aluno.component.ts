@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { BaseFormulario } from "src/app/base/baseFormulario";
-import { Aluno } from "src/app/entities/aluno";
-import { ViacepService } from 'src/app/service/ngx-viacep/viacep.service';
-import { CepError, Endereco } from "src/app/service/ngx-viacep/endereco";
+import { BaseFormulario } from "../../../base/baseFormulario";
+import { Aluno } from "../../../entities/aluno";
+import { ViacepService } from '../../../service/ngx-viacep/viacep.service';
+import { CepError, Endereco } from "../../../service/ngx-viacep/endereco";
 import { Message } from "primeng/primeng";
 
 @Component({
@@ -11,6 +11,8 @@ import { Message } from "primeng/primeng";
 })
 export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> implements OnInit{
     
+    observacoesColumns: any[]
+
     constructor(private viacep: ViacepService,
                 ref: ChangeDetectorRef){
         super(ref);
@@ -18,6 +20,10 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
     ngOnInit(){
         if (this.element == null)
             this.element = new Aluno();
+        this.observacoesColumns = [
+            { field: 'data', header: 'Data'},
+            { field: 'obs', header: 'Observação'},
+        ];
     }
 
     buscarCEP(){
@@ -51,5 +57,9 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         console.log(msg);
         this.msgs.push(msg);
         this.updateView();  
+    }
+
+    cadastrarAluno(){
+
     }
 }

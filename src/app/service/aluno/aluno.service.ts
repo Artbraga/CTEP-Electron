@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseService } from 'src/app/service/base-service';
+import { BaseService } from '../../base/base-service';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

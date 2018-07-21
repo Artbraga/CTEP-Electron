@@ -152,3 +152,9 @@ label{
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+.tableListagem{
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}

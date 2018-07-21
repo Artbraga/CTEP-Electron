@@ -49,7 +49,7 @@
 </nav>
 <div class="home-container">
     <div *ngIf="selected['aluno']">
-        <p-tabView [style]="{'width':'100%'}">
+        <p-tabView [styleClass]="tableListagem">
             <p-tabPanel header="Listar Alunos">
                 <table-listar-aluno [loading]="loading"></table-listar-aluno>
             </p-tabPanel>

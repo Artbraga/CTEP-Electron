@@ -1,20 +1,19 @@
 <p-table [value]="list"
-         scrollable="true"
+         [columns]="colunas"
+         [scrollable]="true"
          [loading]="loading">
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" let-columns>
         <tr>
-            <th>Matrícula</th>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>Celular</th>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-aluno>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
-            <td>{{aluno.matricula}}</td>
-            <td>{{aluno.nome}}</td>
-            <td>{{aluno.telefone}}</td>
-            <td>{{aluno.celular}}</td>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
         </tr>
     </ng-template>
 </p-table>
