@@ -49,14 +49,14 @@
 </nav>
 <div class="home-container">
     <div *ngIf="selected['aluno']">
-        <p-header>Alunos</p-header>
         <p-tabView [style]="{'width':'100%'}">
-            <p-tabPanel header="Cadastrar">
+            <p-tabPanel header="Listar Alunos">
+                <table-listar-aluno [loading]="loading"></table-listar-aluno>
+            </p-tabPanel>
+            <p-tabPanel header="Cadastrar Alunos">
                <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno>
             </p-tabPanel>
-            <p-tabPanel header="Listar">
-
-            </p-tabPanel>
+            
         </p-tabView>
     </div>
 </div>
