@@ -1,0 +1,62 @@
+<div *ngIf="loading>0" class="block-back-wrap">
+    <i class="fa fa-spinner fa-pulse fa-2x"></i>
+</div>
+<div class="area"></div>
+<nav class="main-menu">
+    <ul>
+        <li class="hamburger-menu">
+            <a>
+                <i class="fas fa-bars fa-2x"></i>
+            </a>
+        </li>
+        <li class="logo">
+            <img src="assets/images/logo.png">
+        </li>
+        <li class="has-subnav">
+            <a (click)="abrirMenu('aluno')">
+                <i class="fas fa-user-graduate fa-2x"></i>
+                <span class="nav-text">
+                    Aluno
+                </span>
+            </a>
+
+        </li>
+        <li class="has-subnav">
+            <a>
+                <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                <span class="nav-text">
+                    Professor
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a>
+                <i class="fas fa-users fa-2x"></i>
+                <span class="nav-text">
+                    Turma
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a>
+                <i class="fas fa-cog fa-2x"></i>
+                <span class="nav-text">
+                    Configurações
+                </span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="home-container">
+    <div *ngIf="selected['aluno']">
+        <p-header>Alunos</p-header>
+        <p-tabView [style]="{'width':'100%'}">
+            <p-tabPanel header="Cadastrar">
+               <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno>
+            </p-tabPanel>
+            <p-tabPanel header="Listar">
+
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<p-panel header="Informações Pessoais" 
+        [toggleable]="true" 
+        [style]="{'margin-bottom':'20px', 'width':'100%'}"
+        [collapsed]="true">
+    <div class="row">
+        <div class="col-lg-12">
+            <label>Nome Completo:</label>
+            <input type="text" 
+                    [(ngModel)]="element.nome"
+                    pInputText 
+                    style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <label>CPF:</label>
+            <input type="text" 
+                    [(ngModel)]="element.cpf"
+                    pInputText 
+                    style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <label>RG:</label>
+            <input type="text" 
+                    [(ngModel)]="element.rg"
+                    pInputText 
+                    style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>Data de Nascimento:</label>
+                <p-calendar [(ngModel)]="element.dataNascimento" 
+                            dateFormat="dd/mm/yy"
+                            [showIcon]="true"
+                            [style]="{'width':'100%'}"></p-calendar>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>CEP:</label>
+                <div>
+                        <div class="col-lg-8 com md-8" style="padding: 0; float: left;">
+                                <input type="text" 
+                                        [(ngModel)]="element.cep"
+                                        pInputText 
+                                        style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-4 com md-4" style="padding: 0; float: left;">
+                                <button (click)="buscarCEP()" 
+                                        pButton type="button" 
+                                        [disabled]="desabilitarBotaoBuscaCep()" 
+                                        label="Buscar CEP"
+                                        style="width:100%"
+                                        title="Buscar CEP"></button>
+                        </div>
+                </div>
+        </div>
+        <div class="col-lg-8 col-md-12">
+                <label>Endereço:</label>
+                <input type="text" 
+                        [(ngModel)]="element.endereco"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>Complemento:</label>
+                <input type="text" 
+                        [(ngModel)]="element.complemento"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>Bairro:</label>
+                <input type="text" 
+                        [(ngModel)]="element.bairro"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>Cidade:</label>
+                <input type="text" 
+                        [(ngModel)]="element.cidade"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-6 col-md-6">
+                <label>Nome do Pai:</label>
+                <input type="text" 
+                        [(ngModel)]="element.nomePai"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-6 col-md-6">
+                <label>Nome da Mãe:</label>
+                <input type="text" 
+                        [(ngModel)]="element.nomeMae"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>E-mail:</label>
+                <input type="text" 
+                        [(ngModel)]="element.email"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>Telefone:</label>
+                <input type="text" 
+                        [(ngModel)]="element.telefone"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <label>Celular:</label>
+                <input type="text" 
+                        [(ngModel)]="element.celular"
+                        pInputText 
+                        style="width: 100%"/>
+        </div>
+        <div class="col-lg-4 col-md-6">
+                <p-checkbox label="Emitir nota fiscal" binary="true" [(ngModel)]="element.notaFiscal"></p-checkbox>
+        </div>
+    </div>
+</p-panel>
+<p-panel header="Informações Escolares" 
+        [toggleable]="true" 
+        [style]="{'margin-bottom':'20px', 'width':'100%'}"
+        [collapsed]="true">
+</p-panel>
+<p-panel header="Notas" 
+        [toggleable]="true" 
+        [style]="{'margin-bottom':'20px', 'width':'100%'}"
+        [collapsed]="true">
+</p-panel>
+<p-panel header="Observações" 
+        [toggleable]="true" 
+        [style]="{'margin-bottom':'20px', 'width':'100%'}"
+        [collapsed]="true">
+</p-panel>
