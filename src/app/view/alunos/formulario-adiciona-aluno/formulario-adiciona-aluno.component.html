@@ -124,6 +124,13 @@
         [toggleable]="true" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="true">
+        <div class="col-lg-4 col-md-6">
+                <label>Curso:</label>
+                <p-autoComplete [(ngModel)]="element.curso" 
+                                [suggestions]="cursoSuggestions" 
+                                (completeMethod)="search($event)"
+                                [dropdown]="true"></p-autoComplete>
+        </div>
 </p-panel>
 <p-panel header="Notas" 
         [toggleable]="true" 

@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Input } from "@angular/core";
 import { BaseTable } from "src/app/base/baseTable";
-import { AlunoService } from "src/app/service/aluno/aluno.service";
-import { Column } from "node_modules/primeng/primeng";
+import { AlunoService } from "src/app/service/aluno.service";
 
 @Component({
     selector: 'table-listar-aluno',

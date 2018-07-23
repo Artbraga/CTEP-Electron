@@ -1,9 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { BaseFormulario } from "../../../base/baseFormulario";
-import { Aluno } from "../../../entities/aluno";
-import { ViacepService } from '../../../service/ngx-viacep/viacep.service';
-import { CepError, Endereco } from "../../../service/ngx-viacep/endereco";
+import { BaseFormulario } from "src/app/base/baseFormulario";
+import { Aluno } from "src/app/entities/aluno";
+import { ViacepService } from 'src/app/service/ngx-viacep/viacep.service';
+import { CepError, Endereco } from "src/app/service/ngx-viacep/endereco";
 import { Message } from "primeng/primeng";
+import { CursoService } from "src/app/service/curso.service";
 
 @Component({
     selector: 'formulario-adiciona-aluno',
@@ -12,8 +13,10 @@ import { Message } from "primeng/primeng";
 export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> implements OnInit{
     
     observacoesColumns: any[]
+    cursoSuggestions: any;
 
     constructor(private viacep: ViacepService,
+                private cursoService: CursoService,
                 ref: ChangeDetectorRef){
         super(ref);
     }
@@ -57,6 +60,15 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         console.log(msg);
         this.msgs.push(msg);
         this.updateView();  
+    }
+
+    buscarDropdown(event, campo: string){
+        switch(campo){
+            case "curso":
+                this.cursoService.filtrarCursos(event.query).subscribe(data =>{
+                    this.cursoSuggestions = data;
+                })
+        }
     }
 
     cadastrarAluno(){
