@@ -27,27 +27,30 @@
                     style="width: 100%"/>
         </div>
         <div class="col-lg-4 col-md-6">
-        <label>Data de Nascimento:</label>
-        <p-calendar [(ngModel)]="element.dataNascimento" 
-        dateFormat="dd/mm/yy"
-        [showIcon]="true"
-        [style]="{'width':'100%'}"></p-calendar>
+                <label>Data de Nascimento:</label>
+                <p-calendar [(ngModel)]="element.dataNascimento" 
+                        dateFormat="dd/mm/yy"
+                        [showIcon]="true"
+                        [style]="{'width':'100%'}"
+                        [locale]="br"
+                        [showButtonBar]="true"
+                        [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
         </div>
         <div class="col-lg-4 col-md-6">
                 <label>CEP:</label>
                 <div>
-                        <div class="col-lg-8 com md-8" style="padding: 0; float: left;">
+                        <div class="col-lg-7 col-md-7" style="padding: 0; float: left;">
                                 <input type="text" 
                                         [(ngModel)]="element.cep"
                                         pInputText 
                                         style="width: 100%"/>
                         </div>
-                        <div class="col-lg-4 com md-4" style="padding: 0; float: left;">
+                        <div class="col-lg-5 col-md-5" style="padding: 0; float: left;">
                                 <button (click)="buscarCEP()" 
                                         pButton type="button" 
                                         [disabled]="desabilitarBotaoBuscaCep()" 
                                         label="Buscar CEP"
-                                        style="width:100%"
+                                        class="form-button"
                                         title="Buscar CEP"></button>
                         </div>
                 </div>
@@ -101,22 +104,25 @@
                         pInputText 
                         style="width: 100%"/>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-3 col-md-4">
                 <label>Telefone:</label>
                 <input type="text" 
                         [(ngModel)]="element.telefone"
                         pInputText 
                         style="width: 100%"/>
         </div>
-        <div class="col-lg-4 col-md-6">
+        <div class="col-lg-3 col-md-4">
                 <label>Celular:</label>
                 <input type="text" 
                         [(ngModel)]="element.celular"
                         pInputText 
                         style="width: 100%"/>
         </div>
-        <div class="col-lg-4 col-md-6">
-                <p-checkbox label="Emitir nota fiscal" binary="true" [(ngModel)]="element.notaFiscal"></p-checkbox>
+        <div class="col-lg-2 col-md-4">
+                <p-checkbox label="Emitir nota fiscal" 
+                            binary="true" 
+                            [(ngModel)]="element.notaFiscal"
+                            [style]="{'position': 'absolute', 'bottom': '14px'}"></p-checkbox>
         </div>
     </div>
 </p-panel>
@@ -124,12 +130,94 @@
         [toggleable]="true" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="true">
-        <div class="col-lg-4 col-md-6">
-                <label>Curso:</label>
-                <p-autoComplete [(ngModel)]="element.curso" 
-                                [suggestions]="cursoSuggestions" 
-                                (completeMethod)="search($event)"
-                                [dropdown]="true"></p-autoComplete>
+        <div class="row">
+                <div class="col-lg-4 col-md-6">
+                        <label>Curso:</label>
+                        <p-autoComplete [(ngModel)]="element.curso" 
+                                        [suggestions]="cursoSuggestions" 
+                                        (completeMethod)="buscarDropdown($event, 'curso')"
+                                        [style]="{'width':'100%'}"
+                                        minLength="3"
+                                        [forceSelection]="true"
+                                        [emptyMessage]="'Não foram encontrados resultados'"
+                                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                                        field="nome"
+                                        [dropdown]="true"></p-autoComplete>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                        <label>Matrícula:</label>
+                        <div>
+                                <div class="col-lg-6 com md-6" style="padding: 0; float: left;">
+                                        <input type="text" 
+                                                [(ngModel)]="element.matricula"
+                                                pInputText 
+                                                style="width: 100%"/>
+                                </div>
+                                <div class="col-lg-6 com md-6" style="padding: 0; float: left;">
+                                        <button (click)="gerarMatricula()" 
+                                                pButton type="button" 
+                                                [disabled]="desabilitarBotaoGerarMatriucla()" 
+                                                label="Gerar Matrícula"
+                                                class="form-button"
+                                                title="Gerar Matrícula"></button>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                        <label>Situação:</label>
+                        <p-autoComplete [(ngModel)]="element.curso" 
+                                        [suggestions]="situacaoSuggestions" 
+                                        (completeMethod)="buscarDropdown($event, 'situação')"
+                                        [style]="{'width':'100%'}"
+                                        minLength="1"
+                                        [forceSelection]="true"
+                                        [emptyMessage]="'Não foram encontrados resultados'"
+                                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                                        field="label"
+                                        [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                        <label>Data de Matrícula:</label>
+                        <p-calendar [(ngModel)]="element.dataMatricula" 
+                                dateFormat="dd/mm/yy"
+                                [showIcon]="true"
+                                [style]="{'width':'100%'}"
+                                (onSelect)="onSelect('dataMatricula')"
+                                [locale]="br"
+                                [showButtonBar]="true"
+                                [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                        <label>Curso Anterior:</label>
+                        <input type="text" 
+                                [(ngModel)]="element.cursoAnterior"
+                                pInputText 
+                                style="width: 100%"/>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                        <label>Turma:</label>
+                        <p-autoComplete [(ngModel)]="element.turma" 
+                                        [suggestions]="turmaSuggestions" 
+                                        (completeMethod)="buscarDropdown($event, 'turma')"
+                                        [style]="{'width':'100%'}"
+                                        minLength="1"
+                                        [forceSelection]="true"
+                                        [emptyMessage]="'Não foram encontrados resultados'"
+                                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                                        field="nome"
+                                        [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                        <label>Data de Validade:</label>
+                        <p-calendar [(ngModel)]="element.dataValidade" 
+                                dateFormat="dd/mm/yy"
+                                [showIcon]="true"
+                                [style]="{'width':'100%'}"
+                                [locale]="br"
+                                [showButtonBar]="true"
+                                [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+                </div>
         </div>
 </p-panel>
 <p-panel header="Notas" 
@@ -141,25 +229,74 @@
         [toggleable]="true" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="true">
+        <div class="row" style="margin-bottom: 15px">
+                <div class="col-lg-12 col-md-12">
+                        <label>Observação:</label>
+                        <textarea rows="3" pInputTextarea 
+                                [(ngModel)]="observacao.obs"
+                                style="width:100%"></textarea>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                        <label>Data da Observação:</label>
+                        <p-calendar [(ngModel)]="observacao.data" 
+                                dateFormat="dd/mm/yy"
+                                [showIcon]="true"
+                                [style]="{'width':'100%'}"
+                                (onSelect)="onSelect('dataMatricula')"
+                                [locale]="br"
+                                [showButtonBar]="true"
+                                [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+                </div>
+                <div class="col-lg-4 col-md-4" style="display: flex;">
+                        <button (click)="adicionarObservacao()" 
+                                pButton type="button" 
+                                label="Adicionar"
+                                class="form-button"
+                                style="align-self: flex-end;"
+                                title="Adicionar Observação"></button>
+                </div>
+                <div class="col-lg-4 col-md-4" style="display: flex;">
+                        <button (click)="limparObservacao()" 
+                                pButton type="button" 
+                                label="Limpar"
+                                class="form-button"
+                                style="align-self: flex-end;"
+                                title="Limpar Observação"></button>
+                </div>
+        </div>
+        
         <div class="row">
-                <p-table [value]="element.Observações"
+                <p-table [value]="element.observacoes"
                          [columns]="observacoesColumns"
                          [scrollable]="true">
                         <ng-template pTemplate="header" let-columns>
                                 <tr>
-                                <th *ngFor="let col of columns">
-                                        {{col.header}}
-                                </th>
+                                        <th *ngFor="let col of columns" [ngStyle]="col.style">
+                                                {{col.header}}
+                                        </th>
                                 </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-rowData let-columns="columns">
                                 <tr>
-                                <td *ngFor="let col of columns">
-                                        {{rowData[col.field]}}
-                                </td>
+                                        <td *ngFor="let col of columns">
+                                                {{rowData[col.field]}}
+                                        </td>
+                                </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage" let-columns>
+                                <tr>
+                                        <td [attr.colspan]="columns.length">O aluno não possui observações.</td>
                                 </tr>
                         </ng-template>
                 </p-table>
         </div>
 </p-panel>
-<button (click)="cadastrarAluno()"></button>
+<div class="col-lg-4 col-md-6" style="float:right">
+        <button (click)="cadastrarAluno()" 
+                pButton type="button" 
+                class="form-button"
+                label="Cadastrar"
+                style="height:34px"
+                class="form-button"
+                title="Cadastrar Aluno"></button>
+</div>

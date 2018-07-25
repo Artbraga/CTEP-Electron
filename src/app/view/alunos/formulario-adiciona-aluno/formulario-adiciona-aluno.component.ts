@@ -5,6 +5,9 @@ import { ViacepService } from 'src/app/service/ngx-viacep/viacep.service';
 import { CepError, Endereco } from "src/app/service/ngx-viacep/endereco";
 import { Message } from "primeng/primeng";
 import { CursoService } from "src/app/service/curso.service";
+import { AlunoService } from "src/app/service/aluno.service";
+import { TurmaService } from "src/app/service/turma.service";
+import { ObservacaoAluno } from "src/app/entities/observacaoAluno";
 
 @Component({
     selector: 'formulario-adiciona-aluno',
@@ -12,11 +15,20 @@ import { CursoService } from "src/app/service/curso.service";
 })
 export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> implements OnInit{
     
-    observacoesColumns: any[]
-    cursoSuggestions: any;
+    observacoesColumns: any[];
+
+    statusOptions: {label: string, value: any}[];
+
+    cursoSuggestions: any[];
+    turmaSuggestions: any[];
+    situacaoSuggestions: any[];
+
+    observacao: ObservacaoAluno;
 
     constructor(private viacep: ViacepService,
+                private alunoService: AlunoService,
                 private cursoService: CursoService,
+                private turmaService: TurmaService,
                 ref: ChangeDetectorRef){
         super(ref);
     }
@@ -24,9 +36,17 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         if (this.element == null)
             this.element = new Aluno();
         this.observacoesColumns = [
-            { field: 'data', header: 'Data'},
+            { field: 'data', header: 'Data', style: {'width':'100px'}},
             { field: 'obs', header: 'Observação'},
         ];
+        this.statusOptions = [
+            {label: "Ativo", value:1 },
+            {label: "Trancado", value:2 },
+            {label: "Reprovado", value:3 },
+            {label: "Concluído", value:4 },
+        ];
+
+        this.observacao = new ObservacaoAluno();
     }
 
     buscarCEP(){
@@ -56,22 +76,68 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         return !/^[0-9]{8}$/.test(this.element.cep);
     }
 
+    desabilitarBotaoGerarMatriucla(){
+        return !(this.validField(this.element.curso) && this.validField(this.element.anoMatricula));
+    }
+
     showMessage(msg: Message){
         console.log(msg);
         this.msgs.push(msg);
         this.updateView();  
     }
 
-    buscarDropdown(event, campo: string){
+    buscarDropdown(busca, campo: string){
+        let filter = busca.query;
         switch(campo){
             case "curso":
-                this.cursoService.filtrarCursos(event.query).subscribe(data =>{
+                this.cursoService.filtrar(filter).subscribe(data =>{
                     this.cursoSuggestions = data;
-                })
+                });
+                break;
+            case "turma":
+                this.turmaService.getTurmasDropdown(filter).subscribe(data =>{
+                    this.turmaSuggestions = data;
+                });
+                break;
+            case "situação":
+                this.situacaoSuggestions = this.statusOptions.filter(x => x.label.toLowerCase().includes(filter.toLowerCase()))
+                break;
         }
+    }
+
+    onSelect(campo: string){
+        switch (campo){
+            case "dataMatricula":
+                var data = this.element.dataMatricula;
+                this.element.anoMatricula = data.getFullYear() % 100;
+                break;
+        }
+        
+    }
+
+    gerarMatricula(){
+        this.loading = 1;
+        this.updateView();
+        this.alunoService.gerarMatricula(this.element.anoMatricula, this.element.curso.id).subscribe(matricula => {
+            this.element.matricula = matricula.data;
+            this.loading = 0;
+            this.updateView();
+        })
+    }
+
+    limparObservacao(){
+        this.observacao = new ObservacaoAluno();
+        this.updateView();
+    }
+
+    adicionarObservacao(){
+        this.element.observacoes.push(this.observacao);
+        this.limparObservacao();
     }
 
     cadastrarAluno(){
 
     }
+
+
 }

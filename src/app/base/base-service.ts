@@ -25,10 +25,17 @@ export class BaseService{
           catchError(this.handleErrorObservable));
     };
 
+    public filtrar(nome: string): Observable<any> {
+        let url = this.baseURL + '/filtrar/' + nome;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    };
+
     protected extractData(res: Response): any {
         try {
             let body = res;
-            console.log(res)
             return body;
         } catch (e) {
             return { type: 'badRequest', messages: [{ severity: 'error', summary: 'Falha de comunicação:', detail: "Atualize a página!" }] };

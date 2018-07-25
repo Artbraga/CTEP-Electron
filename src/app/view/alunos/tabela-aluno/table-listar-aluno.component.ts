@@ -15,11 +15,11 @@ export class TableListarAlunoComponent extends BaseTable implements OnInit {
 
     ngOnInit(): void {
         this.colunas = [
-            { field: 'matricula', header: 'Matricula'},
-            { field: 'nome', header: 'Nome'},
-            { field: 'telefone', header: 'Telefone'},
-            { field: 'celular', header: 'Celular'},
-            { field: 'turma.codigo', header: 'Turma'},
+            { field: 'matricula', header: 'Matricula', style: {'width':'120px'}},
+            { field: 'nome', header: 'Nome' },
+            { field: 'telefone', header: 'Telefone' },
+            { field: 'celular', header: 'Celular' },
+            { field: 'turma.codigo', header: 'Turma' },
         ];
     }
 
