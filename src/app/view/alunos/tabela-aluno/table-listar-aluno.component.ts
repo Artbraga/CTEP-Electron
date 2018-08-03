@@ -23,4 +23,5 @@ export class TableListarAlunoComponent extends BaseTable implements OnInit {
         ];
     }
 
+    
 }

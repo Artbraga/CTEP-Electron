@@ -1,5 +1,6 @@
 import { Input, ChangeDetectorRef } from "@angular/core";
 import { Message } from "primeng/primeng";
+import { BaseService } from "./base-service";
 
 export class BaseFormulario<T>{
     @Input() element: T;
@@ -17,7 +18,8 @@ export class BaseFormulario<T>{
         clear: 'Limpar'
     };
 
-    constructor(protected ref: ChangeDetectorRef){
+    constructor(public baseService: BaseService, 
+                protected ref: ChangeDetectorRef){
     }
 
     protected validField(field): boolean {
@@ -31,5 +33,26 @@ export class BaseFormulario<T>{
         if (this.ref) {
             this.ref.detectChanges();
         }
+    }
+
+    salvar(element: any, action: () => void, actionErro?: (error) => void) {
+        let errorAction: (any) => void = actionErro ? actionErro : (error) => {
+            this.loading = (this.loading <= 0) ? 0 : this.loading - 1;
+            this.updateView();
+            this.showFeedbackMessage(error);
+        };
+        this.updateView();
+        this.baseService.salvar(
+            element,
+            action,
+            errorAction
+        );
+    };
+
+    public showFeedbackMessage(m: Message) {
+        if (m == null) {
+            return;
+        }
+        this.msgs.push(m);
     }
 }

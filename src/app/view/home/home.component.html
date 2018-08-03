@@ -48,15 +48,10 @@
     </ul>
 </nav>
 <div class="home-container">
+    <p-breadcrumb [home]="home" [model]="breadCrumbItems"></p-breadcrumb>
     <div *ngIf="selected['aluno']">
-        <p-tabView [styleClass]="tableListagem">
-            <p-tabPanel header="Listar Alunos">
-                <table-listar-aluno [loading]="loading"></table-listar-aluno>
-            </p-tabPanel>
-            <p-tabPanel header="Cadastrar Alunos">
-               <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno>
-            </p-tabPanel>
-            
-        </p-tabView>
+            <menu-aluno #menuAluno [(loading)]="loading"></menu-aluno>
+            <!-- <table-listar-aluno [loading]="loading" (breadCrumb)="adicionaBread($event)"></table-listar-aluno>
+            <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno> -->
     </div>
 </div>

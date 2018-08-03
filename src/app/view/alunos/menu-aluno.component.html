@@ -1,0 +1,16 @@
+<div *ngIf="selected['default']" class="ui-g">
+    <div class="ui-lg-4 ui-md-4">
+        <p-card title="Cadastro" [style]="{width: '100%'}" [styleClass]="">
+            <a (click)="exibir('formulario')">Adicionar Aluno</a>
+        </p-card>
+    </div>
+    <div class="ui-lg-4 ui-md-4">
+            <p-card title="Filtrar" [style]="{width: '100%'}" [styleClass]="">
+                <a (click)="exibir('listar')">Listar Alunos</a>
+            </p-card>
+        </div>
+</div>
+
+<div *ngIf="selected['formulario']">
+    <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno>
+</div>

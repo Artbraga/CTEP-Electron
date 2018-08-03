@@ -5,20 +5,23 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 
-import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule } from "primeng/primeng";
+import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, CardModule } from "primeng/primeng";
 import { TableModule } from 'primeng/table';
 
 import { FormularioAdicionaAlunoComponent } from "./formulario-adiciona-aluno/formulario-adiciona-aluno.component";
 import { TableListarAlunoComponent } from "./tabela-aluno/table-listar-aluno.component";
+import { MenuAlunoComponent } from "./menu-aluno.component";
 
 @NgModule({
     declarations: [
         FormularioAdicionaAlunoComponent,
         TableListarAlunoComponent,
+        MenuAlunoComponent
     ],
     exports: [
         FormularioAdicionaAlunoComponent,
         TableListarAlunoComponent,
+        MenuAlunoComponent
     ],
     imports: [
         BrowserModule,
@@ -37,8 +40,9 @@ import { TableListarAlunoComponent } from "./tabela-aluno/table-listar-aluno.com
         CheckboxModule,
         GrowlModule,
         TableModule,
+        CardModule,
         AutoCompleteModule
     ],
     providers: [],
 })
-export class AlunosModule { }
+export class AlunoModule { }

@@ -5,9 +5,10 @@ import { PanelModule } from 'primeng/panel';
 import { HomeComponent } from './home.component';
 import { MenuModule } from 'primeng/menu';
 import {TabViewModule} from 'primeng/tabview';
-import { AlunosModule } from '../alunos/alunos.module';
+import { AlunoModule } from '../alunos/alunos.module';
 import { CommonModule } from '@angular/common';
-import { DialogModule } from 'primeng/primeng';
+import { DialogModule, BreadcrumbModule } from 'primeng/primeng';
+import { TurmaModule } from '../turma/turma.module';
 
 @NgModule({
     declarations: [
@@ -21,10 +22,12 @@ import { DialogModule } from 'primeng/primeng';
         BrowserAnimationsModule,
         CommonModule,
         PanelModule,
+        BreadcrumbModule,
         DialogModule,
         MenuModule,
         TabViewModule,
-        AlunosModule
+        AlunoModule,
+        TurmaModule
     ],
     providers: [],
 })

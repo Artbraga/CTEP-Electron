@@ -35,6 +35,8 @@ export class Aluno {
 
     curso: Curso;
 
+    edicao: boolean;
+
     observacoes: ObservacaoAluno[];
 
     constructor() {
@@ -69,6 +71,8 @@ export class Aluno {
         this.turmaEspecializacao = new Turma();
 
         this.curso = new Curso();
+
+        this.edicao = false;
 
         this.observacoes = [];
     }

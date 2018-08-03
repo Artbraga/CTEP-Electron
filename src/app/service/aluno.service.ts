@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BaseService } from 'src/app/base/base-service';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Aluno } from '../entities/aluno';
 
 @Injectable({ providedIn: 'root', })
 export class AlunoService extends BaseService{
@@ -18,4 +19,5 @@ export class AlunoService extends BaseService{
             map(this.extractData),
             catchError(this.handleErrorObservable));
     }
+
 }

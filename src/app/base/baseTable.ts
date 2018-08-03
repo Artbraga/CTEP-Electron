@@ -7,7 +7,7 @@ export class BaseTable {
     colunas: any[];
     constructor(private service: BaseService, protected ref: ChangeDetectorRef){ 
         this.loading = 1;
-        service.Listar().subscribe(data => {
+        service.listar().subscribe(data => {
             this.list = data;
             this.loading = 0;
         });

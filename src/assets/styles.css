@@ -195,4 +195,36 @@ label{
 
 a:hover {
   color: #0F2451;
+  cursor: pointer;
 }
+
+.form-group > input.ui-inputtext.invalidField {
+  border: 1px solid #d21c29 !important;
+  width: 100%;
+}
+
+.ui-calendar.invalidField > input {
+  border: 1px solid #d21c29 !important;
+}
+
+.form-group input.ui-inputtext.invalidField, .invalidFieldData {
+  border: 1px solid #d21c29 !important;
+}
+
+p-autocomplete .invalidField {
+  border: 1px solid #d21c29 !important;
+}
+
+.ui-card.ui-widget.ui-widget-content {
+  box-shadow: 3px 4px 3px #ffffff73;
+  border: 1px solid white;
+}
+
+.ui-card.ui-widget.ui-widget-content a{
+  font-weight: bold;
+}
+.ui-card.ui-widget.ui-widget-content a:hover{
+  color: #0F2451;
+}
+
+

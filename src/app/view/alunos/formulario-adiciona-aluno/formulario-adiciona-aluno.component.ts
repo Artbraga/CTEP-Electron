@@ -24,19 +24,21 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
     situacaoSuggestions: any[];
 
     observacao: ObservacaoAluno;
+    tentouAdicionarAluno: boolean = false;
 
     constructor(private viacep: ViacepService,
                 private alunoService: AlunoService,
                 private cursoService: CursoService,
                 private turmaService: TurmaService,
                 ref: ChangeDetectorRef){
-        super(ref);
+        super(alunoService, ref);
     }
+
     ngOnInit(){
         if (this.element == null)
             this.element = new Aluno();
         this.observacoesColumns = [
-            { field: 'data', header: 'Data', style: {'width':'100px'}},
+            { field: 'data', header: 'Data', style: {'width':'20vw'}},
             { field: 'obs', header: 'Observação'},
         ];
         this.statusOptions = [
@@ -58,17 +60,17 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 this.element.bairro = endereco.bairro;
                 this.element.cidade = endereco.localidade;
                 this.element.endereco = endereco.logradouro;
-                this.showMessage({severity:'success', summary:'Endereo encontrado', detail:'Endereço encontrado com sucesso!'})
+                this.showFeedbackMessage({ severity:'success', summary:'Endereo encontrado', detail:'Endereço encontrado com sucesso!' })
                 this.updateView();
             }
             else{
                 this.element.bairro = null;
                 this.element.cidade = null;
                 this.element.endereco = null;
-                this.showMessage({severity:'error', summary:'CEP Incorreto', detail:'Endereço não encontrado para o CEP digitado.'});
+                this.showFeedbackMessage({ severity:'error', summary:'CEP Incorreto', detail:'Endereço não encontrado para o CEP digitado.' });
             }
         }).catch( (error: CepError) => {
-            this.showMessage({severity:'error', summary:'CEP Incorreto', detail:'Endereço não encontrado para o CEP digitado.'});
+            this.showFeedbackMessage({ severity:'error', summary:'CEP Incorreto', detail:'Endereço não encontrado para o CEP digitado.' });
         });
     }
 
@@ -78,12 +80,6 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
 
     desabilitarBotaoGerarMatriucla(){
         return !(this.validField(this.element.curso) && this.validField(this.element.anoMatricula));
-    }
-
-    showMessage(msg: Message){
-        console.log(msg);
-        this.msgs.push(msg);
-        this.updateView();  
     }
 
     buscarDropdown(busca, campo: string){
@@ -125,6 +121,12 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         })
     }
 
+    limparCampos(){
+        this.element = new Aluno();
+        this.limparObservacao();
+        this.updateView();
+    }
+
     limparObservacao(){
         this.observacao = new ObservacaoAluno();
         this.updateView();
@@ -136,8 +138,53 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
     }
 
     cadastrarAluno(){
-
+        this.tentouAdicionarAluno = true;
+        if (!this.validField(this.element.nome) ||
+            !this.validField(this.element.cpf) ||
+            !this.validField(this.element.matricula) ||
+            !this.validField(this.element.endereco) ||
+            !this.validField(this.element.cep) ||
+            !this.validField(this.element.dataMatricula) ||
+            !this.validField(this.element.curso) ||
+            !this.validField(this.element.status) ||
+            !this.validField(this.element.rg)){
+                return;
+        }
+        this.alunoService.salvar(this.element, ()=>{
+            if(this.element.edicao){
+                this.showFeedbackMessage({ severity: 'success', summary: 'Sucesso!', detail: 'Aluno editado com sucesso!' });
+            }
+            else{
+                this.showFeedbackMessage({ severity: 'success', summary: 'Sucesso!', detail: 'Aluno cadastrado com sucesso!' });
+            }
+            this.tentouAdicionarAluno = false;
+            this.limparCampos();
+        }, (erro) =>{
+            this.showFeedbackMessage(erro);
+        });
     }
 
-
+    isCampoInvalido(campo: string): boolean{
+        switch (campo) {
+            case 'nome':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.nome));
+            case 'cpf':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.cpf));
+            case 'matricula':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.matricula));
+            case 'endereco':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.endereco));
+            case 'cep':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.cep));
+            case 'dataMatricula':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.dataMatricula));
+            case 'curso':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.curso));
+            case 'status':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.status));
+            case 'rg':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.rg));
+        }
+        return false;
+    }
 }

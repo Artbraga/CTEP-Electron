@@ -18,4 +18,12 @@ export class TurmaService extends BaseService{
           map(this.extractData),
           catchError(this.handleErrorObservable),);
     }
+
+    public gerarCodigo(ano: number, cursoId: number): Observable<any>{
+        let url = this.baseURL + '/gerarCodigo/'+ ano + '&' + cursoId;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
 }
