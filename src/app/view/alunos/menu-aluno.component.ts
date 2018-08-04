@@ -1,4 +1,5 @@
-import { Component, Input } from "node_modules/@angular/core";
+import { Component, Input, Output, EventEmitter } from "node_modules/@angular/core";
+import { MenuItem } from "../../../../node_modules/primeng/primeng";
 
 @Component({
     selector: 'menu-aluno',
@@ -8,13 +9,17 @@ import { Component, Input } from "node_modules/@angular/core";
 export class MenuAlunoComponent{
 
     @Input() loading;
+    @Output() bread = new EventEmitter<MenuItem>();
 
     selected = {"default": true};
 
     exibir(component: string){
         this.fecharOutros(component);
         this.selected[component] = true;
-
+        switch(component){
+            case "formulario":
+                this.bread.emit({ icon: "far fa-plus-square", label: "Adicionar Aluno" })
+        }
     }
 
     fecharOutros(tipo: string){
@@ -23,4 +28,5 @@ export class MenuAlunoComponent{
                 this.selected[menu] = false;
         }
     }
+
 }
