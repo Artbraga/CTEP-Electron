@@ -2,11 +2,11 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { MenuItem } from "primeng/primeng";
 
 @Component({
-    selector: 'menu-aluno',
-    templateUrl: './menu-aluno.component.html',
+    selector: 'menu-professor',
+    templateUrl: './menu-professor.component.html',
 })
 
-export class MenuAlunoComponent{
+export class MenuProfessorComponent{
 
     @Input() loading;
     @Output() bread = new EventEmitter<MenuItem>();
@@ -18,7 +18,7 @@ export class MenuAlunoComponent{
         this.selected[component] = true;
         switch(component){
             case "formulario":
-                this.bread.emit({ icon: "far fa-plus-square", label: "Adicionar Aluno" })
+                this.bread.emit({ icon: "far fa-plus-square", label: "Adicionar Professor" })
         }
     }
 

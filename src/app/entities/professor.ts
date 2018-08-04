@@ -6,6 +6,10 @@ export class Professor{
     cpf: string;
     rg: string;
     endereco: string;
+    cep: string;
+    complemento: string;
+    cidade: string;
+    bairro: string;
 
     email: string;
     telefone: string;
@@ -21,6 +25,10 @@ export class Professor{
         this.cpf = null;
         this.rg = null;
         this.endereco = null;
+        this.cep = null;
+        this.complemento = null;
+        this.cidade = null;
+        this.bairro = null;
         this.email = null;
         this.telefone = null;
         this.celular = null;

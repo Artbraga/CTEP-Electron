@@ -22,7 +22,7 @@
 
         </li>
         <li class="has-subnav">
-            <a>
+            <a (click)="abrirMenu('professor')">
                 <i class="fas fa-chalkboard-teacher fa-2x"></i>
                 <span class="nav-text">
                     Professor
@@ -53,5 +53,8 @@
             <menu-aluno #menuAluno [(loading)]="loading" (bread)="adicionaBread($event)"></menu-aluno>
             <!-- <table-listar-aluno [loading]="loading" (breadCrumb)="adicionaBread($event)"></table-listar-aluno>
             <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno> -->
+    </div>
+    <div *ngIf="selected['aluno']">
+        <menu-professor #menuProfessor [(loading)]="loading" (bread)="adicionaBread($event)"></menu-professor>
     </div>
 </div>

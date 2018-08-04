@@ -9,6 +9,7 @@ import { AlunoModule } from '../alunos/alunos.module';
 import { CommonModule } from '@angular/common';
 import { DialogModule, BreadcrumbModule } from 'primeng/primeng';
 import { TurmaModule } from '../turma/turma.module';
+import { ProfessorModule } from '../professor/professor.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { TurmaModule } from '../turma/turma.module';
         MenuModule,
         TabViewModule,
         AlunoModule,
-        TurmaModule
+        TurmaModule,
+        ProfessorModule,
     ],
     providers: [],
 })

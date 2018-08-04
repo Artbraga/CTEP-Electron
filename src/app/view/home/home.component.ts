@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
     home: MenuItem;
 
     @ViewChild('menuAluno') menuAluno;
+    @ViewChild('menuProfessor') menuProfessor;
 
     ngOnInit(){
         this.home = { icon: 'fas fa-home', command: () => this.showHome() }
@@ -26,6 +27,9 @@ export class HomeComponent implements OnInit {
         switch(tipo){
             case "aluno":
                 this.breadCrumbItems.push( { label:"Alunos", icon: 'fas fa-user-graduate', command: () => this.resetTela('aluno') } );
+                break;
+            case "professor":
+                this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
                 break;
         }
     }
@@ -51,7 +55,10 @@ export class HomeComponent implements OnInit {
         this.selected[tela] = true;
         switch(tela){
             case "aluno":
-                this.menuAluno.exibir("default");;
+                this.menuAluno.exibir("default");
+                break;
+            case "professor":
+                this.menuProfessor.exibir("default");
         }
     }
 }

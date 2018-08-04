@@ -146,6 +146,7 @@ nav ul, nav li {
   padding-left: 80px;
   background-color: #575757;
   height: 100vh;
+  overflow-y: auto;
 }
 
 label{
