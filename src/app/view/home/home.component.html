@@ -49,12 +49,12 @@
 </nav>
 <div class="home-container">
     <p-breadcrumb [home]="home" [model]="breadCrumbItems"></p-breadcrumb>
-    <div *ngIf="selected['aluno']">
-            <menu-aluno #menuAluno [(loading)]="loading" (bread)="adicionaBread($event)"></menu-aluno>
+    <div *ngIf="selected['aluno']" class="ui-lg-12">
+        <menu-aluno #menuAluno [(loading)]="loading" (bread)="adicionaBread($event)"></menu-aluno>
             <!-- <table-listar-aluno [loading]="loading" (breadCrumb)="adicionaBread($event)"></table-listar-aluno>
             <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno> -->
     </div>
-    <div *ngIf="selected['aluno']">
+    <div *ngIf="selected['professor']" class="ui-lg-12">
         <menu-professor #menuProfessor [(loading)]="loading" (bread)="adicionaBread($event)"></menu-professor>
     </div>
 </div>

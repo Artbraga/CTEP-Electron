@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, CardModule } from "primeng/primeng";
 import { TableModule } from 'primeng/table';
-import { FormularioAdicionaProfessorComponent } from "./formulario-inserir-professor/formulario-adiciona-professor.component";
+import { FormularioAdicionaProfessorComponent } from "./formulario-adiciona-professor/formulario-adiciona-professor.component";
 import { MenuProfessorComponent } from "./menu-professor.component";
 
 
