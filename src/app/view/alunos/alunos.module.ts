@@ -11,6 +11,7 @@ import { TableModule } from 'primeng/table';
 import { FormularioAdicionaAlunoComponent } from "./formulario-adiciona-aluno/formulario-adiciona-aluno.component";
 import { TableListarAlunoComponent } from "./tabela-aluno/table-listar-aluno.component";
 import { MenuAlunoComponent } from "./menu-aluno.component";
+import { TableXModule } from "../../components/table-x/table-x.module";
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { MenuAlunoComponent } from "./menu-aluno.component";
         CheckboxModule,
         GrowlModule,
         TableModule,
+        TableXModule,
         CardModule,
         AutoCompleteModule
     ],

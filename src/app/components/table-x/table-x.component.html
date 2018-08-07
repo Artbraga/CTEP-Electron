@@ -1,0 +1,104 @@
+<p-table class="table table-hover table-striped tablegreen table-rdo table-filter"
+         [loading]="loading"
+         [value]="value"
+         [columns]="colunas"
+         [dataKey]="dataKey"
+         [rowTrackBy]="rowTrackBy"
+         [selectionMode]="selectionMode"
+         [(selection)]="selection"
+         (onRowSelect)="onRowSelectFn($event)"
+         metaKeySelection="true"
+         [filterDelay]="filterDelay"
+         (onSort)="onSortFn($event)"
+         (onFilter)="onFilterFn($event)"
+         [ngClass]="tableClass()"
+         [scrollable]="true"
+         [scrollHeight]="scrollHeight"
+         (onRowExpand)="onRowExpandFn($event)"
+         lazy="true"
+         id="dataTableId"
+         #tt>
+
+    <ng-template pTemplate="header">
+        <tr class="ui-state-default">
+            <th class="show-list ui-state-default ui-unselectable-text" scope="col" *ngIf="expandable && expandableAll">
+                <span class="ui-column-title">
+                    <button pbutton="" type="button" (click)="expandAll()" title="{{getAllTextExpand()}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                        <span aria-hidden="true" class="ui-button-icon-left ui-clickable {{getAllIconExpand()}}"></span>
+                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                    </button>
+                </span>
+            </th>
+
+
+            <th *ngFor="let col of colunas"
+                [ngStyle]="col.style"
+                [pSortableColumnX]="col.field"
+                [pSortableColumnDisabledX]="!col.sortable"
+                [ngClass]="col.class">
+                <span class="ui-column-title ui-sortable-clickable-area">
+                    <ng-container *ngIf="col.headerTemplateName == null || templatesTabela[col.headerTemplateName] == null">
+                        {{col.header}}
+                    </ng-container>
+                    <ng-container *ngIf="col.headerTemplateName != null && templatesTabela[col.headerTemplateName] != null">
+                        <ng-container *ngTemplateOutlet="templatesTabela[col.headerTemplateName]; context: {$implicit: col, col: col}">
+
+                        </ng-container>
+                    </ng-container>
+                </span>
+
+                <p-sortIcon [field]="col.field" *ngIf="col.sortable" class="ui-sortable-clickable-area"></p-sortIcon>
+
+                <ng-container *ngIf="col.filterable && templatesTabela[col.filterTemplateName] != null">
+                    <ng-container *ngTemplateOutlet="templatesTabela[col.filterTemplateName]; context: {$implicit: col, col: col}">
+
+                    </ng-container>
+                </ng-container>
+                <input *ngIf="col.filterable && col.filterTemplateName == null" required pInputText type="text" (input)="tt.filter($event.target.value, col.field, col.filterMatchMode)" class="ui-column-filter">
+            </th>
+        </tr>
+
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-cols="columns" let-rowIndex="rowIndex">
+        <tr [ngClass]="{'ui-table-even':rowIndex % 2 == 0, 'ui-table-odd':rowIndex %2 !=0}" [pSelectableRow]="rowData" [pSelectableRowIndex]="rowIndex" [pReorderableRow]="reorderableRow?rowIndex:null" [ngStyle]="{'cursor': reorderableRow?'-webkit-grab':'pointer'}">
+
+            <td class="show-list" *ngIf="expandable && expandableAll">
+                <span class="ui-cell-data">
+                    <button pbutton="" type="button" [pRowToggler]="rowData" title="{{getRowTextExpanded(expanded)}}" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
+                        <span aria-hidden="true" class="ui-button-icon-left ui-clickable {{getRowIconExpanded(expanded)}}"></span>
+                        <span class="ui-button-text ui-clickable">ui-btn</span>
+                    </button>
+                </span>
+            </td>
+
+            <td *ngFor="let col of cols" [ngStyle]="col.style" [ngClass]="col.class" pReorderableRowHandle>
+                <ng-container *ngIf="col.bodyTemplateName == null || templatesTabela[col.bodyTemplateName] == null">
+                    {{tt.objectUtils.resolveFieldData(rowData,col.field)}}
+                </ng-container>
+                <ng-container *ngIf="col.bodyTemplateName !=null && templatesTabela[col.bodyTemplateName] != null">
+                    <ng-container *ngTemplateOutlet="templatesTabela[col.bodyTemplateName] ;context: {$implicit: rowData, rowData: rowData, rowIndex: rowIndex}">
+
+                    </ng-container>
+                </ng-container>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td [attr.colspan]="columns.length+1" class="ui-datatable-emptymessage">
+                <span *ngIf="!loading">{{emptyMessage}}</span>
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="rowexpansion" let-rowData let-cols="columns">
+        <tr class="ui-expanded-row-content">
+            <td [attr.colspan]="cols.length+1">
+                <ng-container *ngTemplateOutlet="rowExpansionTemplate; context: {$implicit: rowData, rowData: rowData, rowIndex: rowIndex}">
+
+                </ng-container>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>

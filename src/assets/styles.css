@@ -269,3 +269,8 @@ p-autocomplete .invalidField {
 .ui-state-highlight.ui-growl-message-error{
   background-color: var(--error);
 }
+
+.ui-autocomplete-panel.ui-widget-content.ui-corner-all{
+  border: 1px solid var(--escuro);
+  border-radius: 0px;
+}

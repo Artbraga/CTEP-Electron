@@ -1,15 +1,18 @@
-import { Input, ChangeDetectorRef } from "@angular/core";
+import { Input, ChangeDetectorRef, ViewChild } from "@angular/core";
 import { BaseService } from "./base-service";
+import { TableXComponent, Coluna } from "../components/table-x/table-x.component";
 
 export class BaseTable {
-    @Input() loading: number = 0;
-    list: any[];
-    colunas: any[];
+    loadingTable: boolean = false;
+    list: any[] = [];
+    colunas: Coluna[];
+    @ViewChild('tableComponent') tableComponent: TableXComponent;
+
     constructor(private service: BaseService, protected ref: ChangeDetectorRef){ 
-        this.loading = 1;
+        this.loadingTable = true;
         service.listar().subscribe(data => {
             this.list = data;
-            this.loading = 0;
+            this.loadingTable = false;
         });
     }
 

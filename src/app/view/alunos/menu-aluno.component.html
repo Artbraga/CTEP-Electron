@@ -6,11 +6,14 @@
     </div>
     <div class="ui-lg-4 ui-md-4">
             <p-card title="Filtrar" [style]="{width: '100%'}" [styleClass]="">
-                <a (click)="exibir('listar')">Listar Alunos</a>
+                <a (click)="exibir('tabela')">Listar Alunos</a>
             </p-card>
         </div>
 </div>
 
 <div *ngIf="selected['formulario']">
-    <formulario-adiciona-aluno [loading]="loading"></formulario-adiciona-aluno>
+    <formulario-adiciona-aluno [loading]="loading" [(element)]="element"></formulario-adiciona-aluno>
+</div>
+<div *ngIf="selected['tabela']">
+    <table-listar-aluno (carregaAluno)="carregaAluno($event)"></table-listar-aluno>
 </div>
