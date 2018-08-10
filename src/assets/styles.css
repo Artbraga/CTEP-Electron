@@ -274,3 +274,7 @@ p-autocomplete .invalidField {
   border: 1px solid var(--escuro);
   border-radius: 0px;
 }
+
+.table-striped tbody tr:hover{
+  background-color: var(--azulcl);
+}
