@@ -10,12 +10,12 @@ export class BaseService{
 
     constructor(protected http: HttpClient, protected readonly controller: string) { };
 
-    public getById(id: number): Observable<any> {
+    public getById(id: any): Observable<any> {
         let getByIdURL = this.baseURL + '/' + id;
 
         return this.http.get(getByIdURL).pipe(
             map(this.extractData),
-            catchError(this.handleErrorObservable),);
+            catchError(this.handleErrorObservable));
     };
 
     public listar(): Observable<any> {

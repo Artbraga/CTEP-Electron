@@ -1,19 +1,16 @@
 <div *ngIf="selected['default']" class="ui-g">
     <div class="ui-lg-4 ui-md-4">
         <p-card title="Cadastro" [style]="{width: '100%'}" [styleClass]="">
-            <a (click)="exibir('formulario')">Adicionar Aluno</a>
+            <a (click)="exibir('formulario')">Adicionar Professor</a>
         </p-card>
     </div>
     <div class="ui-lg-4 ui-md-4">
             <p-card title="Filtrar" [style]="{width: '100%'}" [styleClass]="">
-                <a (click)="exibir('tabela')">Listar Alunos</a>
+                <a (click)="exibir('listar')">Listar Professores</a>
             </p-card>
         </div>
 </div>
 
 <div *ngIf="selected['formulario']">
-    <formulario-adiciona-aluno [loading]="loading" [(element)]="element"></formulario-adiciona-aluno>
-</div>
-<div *ngIf="selected['tabela']">
-    <table-listar-aluno (carregaAluno)="carregaAluno($event)"></table-listar-aluno>
+    <formulario-adiciona-professor [loading]="loading"></formulario-adiciona-professor>
 </div>

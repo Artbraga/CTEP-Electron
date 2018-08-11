@@ -214,6 +214,7 @@
                                         (completeMethod)="buscarDropdown($event, 'turma')"
                                         [style]="{'width':'100%'}"
                                         minLength="1"
+                                        [disabled]="getDisabled('turma')"
                                         [forceSelection]="true"
                                         [emptyMessage]="'Não foram encontrados resultados'"
                                         [inputStyle]="{'width':'calc(100% - 2em)'}"
@@ -230,12 +231,48 @@
                                 [showButtonBar]="true"
                                 [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
                 </div>
+                <div class="ui-lg-4 ui-md-6" *ngIf="element.curso.especializacoes.length > 0">
+                        <p-checkbox label="Incluir turma de especialização" 
+                                        binary="true" 
+                                        [(ngModel)]="inserirEspecializacao"
+                                        [style]="{'padding-top':'20px'}"></p-checkbox>
+                </div>
+                <div class="ui-lg-4 ui-md-6" *ngIf="inserirEspecializacao">
+                        <label>Curso de Especialização:</label>
+                        <p-autoComplete [(ngModel)]="cursoEspecializacao" 
+                                        [suggestions]="cursoEspecializacaoSuggestions" 
+                                        (completeMethod)="buscarDropdown($event, 'cursoEspecialização')"
+                                        [style]="{'width':'100%'}"
+                                        minLength="1"
+                                        [forceSelection]="true"
+                                        [emptyMessage]="'Não foram encontrados resultados'"
+                                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                                        field="nome"
+                                        [dropdown]="true"></p-autoComplete>
+                </div>
+                <div class="ui-lg-4 ui-md-6" *ngIf="inserirEspecializacao">
+                        <label>Turma de Especialização:</label>
+                        <p-autoComplete [(ngModel)]="element.turmaEspecializacao" 
+                                        [suggestions]="turmaEspecializacaoSuggestions" 
+                                        (completeMethod)="buscarDropdown($event, 'turmaEspecialização')"
+                                        [style]="{'width':'100%'}"
+                                        minLength="1"
+                                        [forceSelection]="true"
+                                        [emptyMessage]="'Não foram encontrados resultados'"
+                                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                                        field="nome"
+                                        [dropdown]="true"></p-autoComplete>
+                </div>
         </div>
 </p-panel>
 <p-panel header="Notas" 
         [toggleable]="true" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="true">
+
+        <div *ngFor="let d of disciplinas">
+
+        </div>
 </p-panel>
 <p-panel header="Observações" 
         [toggleable]="true" 
@@ -275,29 +312,13 @@
                                 title="Limpar Observação"></button>
                 </div>
         </div>
-        <p-table [value]="element.observacoes"
-                [columns]="observacoesColumns"
-                [scrollable]="true">
-                <ng-template pTemplate="header" let-columns>
-                        <tr>
-                                <th *ngFor="let col of columns" [ngStyle]="col.style">
-                                        {{col.header}}
-                                </th>
-                        </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr>
-                                <td *ngFor="let col of columns">
-                                        {{rowData[col.field]}}
-                                </td>
-                        </tr>
-                </ng-template>
-                <ng-template pTemplate="emptymessage" let-columns>
-                        <tr>
-                                <td [attr.colspan]="columns.length">O aluno não possui observações.</td>
-                        </tr>
-                </ng-template>
-        </p-table>
+        <table-x [value]="element.observacoes" 
+                [colunas]="colunasObservacoes" 
+                emptyMessage="Não encontrou resultados para a busca."
+                #tableComponent>
+
+
+        </table-x>
 </p-panel>
 <div class="ui-lg-4 ui-md-6" style="float:right">
         <button (click)="cadastrarAluno()" 

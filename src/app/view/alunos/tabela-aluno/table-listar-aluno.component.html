@@ -1,24 +1,10 @@
-<p-table [value]="list"
-         [columns]="colunas"
-         [scrollable]="true"
-         scrollHeight="80vh"
-         [tableStyleClass]="'table-striped'"
-         [style]="{'min-width':'800px'}"
-         scrollWidth="800px"
-         [loading]="loading">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [ngStyle]="col.style" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-            </th>
-        </tr>
+<table-x [value]="list" 
+        [colunas]="colunas" 
+        [loading]="loadingTable" 
+        emptyMessage="Não encontrou resultados para a busca."
+        #tableComponent>
+
+    <ng-template pTemplate="editarAluno" let-data let-rI="rowIndex">
+        <button type="button" pButton class="fas fa-edit" title="Alterar" (click)="edita(data.matricula)"></button>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns" [ngStyle]="col.style">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+</table-x>

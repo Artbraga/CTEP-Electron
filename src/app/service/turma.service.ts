@@ -26,4 +26,12 @@ export class TurmaService extends BaseService{
             map(this.extractData),
             catchError(this.handleErrorObservable));
     }
+
+    public filtrarTurmasDeUmCurso(cursoId: number, nome: string) : Observable<any>{
+        let url = this.baseURL + '/filtrarTurmasDeUmCurso/'+ nome + '&' + cursoId;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
 }

@@ -9,6 +9,8 @@ import { AlunoModule } from '../alunos/alunos.module';
 import { CommonModule } from '@angular/common';
 import { DialogModule, BreadcrumbModule } from 'primeng/primeng';
 import { TurmaModule } from '../turma/turma.module';
+import { ProfessorModule } from '../professor/professor.module';
+import { TableXModule } from '../../components/table-x/table-x.module';
 
 @NgModule({
     declarations: [
@@ -24,10 +26,12 @@ import { TurmaModule } from '../turma/turma.module';
         PanelModule,
         BreadcrumbModule,
         DialogModule,
+        TableXModule,
         MenuModule,
         TabViewModule,
         AlunoModule,
-        TurmaModule
+        TurmaModule,
+        ProfessorModule,
     ],
     providers: [],
 })
