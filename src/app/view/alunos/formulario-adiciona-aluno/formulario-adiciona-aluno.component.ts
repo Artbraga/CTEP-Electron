@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { BaseFormulario } from "src/app/base/baseFormulario";
-import { Aluno } from "src/app/entities/aluno";
-import { ViacepService } from 'src/app/service/ngx-viacep/viacep.service';
-import { CepError, Endereco } from "src/app/service/ngx-viacep/endereco";
+import { BaseFormulario } from "../../../base/baseFormulario";
+import { Aluno } from "../../../entities/aluno";
+import { ViacepService } from '../../../service/ngx-viacep/viacep.service';
+import { CepError, Endereco } from "../../../service/ngx-viacep/endereco";
 import { Message } from "primeng/primeng";
-import { CursoService } from "src/app/service/curso.service";
-import { AlunoService } from "src/app/service/aluno.service";
-import { TurmaService } from "src/app/service/turma.service";
-import { ObservacaoAluno } from "src/app/entities/observacaoAluno";
+import { CursoService } from "../../../service/curso.service";
+import { AlunoService } from "../../../service/aluno.service";
+import { TurmaService } from "../../../service/turma.service";
+import { ObservacaoAluno } from "../../../entities/observacaoAluno";
 
 @Component({
     selector: 'formulario-adiciona-aluno',

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, Input } from "@angular/core";
-import { BaseTable } from "src/app/base/baseTable";
-import { AlunoService } from "src/app/service/aluno.service";
+import { BaseTable } from "../../../base/baseTable";
+import { AlunoService } from "../../../service/aluno.service";
 
 @Component({
     selector: 'table-listar-aluno',

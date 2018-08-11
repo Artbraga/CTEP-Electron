@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { Turma } from "src/app/entities/turma";
-import { BaseFormulario } from "src/app/base/baseFormulario";
-import { TurmaService } from "src/app/service/turma.service";
-import { CursoService } from "src/app/service/curso.service";
-import { ObservacaoTurma } from "src/app/entities/observacaoTurma";
+import { Turma } from "../../../entities/turma";
+import { BaseFormulario } from "../../../base/baseFormulario";
+import { TurmaService } from "../../../service/turma.service";
+import { CursoService } from "../../../service/curso.service";
+import { ObservacaoTurma } from "../../../entities/observacaoTurma";
 
 @Component({
     selector: 'formulario-adiciona-turma',
