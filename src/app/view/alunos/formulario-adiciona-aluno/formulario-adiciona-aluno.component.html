@@ -88,6 +88,7 @@
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
+                <hr>
                 <div class="ui-lg-6 ui-md-6">
                         <label>Nome do Pai:</label>
                         <input type="text" 
@@ -270,8 +271,15 @@
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="true">
 
-        <div *ngFor="let d of disciplinas">
-
+        <div class="ui-g" style="padding-right:10em">
+                <ng-container *ngFor="let d of disciplinas">
+                        <div class="ui-lg-3 ui-md-3" style="text-align:right">
+                                <label>{{d}}</label>
+                                <input type="text" 
+                                        pInputText 
+                                        style="width: 20%"/>
+                        </div>
+                </ng-container>
         </div>
 </p-panel>
 <p-panel header="Observações" 
@@ -298,18 +306,18 @@
                 <div class="ui-lg-4 ui-md-4" style="display: flex;">
                         <button (click)="adicionarObservacao()" 
                                 pButton type="button" 
-                                label="Adicionar"
+                                label="Salvar"
                                 class="form-button"
                                 style="align-self: flex-end;"
-                                title="Adicionar Observação"></button>
+                                title="Salvar Observação"></button>
                 </div>
                 <div class="ui-lg-4 ui-md-4" style="display: flex;">
                         <button (click)="limparObservacao()" 
                                 pButton type="button" 
-                                label="Limpar"
+                                [label]="idEdicaoObservacao == null ? 'Limpar' : 'Cancelar'"
                                 class="form-button"
                                 style="align-self: flex-end;"
-                                title="Limpar Observação"></button>
+                                [title]="idEdicaoObservacao == null ? 'Limpar Observação' : 'Cancelar Edição'"></button>
                 </div>
         </div>
         <table-x [value]="element.observacoes" 
@@ -317,6 +325,13 @@
                 emptyMessage="Não encontrou resultados para a busca."
                 #tableComponent>
 
+                <ng-template pTemplate="excluirObservacao" let-index="rowIndex" let-item="rowData">
+                        <button type="button" pButton icon="fa fa-trash" title="Excluir" (click)="showConfirmationDeleteObservacao(item)"></button>
+                </ng-template>
+
+                <ng-template pTemplate="editarObservacao" let-index="rowIndex" let-item="rowData">
+                        <button type="button" pButton icon="fa fa-edit" title="Editar" (click)="editarObservacao(item, index)"></button>
+                </ng-template>
 
         </table-x>
 </p-panel>
@@ -329,3 +344,31 @@
                 class="form-button"
                 title="Cadastrar Aluno"></button>
 </div>
+
+<div *ngIf="observacaoDelete!=null && displayObservacaoDelete" class="block-back-wrap modal-type">
+        <p-dialog header="Confirmar ação" [(visible)]="displayObservacaoDelete" [modal]="true" [blockScroll]="true" [closeOnEscape]="true">
+            <div class="dialog-message">
+                Quer mesmo deletar a Observação?
+            </div>
+    
+            <div class="ui-g corpo-modal-confirmacao">
+                <div class="ui-g-12">
+                        <label>Aluno:</label>
+                        <label>{{element.nome}} </label>
+                </div>
+                <div class="ui-g-12">
+                    <label>Data:</label>
+                    <label>{{observacaoDelete.dataStr}} </label>
+                </div>
+                <div class="ui-g-12">
+                    <label>Observação:</label>
+                    <label>{{observacaoDelete.obs}}</label>
+                </div>
+            </div>
+    
+            <p-footer>
+                <button class="ui-button-success" icon="fa fa-check" type="button" label="Sim" pButton (click)="deleteObservacao();"></button>
+                <button class="ui-button-danger" icon="fas fa-times" type="button" label="Não" pButton (click)="displayObservacaoDelete=false"></button>
+            </p-footer>
+        </p-dialog>
+    </div>

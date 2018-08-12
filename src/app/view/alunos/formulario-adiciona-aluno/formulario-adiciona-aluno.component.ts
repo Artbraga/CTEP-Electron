@@ -19,7 +19,7 @@ import { Coluna } from "../../../components/table-x/table-x.component";
 export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> implements OnInit{
     
     observacoesColumns: any[];
-    disciplinas: Disciplina[] = [];
+    //disciplinas: Disciplina[] = [];
 
     statusOptions: {label: string, value: any}[];
 
@@ -37,9 +37,14 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
     colunasObservacoes: Coluna[] = <Coluna[]>[
         { header: "Data", field: "dataStr", sortable: true, style:{'width':'100px'} },
         { header: "Observação", field: "obs", sortable: true },
-        { bodyTemplateName: "editarObservacao", style:{'width':'30px'} },
-        { bodyTemplateName: "excluirObservacao", style:{'width':'30px'} },
+        { bodyTemplateName: "editarObservacao", style:{'width':'50px'} },
+        { bodyTemplateName: "excluirObservacao", style:{'width':'50px'} },
     ];
+    observacaoDelete: ObservacaoAluno = null;
+    displayObservacaoDelete: boolean = false;
+    idEdicaoObservacao: number;
+
+    disciplinas = ["Anatomia", "Saúde da Mulher", "Criança e Adolescente", "Saúde Pública", "Saúde Coletiva", "Urgência e Emergência", "Enfermagem Clínica", "Enfermagem Cirúrgica", "Saúde Mental"];
 
     constructor(private viacep: ViacepService,
                 private alunoService: AlunoService,
@@ -66,7 +71,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         this.observacao = new ObservacaoAluno();
     }
 
-    buscarCEP(){
+    public buscarCEP(){
         this.loading = 1;
         this.viacep.buscarPorCep(this.element.cep).then(end => {
             this.loading = 0;
@@ -89,15 +94,15 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         });
     }
 
-    desabilitarBotaoBuscaCep(){
+    public desabilitarBotaoBuscaCep(){
         return !/^[0-9]{8}$/.test(this.element.cep);
     }
 
-    desabilitarBotaoGerarMatriucla(){
+    public desabilitarBotaoGerarMatriucla(){
         return !(this.validField(this.element.curso) && this.validField(this.element.anoMatricula));
     }
 
-    buscarDropdown(busca, campo: string){
+    public buscarDropdown(busca, campo: string){
         let filter = busca.query;
         switch(campo){
             case "curso":
@@ -124,14 +129,14 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         }
     }
 
-    getDisabled(campo: string){
+    public getDisabled(campo: string){
         switch (campo){
             case "turma":
                 return this.element.curso == null || this.element.curso.id == null;
         }
     }
 
-    onSelect(campo: string){
+    public onSelect(campo: string){
         switch (campo){
             case "dataMatricula":
                 var data = this.element.dataMatricula;
@@ -140,11 +145,9 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
             case "dataNascimento":
 
         }
-        
     }
 
-
-    gerarMatricula(){
+    public gerarMatricula(){
         this.loading = 1;
         this.updateView();
         this.alunoService.gerarMatricula(this.element.anoMatricula, this.element.curso.id).subscribe(matricula => {
@@ -154,23 +157,30 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         })
     }
 
-    limparCampos(){
+    public limparCampos(){
         this.element = new Aluno();
         this.limparObservacao();
         this.updateView();
     }
 
-    limparObservacao(){
+    public limparObservacao(){
         this.observacao = new ObservacaoAluno();
+        this.idEdicaoObservacao= null;
         this.updateView();
     }
 
-    adicionarObservacao(){
-        this.element.observacoes.push(this.observacao);
+    public adicionarObservacao(){
+        if(this.idEdicaoObservacao == null){
+            this.element.observacoes.push(this.observacao);
+        }
+        else{
+            this.element.observacoes[this.idEdicaoObservacao] = this.observacao;
+            this.idEdicaoObservacao = null;
+        }
         this.limparObservacao();
     }
 
-    cadastrarAluno(){
+    public cadastrarAluno(){
         this.tentouAdicionarAluno = true;
         if (!this.validField(this.element.nome) ||
             !this.validField(this.element.cpf) ||
@@ -197,7 +207,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         });
     }
 
-    isCampoInvalido(campo: string): boolean{
+    public isCampoInvalido(campo: string): boolean{
         switch (campo) {
             case 'nome':
                 return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.nome));
@@ -219,5 +229,25 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.rg));
         }
         return false;
+    }
+
+    public showConfirmationDeleteObservacao(item: ObservacaoAluno){
+        this.displayObservacaoDelete = true;
+        this.observacaoDelete = item;
+        this.updateView();
+    }
+
+    public deleteObservacao(){
+        let index = this.element.observacoes.findIndex(x => x.id == this.observacaoDelete.id && x.obs == this.observacaoDelete.obs && x.data == this.observacaoDelete.data)
+        if(index != -1)
+            this.element.observacoes.splice(index, 1);
+        this.observacaoDelete = null;
+        this.displayObservacaoDelete = false;
+        this.updateView();
+    }
+
+    public editarObservacao(item: ObservacaoAluno, index: number): void{
+        this.observacao = item;
+        this.idEdicaoObservacao = index;
     }
 }

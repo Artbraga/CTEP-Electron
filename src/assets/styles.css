@@ -169,8 +169,8 @@ nav ul, nav li {
 label{
   font-size: 15px;
   font-weight: bold;
-  margin-top: 10px;
   margin-bottom: 0 !important;
+  padding: 0 5px;
 }
 
 .tableListagem{
@@ -277,4 +277,23 @@ p-autocomplete .invalidField {
 
 .table-striped tbody tr:hover{
   background-color: var(--azulcl);
+}
+
+.ui-button.ui-button-success.ui-state-default{
+  background-color: var(--azules);
+  border-color: var(--azules);
+}
+
+.ui-button.ui-button-danger.ui-state-default{
+  background-color: var(--error);
+  border-color: var(--error);
+}
+
+.corpo-modal-confirmacao{
+  border: double var(--gelo);
+}
+
+.ui-dialog-footer{
+  background-color: var(--escuro);
+  text-align: center;
 }
