@@ -14,6 +14,13 @@ export class BaseConverter {
             ? date
             : this.getDate(date) + '/' + this.getMonth(date) + '/' + date.getFullYear();
     };
+
+    public static convertDateToSave(date: any): string {
+        return date == undefined || typeof (date) == typeof ('')
+            ? date
+            : date.getFullYear() + '-' + this.getMonth(date) + '-' + this.getDate(date);
+    }; 
+
     public static convertDateEn(date: any): string {
         return date == undefined
             ? null
@@ -95,9 +102,8 @@ export class BaseConverter {
     public static convertStringDateBRToDate(d: string): any {
         if (typeof (d) != typeof ("")) return d;
         if (d.trim() == "" || d == null) return null;
-        let splitDataHora = d.split(" ");
-        let splitData = splitDataHora[0].split('/');
-        return new Date(+splitData[2], +splitData[1] - 1, +splitData[0]); // O mês está menos um por que o construtor interpreta Janeiro como 0 e assim por diante.
+        let splitData = d.split('-');
+        return new Date(+splitData[0], +splitData[1] - 1, +splitData[2]); // O mês está menos um por que o construtor interpreta Janeiro como 0 e assim por diante.
     }
 
     public static getNewImageSize(size:number[]):number[] {

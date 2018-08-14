@@ -3,16 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { BaseService } from '../base/base-service';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Aluno } from '../entities/aluno';
 
 @Injectable({ providedIn: 'root', })
-export class CursoService extends BaseService{
+export class DisciplinaService extends BaseService{
 
     constructor(http: HttpClient) {
-        super(http, 'cursos');
+        super(http, 'disciplinas');
     };
 
-    public listarCursosDeEspecializacao(cursoId: number) : Observable<any>{
-        let url = this.baseURL + '/listarCursosDeEspecializacao/'+ cursoId;
+    public listarDisciplinasDeUmCurso(cursoId: number) : Observable<any>{
+        let url = this.baseURL + '/listarDisciplinasDeUmCurso/' + cursoId;
 
         return this.http.get(url).pipe(
             map(this.extractData),

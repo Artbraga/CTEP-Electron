@@ -22,9 +22,9 @@ export class Aluno {
 
     notaFiscal: boolean;
 
-    dataMatricula: Date;
-    dataNascimento: Date;
-    dataValidade: Date;
+    dataMatricula: any;
+    dataNascimento: any;
+    dataValidade: any;
     cursoAnterior: string;
     anoMatricula: number;
 
@@ -70,7 +70,7 @@ export class Aluno {
         this.turma = new Turma();
         this.turmaEspecializacao = new Turma();
 
-        this.curso = new Curso();
+        this.curso = null;
 
         this.edicao = false;
 

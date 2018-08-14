@@ -5,7 +5,7 @@ export class ObservacaoAluno{
     id: number;
     obs: string;
     aluno: Aluno;
-    data: Date;
+    data: any;
 
     get dataStr(): string{
         return BaseConverter.convertDate(this.data);

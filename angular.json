@@ -29,7 +29,9 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/app/jquery.d.ts"
+            ]
           },
           "configurations": {
             "production": {

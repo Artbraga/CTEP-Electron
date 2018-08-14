@@ -77,21 +77,7 @@ export class TableXComponent {
     templatesTabela: { [nome: string]: TemplateRef<any> } = {};
 
     ngOnInit(): void {
-        $(document).ready(() => {
-            $(".table-infiniteScroll .ui-table-scrollable-body").on("scroll", (obj) => {
-                let el = obj.target;
-                if ((this.previousScrollTop < el.scrollTop) && (el.scrollTop >= (el.scrollHeight - el.clientHeight) - this.scrollHeightDistanceFromBottom)) {
-                        if (this.scrollTimeout) {
-                            clearTimeout(this.scrollTimeout);
-                        }
-                        this.scrollTimeout = setTimeout(() => {
-                            this.onScrollOnBottom.emit();
-                            this.scrollTimeout = null;
-                        }, this.scrollDelay);
-                    }
-                this.previousScrollTop = el.scrollTop;
-            })
-        });
+
     };
 
     ngAfterContentInit() {

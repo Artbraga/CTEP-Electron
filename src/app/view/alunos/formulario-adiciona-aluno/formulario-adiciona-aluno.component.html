@@ -125,13 +125,10 @@
                                 style="width: 100%"/>
                 </div>
                 <div class="ui-lg-2 ui-md-4">
-                        <div style="padding-top:20px">
-                                <p-checkbox label="Emitir nota fiscal" 
-                                        binary="true" 
-                                        [(ngModel)]="element.notaFiscal"
-                                        [style]="{'padding-top':'20px'}"></p-checkbox>
+                        <p-checkbox label="Emitir nota fiscal" 
+                                binary="true" 
+                                [(ngModel)]="element.notaFiscal"></p-checkbox>
 
-                        </div>
                 </div>
         </div>
 </p-panel>
@@ -143,7 +140,8 @@
                 <div class="ui-lg-4 ui-md-6">
                         <label>Curso:</label>
                         <p-autoComplete [(ngModel)]="element.curso" 
-                                        [suggestions]="cursoSuggestions" 
+                                        [suggestions]="cursoSuggestions"
+                                        (onSelect)="onSelect('curso')" 
                                         (completeMethod)="buscarDropdown($event, 'curso')"
                                         [style]="{'width':'100%'}"
                                         minLength="3"
@@ -219,7 +217,7 @@
                                         [forceSelection]="true"
                                         [emptyMessage]="'Não foram encontrados resultados'"
                                         [inputStyle]="{'width':'calc(100% - 2em)'}"
-                                        field="nome"
+                                        field="codigo"
                                         [dropdown]="true"></p-autoComplete>
                 </div>
                 <div class="ui-lg-4 ui-md-6">
@@ -232,17 +230,18 @@
                                 [showButtonBar]="true"
                                 [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
                 </div>
-                <div class="ui-lg-4 ui-md-6" *ngIf="element.curso.especializacoes.length > 0">
+                <div class="ui-lg-4 ui-md-6" *ngIf="!getDisabled('turma') && !element.curso.especializacao">
                         <p-checkbox label="Incluir turma de especialização" 
                                         binary="true" 
-                                        [(ngModel)]="inserirEspecializacao"
-                                        [style]="{'padding-top':'20px'}"></p-checkbox>
+                                        (onChange)="onChangeChkEspecializacao($event)"
+                                        [(ngModel)]="inserirEspecializacao"></p-checkbox>
                 </div>
                 <div class="ui-lg-4 ui-md-6" *ngIf="inserirEspecializacao">
                         <label>Curso de Especialização:</label>
                         <p-autoComplete [(ngModel)]="cursoEspecializacao" 
                                         [suggestions]="cursoEspecializacaoSuggestions" 
                                         (completeMethod)="buscarDropdown($event, 'cursoEspecialização')"
+                                        (onSelect)="onSelect('cursoEspecialização')"
                                         [style]="{'width':'100%'}"
                                         minLength="1"
                                         [forceSelection]="true"
@@ -261,7 +260,8 @@
                                         [forceSelection]="true"
                                         [emptyMessage]="'Não foram encontrados resultados'"
                                         [inputStyle]="{'width':'calc(100% - 2em)'}"
-                                        field="nome"
+                                        field="codigo"
+                                        [disabled]="getDisabled('turmaEspecializacao')"
                                         [dropdown]="true"></p-autoComplete>
                 </div>
         </div>
@@ -279,6 +279,18 @@
                                         pInputText 
                                         style="width: 20%"/>
                         </div>
+                </ng-container>
+
+                <ng-container *ngIf="cursoEspecializacao != null" >
+                        <hr style="border: 1px solid var(--gelo); width: 100%">
+                        <ng-container *ngFor="let d of disciplinasEspecializacao">
+                                <div class="ui-lg-3 ui-md-3" style="text-align:right">
+                                        <label>{{d}}</label>
+                                        <input type="text" 
+                                                pInputText 
+                                                style="width: 20%"/>
+                                </div>
+                        </ng-container>
                 </ng-container>
         </div>
 </p-panel>

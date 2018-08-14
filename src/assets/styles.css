@@ -180,7 +180,7 @@ label{
 }
 
 .ui-chkbox {
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
 .ui-autocomplete-dropdown{
@@ -248,6 +248,7 @@ p-autocomplete .invalidField {
 
 .ui-chkbox-label{
   vertical-align: text-top;
+  padding-top: 15px;
 }
 .ui-card-title{
   text-decoration: underline;

@@ -11,6 +11,7 @@ import { ObservacaoAluno } from "src/app/entities/observacaoAluno";
 import { Curso } from "src/app/entities/curso";
 import { Disciplina } from "../../../entities/disciplina";
 import { Coluna } from "../../../components/table-x/table-x.component";
+import { DisciplinaService } from "../../../service/disciplina.service";
 
 @Component({
     selector: 'formulario-adiciona-aluno',
@@ -44,12 +45,14 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
     displayObservacaoDelete: boolean = false;
     idEdicaoObservacao: number;
 
-    disciplinas = ["Anatomia", "Saúde da Mulher", "Criança e Adolescente", "Saúde Pública", "Saúde Coletiva", "Urgência e Emergência", "Enfermagem Clínica", "Enfermagem Cirúrgica", "Saúde Mental"];
+    disciplinas: Disciplina[] = [];
+    disciplinasEspecializacao: Disciplina[] = [];
 
     constructor(private viacep: ViacepService,
                 private alunoService: AlunoService,
                 private cursoService: CursoService,
                 private turmaService: TurmaService,
+                private disciplinaService: DisciplinaService,
                 ref: ChangeDetectorRef){
         super(alunoService, ref);
     }
@@ -111,7 +114,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 });
                 break;
             case "turma":
-                this.turmaService.getTurmasDropdown(filter).subscribe(data =>{
+                this.turmaService.filtrarTurmasDeUmCurso(this.element.curso.id, filter).subscribe(data =>{
                     this.turmaSuggestions = data;
                 });
                 break;
@@ -133,6 +136,8 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         switch (campo){
             case "turma":
                 return this.element.curso == null || this.element.curso.id == null;
+            case "turmaEspecializacao":
+                return this.cursoEspecializacao == null || this.cursoEspecializacao.id == null;
         }
     }
 
@@ -142,8 +147,28 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 var data = this.element.dataMatricula;
                 this.element.anoMatricula = data.getFullYear() % 100;
                 break;
-            case "dataNascimento":
+            case "curso":
+                this.disciplinaService.listarDisciplinasDeUmCurso(this.element.curso.id).subscribe(data => {
+                    this.disciplinas = data;
+                    this.updateView();
+                });
+                this.cursoService.listarCursosDeEspecializacao(this.element.curso.id).subscribe(data => {
+                    this.element.curso.especializacoes = data;
+                })
+                break;
+            case "cursoEspecialização":
+                this.disciplinaService.listarDisciplinasDeUmCurso(this.cursoEspecializacao.id).subscribe(data => {
+                    this.disciplinasEspecializacao = data;
+                    this.updateView();
+                });
+                break;
+        }
+    }
 
+    public onChangeChkEspecializacao(selected: boolean){
+        if(!selected){
+            this.cursoEspecializacao = null;
+            this.disciplinasEspecializacao = [];
         }
     }
 
