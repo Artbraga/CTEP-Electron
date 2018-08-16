@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+var path = require('path')
 
 let win;
 
@@ -6,7 +7,7 @@ function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
         backgroundColor: '#ffffff',
-        icon: `file://${__dirname}/dist/assets/logo.png`,
+        icon: path.join(__dirname, 'src/assets/images/logo.png'),
     })
 
     setTimeout(() => {

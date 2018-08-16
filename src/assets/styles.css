@@ -298,3 +298,10 @@ p-autocomplete .invalidField {
   background-color: var(--escuro);
   text-align: center;
 }
+.ui-calendar.ui-calendar-button{
+  height: 31px;
+}
+
+.ui-autocomplete.ui-autocomplete-dropdown{
+  height: 32px;
+}

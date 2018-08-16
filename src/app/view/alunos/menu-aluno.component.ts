@@ -39,11 +39,12 @@ export class MenuAlunoComponent{
     }
 
     carregaAluno(matricula: string){
-        this.exibir('formulario');
         this.loading = true;
         this.alunoService.getById(matricula).subscribe(data => {
             this.element = data;
+            this.element.edicao = true;
             this.loading = false;
+            this.exibir('formulario');
         })
     }
 }

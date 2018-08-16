@@ -7,4 +7,36 @@
     <ng-template pTemplate="editarAluno" let-data let-rI="rowIndex">
         <button type="button" pButton class="fas fa-edit" title="Alterar" (click)="edita(data.matricula)"></button>
     </ng-template>
+
+    <ng-template pTemplate="excluirAluno" let-data let-rI="rowIndex">
+        <button type="button" pButton icon="fa fa-trash" title="Excluir" (click)="showConfirmationDelete(item)"></button>
+    </ng-template>
 </table-x>
+
+<div *ngIf="alunoDelete!=null && displayAlunoDelete" class="block-back-wrap modal-type">
+        <p-dialog header="Confirmar ação" [(visible)]="displayAlunoDelete" [modal]="true" [blockScroll]="true" [closeOnEscape]="true">
+            <div class="dialog-message">
+                Quer mesmo deletar a Observação?
+            </div>
+    
+            <div class="ui-g corpo-modal-confirmacao">
+                <div class="ui-g-12">
+                        <label>Aluno:</label>
+                        <label>{{alunoDelete.nome}} </label>
+                </div>
+                <div class="ui-g-12">
+                    <label>Matrícula:</label>
+                    <label>{{alunoDelete.matricula}} </label>
+                </div>
+                <div class="ui-g-12">
+                    <label>Observação:</label>
+                    <label>{{alunoDelete.obs}}</label>
+                </div>
+            </div>
+    
+            <p-footer>
+                <button class="ui-button-success" icon="fa fa-check" type="button" label="Sim" pButton (click)="deleteAluno();"></button>
+                <button class="ui-button-danger" icon="fas fa-times" type="button" label="Não" pButton (click)="displayAlunoDelete=false"></button>
+            </p-footer>
+        </p-dialog>
+    </div>

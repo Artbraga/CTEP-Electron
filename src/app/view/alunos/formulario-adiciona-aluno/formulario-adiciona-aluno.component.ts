@@ -184,6 +184,9 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
 
     public limparCampos(){
         this.element = new Aluno();
+        this.cursoEspecializacao = null;
+        this.inserirEspecializacao = false;
+        
         this.limparObservacao();
         this.updateView();
     }

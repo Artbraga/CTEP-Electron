@@ -6,7 +6,8 @@ export class BaseService{
     
     private readonly serverURL: string = "http://localhost:8080/"
     protected readonly baseURL: string = this.serverURL + this.controller;
-    protected readonly saveUrl: string = this.baseURL + "salvar"
+    protected readonly saveUrl: string = this.baseURL + "/salvar/";
+    protected readonly deleteUrl: string = this.baseURL + "/deletar/";
 
     constructor(protected http: HttpClient, protected readonly controller: string) { };
 
@@ -44,6 +45,14 @@ export class BaseService{
             }
         );
     };
+
+    public deletar(id: any): Observable<any>{
+        let url = this.deleteUrl + id;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
 
     public filtrar(nome: string): Observable<any> {
         let url = this.baseURL + '/filtrar/' + nome;

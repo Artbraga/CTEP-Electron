@@ -10,6 +10,7 @@
                         <input type="text" 
                                 [(ngModel)]="element.nome"
                                 pInputText 
+                                maxlength="50"
                                 style="width: 100%"
                                 [ngClass]="isCampoInvalido('nome')?'invalidField':''"/>
                 </div>
@@ -17,6 +18,7 @@
                         <label>CPF:</label>
                         <input type="text" 
                                 [(ngModel)]="element.cpf"
+                                maxlength="12"
                                 pInputText 
                                 style="width: 100%"
                                 [ngClass]="isCampoInvalido('cpf')?'invalidField':''"/>
@@ -25,6 +27,7 @@
                         <label>RG:</label>
                         <input type="text" 
                                 [(ngModel)]="element.rg"
+                                maxlength="15"
                                 pInputText 
                                 style="width: 100%"
                                 [ngClass]="isCampoInvalido('rg')?'invalidField':''"/>
@@ -46,6 +49,7 @@
                                         <input type="text" 
                                                 [(ngModel)]="element.cep"
                                                 pInputText 
+                                                maxlength="8"
                                                 style="width: 100%"
                                                 [ngClass]="isCampoInvalido('cpf')?'invalidField':''"/>
                                 </div>
@@ -63,6 +67,7 @@
                         <label>Endereço:</label>
                         <input type="text" 
                                 [(ngModel)]="element.endereco"
+                                maxlength="100"
                                 pInputText 
                                 style="width: 100%"
                                 [ngClass]="isCampoInvalido('endereco')?'invalidField':''"/>
@@ -71,6 +76,7 @@
                         <label>Complemento:</label>
                         <input type="text" 
                                 [(ngModel)]="element.complemento"
+                                maxlength="20"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -78,6 +84,7 @@
                         <label>Bairro:</label>
                         <input type="text" 
                                 [(ngModel)]="element.bairro"
+                                maxlength="20"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -85,6 +92,7 @@
                         <label>Cidade:</label>
                         <input type="text" 
                                 [(ngModel)]="element.cidade"
+                                maxlength="20"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -93,6 +101,7 @@
                         <label>Nome do Pai:</label>
                         <input type="text" 
                                 [(ngModel)]="element.nomePai"
+                                maxlength="50"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -100,6 +109,7 @@
                         <label>Nome da Mãe:</label>
                         <input type="text" 
                                 [(ngModel)]="element.nomeMae"
+                                maxlength="50"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -107,6 +117,7 @@
                         <label>E-mail:</label>
                         <input type="text" 
                                 [(ngModel)]="element.email"
+                                maxlength="40"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -114,6 +125,7 @@
                         <label>Telefone:</label>
                         <input type="text" 
                                 [(ngModel)]="element.telefone"
+                                maxlength="10"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -121,6 +133,7 @@
                         <label>Celular:</label>
                         <input type="text" 
                                 [(ngModel)]="element.celular"
+                                maxlength="10"
                                 pInputText 
                                 style="width: 100%"/>
                 </div>
@@ -160,6 +173,7 @@
                                         <input type="text" 
                                                 [(ngModel)]="element.matricula"
                                                 pInputText 
+                                                maxlength="8"
                                                 style="width: 100%"
                                                 [ngClass]="isCampoInvalido('matricula')?'invalidField':''"/>
                                 </div>
@@ -175,7 +189,7 @@
                 </div>
                 <div class="ui-lg-4 ui-md-6">
                         <label>Situação:</label>
-                        <p-autoComplete [(ngModel)]="element.curso" 
+                        <p-autoComplete [(ngModel)]="element.situacao" 
                                         [suggestions]="situacaoSuggestions" 
                                         (completeMethod)="buscarDropdown($event, 'situação')"
                                         [style]="{'width':'100%'}"
@@ -204,6 +218,7 @@
                         <input type="text" 
                                 [(ngModel)]="element.cursoAnterior"
                                 pInputText 
+                                maxlength="20"
                                 style="width: 100%"/>
                 </div>
                 <div class="ui-lg-4 ui-md-6">
@@ -274,8 +289,9 @@
         <div class="ui-g" style="padding-right:10em">
                 <ng-container *ngFor="let d of disciplinas">
                         <div class="ui-lg-3 ui-md-3" style="text-align:right">
-                                <label>{{d}}</label>
+                                <label>{{d.nome}}</label>
                                 <input type="text" 
+
                                         pInputText 
                                         style="width: 20%"/>
                         </div>
@@ -285,8 +301,9 @@
                         <hr style="border: 1px solid var(--gelo); width: 100%">
                         <ng-container *ngFor="let d of disciplinasEspecializacao">
                                 <div class="ui-lg-3 ui-md-3" style="text-align:right">
-                                        <label>{{d}}</label>
+                                        <label>{{d.nome}}</label>
                                         <input type="text" 
+
                                                 pInputText 
                                                 style="width: 20%"/>
                                 </div>
@@ -353,7 +370,6 @@
                 class="form-button"
                 label="Cadastrar"
                 style="height:34px"
-                class="form-button"
                 title="Cadastrar Aluno"></button>
 </div>
 
