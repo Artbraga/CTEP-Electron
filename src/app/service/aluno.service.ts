@@ -20,4 +20,27 @@ export class AlunoService extends BaseService{
             catchError(this.handleErrorObservable));
     }
 
+    public filtrarPelaMatricula(matricula: string): Observable<any>{
+        let url = this.baseURL + '/filtrarPelaMatricula/'+ matricula;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
+
+    public filtrarPelaTurma(turma: string): Observable<any>{
+        let url = this.baseURL + '/filtrarPelaTurma/'+ turma;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
+
+    public filtrarPeloNome(turma: string): Observable<any>{
+        let url = this.baseURL + '/filtrarPeloNome/'+ turma;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
 }

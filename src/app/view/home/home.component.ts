@@ -27,9 +27,11 @@ export class HomeComponent implements OnInit {
         switch(tipo){
             case "aluno":
                 this.breadCrumbItems.push( { label:"Alunos", icon: 'fas fa-user-graduate', command: () => this.resetTela('aluno') } );
+                this.resetTela('aluno');
                 break;
             case "professor":
                 this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
+                this.resetTela('professor');
                 break;
         }
     }
@@ -55,10 +57,16 @@ export class HomeComponent implements OnInit {
         this.selected[tela] = true;
         switch(tela){
             case "aluno":
-                this.menuAluno.exibir("default");
+                if(this.menuAluno != null)
+                    this.menuAluno.exibir("default");
+                this.breadCrumbItems = [];
+                this.breadCrumbItems.push( { label:"Alunos", icon: 'fas fa-user-graduate', command: () => this.resetTela('aluno') } );
                 break;
             case "professor":
-                this.menuProfessor.exibir("default");
+                if(this.menuProfessor != null)
+                    this.menuProfessor.exibir("default");
+                this.breadCrumbItems = [];
+                this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
         }
     }
 }

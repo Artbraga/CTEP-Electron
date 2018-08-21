@@ -2,14 +2,15 @@
         [colunas]="colunas" 
         [loading]="loadingTable" 
         emptyMessage="Não encontrou resultados para a busca."
+        scrollHeight="80vh"
         #tableComponent>
 
     <ng-template pTemplate="editarAluno" let-data let-rI="rowIndex">
-        <button type="button" pButton class="fas fa-edit" title="Alterar" (click)="edita(data.matricula)"></button>
+        <button type="button" pButton icon="fas fa-edit" title="Alterar" (click)="edita(data.matricula)"></button>
     </ng-template>
 
     <ng-template pTemplate="excluirAluno" let-data let-rI="rowIndex">
-        <button type="button" pButton icon="fa fa-trash" title="Excluir" (click)="showConfirmationDelete(item)"></button>
+        <button type="button" pButton icon="fa fa-trash" title="Excluir" (click)="showConfirmationDelete(data)"></button>
     </ng-template>
 </table-x>
 
@@ -30,7 +31,7 @@
                 </div>
                 <div class="ui-g-12">
                     <label>Observação:</label>
-                    <label>{{alunoDelete.obs}}</label>
+                    <label>{{alunoDelete.turma.codigo}}</label>
                 </div>
             </div>
     

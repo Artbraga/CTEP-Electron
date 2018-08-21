@@ -5,7 +5,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 
-import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, CardModule } from "primeng/primeng";
+import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, CardModule, RadioButtonModule } from "primeng/primeng";
 import { TableModule } from 'primeng/table';
 
 import { FormularioAdicionaAlunoComponent } from "./formulario-adiciona-aluno/formulario-adiciona-aluno.component";
@@ -41,6 +41,7 @@ import { TableXModule } from "../../components/table-x/table-x.module";
         CheckboxModule,
         GrowlModule,
         TableModule,
+        RadioButtonModule,
         TableXModule,
         CardModule,
         AutoCompleteModule

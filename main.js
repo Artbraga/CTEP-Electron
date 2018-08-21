@@ -22,7 +22,20 @@ function createWindow() {
     // Event when the window is closed.
     win.on('closed', function () {
         win = null
-    })
+    });
+
+    win.on('close', function(e){
+        var choice = require('electron').dialog.showMessageBox(this,
+            {
+              type: 'question',
+              buttons: ['Yes', 'No'],
+              title: 'Confirmar ação',
+              message: 'Você deseja sair do programa?'
+           });
+        if(choice == 1){
+            e.preventDefault();
+        }
+    });
 }
 
 // Create window on electron intialization

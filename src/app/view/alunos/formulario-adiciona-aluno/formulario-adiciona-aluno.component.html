@@ -245,6 +245,11 @@
                                 [showButtonBar]="true"
                                 [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
                 </div>
+                <div class="ui-lg-4 ui-md-6">
+                        <p-checkbox label="Transferência" 
+                                        binary="true" 
+                                        [(ngModel)]="element.transferencia"></p-checkbox>
+                </div>
                 <div class="ui-lg-4 ui-md-6" *ngIf="!getDisabled('turma') && !element.curso.especializacao">
                         <p-checkbox label="Incluir turma de especialização" 
                                         binary="true" 

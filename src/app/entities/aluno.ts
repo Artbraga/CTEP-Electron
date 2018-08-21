@@ -21,6 +21,7 @@ export class Aluno {
     nomeMae: string;
 
     notaFiscal: boolean;
+    transferencia: boolean;
 
     dataMatricula: any;
     dataNascimento: any;
@@ -58,6 +59,7 @@ export class Aluno {
         this.nomeMae = null;
 
         this.notaFiscal = false;
+        this.transferencia = false;
 
         this.dataMatricula = null;
         this.dataNascimento = null;

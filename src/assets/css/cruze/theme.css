@@ -703,9 +703,9 @@
 /* TurboTable */
 
 .ui-table .ui-table-thead>tr>th, .ui-table .ui-table-tfoot>tr>td {
-  background-color: var(--escuro);
-  border: 1px solid var(--escuro);
-  color: var(--claro);
+  background-color: var(--fundo);
+  border: 1px solid var(--claro);
+  color: var(--gelo);
 }
 
 .ui-table .ui-table-tbody>tr {

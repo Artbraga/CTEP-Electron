@@ -11,8 +11,12 @@ import { AlunoService } from "../../service/aluno.service";
 export class MenuAlunoComponent{
 
     element: Aluno;
+    alunos: Aluno[] = [];
     @Input() loading;
     @Output() bread = new EventEmitter<MenuItem>();
+
+    radioPesquisa: string = null;
+    inputPesquisa: string = "";
 
     selected = {"default": true};
 
@@ -25,8 +29,12 @@ export class MenuAlunoComponent{
             case "formulario":
                 this.bread.emit({ icon: "far fa-plus-square", label: "Adicionar Aluno" });
                 break;
-            case "formulario":
-                this.bread.emit({ icon: "fas fa-list-ul", label: "Filtrar Alunos" });
+            case "tabela":
+                this.bread.emit({ icon: "fas fa-list-ul", label: "Pesquisar Alunos" });
+                break;
+            case "pesquisa":
+                this.radioPesquisa = null;
+                this.inputPesquisa = "";
                 break;
         }
     }
@@ -46,5 +54,35 @@ export class MenuAlunoComponent{
             this.loading = false;
             this.exibir('formulario');
         })
+    }
+
+    pesquisar(campo){
+        this.alunos = [];
+        switch(campo){
+            case "Nome":
+                this.alunoService.filtrarPeloNome(this.inputPesquisa).subscribe(data =>{
+                    this.alunos = data;
+                    this.exibir("tabela");
+                });
+                break;
+            case "Matrícula":
+                this.alunoService.filtrarPelaMatricula(this.inputPesquisa).subscribe(data =>{
+                    this.alunos = data;
+                    this.exibir("tabela");
+                });
+                break;
+            case "Turma":
+                this.alunoService.filtrarPelaTurma(this.inputPesquisa).subscribe(data =>{
+                    this.alunos = data;
+                    this.exibir("tabela");
+                });
+                break;
+            case "todos":
+                this.alunoService.listar().subscribe(data =>{
+                    this.alunos = data;
+                    this.exibir("tabela");
+                });
+
+        }
     }
 }

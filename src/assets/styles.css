@@ -305,3 +305,19 @@ p-autocomplete .invalidField {
 .ui-autocomplete.ui-autocomplete-dropdown{
   height: 32px;
 }
+
+.ui-chkbox-box.ui-widget{
+  background-color: var(--claro)
+}
+
+.ui-state-active{
+  color: var(--azules);
+}
+
+.ui-card-content ul{
+  padding-left: 20px;
+}
+
+.ui-card-content p-radiobutton{
+  margin: 0 15px;
+}  
