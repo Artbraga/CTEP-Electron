@@ -1,22 +1,21 @@
 import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter } from "@angular/core";
-import { BaseTable } from "src/app/base/baseTable";
-import { AlunoService } from "src/app/service/aluno.service";
-import { Coluna } from "src/app/components/table-x/table-x.component";
+import { BaseTable } from "../../../base/baseTable";
+import { AlunoService } from "../../../service/aluno.service";
+import { Coluna } from "../../../components/table-x/table-x.component";
 import { Aluno } from "../../../entities/aluno";
 
 @Component({
     selector: 'table-listar-aluno',
     templateUrl: './table-listar-aluno.component.html',
 })
-export class TableListarAlunoComponent extends BaseTable implements OnInit {
+export class TableListarAlunoComponent extends BaseTable<Aluno> implements OnInit {
     
     @Output() carregaAluno = new EventEmitter<any>();
 
     alunoDelete: Aluno;
-    displayAlunoDelete: boolean = false;
 
     constructor(private alunoService: AlunoService, ref: ChangeDetectorRef){
-        super(alunoService, ref);
+        super(ref);
     }
 
     ngOnInit(): void {
@@ -37,12 +36,12 @@ export class TableListarAlunoComponent extends BaseTable implements OnInit {
     
     showConfirmationDelete(item){
         this.alunoDelete = item;
-        this.displayAlunoDelete = true;
+        this.displayDelete = true;
         this.updateView();
     }
 
     deleteAluno(){
-        this.displayAlunoDelete = false;
+        this.displayDelete = false;
         this.alunoService.deletar(this.alunoDelete.matricula).subscribe()
     }
 }

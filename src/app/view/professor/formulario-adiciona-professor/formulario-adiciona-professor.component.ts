@@ -1,9 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { BaseFormulario } from "src/app/base/baseFormulario";
-import { Professor } from "src/app/entities/professor";
-import { TurmaService } from "src/app/service/turma.service";
-import { ViacepService } from "src/app/service/ngx-viacep/viacep.service";
-import { Endereco, CepError } from "src/app/service/ngx-viacep/endereco";
+import { BaseFormulario } from "../../../base/baseFormulario";
+import { Professor } from "../../../entities/professor";
+import { TurmaService } from "../../../service/turma.service";
+import { ViacepService } from "../../../service/ngx-viacep/viacep.service";
+import { Endereco, CepError } from "../../../service/ngx-viacep/endereco";
 
 @Component({
     selector: 'formulario-adiciona-professor',

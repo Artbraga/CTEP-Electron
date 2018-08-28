@@ -2,13 +2,15 @@ import { Input, ChangeDetectorRef, ViewChild } from "@angular/core";
 import { BaseService } from "./base-service";
 import { TableXComponent, Coluna } from "../components/table-x/table-x.component";
 
-export class BaseTable {
+export class BaseTable<T> {
     loadingTable: boolean = false;
-    @Input() list: any[] = [];
+    @Input() list: T[] = [];
     colunas: Coluna[];
     @ViewChild('tableComponent') tableComponent: TableXComponent;
 
-    constructor(private service: BaseService, protected ref: ChangeDetectorRef){ 
+    displayDelete: boolean = false;
+
+    constructor(protected ref: ChangeDetectorRef){ 
     }
 
     public updateView() {

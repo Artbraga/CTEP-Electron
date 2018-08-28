@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { MenuItem } from "primeng/primeng";
-import { Aluno } from "src/app/entities/aluno";
+import { Aluno } from "../../entities/aluno";
 import { AlunoService } from "../../service/aluno.service";
 
 @Component({
@@ -52,6 +52,7 @@ export class MenuAlunoComponent{
             this.element = data;
             this.element.edicao = true;
             this.loading = false;
+            this.bread.emit(null);
             this.exibir('formulario');
         })
     }

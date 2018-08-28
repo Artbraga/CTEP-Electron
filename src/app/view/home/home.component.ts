@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
     @ViewChild('menuAluno') menuAluno;
     @ViewChild('menuProfessor') menuProfessor;
+    @ViewChild('menuTurma') menuTurma;
 
     ngOnInit(){
         this.home = { icon: 'fas fa-home', command: () => this.showHome() }
@@ -28,6 +29,10 @@ export class HomeComponent implements OnInit {
             case "aluno":
                 this.breadCrumbItems.push( { label:"Alunos", icon: 'fas fa-user-graduate', command: () => this.resetTela('aluno') } );
                 this.resetTela('aluno');
+                break;
+            case "turma":
+                this.breadCrumbItems.push( { label:"Turmas", icon: 'fas fa-users', command: () => this.resetTela('turma') } );
+                this.resetTela('turma');
                 break;
             case "professor":
                 this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
@@ -50,7 +55,10 @@ export class HomeComponent implements OnInit {
     }
 
     adicionaBread(menu: MenuItem){
-        this.breadCrumbItems.push(menu);
+        if(menu != null)
+            this.breadCrumbItems.push(menu);
+        else
+            this.breadCrumbItems.splice(-1,1);
     }
 
     resetTela(tela: string){
@@ -62,11 +70,18 @@ export class HomeComponent implements OnInit {
                 this.breadCrumbItems = [];
                 this.breadCrumbItems.push( { label:"Alunos", icon: 'fas fa-user-graduate', command: () => this.resetTela('aluno') } );
                 break;
+            case "turma":
+                if(this.menuTurma != null)
+                    this.menuTurma.exibir("default");
+                this.breadCrumbItems = [];
+                this.breadCrumbItems.push( { label:"Turma", icon: 'fas fa-users', command: () => this.resetTela('turma') } );
+                break;
             case "professor":
                 if(this.menuProfessor != null)
                     this.menuProfessor.exibir("default");
                 this.breadCrumbItems = [];
                 this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
+                break;
         }
     }
 }

@@ -11,7 +11,7 @@ export class BaseConverter {
     };
     public static convertDate(date: any): string {
         return date == undefined || typeof (date) == typeof ('')
-            ? date
+            ? date == '' ? date : this.convertStringDate(date)
             : this.getDate(date) + '/' + this.getMonth(date) + '/' + date.getFullYear();
     };
 
@@ -20,21 +20,13 @@ export class BaseConverter {
             ? date
             : date.getFullYear() + '-' + this.getMonth(date) + '-' + this.getDate(date);
     }; 
-
-    public static convertDateEn(date: any): string {
-        return date == undefined
-            ? null
-            : typeof (date) == typeof ('')
-                ? date == '' ? date : this.convertStringDateEn(date)
-                : this.getMonth(date) + '/' + this.getDate(date) + '/' + date.getFullYear();
-    };
-    private static convertStringDateEn(date: any): string {
-        let dateSplit = date.split('/');
-        let dateEn = dateSplit[1] + '/' + dateSplit[0] + '/' + dateSplit[2];
-        let dateInt = new Date(dateEn);
+    
+    private static convertStringDate(date: any): string {
+        let dateSplit = date.split('T')[0].split('-');
+        let dateInt = new Date(dateSplit[0], dateSplit[1], dateSplit[2]);
 
         if (!isNaN(dateInt.valueOf())) {
-            return this.getMonth(dateInt) + '/' + this.getDate(dateInt) + '/' + dateInt.getFullYear();
+            return this.getDate(dateInt) + '/' + this.getMonth(dateInt) + '/' + dateInt.getFullYear();
         }
 
         return '';

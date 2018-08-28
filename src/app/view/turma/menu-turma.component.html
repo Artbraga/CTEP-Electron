@@ -1,16 +1,39 @@
-<div *ngIf="selected['default']" class="ui-g">
+<div *ngIf="selected['default'] || selected['pesquisa']" class="ui-g">
     <div class="ui-lg-4 ui-md-4">
         <p-card title="Cadastro" [style]="{width: '100%'}" [styleClass]="">
-            <a (click)="exibir('formulario')">Adicionar Turma</a>
+            <ul style="list-style-type:square">
+                <li><a (click)="exibir('formulario')">Adicionar Turma</a></li>
+            </ul>
         </p-card>
     </div>
     <div class="ui-lg-4 ui-md-4">
-            <p-card title="Filtrar" [style]="{width: '100%'}" [styleClass]="">
-                <a (click)="exibir('listar')">Listar Turmas</a>
-            </p-card>
-        </div>
+        <p-card title="Pesquisa" [style]="{width: '100%'}" [styleClass]="">
+            <ul style="list-style-type:square">
+                <li><a (click)="exibir('pesquisa')">Pesquisar Turmas</a></li>
+                <li><a (click)="listar()">Listar Todas as Turmas</a></li>
+            </ul>
+        </p-card>
+    </div>
 </div>
 
+<div *ngIf="selected['pesquisa']">
+    <p-card class="container">
+        <div class="ui-g" style="text-align: center">
+            <div class="ui-lg-2 ui-md-2" style="text-align: right">
+                <label>Código:</label>
+            </div>
+            <div class="ui-lg-6 ui-md-6">
+                <input type="text" [(ngModel)]="inputPesquisa" pInputText style="width: 100%">
+            </div>
+            <div class="ui-lg-4 ui-md-4">
+                <button class="form-button" icon="fas fa-search" type="button" label="Pesquisar" pButton (click)="pesquisar(inputPesquisa)" [disabled]="inputPesquisa.length==0"></button>
+            </div>
+        </div>        
+    </p-card>
+</div>
 <div *ngIf="selected['formulario']">
-    <formulario-adiciona-turma [loading]="loading"></formulario-adiciona-turma>
+    <formulario-adiciona-turma [loading]="loading" [(element)]="element"></formulario-adiciona-turma>
+</div>
+<div *ngIf="selected['tabela']">
+    <table-listar-turma (carregaTurma)="carregaTurma($event)" [list]="turmas"></table-listar-turma>
 </div>

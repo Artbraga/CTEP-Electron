@@ -1,93 +1,95 @@
 <p-growl [(value)]="msgs"></p-growl>
 
-<p-panel header="Informações Pessoais" 
+<p-panel header="Informações Gerais" 
         [toggleable]="true" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
-        [collapsed]="true">
-        <div class="col-lg-4 col-md-6">
-            <label>Curso:</label>
-            <p-autoComplete [(ngModel)]="element.curso" 
-                            [suggestions]="cursoSuggestions" 
-                            (completeMethod)="buscarDropdown($event, 'curso')"
-                            [style]="{'width':'100%'}"
-                            minLength="3"
-                            [forceSelection]="true"
-                            [emptyMessage]="'Não foram encontrados resultados'"
-                            [inputStyle]="{'width':'calc(100% - 2em)'}"
-                            field="nome"
-                            [dropdown]="true"></p-autoComplete>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <label>Código:</label>
-            <div>
-                <div class="col-lg-7 col-md-7" style="padding: 0; float: left;">
-                    <input type="text" 
-                            [(ngModel)]="element.codigo"
-                            pInputText 
-                            style="width: 100%"/>
-                </div>
-                <div class="col-lg-5 col-md-5" style="padding: 0; float: left;">
-                    <button (click)="gerarCodigo()" 
-                            pButton type="button" 
-                            [disabled]="desabilitarBotaoCodigo()" 
-                            label="Gerar Código"
-                            class="form-button"
-                            title="Gerar Código"></button>
+        [collapsed]="false">
+        <div class="ui-g form-group">
+            <div class="col-lg-4 col-md-6">
+                <label>Curso:</label>
+                <p-autoComplete [(ngModel)]="element.curso" 
+                                [suggestions]="cursoSuggestions" 
+                                (completeMethod)="buscarDropdown($event, 'curso')"
+                                [style]="{'width':'100%'}"
+                                minLength="3"
+                                [forceSelection]="true"
+                                [emptyMessage]="'Não foram encontrados resultados'"
+                                [inputStyle]="{'width':'calc(100% - 2em)'}"
+                                field="nome"
+                                [dropdown]="true"></p-autoComplete>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <label>Código:</label>
+                <div>
+                    <div class="col-lg-7 col-md-7" style="padding: 0; float: left;">
+                        <input type="text" 
+                                [(ngModel)]="element.codigo"
+                                pInputText 
+                                style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-5 col-md-5" style="padding: 0; float: left;">
+                        <button (click)="gerarCodigo()" 
+                                pButton type="button" 
+                                [disabled]="desabilitarBotaoCodigo()" 
+                                label="Gerar Código"
+                                class="form-button"
+                                title="Gerar Código"></button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <label>Status:</label>
-            <p-autoComplete [(ngModel)]="element.status" 
-                            [suggestions]="statusSuggestions" 
-                            (completeMethod)="buscarDropdown($event, 'situação')"
-                            [style]="{'width':'100%'}"
-                            minLength="3"
-                            [forceSelection]="true"
-                            [emptyMessage]="'Não foram encontrados resultados'"
-                            [inputStyle]="{'width':'calc(100% - 2em)'}"
-                            field="nome"
-                            [dropdown]="true"></p-autoComplete>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <label>Dias da Semana:</label>
-            <input type="text" 
-                    [(ngModel)]="element.diasDaSemana"
-                    pInputText 
-                    style="width: 100%"/>
-        </div>
-        <div class="col-lg-3 col-md-4">
-                <label>Hora de Início:</label>
-                <p-inputMask [(ngModel)]="element.horaInicio" 
-                             mask="99:99"
-                             [style]="{ 'width':'100%' }"></p-inputMask>
-        </div>
-        <div class="col-lg-3 col-md-4">
-                <label>Hora de Término:</label>
-                <p-inputMask [(ngModel)]="element.horaFim" 
-                             mask="99:99"
-                             [style]="{ 'width':'100%' }"></p-inputMask>
-        </div>
-        <div class="col-lg-4 col-md-6">
-                <label>Data de Início:</label>
-                <p-calendar [(ngModel)]="element.dataInicio" 
-                            dateFormat="dd/mm/yy"
-                            [showIcon]="true"
-                            (onSelect)="onSelect('dataInicio')"
-                            [style]="{'width':'100%'}"
-                            [locale]="br"
-                            [showButtonBar]="true"
-                            [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
-        </div>
-        <div class="col-lg-4 col-md-6">
-                <label>Data de Término:</label>
-                <p-calendar [(ngModel)]="element.dataFim" 
-                            dateFormat="dd/mm/yy"
-                            [showIcon]="true"
-                            [style]="{'width':'100%'}"
-                            [locale]="br"
-                            [showButtonBar]="true"
-                            [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+            <div class="col-lg-4 col-md-6">
+                <label>Situação:</label>
+                <p-autoComplete [(ngModel)]="element.status" 
+                                [suggestions]="situacaoSuggestions" 
+                                (completeMethod)="buscarDropdown($event, 'situação')"
+                                [style]="{'width':'100%'}"
+                                minLength="1"
+                                [forceSelection]="true"
+                                [emptyMessage]="'Não foram encontrados resultados'"
+                                [inputStyle]="{'width':'calc(100% - 2em)'}"
+                                field="label"
+                                [dropdown]="true"></p-autoComplete>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <label>Dias da Semana:</label>
+                <input type="text" 
+                        [(ngModel)]="element.diasDaSemana"
+                        pInputText 
+                        style="width: 100%"/>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                    <label>Hora de Início:</label>
+                    <p-inputMask [(ngModel)]="element.horaInicio" 
+                                mask="99:99"
+                                [style]="{ 'width':'100%' }"></p-inputMask>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                    <label>Hora de Término:</label>
+                    <p-inputMask [(ngModel)]="element.horaFim" 
+                                mask="99:99"
+                                [style]="{ 'width':'100%' }"></p-inputMask>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                    <label>Data de Início:</label>
+                    <p-calendar [(ngModel)]="element.dataInicio" 
+                                dateFormat="dd/mm/yy"
+                                [showIcon]="true"
+                                (onSelect)="onSelect('dataInicio')"
+                                [style]="{'width':'100%'}"
+                                [locale]="br"
+                                [showButtonBar]="true"
+                                [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                    <label>Data de Término:</label>
+                    <p-calendar [(ngModel)]="element.dataFim" 
+                                dateFormat="dd/mm/yy"
+                                [showIcon]="true"
+                                [style]="{'width':'100%'}"
+                                [locale]="br"
+                                [showButtonBar]="true"
+                                [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+            </div>
         </div>
 </p-panel>
 
@@ -95,7 +97,8 @@
         [toggleable]="true" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="true">
-        <div class="form-group col-lg-12 col-md-12" style="margin-bottom: 15px">
+    <div class="ui-g form-group">
+        <div class="col-lg-12 col-md-12" style="margin-bottom: 15px">
             <label>Observação:</label>
             <textarea rows="3" pInputTextarea 
                     [(ngModel)]="observacao.obs"
@@ -151,6 +154,7 @@
                 </tr>
             </ng-template>
         </p-table>
+    </div>
 </p-panel>
 <div class="col-lg-4 col-md-6" style="float:right">
         <button (click)="cadastrarTurma()" 

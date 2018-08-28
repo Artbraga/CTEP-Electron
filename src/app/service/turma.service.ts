@@ -34,4 +34,12 @@ export class TurmaService extends BaseService{
             map(this.extractData),
             catchError(this.handleErrorObservable));
     }
+
+    public filtrarTurmasPeloNome(nome: string) : Observable<any>{
+        let url = this.baseURL + '/filtrarTurmasPeloNome/'+ nome;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
 }
