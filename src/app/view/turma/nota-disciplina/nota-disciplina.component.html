@@ -1,0 +1,46 @@
+<p-growl [(value)]="msgs"></p-growl>
+<div class="ui-g form-group">
+    <div class="col-lg-4 col-md-6">
+        <label>Curso:</label>
+        <p-autoComplete [(ngModel)]="cursoSelecionado" 
+                        [suggestions]="cursoSuggestions" 
+                        (completeMethod)="buscarDropdown($event, 'curso')"
+                        [style]="{'width':'100%'}"
+                        minLength="3"
+                        [forceSelection]="true"
+                        [emptyMessage]="'Não foram encontrados resultados'"
+                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                        field="nome"
+                        [dropdown]="true"></p-autoComplete>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label>Turma:</label>
+        <p-autoComplete [(ngModel)]="turmaSelecionada" 
+                        [suggestions]="turmaSuggestions" 
+                        (completeMethod)="buscarDropdown($event, 'turma')"
+                        [style]="{'width':'100%'}"
+                        minLength="3"
+                        [forceSelection]="true"
+                        [emptyMessage]="'Não foram encontrados resultados'"
+                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                        field="nome"
+                        (onSelect)="onSelect('disciplina')" 
+                        [disabled]="getDisabled('turma')"
+                        [dropdown]="true"></p-autoComplete>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <label>Disciplina:</label>
+        <p-autoComplete [(ngModel)]="disciplinaSelecionada" 
+                        [suggestions]="disciplinaSuggestions" 
+                        (completeMethod)="buscarDropdown($event, 'disciplina')"
+                        [style]="{'width':'100%'}"
+                        minLength="3"
+                        [forceSelection]="true"
+                        [emptyMessage]="'Não foram encontrados resultados'"
+                        [inputStyle]="{'width':'calc(100% - 2em)'}"
+                        field="nome"
+                        (onSelect)="onSelect('disciplina')" 
+                        [disabled]="getDisabled('disciplina')"
+                        [dropdown]="true"></p-autoComplete>
+    </div>
+</div>

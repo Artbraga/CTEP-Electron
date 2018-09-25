@@ -1,9 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { Turma } from "../../../entities/turma";
-import { BaseFormulario } from "../../../base/baseFormulario";
-import { TurmaService } from "../../../service/turma.service";
-import { CursoService } from "../../../service/curso.service";
-import { ObservacaoTurma } from "../../../entities/observacaoTurma";
+import { Turma } from "src/app/entities/turma";
+import { BaseFormulario } from "src/app/base/baseFormulario";
+import { TurmaService } from "src/app/service/turma.service";
+import { CursoService } from "src/app/service/curso.service";
+import { ObservacaoTurma } from "src/app/entities/observacaoTurma";
+import { Professor } from "src/app/entities/professor";
+import { ProfessorService } from "src/app/service/professor.service";
 
 @Component({
     selector: 'formulario-adiciona-turma',
@@ -19,8 +21,12 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
 
     observacao: ObservacaoTurma;
 
+    todosProfessores: Professor[] = [];
+    professoresSelecionados: Professor[] = [];
+
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
+                private professorService: ProfessorService,
                 ref: ChangeDetectorRef){
         super(turmaService, ref);
     }
@@ -39,6 +45,12 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
             {label: "Concluído", value:4 },
         ];
 
+        this.professorService.listar().subscribe(data => {
+            if(this.element.professores != null && this.element.professores.length > 0){
+                this.professoresSelecionados = this.element.professores;   
+            }
+            this.todosProfessores = data.filter(x => !this.professoresSelecionados.some(p => p.nome == x.nome));
+        });
         this.observacao = new ObservacaoTurma();
     }
 

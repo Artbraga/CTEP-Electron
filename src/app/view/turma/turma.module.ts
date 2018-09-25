@@ -5,7 +5,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 
-import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, InputMaskModule, CardModule } from "primeng/primeng";
+import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, InputMaskModule, CardModule, PickListModule } from "primeng/primeng";
 import { TableModule } from 'primeng/table';
 import { FormularioAdicionaTurmaComponent } from "./formulario-adiciona-turma/formulario-adiciona-turma.component";
 import { MenuTurmaComponent } from "./menu-turma.component";
@@ -43,7 +43,8 @@ import { TableXModule } from "../../components/table-x/table-x.module";
         AutoCompleteModule,
         InputMaskModule,
         CardModule,
-        TableXModule
+        TableXModule,
+        PickListModule
     ],
     providers: [],
 })
