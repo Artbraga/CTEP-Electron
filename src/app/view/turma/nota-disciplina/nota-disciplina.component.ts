@@ -6,6 +6,7 @@ import { CursoService } from "src/app/service/curso.service";
 import { DisciplinaService } from "src/app/service/disciplina.service";
 import { Curso } from "src/app/entities/curso";
 import { Disciplina } from "src/app/entities/disciplina";
+import { Coluna } from "src/app/components/table-x/table-x.component";
 
 @Component({
     selector: 'formulario-adiciona-turma',
@@ -19,7 +20,10 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
 
     cursoSelecionado: Curso;
     turmaSelecionada: Turma;
-    disciplinaSelecionada: Disciplina
+    disciplinaSelecionada: Disciplina;
+
+    colunas: Coluna[];
+    notas: {} = null;
 
     constructor(private turmaService: TurmaService,
         private cursoService: CursoService,
@@ -29,7 +33,11 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
     }
 
     ngOnInit(){
-
+        this.colunas = <Coluna[]>[
+            { header: "Matrícula", field: "matricula", style: { 'width': '120px' } },
+            { header: "Nome", field: "nome" },
+            { header: "Nota", bodyTemplateName:"inputNota"}
+        ];
     }
 
     buscarDropdown(busca, campo: string){
@@ -51,6 +59,16 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
                 });
                 break;
         }
+    }
+
+    limparCampos(){
+        this.cursoSelecionado = null;
+        this.disciplinaSelecionada = null;
+        this.turmaSelecionada = null;
+        this.updateView();
+    }
+
+    pesquisarNotasAlunos(){
     }
 
 }

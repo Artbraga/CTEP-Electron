@@ -1,6 +1,7 @@
 <div *ngIf="loading>0" class="block-back-wrap">
     <i class="fa fa-spinner fa-pulse fa-2x"></i>
 </div>
+<p-growl [(value)]="msgs" [life]="400"></p-growl>
 <div class="area"></div>
 <nav class="main-menu">
     <ul>
@@ -58,3 +59,46 @@
         <menu-professor #menuProfessor [(loading)]="loading" (bread)="adicionaBread($event)"></menu-professor>
     </div>
 </div>
+
+<p-dialog [(visible)]="displayLogin"
+          [closable]="false"
+          [contentStyle]="{'width':'400px'}"
+          [modal]="true">
+    <p-header>
+        Entrar no Sistema
+    </p-header>
+    <div class="ui-g form-group">
+        <div class="ui-lg-12">
+            <label>Login:</label>
+            <input type="text" 
+                    [(ngModel)]="usuario.login"
+                    pInputText 
+                    maxlength="50"
+                    style="width: 100%"/>
+        </div>
+        <div class="ui-lg-12">
+            <label>Senha:</label>
+            <input type="password" 
+                    [(ngModel)]="usuario.senha"
+                    pInputText 
+                    maxlength="50"
+                    style="width: 100%"/>
+        </div>
+    </div>
+
+    <p-footer>
+        <button (click)="login()" 
+                [disabled]="usuario.login==null && usuario.senha==null"
+                pButton type="button" 
+                label="Entrar"
+                class="form-button btn-success"
+                style="width:150px;"
+                title="Entrar no sistema"></button>
+        <button (click)="fechar()" 
+                pButton type="button" 
+                label="Fechar"
+                class="form-button btn-danger"
+                style="width:150px;"
+                title="Sair do sistema"></button>
+    </p-footer>
+</p-dialog>

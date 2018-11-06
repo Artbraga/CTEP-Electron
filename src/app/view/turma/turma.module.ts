@@ -25,11 +25,9 @@ import { TableXModule } from "../../components/table-x/table-x.module";
         MenuTurmaComponent
     ],
     imports: [
-        BrowserModule,
-        FormsModule,
         HttpClientModule,
+        FormsModule,
         BrowserAnimationsModule,
-        CommonModule,
         PanelModule,
         MenuModule,
         DialogModule,

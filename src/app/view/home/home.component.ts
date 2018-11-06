@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/components/common/menuitem';
+import { UsuarioService } from '../../service/usuario.service';
+import { Usuario } from '../../entities/usuario';
+import { Message } from 'primeng/primeng';
 
 
 @Component({
@@ -12,13 +15,21 @@ export class HomeComponent implements OnInit {
     loading: number = 0;
     breadCrumbItems: MenuItem[] = [];
     home: MenuItem;
+    msgs: Message[] = [];
+    
+    displayLogin: boolean = true;
+    usuario: Usuario;
 
     @ViewChild('menuAluno') menuAluno;
     @ViewChild('menuProfessor') menuProfessor;
     @ViewChild('menuTurma') menuTurma;
 
+    constructor(private usuarioService: UsuarioService){
+    }
+
     ngOnInit(){
         this.home = { icon: 'fas fa-home', command: () => this.showHome() }
+        this.usuario = new Usuario();
     }
 
     abrirMenu(tipo: string){
@@ -83,5 +94,29 @@ export class HomeComponent implements OnInit {
                 this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
                 break;
         }
+    }
+
+    login(){
+        this.displayLogin = false;
+        // this.usuarioService.logar(this.usuario).subscribe((data: Usuario) =>{
+        //     if(data == null){
+        //         this.showFeedbackMessage({ severity:'error', summary:'Falha no login', detail:'Usuário ou senha incorreto! Tente novamente.' })
+        //     }
+        //     else{
+        //         this.showFeedbackMessage({ severity:'success', summary:'Logado com sucesso', detail:'Bem vindo(a)'+ this.usuario.nome + '!' })
+        //         this.displayLogin = false;
+        //     }
+        // })
+    }
+
+    fechar(){
+        window.close()
+    }
+
+    private showFeedbackMessage(m: Message) {
+        if (m == null) {
+            return;
+        }
+        this.msgs.push(m);
     }
 }

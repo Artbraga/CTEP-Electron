@@ -23,9 +23,7 @@ import { MenuProfessorComponent } from "./menu-professor.component";
     imports: [
         BrowserModule,
         FormsModule,
-        HttpClientModule,
         BrowserAnimationsModule,
-        CommonModule,
         PanelModule,
         MenuModule,
         DialogModule,

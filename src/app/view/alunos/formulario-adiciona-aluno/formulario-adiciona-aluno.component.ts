@@ -83,7 +83,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 this.element.bairro = endereco.bairro;
                 this.element.cidade = endereco.localidade;
                 this.element.endereco = endereco.logradouro;
-                this.showFeedbackMessage({ severity:'success', summary:'Endereo encontrado', detail:'Endereço encontrado com sucesso!' })
+                this.showFeedbackMessage({ severity:'success', summary:'Endereço encontrado', detail:'Endereço encontrado com sucesso!' })
                 this.updateView();
             }
             else{

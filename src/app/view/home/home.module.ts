@@ -7,10 +7,11 @@ import { MenuModule } from 'primeng/menu';
 import {TabViewModule} from 'primeng/tabview';
 import { AlunoModule } from '../alunos/alunos.module';
 import { CommonModule } from '@angular/common';
-import { DialogModule, BreadcrumbModule } from 'primeng/primeng';
+import { DialogModule, BreadcrumbModule, GrowlModule, ButtonModule } from 'primeng/primeng';
 import { TurmaModule } from '../turma/turma.module';
 import { ProfessorModule } from '../professor/professor.module';
 import { TableXModule } from '../../components/table-x/table-x.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -20,9 +21,9 @@ import { TableXModule } from '../../components/table-x/table-x.module';
         HomeComponent
     ],
     imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
         CommonModule,
+        FormsModule,
+        BrowserAnimationsModule,
         PanelModule,
         BreadcrumbModule,
         DialogModule,
@@ -32,6 +33,8 @@ import { TableXModule } from '../../components/table-x/table-x.module';
         AlunoModule,
         TurmaModule,
         ProfessorModule,
+        ButtonModule,
+        GrowlModule
     ],
     providers: [],
 })

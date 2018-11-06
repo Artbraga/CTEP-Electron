@@ -44,3 +44,27 @@
                         [dropdown]="true"></p-autoComplete>
     </div>
 </div>
+<div class="ui-g form-group" style="align-items:center">
+    <button (click)="pesquisarNotasAlunos()" 
+            pButton type="button" 
+            [disabled]="desabilitarBotaoCodigo()" 
+            icon="fas fa-search" 
+            label="Pesquisar Alunos"
+            class="form-button"
+            title="Pesquisar Alunos"></button>
+    <button (click)="limparCampos()" 
+            pButton type="button"
+            icon="fas fa-eraser" 
+            label="Limpar Campos"
+            class="form-button"
+            title="Pesquisar Alunos"></button>
+</div>
+
+<table-x [value]="list" 
+        [colunas]="colunas" 
+        [loading]="loadingTable" 
+        emptyMessage="Não encontrou resultados para a busca."
+        scrollHeight="50vh"
+        #tableComponent>
+
+</table-x>
