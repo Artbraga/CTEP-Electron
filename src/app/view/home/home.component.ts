@@ -49,6 +49,10 @@ export class HomeComponent implements OnInit {
                 this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
                 this.resetTela('professor');
                 break;
+            case "configuracao":
+                this.breadCrumbItems.push( { label:"Configurações", icon: 'fas fa-cog', command: () => this.resetTela('professor') } );
+                this.resetTela('configuracao');
+                break;
         }
     }
 
@@ -93,6 +97,12 @@ export class HomeComponent implements OnInit {
                 this.breadCrumbItems = [];
                 this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
                 break;
+            case "configuracao":
+                if(this.menuProfessor != null)
+                    this.menuProfessor.exibir("default");
+                this.breadCrumbItems = [];
+                this.breadCrumbItems.push( { label:"Configurações", icon: 'fas fa-cog', command: () => this.resetTela('configuracao') } );
+                break;
         }
     }
 
@@ -118,5 +128,12 @@ export class HomeComponent implements OnInit {
             return;
         }
         this.msgs.push(m);
+    }
+
+    logout(){
+        this.displayLogin = true;
+        this.breadCrumbItems = [];
+        this.selected = {"default": false};
+        this.usuario = new Usuario();
     }
 }

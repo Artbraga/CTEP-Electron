@@ -5,6 +5,15 @@
   src: url(./fonts/nimbus-sans-becker.ttf);
 }
 
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-Medium.ttf);
+}
+@font-face {
+  font-family: Roboto-Black;
+  src: url(./fonts/Roboto-Black.ttf);
+}
+
 :root{
   --fundo:#4d575b;
   --fundoopac:#4d575b80;
@@ -260,7 +269,7 @@ p-autocomplete .invalidField {
   margin: 0 16px;
   font-size: 20px;
   font-weight: normal;
-  font-family: NimbusSansBecker;
+  font-family: Roboto-Black;
 }
 
 .ui-card.ui-widget.ui-widget-content {

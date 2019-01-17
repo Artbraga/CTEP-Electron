@@ -45,6 +45,14 @@
                 </span>
             </a>
         </li>
+        <li class="has-subnav" style="bottom:0; position:absolute">
+            <a (click)="logout()">
+                <i class="fas fa-arrow-left fa-2x"></i>
+                <span class="nav-text">
+                    Sair
+                </span>
+            </a>
+        </li>
     </ul>
 </nav>
 <div class="home-container">
@@ -57,6 +65,9 @@
     </div>
     <div *ngIf="selected['professor']" class="ui-lg-12">
         <menu-professor #menuProfessor [(loading)]="loading" (bread)="adicionaBread($event)"></menu-professor>
+    </div>
+    <div *ngIf="selected['configuracao']" class="ui-lg-12">
+        <configuracao [(loading)]="loading" (bread)="adicionaBread($event)"></configuracao>
     </div>
 </div>
 

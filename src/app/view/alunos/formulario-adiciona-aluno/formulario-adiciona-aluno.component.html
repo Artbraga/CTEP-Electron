@@ -4,34 +4,34 @@
         [toggleable]="true" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="true">
-        <div class="ui-g form-group">
-                <div class="ui-lg-12">
-                        <label>Nome Completo:</label>
-                        <input type="text" 
-                                [(ngModel)]="element.nome"
-                                pInputText 
-                                maxlength="50"
-                                style="width: 100%"
-                                [ngClass]="isCampoInvalido('nome')?'invalidField':''"/>
-                </div>
-                <div class="ui-lg-4 ui-md-6">
-                        <label>CPF:</label>
-                        <input type="text" 
-                                [(ngModel)]="element.cpf"
-                                maxlength="12"
-                                pInputText 
-                                style="width: 100%"
-                                [ngClass]="isCampoInvalido('cpf')?'invalidField':''"/>
-                </div>
-                <div class="ui-lg-4 ui-md-6">
-                        <label>RG:</label>
-                        <input type="text" 
-                                [(ngModel)]="element.rg"
-                                maxlength="15"
-                                pInputText 
-                                style="width: 100%"
-                                [ngClass]="isCampoInvalido('rg')?'invalidField':''"/>
-                </div>
+    <div class="ui-g form-group">
+        <div class="ui-lg-12">
+        <label>Nome Completo:</label>
+        <input type="text" 
+                [(ngModel)]="element.nome"
+                pInputText 
+                maxlength="50"
+                style="width: 100%"
+                [ngClass]="isCampoInvalido('nome')?'invalidField':''"/>
+        </div>
+        <div class="ui-lg-4 ui-md-6">
+        <label>CPF:</label>
+        <input type="text" 
+                [(ngModel)]="element.cpf"
+                maxlength="12"
+                pInputText 
+                style="width: 100%"
+                [ngClass]="isCampoInvalido('cpf')?'invalidField':''"/>
+        </div>
+        <div class="ui-lg-4 ui-md-6">
+        <label>RG:</label>
+        <input type="text" 
+                [(ngModel)]="element.rg"
+                maxlength="15"
+                pInputText 
+                style="width: 100%"
+                [ngClass]="isCampoInvalido('rg')?'invalidField':''"/>
+        </div>
                 <div class="ui-lg-4 ui-md-6">
                         <label>Data de Nascimento:</label>
                         <p-calendar [(ngModel)]="element.dataNascimento" 
