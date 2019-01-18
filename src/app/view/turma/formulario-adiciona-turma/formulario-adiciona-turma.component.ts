@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { Turma } from "src/app/entities/turma";
-import { BaseFormulario } from "src/app/base/baseFormulario";
+import { BaseFormulario } from "src/app/base/base-formulario";
 import { TurmaService } from "src/app/service/turma.service";
 import { CursoService } from "src/app/service/curso.service";
 import { ObservacaoTurma } from "src/app/entities/observacaoTurma";

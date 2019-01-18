@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { BaseFormulario } from "../../../base/baseFormulario";
+import { BaseFormulario } from "../../../base/base-formulario";
 import { Professor } from "../../../entities/professor";
 import { TurmaService } from "../../../service/turma.service";
 import { ViacepService } from "../../../service/ngx-viacep/viacep.service";

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, Input, Output, EventEmitter } from "@angular/core";
-import { BaseTable } from "../../../base/baseTable";
+import { BaseTable } from "../../../base/base-table";
 import { AlunoService } from "../../../service/aluno.service";
 import { Coluna } from "../../../components/table-x/table-x.component";
 import { Aluno } from "../../../entities/aluno";

@@ -1,17 +1,17 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
-import { BaseFormulario } from "../../../base/baseFormulario";
-import { Aluno } from "../../../entities/aluno";
-import { ViacepService } from '../../../service/ngx-viacep/viacep.service';
-import { CepError, Endereco } from "../../../service/ngx-viacep/endereco";
+import { BaseFormulario } from "src/app/base/base-formulario";
+import { Aluno } from "src/app/entities/aluno";
+import { ViacepService } from 'src/app/service/ngx-viacep/viacep.service';
+import { CepError, Endereco } from "src/app/service/ngx-viacep/endereco";
 import { Message } from "primeng/primeng";
-import { CursoService } from "../../../service/curso.service";
-import { AlunoService } from "../../../service/aluno.service";
-import { TurmaService } from "../../../service/turma.service";
-import { ObservacaoAluno } from "../../../entities/observacaoAluno";
-import { Curso } from "../../../entities/curso";
-import { Disciplina } from "../../../entities/disciplina";
-import { Coluna } from "../../../components/table-x/table-x.component";
-import { DisciplinaService } from "../../../service/disciplina.service";
+import { CursoService } from "src/app/service/curso.service";
+import { AlunoService } from "src/app/service/aluno.service";
+import { TurmaService } from "src/app/service/turma.service";
+import { ObservacaoAluno } from "src/app/entities/observacaoAluno";
+import { Curso } from "src/app/entities/curso";
+import { Disciplina } from "src/app/entities/disciplina";
+import { Coluna } from "src/app/components/table-x/table-x.component";
+import { DisciplinaService } from "src/app/service/disciplina.service";
 
 @Component({
     selector: 'formulario-adiciona-aluno',

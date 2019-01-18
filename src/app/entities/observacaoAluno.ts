@@ -1,5 +1,5 @@
 import { Aluno } from "./aluno";
-import { BaseConverter } from "../base/base.converter";
+import { BaseConverter } from "../base/base-converter";
 
 export class ObservacaoAluno{
     id: number;

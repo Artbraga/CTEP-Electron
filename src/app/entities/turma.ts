@@ -2,7 +2,7 @@ import { Curso } from "./curso";
 import { Aluno } from "./aluno";
 import { Professor } from "./professor";
 import { ObservacaoTurma } from "./observacaoTurma";
-import { BaseConverter } from "src/app/base/base.converter";
+import { BaseConverter } from "src/app/base/base-converter";
 
 export class Turma {
     codigo: string;
