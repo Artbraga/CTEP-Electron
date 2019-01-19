@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     @ViewChild('menuAluno') menuAluno;
     @ViewChild('menuProfessor') menuProfessor;
     @ViewChild('menuTurma') menuTurma;
+    @ViewChild('menuconfiguracao') menuconfiguracao;
 
     constructor(private usuarioService: UsuarioService){
     }
@@ -98,8 +99,8 @@ export class HomeComponent implements OnInit {
                 this.breadCrumbItems.push( { label:"Professores", icon: 'fas fa-chalkboard-teacher', command: () => this.resetTela('professor') } );
                 break;
             case "configuracao":
-                if(this.menuProfessor != null)
-                    this.menuProfessor.exibir("default");
+                if(this.menuconfiguracao != null)
+                    this.menuconfiguracao.exibir("default");
                 this.breadCrumbItems = [];
                 this.breadCrumbItems.push( { label:"Configurações", icon: 'fas fa-cog', command: () => this.resetTela('configuracao') } );
                 break;

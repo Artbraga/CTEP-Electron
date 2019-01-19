@@ -1,0 +1,63 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<p-panel header="Informações Pessoais" 
+        [toggleable]="true" 
+        [style]="{'margin-bottom':'20px', 'width':'100%'}"
+        [collapsed]="false">
+    <div class="ui-g form-group">
+        <div class="ui-lg-12">
+            <label>Nome Completo:</label>
+            <input type="text" 
+                    [(ngModel)]="element.nome"
+                    pInputText 
+                    style="width: 100%"
+                    [ngClass]="isCampoInvalido('nome')?'invalidField':''"/>
+        </div>
+        <div class="ui-md-6">
+            <label>Login:</label>
+            <input type="text" 
+                    [(ngModel)]="element.login"
+                    pInputText 
+                    style="width: 100%"
+                    [ngClass]="isCampoInvalido('login')?'invalidField':''"/>
+        </div>
+        <div class="ui-md-6">
+            <label>Senha:</label>
+            <input type="password" 
+                    [(ngModel)]="element.senha"
+                    pInputTexts
+                    style="width: 100%"
+                    [ngClass]="isCampoInvalido('senha')?'invalidField':''"/>
+        </div>
+        <div class="ui-md-6">
+            <label>Telefone:</label>
+            <input type="text" 
+                    [(ngModel)]="element.telefone"
+                    pInputText 
+                    style="width: 100%"
+                    [ngClass]="isCampoInvalido('telefone')?'invalidField':''"/>
+        </div>
+        <div class="ui-md-6">
+            <label>Permissão:</label>
+            <p-autoComplete [(ngModel)]="permissaoSelecionada" 
+                            [suggestions]="permissoesSuggestions" 
+                            (completeMethod)="buscarDropdown($event, 'permissao')"
+                            [style]="{'width':'100%'}"
+                            minLength="1"
+                            [forceSelection]="true"
+                            [emptyMessage]="'Não foram encontrados resultados'"
+                            [inputStyle]="{'width':'calc(100% - 2em)'}"
+                            field="label"
+                            [dropdown]="true"></p-autoComplete>
+        </div>
+    </div>
+</p-panel>
+<div class="col-lg-4 col-md-6" style="float:right">
+    <button (click)="cadastrarUsuario()" 
+            pButton type="button" 
+            class="form-button"
+            label="Cadastrar"
+            style="height:34px"
+            class="form-button"
+            title="Cadastrar Turma"></button>
+</div>
