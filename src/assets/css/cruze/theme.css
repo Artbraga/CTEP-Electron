@@ -169,8 +169,6 @@
 
 .ui-button:focus, .ui-button:enabled:hover, .ui-fileupload-choose:not(.ui-state-disabled):hover {
   outline: 0 none;
-  border-color: var(--escuro);
-  background-color: var(--fundo);
   color: var(--claro);
 }
 

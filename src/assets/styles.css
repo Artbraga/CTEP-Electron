@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-
 @font-face {
   font-family: NimbusSansBecker;
   src: url(./fonts/nimbus-sans-becker.ttf);
@@ -26,8 +24,8 @@
 }
 
 .fa-2x {
-  position: relative;
-    padding: 10px 0;
+    position: relative;
+    padding: 20px 0;
     width: 80px;
     text-align: center;
     vertical-align: middle;
@@ -39,9 +37,7 @@
   overflow: visible;
   cursor: pointer;
 }
-.hamburger-menu{
-  padding-top: 20px;
-}
+
 .main-menu:hover .hamburger-menu{
   display: none;
 }
@@ -75,7 +71,7 @@
 }
 
 .main-menu>ul {
-  margin: 7px 0;
+  margin: 20px 0;
 }
 
 .main-menu li {
@@ -113,7 +109,8 @@
   display: table-cell;
   vertical-align: middle;
   width: 190px;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Roboto';
+  font-size: 1.3em;
 }
 
 .main-menu>ul.logout {
@@ -159,13 +156,6 @@ nav ul, nav li {
   background: var(--claro);
   width: 100%;
   height: 100%;
-}
-
-@font-face {
-  font-family: 'Titillium Web';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }
 
 .home-container{
@@ -226,20 +216,20 @@ a:hover {
 }
 
 .form-group > input.ui-inputtext.invalidField {
-  border: 1px solid var(--error) !important;
+  border: 2px solid var(--red) !important;
   width: 100%;
 }
 
 .ui-calendar.invalidField > input {
-  border: 1px solid var(--error) !important;
+  border: 2px solid var(--red) !important;
 }
 
 .form-group input.ui-inputtext.invalidField, .invalidFieldData {
-  border: 1px solid var(--error) !important;
+  border: 2px solid var(--red) !important;
 }
 
 p-autocomplete .invalidField {
-  border: 1px solid var(--error) !important;
+  border: 2px solid var(--red) !important;
 }
 
 .ui-card.ui-widget.ui-widget-content {
@@ -248,11 +238,12 @@ p-autocomplete .invalidField {
 }
 
 .ui-card.ui-widget.ui-widget-content a{
-  font-weight: bold;
+  font-size: 1.3em;
 }
 
 .ui-card.ui-widget.ui-widget-content a:hover{
   color: var(--azulcl);
+  font-weight: bold;
 }
 
 .ui-chkbox-label{
@@ -261,6 +252,8 @@ p-autocomplete .invalidField {
 }
 .ui-card-title{
   text-decoration: underline;
+  font-family: 'Roboto-Black';
+  font-size: 2em;
 }
 
 .home-container .ui-breadcrumb{
@@ -330,3 +323,7 @@ p-autocomplete .invalidField {
 .ui-card-content p-radiobutton{
   margin: 0 15px;
 }  
+
+.ui-autocomplete .ui-autocomplete-dropdown {
+  height: 32px;
+}

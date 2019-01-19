@@ -107,20 +107,21 @@ export class HomeComponent implements OnInit {
     }
 
     login(){
-        this.displayLogin = false;
-        // this.usuarioService.logar(this.usuario).subscribe((data: Usuario) =>{
-        //     if(data == null){
-        //         this.showFeedbackMessage({ severity:'error', summary:'Falha no login', detail:'Usuário ou senha incorreto! Tente novamente.' })
-        //     }
-        //     else{
-        //         this.showFeedbackMessage({ severity:'success', summary:'Logado com sucesso', detail:'Bem vindo(a)'+ this.usuario.nome + '!' })
-        //         this.displayLogin = false;
-        //     }
-        // })
+        //this.displayLogin = false;
+        this.usuarioService.logar(this.usuario).subscribe((data: Usuario) =>{
+            if(data == null){
+                this.showFeedbackMessage({ severity:'error', summary:'Falha no login', detail:'Usuário ou senha incorreto! Tente novamente.' })
+            }
+            else{
+                this.usuario = data;
+                this.showFeedbackMessage({ severity:'success', summary:'Logado com sucesso', detail:'Bem vindo(a) '+ this.usuario.nome + '!' })
+                this.displayLogin = false;
+            }
+        })
     }
 
     fechar(){
-        window.close()
+        window.close();
     }
 
     private showFeedbackMessage(m: Message) {

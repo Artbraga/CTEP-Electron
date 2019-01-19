@@ -12,6 +12,7 @@ import { TurmaModule } from '../turma/turma.module';
 import { ProfessorModule } from '../professor/professor.module';
 import { TableXModule } from '../../components/table-x/table-x.module';
 import { FormsModule } from '@angular/forms';
+import { ConfiguracaoModule } from '../configuracao/configuracao.module';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { FormsModule } from '@angular/forms';
         MenuModule,
         TabViewModule,
         AlunoModule,
+        ConfiguracaoModule,
         TurmaModule,
         ProfessorModule,
         ButtonModule,

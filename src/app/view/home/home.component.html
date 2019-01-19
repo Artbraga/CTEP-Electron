@@ -2,7 +2,6 @@
     <i class="fa fa-spinner fa-pulse fa-2x"></i>
 </div>
 <p-growl [(value)]="msgs" [life]="400"></p-growl>
-<div class="area"></div>
 <nav class="main-menu">
     <ul>
         <li class="hamburger-menu">
@@ -45,7 +44,7 @@
                 </span>
             </a>
         </li>
-        <li class="has-subnav" style="bottom:0; position:absolute">
+        <li class="has-subnav" style="bottom:10px; position:absolute">
             <a (click)="logout()">
                 <i class="fas fa-arrow-left fa-2x"></i>
                 <span class="nav-text">
@@ -67,7 +66,7 @@
         <menu-professor #menuProfessor [(loading)]="loading" (bread)="adicionaBread($event)"></menu-professor>
     </div>
     <div *ngIf="selected['configuracao']" class="ui-lg-12">
-        <configuracao [(loading)]="loading" (bread)="adicionaBread($event)"></configuracao>
+        <configuracao-component [(loading)]="loading" (bread)="adicionaBread($event)"></configuracao-component>
     </div>
 </div>
 

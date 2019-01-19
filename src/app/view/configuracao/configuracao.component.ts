@@ -2,12 +2,12 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { MenuItem } from 'primeng/primeng';
 
 @Component({
-    selector: 'configuracao',
+    selector: 'configuracao-component',
     templateUrl: './configuracao.component.html',
 })
-export class ConfiguracaoComponent implements OnInit {
+export class ConfiguracaoComponent {
 
-    @Input() loading;
+    @Input() loading: boolean;
     @Output() bread = new EventEmitter<MenuItem>();
     
     constructor() { }

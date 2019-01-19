@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "browser": "ng serve --base-href /CTEP-electron/dist/ --watch",
+    "browser": "ng serve --proxy-config proxy.config.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

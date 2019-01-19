@@ -4,7 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 
 export class BaseService{
     
-    private readonly serverURL: string = "http://localhost:8080/"
+    private readonly serverURL: string = "http://localhost:4200/api/"
     protected readonly baseURL: string = this.serverURL + this.controller;
     protected readonly saveUrl: string = this.baseURL + "/salvar/";
     protected readonly deleteUrl: string = this.baseURL + "/deletar/";

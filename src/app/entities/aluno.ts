@@ -39,6 +39,8 @@ export class Aluno {
     edicao: boolean;
 
     observacoes: ObservacaoAluno[];
+    
+    situacao: any;
 
     constructor() {
         this.matricula = null;
@@ -70,12 +72,13 @@ export class Aluno {
         this.status = 1;
 
         this.turma = new Turma();
-        this.turmaEspecializacao = new Turma();
+        this.turmaEspecializacao = null;
 
         this.curso = null;
 
         this.edicao = false;
 
         this.observacoes = [];
+
     }
 }

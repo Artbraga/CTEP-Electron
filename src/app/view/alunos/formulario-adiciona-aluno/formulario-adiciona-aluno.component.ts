@@ -12,6 +12,7 @@ import { Curso } from "src/app/entities/curso";
 import { Disciplina } from "src/app/entities/disciplina";
 import { Coluna } from "src/app/components/table-x/table-x.component";
 import { DisciplinaService } from "src/app/service/disciplina.service";
+import { Turma } from "src/app/entities/turma";
 
 @Component({
     selector: 'formulario-adiciona-aluno',
@@ -20,7 +21,6 @@ import { DisciplinaService } from "src/app/service/disciplina.service";
 export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> implements OnInit{
     
     observacoesColumns: any[];
-    //disciplinas: Disciplina[] = [];
 
     statusOptions: {label: string, value: any}[];
 
@@ -55,6 +55,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 private disciplinaService: DisciplinaService,
                 ref: ChangeDetectorRef){
         super(alunoService, ref);
+        this.observacao = new ObservacaoAluno();
     }
 
     ngOnInit(){
@@ -71,7 +72,16 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
             {label: "Concluído", value:4 },
         ];
 
-        this.observacao = new ObservacaoAluno();
+        this.element.situacao = this.statusOptions.find(x => x.value == this.element.status);
+
+        if(this.element.curso.id > 0){
+            this.onSelect("curso");
+        }
+        if(this.element.turmaEspecializacao != null){
+            this.cursoEspecializacao = this.element.turmaEspecializacao.curso;
+            this.inserirEspecializacao = true;
+            this.onSelect("cursoEspecialização");
+        }
     }
 
     public buscarCEP(){
@@ -162,13 +172,19 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                     this.updateView();
                 });
                 break;
+            case "situação":
+                this.element.status = this.element.situacao.value;
         }
     }
 
     public onChangeChkEspecializacao(selected: boolean){
         if(!selected){
+            this.element.turmaEspecializacao = null;
             this.cursoEspecializacao = null;
             this.disciplinasEspecializacao = [];
+        }
+        else{
+            this.element.turmaEspecializacao = new Turma();
         }
     }
 
@@ -218,6 +234,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
             !this.validField(this.element.dataMatricula) ||
             !this.validField(this.element.curso) ||
             !this.validField(this.element.status) ||
+            !this.validField(this.element.turma) || this.validField(this.element.turma.codigo) ||
             !this.validField(this.element.rg)){
                 return;
         }
@@ -255,6 +272,8 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.status));
             case 'rg':
                 return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.rg));
+            case 'turma':
+                return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.turma) || !this.validField(this.element.turma.codigo));
         }
         return false;
     }

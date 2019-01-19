@@ -12,12 +12,14 @@ import { FormularioAdicionaAlunoComponent } from "./formulario-adiciona-aluno/fo
 import { TableListarAlunoComponent } from "./tabela-aluno/table-listar-aluno.component";
 import { MenuAlunoComponent } from "./menu-aluno.component";
 import { TableXModule } from "../../components/table-x/table-x.module";
+import { RelatorioAlunoComponent } from './relatorio-aluno/relatorio-aluno.component';
 
 @NgModule({
     declarations: [
         FormularioAdicionaAlunoComponent,
         TableListarAlunoComponent,
-        MenuAlunoComponent
+        MenuAlunoComponent,
+        RelatorioAlunoComponent
     ],
     exports: [
         FormularioAdicionaAlunoComponent,
