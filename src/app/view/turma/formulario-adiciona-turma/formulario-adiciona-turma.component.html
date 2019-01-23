@@ -39,7 +39,7 @@
         </div>
         <div class="col-lg-4 col-md-6">
             <label>Situação:</label>
-            <p-autoComplete [(ngModel)]="element.status" 
+            <p-autoComplete [(ngModel)]="statusSelecionado" 
                             [suggestions]="situacaoSuggestions" 
                             (completeMethod)="buscarDropdown($event, 'situação')"
                             [style]="{'width':'100%'}"

@@ -327,7 +327,8 @@
                         <label>Observação:</label>
                         <textarea rows="3" pInputTextarea 
                                 [(ngModel)]="observacao.obs"
-                                style="width:100%"></textarea>
+                                style="width:100%"
+                                [ngClass]="isCampoInvalido('observacao')?'invalidField':''"></textarea>
                 </div>
                 <div class="ui-lg-4 ui-md-4">
                         <label>Data da Observação:</label>
@@ -337,7 +338,8 @@
                                 [style]="{'width':'100%'}"
                                 [locale]="br"
                                 [showButtonBar]="true"
-                                [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+                                [inputStyle]="{'width':'calc(100% - 34px)'}"
+                                [styleClass]="isCampoInvalido('dataObservacao')?'invalidField':''"></p-calendar>
                 </div>
                 <div class="ui-lg-4 ui-md-4" style="display: flex;">
                         <button (click)="adicionarObservacao()" 

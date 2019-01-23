@@ -6,6 +6,8 @@ import { CursoService } from "src/app/service/curso.service";
 import { ObservacaoTurma } from "src/app/entities/observacaoTurma";
 import { Professor } from "src/app/entities/professor";
 import { ProfessorService } from "src/app/service/professor.service";
+import { SelectItem } from "primeng/primeng";
+import { elementAt } from "rxjs/operators";
 
 @Component({
     selector: 'formulario-adiciona-turma',
@@ -23,6 +25,7 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
 
     todosProfessores: Professor[] = [];
     professoresSelecionados: Professor[] = [];
+    statusSelecionado: SelectItem;
 
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
@@ -39,10 +42,9 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
             { field: 'obs', header: 'Observação'},
         ];
         this.statusOptions = [
-            {label: "Ativo", value:1 },
-            {label: "Trancado", value:2 },
-            {label: "Reprovado", value:3 },
-            {label: "Concluído", value:4 },
+            {label: "Teoria", value:1 },
+            {label: "Estágio", value:2 },
+            {label: "Concluída", value:3 },
         ];
 
         this.professorService.listar().subscribe(data => {
@@ -52,6 +54,10 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
             this.todosProfessores = data.filter(x => !this.professoresSelecionados.some(p => p.nome == x.nome));
         });
         this.observacao = new ObservacaoTurma();
+
+        if(this.element.status != null){
+            this.statusSelecionado = this.statusOptions.find(x => x.value == this.element.status);
+        }
     }
 
     buscarDropdown(busca, campo: string){
@@ -100,6 +106,13 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
     }
 
     cadastrarTurma(){
-
+        this.element.status = this.statusSelecionado.value;
+        this.turmaService.salvar(this.element, () => {
+            this.element = new Turma();
+            this.showFeedbackMessage
+        },  
+        (err) =>{
+            this.showFeedbackMessage(err)
+        });
     }
 }

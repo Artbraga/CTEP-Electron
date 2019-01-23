@@ -16,23 +16,20 @@
 
 .ui-widget-content {
   border: 1px solid var(--claro);
-  background-color: var(--fundo);
-  color: var(--claro);
-}
-
-.ui-widget-content a {
+  background-color: var(--gelo);
   color: var(--escuro);
 }
 
 .ui-widget-header {
-  border: 1px solid var(--escuro);
-  background-color: var(--escuro);
-  color: var(--claro);
   font-weight: bold;
+  color: var(--gelo);
+  font-size: 1.1em;
 }
 
 .ui-widget-header a {
-  color: var(--claro);
+  color: var(--gelo);
+  border: none;
+  background-color: var(--azules);
 }
 
 .ui-widget-overlay {
@@ -42,13 +39,14 @@
 }
 
 .ui-state-default {
-  border: 1px solid var(--escuro);
+  border: 1px solid var(--fundo);
   background-color: var(--fundo);
   color: var(--gelo);
 }
 
 .ui-state-default a {
   color: var(--gelo);
+  background-color: initial;
 }
 
 .ui-state-active {
@@ -62,9 +60,8 @@
 }
 
 .ui-state-highlight {
-  border-color: #cccccc;
-  background-color: var(--claro);
-  color: var(--azulcl);
+  border-color: var(--gelo);
+  background-color: var(--azulcl);
 }
 
 .ui-state-highlight a {
@@ -105,7 +102,7 @@
 /* Forms */
 
 .ui-inputtext {
-  background-color: var(--gelo);
+  background-color: var(--white);
   color: var(--escuro);
 }
 
@@ -397,7 +394,7 @@
 }
 
 .ui-tree .ui-treenode-content.ui-treenode-dragover {
-  background-color: var(--azulcl);
+  background-color: var(--azules);
   color: var(--claro);
 }
 
@@ -447,9 +444,7 @@
 }
 
 .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon:hover {
-  border-color: var(--escuro);
-  background-color: var(--fundo);
-  color: var(--claro);
+  color: var(--gelo);
 }
 
 .ui-panel .ui-panel-titlebar .ui-panel-titlebar-icon:hover a {
@@ -515,7 +510,8 @@
 }
 
 .ui-breadcrumb a {
-  color: var(--claro);
+  color: var(--azules);
+  background-color: initial
 }
 
 .ui-menuitem .ui-menuitem-link {
@@ -599,27 +595,20 @@
 }
 
 .ui-datepicker .ui-datepicker-header a {
-  color: var(--claro);
-}
-
-.ui-datepicker .ui-datepicker-header a:hover {
-  border-color: var(--escuro);
-  background-color: var(--fundo);
-  color: var(--claro);
+  border: none;
+  color: var(--azules);
+  background-color: initial;
+  font-size: 20px;
 }
 
 .ui-datepicker .ui-datepicker-header a:hover a {
-  color: var(--claro);
+  color: var(--azules);
 }
 
 .ui-datepicker .ui-datepicker-calendar td:not(.ui-state-disabled) a:hover {
-  border-color: var(--escuro);
-  background-color: var(--fundo);
-  color: var(--claro);
-}
-
-.ui-datepicker .ui-datepicker-calendar td:not(.ui-state-disabled) a:hover a {
-  color: var(--claro);
+  border-color: var(--azules);
+  background-color: var(--azules);
+  color: white;
 }
 
 .ui-datepicker.ui-datepicker-monthpicker .ui-datepicker-month-cell:hover {
@@ -707,8 +696,9 @@
 }
 
 .ui-table .ui-table-tbody>tr {
-  background-color: #575757;
-  color: var(--claro);
+  background-color: var(--gelo);
+  color: var(--escuro);
+  font-weight: 500;
 }
 
 .ui-table .ui-table-tbody>tr>td {
@@ -730,18 +720,8 @@
   color: var(--claro);
 }
 
-.ui-table .ui-sortable-column.ui-state-highlight {
-  background-color: var(--claro);
-  color: var(--azulcl);
-}
-
 .ui-table .ui-sortable-column.ui-state-highlight .ui-sortable-column-icon {
   color: var(--azulcl);
-}
-
-.ui-table .ui-sortable-column:not(.ui-state-highlight):hover {
-  background-color: var(--fundo);
-  color: var(--claro);
 }
 
 .ui-table .ui-sortable-column:not(.ui-state-highlight):hover .ui-sortable-column-icon {

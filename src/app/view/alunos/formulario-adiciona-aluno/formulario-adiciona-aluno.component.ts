@@ -32,12 +32,13 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
 
     observacao: ObservacaoAluno;
     tentouAdicionarAluno: boolean = false;
+    tentouAdicionarObservacao: boolean = false;
     inserirEspecializacao: boolean = false;
     cursoEspecializacao: Curso = null;
 
     colunasObservacoes: Coluna[] = <Coluna[]>[
-        { header: "Data", field: "dataStr", sortable: true, style:{'width':'100px'} },
-        { header: "Observação", field: "obs", sortable: true },
+        { header: "Data", field: "dataStr", style:{'width':'100px'} },
+        { header: "Observação", field: "obs" },
         { bodyTemplateName: "editarObservacao", style:{'width':'50px'} },
         { bodyTemplateName: "excluirObservacao", style:{'width':'50px'} },
     ];
@@ -74,7 +75,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
 
         this.element.situacao = this.statusOptions.find(x => x.value == this.element.status);
 
-        if(this.element.curso.id > 0){
+        if(this.element.curso != null  && this.element.curso.id > 0){
             this.onSelect("curso");
         }
         if(this.element.turmaEspecializacao != null){
@@ -214,14 +215,20 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
     }
 
     public adicionarObservacao(){
-        if(this.idEdicaoObservacao == null){
-            this.element.observacoes.push(this.observacao);
+        this.tentouAdicionarObservacao = true;
+        if(this.validField(this.observacao) && this.validField(this.observacao.obs) && this.validField(this.observacao.data)){
+            if(this.element.observacoes == null) this.element.observacoes = [];
+            if(this.idEdicaoObservacao == null){
+                this.element.observacoes.push(this.observacao);
+            }
+            else{
+                this.element.observacoes[this.idEdicaoObservacao] = this.observacao;
+                this.idEdicaoObservacao = null;
+            }
+            this.tentouAdicionarObservacao = false;
+            this.limparObservacao();
         }
-        else{
-            this.element.observacoes[this.idEdicaoObservacao] = this.observacao;
-            this.idEdicaoObservacao = null;
-        }
-        this.limparObservacao();
+        this.updateView();
     }
 
     public cadastrarAluno(){
@@ -234,7 +241,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
             !this.validField(this.element.dataMatricula) ||
             !this.validField(this.element.curso) ||
             !this.validField(this.element.status) ||
-            !this.validField(this.element.turma) || this.validField(this.element.turma.codigo) ||
+            !(this.validField(this.element.turma) && this.validField(this.element.turma.codigo)) ||
             !this.validField(this.element.rg)){
                 return;
         }
@@ -274,6 +281,11 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
                 return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.rg));
             case 'turma':
                 return this.tentouAdicionarAluno && (this.element == null || !this.validField(this.element.turma) || !this.validField(this.element.turma.codigo));
+            case 'observacao':
+                return this.tentouAdicionarObservacao && (this.observacao == null || !this.validField(this.observacao.obs));
+            case 'dataObservacao':
+                return this.tentouAdicionarObservacao && (this.observacao == null || !this.validField(this.observacao.data));
+            
         }
         return false;
     }

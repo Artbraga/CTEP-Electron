@@ -50,7 +50,7 @@ export class Turma {
         this.horaFim = null;
         this.dataInicio = null;
         this.dataFim = null;
-        this.status = null;
+        this.status = 1;
         this.curso = null;
 
         this.anoInicio = null;

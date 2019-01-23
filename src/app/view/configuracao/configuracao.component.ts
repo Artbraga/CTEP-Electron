@@ -9,7 +9,7 @@ import { Usuario } from 'src/app/entities/usuario';
 export class ConfiguracaoComponent {
 
     usuario: Usuario;
-    @Input() loading: boolean;
+    @Input() loading: number;
     @Output() bread = new EventEmitter<MenuItem>();
 
     selected = {"default": true};

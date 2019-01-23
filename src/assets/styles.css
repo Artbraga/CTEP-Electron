@@ -47,7 +47,7 @@
 }
 
 .main-menu {
-  background: #2e2e2e;
+  background: var(--escuro);
   border-right: 1px solid var(--claro);
   position: absolute;
   top: 0;
@@ -151,18 +151,16 @@ nav ul, nav li {
   background-color: var(--azulcl);
 }
 
-.area {
-  float: left;
-  background: var(--claro);
-  width: 100%;
-  height: 100%;
-}
-
 .home-container{
   padding-left: 80px;
-  background-color: var(--escuro);
   height: 100vh;
   overflow-y: auto;
+  content: ' ';
+  background-image: url("images/logo-opac.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: 90% auto;
 }
 
 label{
@@ -170,6 +168,7 @@ label{
   font-weight: bold;
   margin-bottom: 0 !important;
   padding: 0 5px;
+  color: var(--escuro);
 }
 
 .tableListagem{
@@ -228,13 +227,17 @@ a:hover {
   border: 2px solid var(--red) !important;
 }
 
+.form-group textarea.ui-inputtext.invalidField, .invalidFieldData {
+  border: 2px solid var(--red) !important;
+}
+
 p-autocomplete .invalidField {
   border: 2px solid var(--red) !important;
 }
 
 .ui-card.ui-widget.ui-widget-content {
   box-shadow: 3px 4px 3px var(--claro);
-  border: 1px solid var(--claro);
+  background-color: var(--escuro)
 }
 
 .ui-card.ui-widget.ui-widget-content a{
@@ -257,16 +260,17 @@ p-autocomplete .invalidField {
 }
 
 .home-container .ui-breadcrumb{
-  padding: .5em .1em;
-  border-bottom: 1px solid white;
-  margin: 0 16px;
+  padding: .5em 1.5em;
+  border-bottom: 2px solid var(--escuro);
   font-size: 20px;
   font-weight: normal;
   font-family: Roboto-Black;
+  border-radius: 0;
+  background-color: var(--fundoopac);
 }
 
-.ui-card.ui-widget.ui-widget-content {
-  background-color: var(--fundoopac);
+.ui-dialog .ui-dialog-titlebar{
+  background-color: var(--escuro);
 }
 
 .ui-state-highlight.ui-growl-message-error{
@@ -326,4 +330,44 @@ p-autocomplete .invalidField {
 
 .ui-autocomplete .ui-autocomplete-dropdown {
   height: 32px;
+}
+
+.ui-card-body{
+  padding: 1.5em;
+  color: var(--claro);
+}
+
+.ui-panel{
+  background-color: initial;
+}
+
+.ui-panel .ui-panel-content {
+  border: 1px solid var(--azules);
+  background-color: var(--gelo);
+}
+
+.ui-panel .ui-panel-titlebar{
+  background-color: var(--azules);
+  color: var(--gelo);
+  font-size: 1.2em;
+  font-family: Roboto;
+  font-weight: normal;
+  padding: 0.75em;
+}
+
+.ui-datepicker{
+  border: 1px solid var(--escuro)!important;
+}
+
+.ui-radiobutton-label{
+  color: var(--gelo);
+}
+
+
+.table-striped tbody tr:nth-of-type(odd){
+  background-color: white
+}
+
+.ui-table-scrollable-view {
+  border: 1px solid var(--escuro);
 }

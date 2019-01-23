@@ -60,11 +60,14 @@ export class FormularioCadastroUsuarioComponent extends BaseFormulario<Usuario> 
 
     cadastrarUsuario(){
         this.element.permissao = this.permissaoSelecionada.value;
+        this.loading = 1;
+        this.updateView();
         this.usuarioService.salvar(this.element, 
             () =>{
                 this.element = new Usuario;
                 this.permissaoSelecionada = this.permissoesOptions[1];
                 this.updateView();
+                this.loading = 0;
                 this.showFeedbackMessage({ severity: 'success', summary: 'Sucesso!', detail: 'Usuário cadastrado com sucesso!' });
             },
             (err) =>{
