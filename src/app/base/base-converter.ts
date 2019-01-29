@@ -94,7 +94,7 @@ export class BaseConverter {
     public static convertStringDateBRToDate(d: string): any {
         if (typeof (d) != typeof ("")) return d;
         if (d.trim() == "" || d == null) return null;
-        let splitData = d.split('-');
+        let splitData = d.split('T')[0].split('-');
         return new Date(+splitData[0], +splitData[1] - 1, +splitData[2]); // O mês está menos um por que o construtor interpreta Janeiro como 0 e assim por diante.
     }
 

@@ -515,7 +515,7 @@
 }
 
 .ui-menuitem .ui-menuitem-link {
-  color: var(--claro);
+  color: var(--escuro);
 }
 
 .ui-menuitem .ui-menuitem-link:hover {

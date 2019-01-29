@@ -30,7 +30,8 @@
               "src/assets/styles.css"
             ],
             "scripts": [
-              "src/app/jquery.d.ts"
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-mask-plugin/dist/jquery.mask.min.js"
             ]
           },
           "configurations": {

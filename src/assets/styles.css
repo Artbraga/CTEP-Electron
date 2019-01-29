@@ -371,3 +371,41 @@ p-autocomplete .invalidField {
 .ui-table-scrollable-view {
   border: 1px solid var(--escuro);
 }
+
+.perfil {
+  background: white;
+  border: 2px solid var(--escuro);
+  border-radius: 10px;
+  padding: 0 20px 20px;
+  margin: 20px;
+  min-width: 800px;
+}
+
+.perfil label {
+  width: 170px;
+  font-size: 16px;
+  font-family: Roboto;
+  padding: 10px;
+  text-align: right;
+}
+
+.perfil h6 {
+  width: calc(100% - 170px);
+  display: flex;
+  background-color: var(--gelo);
+  padding: 10px;
+  border: 1px solid var(--azulcl);
+  border-radius: 5px;
+}
+
+.perfil > * {
+  display: flex;
+  padding: 5px;
+}
+
+.perfil h3 {
+  width: 100%;
+  font-family: Roboto-Black;
+  text-decoration: underline;
+  margin-top: 20px;
+}

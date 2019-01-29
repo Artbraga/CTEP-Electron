@@ -43,4 +43,14 @@ export class AlunoService extends BaseService{
             map(this.extractData),
             catchError(this.handleErrorObservable));
     }
+
+    public buscarAlunoCompleto(matricula: string): Observable<any>{
+        let url = this.baseURL + '/buscarAlunoCompleto/'+ matricula;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
+
+    
 }

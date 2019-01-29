@@ -1,0 +1,116 @@
+<div *ngIf="loading" class="block-back-wrap">
+    <i class="fa fa-spinner fa-pulse fa-2x"></i>
+</div>
+
+<div *ngIf="!loading" class="ui-g perfil">
+    <h3>Informações Pessoais</h3>
+    <div class="ui-lg-6">
+        <label>Nome Completo:</label>
+        <h6>{{element.nome}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Matrícula:</label>
+        <h6>{{element.matricula}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>CPF:</label>
+        <h6>{{element.cpfFormatado}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>RG:</label>
+        <h6>{{element.rg}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Data de Nascimento:</label>
+        <h6>{{element.dataNascimento}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Situacao:</label>
+        <h6>{{getStatus(element.status)}}</h6>
+    </div>
+    <div class="ui-lg-3">
+    </div>
+    <div class="ui-lg-3">
+        <label>Telefone:</label>
+        <h6>{{element.telefone}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Celular:</label>
+        <h6>{{element.celular}}</h6>
+    </div>
+    <div class="ui-lg-6">
+        <label>E-mail:</label>
+        <h6>{{element.email}}</h6>
+    </div>
+    <div class="ui-lg-8">
+        <label>Endereço:</label>
+        <h6>{{element.endereco}}</h6>
+    </div>
+    <div class="ui-lg-4">
+        <label>Complemento:</label>
+        <h6>{{element.complemento}}</h6>
+    </div>
+    <div class="ui-lg-4">
+        <label>Cidade:</label>
+        <h6>{{element.cidade}}</h6>
+    </div>
+    <div class="ui-lg-4">
+        <label>Bairro:</label>
+        <h6>{{element.bairro}}</h6>
+    </div>
+    <div class="ui-lg-4">
+        <label>CEP:</label>
+        <h6>{{element.cep}}</h6>
+    </div>
+    <div class="ui-lg-6">
+        <label>Nome da Mãe:</label>
+        <h6>{{element.nomeMae}}</h6>
+    </div>
+    <div class="ui-lg-6">
+        <label>Nome do Pai:</label>
+        <h6>{{element.nomePai}}</h6>
+    </div>
+
+    <h3>Informações Escolares</h3>
+    <div class="ui-lg-6">
+        <label>Curso:</label>
+        <h6>{{element.curso.nome}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Turma:</label>
+        <h6>{{element.turma.codigo}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Situação:</label>
+        <h6>{{getStatus(element.status)}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Data de Matrícula:</label>
+        <h6>{{element.dataMatricula}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Data de Validade:</label>
+        <h6>{{element.dataValidade}}</h6>
+    </div>
+    <div class="ui-lg-6">
+        <label>Curso Anterior:</label>
+        <h6>{{element.cursoAnterior}}</h6>
+    </div>
+    <div *ngIf="element.turmaEspecializacao != null">
+        <div class="ui-lg-6">
+            <label>Curso de Especialização:</label>
+            <h6>{{element.turmaEspecializacao.curso.nome}}</h6>
+        </div>
+        <div class="ui-lg-3">
+            <label>Turma de Especialização:</label>
+            <h6>{{element.turmaEspecializacao.nome}}</h6>
+        </div>
+    </div>
+
+    <div *ngIf="element.observacoes!=null&&element.observacoes.length>0" class="ui-g" style="width:100%">
+        <h3>Observações</h3>
+        <div class="ui-lg-12" *ngFor="let observacao of element.observacoes">
+            <h6 style="width:100%">{{formatData(observacao.data)}} - {{observacao.obs}}</h6>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ViewChild } from "@angular/core";
 import { MenuItem } from "primeng/primeng";
 import { Aluno } from "../../entities/aluno";
 import { AlunoService } from "../../service/aluno.service";
+import { PerfilAlunoComponent } from "./perfil-aluno/perfil-aluno.component";
+import { ObservacaoAluno } from "src/app/entities/observacaoAluno";
 
 @Component({
     selector: 'menu-aluno',
@@ -14,6 +16,7 @@ export class MenuAlunoComponent{
     alunos: Aluno[] = [];
     @Input() loading;
     @Output() bread = new EventEmitter<MenuItem>();
+    @ViewChild('perfilAluno') perfilAluno: PerfilAlunoComponent;
 
     radioPesquisa: string = null;
     inputPesquisa: string = "";
@@ -21,6 +24,8 @@ export class MenuAlunoComponent{
     selected = {"default": true};
 
     constructor(private alunoService: AlunoService){ }
+
+    matricula: string;
 
     exibir(component: string){
         this.fecharOutros(component);
@@ -31,6 +36,9 @@ export class MenuAlunoComponent{
                 break;
             case "tabela":
                 this.bread.emit({ icon: "fas fa-list-ul", label: "Pesquisar Alunos" });
+                break;
+            case "perfil":
+                this.bread.emit({ icon: "fas fa-user-circle", label: "Perfil Aluno" });
                 break;
             case "pesquisa":
                 this.radioPesquisa = null;
@@ -49,11 +57,25 @@ export class MenuAlunoComponent{
     carregaAluno(matricula: string){
         this.loading = true;
         this.alunoService.getById(matricula).subscribe(data => {
-            this.element = data;
+            this.element = Object.assign(new Aluno(), data);
+            this.element.observacoes = [];
+            data.observacoes.forEach(o => {
+                o.data = new Date(o.data);
+                this.element.observacoes.push(Object.assign(new ObservacaoAluno(), o));
+            });
             this.element.edicao = true;
             this.loading = false;
             this.bread.emit(null);
             this.exibir('formulario');
+        })
+    }
+
+    visualizarPerfil(matricula: string){
+        this.bread.emit(null);
+        this.exibir('perfil');
+        this.alunoService.buscarAlunoCompleto(matricula).subscribe(data => {
+            this.element = Object.assign(new Aluno(), data);
+            this.perfilAluno.loading = false;
         })
     }
 

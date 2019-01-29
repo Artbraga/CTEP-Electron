@@ -1,4 +1,4 @@
-/// <reference path="../../jquery.d.ts" />
+/// <reference path="../../view/jquery.d.ts" />
 
 import { Component, OnInit, Input, ViewChild, TemplateRef, EventEmitter, Output, ContentChildren, QueryList } from '@angular/core';
 import { MenuItem, DomHandler, PrimeTemplate } from 'primeng/primeng';

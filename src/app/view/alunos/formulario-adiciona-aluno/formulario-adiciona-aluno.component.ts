@@ -1,3 +1,5 @@
+/// <reference path="../../jquery.d.ts" />
+
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { BaseFormulario } from "src/app/base/base-formulario";
 import { Aluno } from "src/app/entities/aluno";
@@ -63,7 +65,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         if (this.element == null)
             this.element = new Aluno();
         this.observacoesColumns = [
-            { field: 'data', header: 'Data', style: {'width':'20vw'}},
+            { field: 'dataStr', header: 'Data', style: {'width':'20vw'}},
             { field: 'obs', header: 'Observação'},
         ];
         this.statusOptions = [
@@ -83,6 +85,15 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
             this.inserirEspecializacao = true;
             this.onSelect("cursoEspecialização");
         }
+
+        $('#telefoneFormularioId').mask('(00) 0000-00009');
+        $('#telefoneFormularioId').blur(function(event) {
+        if((<string>$(this).val()).length == 15){ // Celular com 9 dígitos + 2 dígitos DDD e 4 da máscara
+            $('#telefoneFormularioId').mask('(00) 00000-0009');
+        } else {
+            $('#telefoneFormularioId').mask('(00) 0000-00009');
+        }
+        });
     }
 
     public buscarCEP(){
@@ -156,7 +167,7 @@ export class FormularioAdicionaAlunoComponent extends BaseFormulario<Aluno> impl
         switch (campo){
             case "dataMatricula":
                 var data = this.element.dataMatricula;
-                this.element.anoMatricula = data.getFullYear() % 100;
+                this.element.anoMatricula = new Date(data).getFullYear() % 100;
                 break;
             case "curso":
                 this.disciplinaService.listarDisciplinasDeUmCurso(this.element.curso.id).subscribe(data => {

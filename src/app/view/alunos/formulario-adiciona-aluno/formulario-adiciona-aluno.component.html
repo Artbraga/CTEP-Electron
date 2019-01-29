@@ -16,12 +16,11 @@
         </div>
         <div class="ui-lg-4 ui-md-6">
         <label>CPF:</label>
-        <input type="text" 
+        <p-inputMask type="text" 
                 [(ngModel)]="element.cpf"
-                maxlength="12"
-                pInputText 
-                style="width: 100%"
-                [ngClass]="isCampoInvalido('cpf')?'invalidField':''"/>
+                [style]="{'width': '100%'}"
+                mask="999.999.999-99"
+                [styleClass]="isCampoInvalido('cpf')?'invalidField':''"></p-inputMask>
         </div>
         <div class="ui-lg-4 ui-md-6">
         <label>RG:</label>
@@ -124,6 +123,7 @@
                 <div class="ui-lg-3 ui-md-4">
                         <label>Telefone:</label>
                         <input type="text" 
+                                id="telefoneFormularioId"
                                 [(ngModel)]="element.telefone"
                                 maxlength="10"
                                 pInputText 
@@ -204,7 +204,7 @@
                 </div>
                 <div class="ui-lg-4 ui-md-6">
                         <label>Data de Matrícula:</label>
-                        <p-calendar [(ngModel)]="element.dataMatricula" 
+                        <p-calendar [(ngModel)]="element._dataNascimento" 
                                 dateFormat="dd/mm/yy"
                                 [showIcon]="true"
                                 [style]="{'width':'100%'}"
@@ -310,7 +310,6 @@
                                 <div class="ui-lg-3 ui-md-3" style="text-align:right">
                                         <label>{{d.nome}}</label>
                                         <input type="text" 
-
                                                 pInputText 
                                                 style="width: 20%"/>
                                 </div>

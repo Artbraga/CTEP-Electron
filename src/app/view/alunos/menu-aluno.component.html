@@ -11,6 +11,7 @@
             <ul style="list-style-type:square">
                 <li><a (click)="exibir('pesquisa')">Pesquisar Alunos</a></li>
                 <li><a (click)="pesquisar('todos')">Listar Todos os Alunos</a></li>
+                <li><a (click)="exibir('perfil')">Perfil de Aluno</a></li>
             </ul>
         </p-card>
     </div>
@@ -42,5 +43,8 @@
     <formulario-adiciona-aluno [loading]="loading" [(element)]="element"></formulario-adiciona-aluno>
 </div>
 <div *ngIf="selected['tabela']">
-    <table-listar-aluno (carregaAluno)="carregaAluno($event)" [list]="alunos"></table-listar-aluno>
+    <table-listar-aluno (carregaAluno)="carregaAluno($event)" (visualizarPerfil)="visualizarPerfil($event)" [list]="alunos"></table-listar-aluno>
+</div>
+<div *ngIf="selected['perfil']">
+    <perfil-aluno #perfilAluno [element]="element"></perfil-aluno>
 </div>

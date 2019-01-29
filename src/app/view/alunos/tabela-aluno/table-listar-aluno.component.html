@@ -12,32 +12,43 @@
     <ng-template pTemplate="excluirAluno" let-data let-rI="rowIndex">
         <button type="button" pButton icon="fa fa-trash" title="Excluir" (click)="showConfirmationDelete(data)"></button>
     </ng-template>
+
+    <ng-template let-item="rowData"
+                     let-index="rowIndex"
+                     pTemplate="menuAlunoTemplate">
+            <div style="height:20px; width: 100%;">
+                <div style="padding-bottom:0; padding-top: 0;">
+                    <p-menu #menuLinha appendTo="body" popup="popup" [model]="itensLinha"></p-menu>
+                    <button type="button" pButton icon="fa fa-ellipsis-h" (click)="onClickLinha(item, index); menuLinha.toggle($event)"></button>
+                </div>
+            </div>
+        </ng-template>
 </table-x>
 
 <div *ngIf="alunoDelete!=null && displayDelete" class="block-back-wrap modal-type">
-        <p-dialog header="Confirmar ação" [(visible)]="displayDelete" [modal]="true" [blockScroll]="true" [closeOnEscape]="true">
-            <div class="dialog-message">
-                Quer mesmo deletar o Aluno?
+    <p-dialog header="Confirmar ação" [(visible)]="displayDelete" [modal]="true" [blockScroll]="true" [closeOnEscape]="true">
+        <div class="dialog-message">
+            Quer mesmo deletar o Aluno?
+        </div>
+
+        <div class="ui-g corpo-modal-confirmacao">
+            <div class="ui-g-12">
+                <label>Aluno:</label>
+                <label>{{alunoDelete.nome}} </label>
             </div>
-    
-            <div class="ui-g corpo-modal-confirmacao">
-                <div class="ui-g-12">
-                        <label>Aluno:</label>
-                        <label>{{alunoDelete.nome}} </label>
-                </div>
-                <div class="ui-g-12">
-                    <label>Matrícula:</label>
-                    <label>{{alunoDelete.matricula}} </label>
-                </div>
-                <div class="ui-g-12">
-                    <label>Turma:</label>
-                    <label>{{alunoDelete.turma.codigo}}</label>
-                </div>
+            <div class="ui-g-12">
+                <label>Matrícula:</label>
+                <label>{{alunoDelete.matricula}} </label>
             </div>
-    
-            <p-footer>
-                <button class="ui-button-success" icon="fa fa-check" type="button" label="Sim" pButton (click)="deleteAluno();"></button>
-                <button class="ui-button-danger" icon="fas fa-times" type="button" label="Não" pButton (click)="displayDelete=false"></button>
-            </p-footer>
-        </p-dialog>
-    </div>
+            <div class="ui-g-12">
+                <label>Turma:</label>
+                <label>{{alunoDelete.turma.codigo}}</label>
+            </div>
+        </div>
+
+        <p-footer>
+            <button class="ui-button-success" icon="fa fa-check" type="button" label="Sim" pButton (click)="deleteAluno();"></button>
+            <button class="ui-button-danger" icon="fas fa-times" type="button" label="Não" pButton (click)="displayDelete=false"></button>
+        </p-footer>
+    </p-dialog>
+</div>

@@ -1,6 +1,7 @@
 import { Turma } from "./turma";
 import { Curso } from "./curso";
 import { ObservacaoAluno } from "./observacaoAluno";
+import { BaseConverter } from "../base/base-converter";
 
 export class Aluno {
     matricula: string;
@@ -23,11 +24,41 @@ export class Aluno {
     notaFiscal: boolean;
     transferencia: boolean;
 
-    dataMatricula: any;
-    dataNascimento: any;
-    dataValidade: any;
+    _dataMatricula: Date;
+    _dataNascimento: Date;
+    _dataValidade: Date;
     cursoAnterior: string;
     anoMatricula: number;
+
+    get dataMatricula(){
+        return BaseConverter.convertDate(this._dataMatricula);
+    }
+
+    set dataMatricula(date){
+        if(typeof(date) != typeof(new Date())){
+            this._dataMatricula = BaseConverter.convertStringDateBRToDate(date);
+        }
+    }
+
+    get dataNascimento(){
+        return BaseConverter.convertDate(this._dataNascimento);
+    }
+
+    set dataNascimento(date){
+        if(typeof(date) != typeof(new Date())){
+            this._dataNascimento = BaseConverter.convertStringDateBRToDate(date);
+        }
+    }
+
+    get dataValidade(){
+        return BaseConverter.convertDate(this._dataValidade);
+    }
+
+    set dataValidade(date){
+        if(typeof(date) != typeof(new Date())){
+            this._dataValidade = BaseConverter.convertStringDateBRToDate(date);
+        }
+    }
 
     status: number;
 
@@ -41,6 +72,10 @@ export class Aluno {
     observacoes: ObservacaoAluno[];
     
     situacao: any;
+
+    get cpfFormatado(){
+        return this.cpf == null || this.cpf.length != 11 ? "" : this.cpf.substring(0,3) + "." + this.cpf.substring(3,6) + "." + this.cpf.substring(6,9) + "-" + this.cpf.substring(9,11)
+    }
 
     constructor() {
         this.matricula = null;
