@@ -19,6 +19,8 @@ export class MenuProfessorComponent{
         switch(component){
             case "formulario":
                 this.bread.emit({ icon: "far fa-plus-square", label: "Adicionar Professor" })
+            case "tabela":
+                this.bread.emit({ icon: "fas fa-list-ul", label: "Listar Professores" })
         }
     }
 

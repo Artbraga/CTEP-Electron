@@ -29,7 +29,6 @@
 .ui-widget-header a {
   color: var(--gelo);
   border: none;
-  background-color: var(--azules);
 }
 
 .ui-widget-overlay {
@@ -52,7 +51,7 @@
 .ui-state-active {
   border-color: var(--escuro);
   background-color: var(--azulcl);
-  color: var(--claro);
+  color: var(--gelo);
 }
 
 .ui-state-active a {
@@ -466,13 +465,7 @@
 }
 
 .ui-dialog .ui-dialog-titlebar-icon:hover {
-  border-color: var(--escuro);
-  background-color: var(--fundo);
-  color: var(--claro);
-}
-
-.ui-dialog .ui-dialog-titlebar-icon:hover a {
-  color: var(--claro);
+  color: var(--azulcl);
 }
 
 .ui-sidebar .ui-sidebar-close {

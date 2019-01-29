@@ -24,39 +24,39 @@ export class Aluno {
     notaFiscal: boolean;
     transferencia: boolean;
 
-    _dataMatricula: Date;
-    _dataNascimento: Date;
-    _dataValidade: Date;
+    dataMatricula: Date;
+    dataNascimento: Date;
+    dataValidade: Date;
     cursoAnterior: string;
     anoMatricula: number;
 
-    get dataMatricula(){
-        return BaseConverter.convertDate(this._dataMatricula);
+    get dataMatriculaStr(){
+        return BaseConverter.convertDate(this.dataMatricula);
     }
 
-    set dataMatricula(date){
+    set dataMatriculaStr(date){
         if(typeof(date) != typeof(new Date())){
-            this._dataMatricula = BaseConverter.convertStringDateBRToDate(date);
+            this.dataMatricula = BaseConverter.convertStringDateBRToDate(date);
         }
     }
 
-    get dataNascimento(){
-        return BaseConverter.convertDate(this._dataNascimento);
+    get dataNascimentoStr(){
+        return BaseConverter.convertDate(this.dataNascimento);
     }
 
-    set dataNascimento(date){
+    set dataNascimentoStr(date){
         if(typeof(date) != typeof(new Date())){
-            this._dataNascimento = BaseConverter.convertStringDateBRToDate(date);
+            this.dataNascimento = BaseConverter.convertStringDateBRToDate(date);
         }
     }
 
-    get dataValidade(){
-        return BaseConverter.convertDate(this._dataValidade);
+    get dataValidadeStr(){
+        return BaseConverter.convertDate(this.dataValidade);
     }
 
-    set dataValidade(date){
+    set dataValidadeStr(date){
         if(typeof(date) != typeof(new Date())){
-            this._dataValidade = BaseConverter.convertStringDateBRToDate(date);
+            this.dataValidade = BaseConverter.convertStringDateBRToDate(date);
         }
     }
 

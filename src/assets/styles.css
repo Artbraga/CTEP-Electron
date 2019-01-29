@@ -287,8 +287,8 @@ p-autocomplete .invalidField {
 }
 
 .ui-button.ui-button-success.ui-state-default{
-  background-color: var(--azules);
-  border-color: var(--azules);
+  background-color: var(--azulcl);
+  border-color: var(--azulcl);
 }
 
 .ui-button.ui-button-danger.ui-state-default{
@@ -316,16 +316,12 @@ p-autocomplete .invalidField {
   background-color: var(--claro)
 }
 
-.ui-state-active{
-  color: var(--azules);
-}
-
 .ui-card-content ul{
   padding-left: 20px;
 }
 
 .ui-card-content p-radiobutton{
-  margin: 0 15px;
+  margin: 0 30px;
 }  
 
 .ui-autocomplete .ui-autocomplete-dropdown {
@@ -408,4 +404,14 @@ p-autocomplete .invalidField {
   font-family: Roboto-Black;
   text-decoration: underline;
   margin-top: 20px;
+}
+
+.ui-card h4 {
+  font-family: Roboto;
+  text-decoration: underline;
+  margin: 10px 0 0 0;
+}
+
+.ui-growl-item{
+  color: var(--gelo);
 }

@@ -63,6 +63,9 @@ export class MenuAlunoComponent{
                 o.data = new Date(o.data);
                 this.element.observacoes.push(Object.assign(new ObservacaoAluno(), o));
             });
+            this.element.dataMatricula = new Date(data.dataMatricula);
+            this.element.dataNascimento = new Date(data.dataNascimento);
+            this.element.dataValidade = new Date(data.dataValidade);
             this.element.edicao = true;
             this.loading = false;
             this.bread.emit(null);

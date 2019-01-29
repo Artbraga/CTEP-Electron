@@ -19,6 +19,10 @@ export class Professor{
 
     turmas: Turma[];
 
+    get cpfFormatado(){
+        return this.cpf == null || this.cpf.length != 11 ? "" : this.cpf.substring(0,3) + "." + this.cpf.substring(3,6) + "." + this.cpf.substring(6,9) + "-" + this.cpf.substring(9,11)
+    }
+
     constructor(){
         this.id = null;
         this.nome = null;

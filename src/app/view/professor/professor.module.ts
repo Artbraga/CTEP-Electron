@@ -1,20 +1,21 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
 
 import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, CardModule } from "primeng/primeng";
 import { TableModule } from 'primeng/table';
 import { FormularioAdicionaProfessorComponent } from "./formulario-adiciona-professor/formulario-adiciona-professor.component";
 import { MenuProfessorComponent } from "./menu-professor.component";
+import { TabelaProfessorComponent } from './tabela-professor/tabela-professor.component';
+import { TableXModule } from "src/app/components/table-x/table-x.module";
 
 
 @NgModule({
     declarations: [
         FormularioAdicionaProfessorComponent,
-        MenuProfessorComponent
+        MenuProfessorComponent,
+        TabelaProfessorComponent
     ],
     exports: [
         FormularioAdicionaProfessorComponent,
@@ -36,7 +37,8 @@ import { MenuProfessorComponent } from "./menu-professor.component";
         GrowlModule,
         TableModule,
         CardModule,
-        AutoCompleteModule
+        AutoCompleteModule,
+        TableXModule
     ],
     providers: [],
 })
