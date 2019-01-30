@@ -51,7 +51,9 @@ export class MenuTurmaComponent{
     listar(){
         this.turmas = [];
         this.turmaService.listar().subscribe((data: Turma[]) =>{
-            this.turmas = Turma.fromArray(data);
+            data.forEach(d => {
+                this.turmas.push(Object.assign(new Turma(), d));
+            });
             this.exibir("tabela");
         })
     }
@@ -59,7 +61,8 @@ export class MenuTurmaComponent{
     carregaTurma(codigo: string){
         this.loading = true;
         this.turmaService.getById(codigo).subscribe(data => {
-            this.element = data;
+            this.element = Object.assign(new Turma(), data);
+            this.element.data = new Date(data.data);
             this.element.edicao = true;
             this.loading = false;
             this.bread.emit(null);

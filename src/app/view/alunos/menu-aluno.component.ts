@@ -84,31 +84,38 @@ export class MenuAlunoComponent{
 
     pesquisar(campo){
         this.alunos = [];
+        this.loading = 1;
         switch(campo){
             case "Nome":
                 this.alunoService.filtrarPeloNome(this.inputPesquisa).subscribe(data =>{
                     this.alunos = data;
                     this.exibir("tabela");
+                    this.loading = 0;
                 });
                 break;
             case "Matrícula":
                 this.alunoService.filtrarPelaMatricula(this.inputPesquisa).subscribe(data =>{
                     this.alunos = data;
                     this.exibir("tabela");
+                    this.loading = 0;
                 });
                 break;
             case "Turma":
                 this.alunoService.filtrarPelaTurma(this.inputPesquisa).subscribe(data =>{
                     this.alunos = data;
                     this.exibir("tabela");
+                    this.loading = 0;
                 });
                 break;
             case "todos":
                 this.alunoService.listar().subscribe(data =>{
                     this.alunos = data;
                     this.exibir("tabela");
+                    this.loading = 0;
                 });
-
+                break;
+            default:
+                this.loading = 0;
         }
     }
 }

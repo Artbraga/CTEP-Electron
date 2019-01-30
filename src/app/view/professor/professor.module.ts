@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
-import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, CardModule } from "primeng/primeng";
+import { TabViewModule, MenuModule, PanelModule, AutoCompleteModule, InputTextModule, DialogModule, CalendarModule, ButtonModule, CheckboxModule, GrowlModule, InputTextareaModule, CardModule, InputMaskModule } from "primeng/primeng";
 import { TableModule } from 'primeng/table';
 import { FormularioAdicionaProfessorComponent } from "./formulario-adiciona-professor/formulario-adiciona-professor.component";
 import { MenuProfessorComponent } from "./menu-professor.component";
@@ -38,7 +38,8 @@ import { TableXModule } from "src/app/components/table-x/table-x.module";
         TableModule,
         CardModule,
         AutoCompleteModule,
-        TableXModule
+        TableXModule,
+        InputMaskModule
     ],
     providers: [],
 })

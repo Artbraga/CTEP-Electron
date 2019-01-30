@@ -1,7 +1,7 @@
 <p-growl [(value)]="msgs"></p-growl>
 
 <p-panel header="Informações Pessoais" 
-        [toggleable]="true" 
+        [toggleable]="false" 
         [style]="{'margin-bottom':'20px', 'width':'100%'}"
         [collapsed]="false">
     <div class="ui-g form-group">
@@ -15,11 +15,11 @@
         </div>
         <div class="ui-lg-4 ui-md-6">
             <label>CPF:</label>
-            <input type="text" 
+            <p-inputMask type="text" 
                     [(ngModel)]="element.cpf"
-                    pInputText 
-                    style="width: 100%"
-                    [ngClass]="isCampoInvalido('cpf')?'invalidField':''"/>
+                    [style]="{'width': '100%'}"
+                    mask="999.999.999-99"
+                    [styleClass]="isCampoInvalido('cpf')?'invalidField':''"></p-inputMask>
         </div>
         <div class="ui-lg-4 ui-md-6">
             <label>RG:</label>

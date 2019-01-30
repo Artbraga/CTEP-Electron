@@ -10,13 +10,15 @@
             <p-autoComplete [(ngModel)]="element.curso" 
                             [suggestions]="cursoSuggestions" 
                             (completeMethod)="buscarDropdown($event, 'curso')"
+                            (onSelect)="onChange('curso', null)"
                             [style]="{'width':'100%'}"
                             minLength="3"
                             [forceSelection]="true"
                             [emptyMessage]="'Não foram encontrados resultados'"
                             [inputStyle]="{'width':'calc(100% - 2em)'}"
                             field="nome"
-                            [dropdown]="true"></p-autoComplete>
+                            [dropdown]="true"
+                            [styleClass]="isCampoInvalido('curso')?'invalidField':''"></p-autoComplete>
         </div>
         <div class="col-lg-4 col-md-6">
             <label>Código:</label>
@@ -25,7 +27,8 @@
                     <input type="text" 
                             [(ngModel)]="element.codigo"
                             pInputText 
-                            style="width: 100%"/>
+                            style="width: 100%"
+                            [ngClass]="isCampoInvalido('codigo')?'invalidField':''"/>
                 </div>
                 <div class="col-lg-5 col-md-5" style="padding: 0; float: left;">
                     <button (click)="gerarCodigo()" 
@@ -42,6 +45,7 @@
             <p-autoComplete [(ngModel)]="statusSelecionado" 
                             [suggestions]="situacaoSuggestions" 
                             (completeMethod)="buscarDropdown($event, 'situação')"
+                            (onSelect)="onChange('situacao', $event)"
                             [style]="{'width':'100%'}"
                             minLength="1"
                             [forceSelection]="true"
@@ -55,19 +59,22 @@
             <input type="text" 
                     [(ngModel)]="element.diasDaSemana"
                     pInputText 
-                    style="width: 100%"/>
+                    style="width: 100%"
+                    [ngClass]="isCampoInvalido('dia')?'invalidField':''"/>
         </div>
         <div class="col-lg-4 col-md-4">
                 <label>Hora de Início:</label>
                 <p-inputMask [(ngModel)]="element.horaInicio" 
                             mask="99:99"
-                            [style]="{ 'width':'100%' }"></p-inputMask>
+                            [style]="{ 'width':'100%' }"
+                            [ngClass]="isCampoInvalido('horaInicio')?'invalidField':''"></p-inputMask>
         </div>
         <div class="col-lg-4 col-md-4">
                 <label>Hora de Término:</label>
                 <p-inputMask [(ngModel)]="element.horaFim" 
                             mask="99:99"
-                            [style]="{ 'width':'100%' }"></p-inputMask>
+                            [style]="{ 'width':'100%' }"
+                            [ngClass]="isCampoInvalido('horaFim')?'invalidField':''"></p-inputMask>
         </div>
         <div class="col-lg-4 col-md-6">
                 <label>Data de Início:</label>
@@ -78,7 +85,8 @@
                             [style]="{'width':'100%'}"
                             [locale]="br"
                             [showButtonBar]="true"
-                            [inputStyle]="{'width':'calc(100% - 34px)'}"></p-calendar>
+                            [inputStyle]="{'width':'calc(100% - 34px)'}"
+                            [ngClass]="isCampoInvalido('dataInicio')?'invalidField':''"></p-calendar>
         </div>
         <div class="col-lg-4 col-md-6">
                 <label>Data de Término:</label>

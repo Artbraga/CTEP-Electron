@@ -28,21 +28,6 @@ export class Turma {
         return this.horaInicio + ' - ' + this.horaFim;
     }
 
-    static fromArray(data: any[]): Turma[]{
-        let turmas = [];
-        data.forEach(d => {
-            let t = new Turma();
-            t.codigo = d.codigo;
-            t.diasDaSemana = d.diasDaSemana;
-            t.horaInicio = d.horaInicio;
-            t.horaFim = d.horaFim;
-            t.curso = d.curso;
-            t.dataInicio = <Date> d.dataInicio;
-            turmas.push(t);
-        });
-        return turmas;
-    }
-
     constructor() {
         this.codigo = null;
         this.diasDaSemana = null;

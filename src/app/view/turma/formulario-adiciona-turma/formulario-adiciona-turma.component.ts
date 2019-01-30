@@ -26,6 +26,7 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
     todosProfessores: Professor[] = [];
     professoresSelecionados: Professor[] = [];
     statusSelecionado: SelectItem;
+    tentouAdicionarTurma: boolean = false;;
 
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
@@ -106,13 +107,55 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
     }
 
     cadastrarTurma(){
+        this.tentouAdicionarTurma = true;
+        if (!this.validField(this.element.codigo) ||
+            !this.validField(this.element.dataInicio) ||
+            !this.validField(this.element.horaInicio) ||
+            !this.validField(this.element.horaFim) ||
+            !this.validField(this.element.diasDaSemana) ||
+            !this.validField(this.element.curso) ||
+            !this.validField(this.element.status)){
+                return;
+        }
         this.element.status = this.statusSelecionado.value;
         this.turmaService.salvar(this.element, () => {
             this.element = new Turma();
-            this.showFeedbackMessage
+            this.showFeedbackMessage({ severity: 'success', summary: 'Sucesso!', detail: 'Turma cadastrada com sucesso!' });
+            this.tentouAdicionarTurma = false;
+            this.element = new Turma();
         },  
         (err) =>{
             this.showFeedbackMessage(err)
         });
+    }
+
+    public isCampoInvalido(campo: string): boolean{
+        switch (campo) {
+            case 'codigo':
+                return this.tentouAdicionarTurma && (this.element == null || !this.validField(this.element.codigo));
+            case 'dataInicio':
+                return this.tentouAdicionarTurma && (this.element == null || !this.validField(this.element.dataInicio));
+            case 'horaInicio':
+                return this.tentouAdicionarTurma && (this.element == null || !this.validField(this.element.horaInicio));
+            case 'horaFim':
+                return this.tentouAdicionarTurma && (this.element == null || !this.validField(this.element.horaFim));
+            case 'dia':
+                return this.tentouAdicionarTurma && (this.element == null || !this.validField(this.element.diasDaSemana));
+            case 'curso':
+                return this.tentouAdicionarTurma && (this.element == null || !this.validField(this.element.curso));
+        }
+        return false;
+    }
+
+    onChange(campo: string, value){
+        switch(campo){
+            case "curso":
+                this.element.codigo = "";
+                break;
+            case "situacao":
+                if(value.value == 3)
+                    this.element.dataFim = new Date();
+                break;
+        }
     }
 }

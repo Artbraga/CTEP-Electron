@@ -1,37 +1,36 @@
-<div *ngIf="selected['default'] || selected['pesquisa']" class="ui-g">
-    <div class="ui-lg-4 ui-md-4">
-        <p-card title="Cadastro" [style]="{width: '100%'}" [styleClass]="">
+<div class="ui-g">
+    <div *ngIf="selected['default'] || selected['pesquisa']" class="ui-lg-4">
+        <p-card [style]="{width: '100%'}" [styleClass]="">
+            <h4>Cadastro</h4>
             <ul style="list-style-type:square">
                 <li><a (click)="exibir('formulario')">Criar Nova Turma</a></li>
                 <li><a (click)="exibir('nota')">Inserir Nota em Disciplina</a></li>
             </ul>
-        </p-card>
-    </div>
-    <div class="ui-lg-4 ui-md-4">
-        <p-card title="Pesquisa" [style]="{width: '100%'}" [styleClass]="">
+            <h4>Pesquisa</h4>
             <ul style="list-style-type:square">
                 <li><a (click)="exibir('pesquisa')">Pesquisar Turmas</a></li>
                 <li><a (click)="listar()">Listar Todas as Turmas</a></li>
             </ul>
         </p-card>
     </div>
+
+    <div *ngIf="selected['pesquisa']" class="ui-lg-8">
+        <p-card>
+            <div class="ui-g" style="text-align: center">
+                <div class="ui-lg-2 ui-md-2" style="text-align: right">
+                    <label>Código:</label>
+                </div>
+                <div class="ui-lg-6 ui-md-6">
+                    <input type="text" [(ngModel)]="inputPesquisa" pInputText style="width: 100%">
+                </div>
+                <div class="ui-lg-4 ui-md-4">
+                    <button class="form-button" icon="fas fa-search" type="button" label="Pesquisar" pButton (click)="pesquisar(inputPesquisa)" [disabled]="inputPesquisa.length==0"></button>
+                </div>
+            </div>        
+        </p-card>
+    </div>
 </div>
 
-<div *ngIf="selected['pesquisa']">
-    <p-card class="container">
-        <div class="ui-g" style="text-align: center">
-            <div class="ui-lg-2 ui-md-2" style="text-align: right">
-                <label>Código:</label>
-            </div>
-            <div class="ui-lg-6 ui-md-6">
-                <input type="text" [(ngModel)]="inputPesquisa" pInputText style="width: 100%">
-            </div>
-            <div class="ui-lg-4 ui-md-4">
-                <button class="form-button" icon="fas fa-search" type="button" label="Pesquisar" pButton (click)="pesquisar(inputPesquisa)" [disabled]="inputPesquisa.length==0"></button>
-            </div>
-        </div>        
-    </p-card>
-</div>
 <div *ngIf="selected['formulario']">
     <formulario-adiciona-turma [loading]="loading" [(element)]="element"></formulario-adiciona-turma>
 </div>

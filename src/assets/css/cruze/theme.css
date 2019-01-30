@@ -28,6 +28,7 @@
 
 .ui-widget-header a {
   color: var(--gelo);
+  background-color: var(--azules);
   border: none;
 }
 

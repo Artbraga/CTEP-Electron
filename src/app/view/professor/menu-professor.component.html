@@ -1,19 +1,19 @@
-<div *ngIf="selected['default']" class="ui-g">
-    <div class="ui-lg-4 ui-md-4">
-        <p-card title="Cadastro" [style]="{width: '100%'}" [styleClass]="">
-            <a (click)="exibir('formulario')">Adicionar Professor</a>
-        </p-card>
-    </div>
-    <div class="ui-lg-4 ui-md-4">
-            <p-card title="Filtrar" [style]="{width: '100%'}" [styleClass]="">
-                <a (click)="exibir('tabela')">Listar Professores</a>
-            </p-card>
-        </div>
+<div *ngIf="selected['default']" class="ui-lg-4 ui-md-4">
+    <p-card [style]="{width: '100%'}" [styleClass]="">
+        <h4>Cadastro</h4>
+        <ul style="list-style-type:square">
+            <li><a (click)="exibir('formulario')">Adicionar Professor</a></li>
+        </ul>
+        <h4>Pesquisa</h4>
+        <ul style="list-style-type:square">
+            <li><a (click)="exibir('tabela')">Listar Professores</a></li>
+        </ul>
+    </p-card>
 </div>
 
 <div *ngIf="selected['formulario']">
-    <formulario-adiciona-professor [loading]="loading"></formulario-adiciona-professor>
+    <formulario-adiciona-professor [loading]="loading" [(element)]=element></formulario-adiciona-professor>
 </div>
 <div *ngIf="selected['tabela']">
-    <tabela-professor></tabela-professor>
+    <tabela-professor (carregaProfessor)="carregaProfessor($event)"></tabela-professor>
 </div>
