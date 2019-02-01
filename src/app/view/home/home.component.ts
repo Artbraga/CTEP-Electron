@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
     @ViewChild('menuProfessor') menuProfessor;
     @ViewChild('menuTurma') menuTurma;
     @ViewChild('menuconfiguracao') menuconfiguracao;
+    @ViewChild('menuutilidades') menuutilidades;
 
     constructor(private usuarioService: UsuarioService){
     }
@@ -51,8 +52,12 @@ export class HomeComponent implements OnInit {
                 this.resetTela('professor');
                 break;
             case "configuracao":
-                this.breadCrumbItems.push( { label:"Configurações", icon: 'fas fa-cog', command: () => this.resetTela('professor') } );
+                this.breadCrumbItems.push( { label:"Configurações", icon: 'fas fa-cog', command: () => this.resetTela('configuracao') } );
                 this.resetTela('configuracao');
+                break;
+            case "utilidades":
+                this.breadCrumbItems.push( { label:"Utilidades", icon: 'fas fa-toolbox', command: () => this.resetTela('utilidades') } );
+                this.resetTela('utilidades');
                 break;
         }
     }
@@ -103,6 +108,12 @@ export class HomeComponent implements OnInit {
                     this.menuconfiguracao.exibir("default");
                 this.breadCrumbItems = [];
                 this.breadCrumbItems.push( { label:"Configurações", icon: 'fas fa-cog', command: () => this.resetTela('configuracao') } );
+                break;
+            case "utilidades":
+                if(this.menuutilidades != null)
+                    this.menuutilidades.exibir("default");
+                this.breadCrumbItems = [];
+                this.breadCrumbItems.push( { label:"Utilidades", icon: 'fas fa-toolbox', command: () => this.resetTela('utilidades') } );
                 break;
         }
     }

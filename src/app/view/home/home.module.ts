@@ -13,6 +13,7 @@ import { ProfessorModule } from '../professor/professor.module';
 import { TableXModule } from '../../components/table-x/table-x.module';
 import { FormsModule } from '@angular/forms';
 import { ConfiguracaoModule } from '../configuracao/configuracao.module';
+import { UtilidadesModule } from '../utilidades/utilidades.module';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { ConfiguracaoModule } from '../configuracao/configuracao.module';
         TurmaModule,
         ProfessorModule,
         ButtonModule,
+        UtilidadesModule,
         GrowlModule
     ],
     providers: [],

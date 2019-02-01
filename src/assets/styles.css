@@ -364,6 +364,10 @@ p-autocomplete .invalidField {
   background-color: white
 }
 
+.table-striped tbody tr:nth-of-type(odd):hover {
+  background-color: var(--azulcl);
+}
+
 .ui-table-scrollable-view {
   border: 1px solid var(--escuro);
 }
@@ -414,4 +418,8 @@ p-autocomplete .invalidField {
 
 .ui-growl-item{
   color: var(--gelo);
+}
+
+tabela-utilidades h3{
+  font-family: Roboto-Black;
 }

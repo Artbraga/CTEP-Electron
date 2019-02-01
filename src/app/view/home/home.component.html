@@ -37,6 +37,14 @@
             </a>
         </li>
         <li class="has-subnav">
+            <a (click)="abrirMenu('utilidades')">
+                <i class="fas fa-toolbox fa-2x"></i>
+                <span class="nav-text">
+                    Utilidades
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav">
             <a (click)="abrirMenu('configuracao')">
                 <i class="fas fa-cog fa-2x"></i>
                 <span class="nav-text">
@@ -67,6 +75,9 @@
     </div>
     <div *ngIf="selected['configuracao']" class="ui-lg-12">
         <configuracao-component #menuconfiguracao [(loading)]="loading" (bread)="adicionaBread($event)"></configuracao-component>
+    </div>
+    <div *ngIf="selected['utilidades']" class="ui-lg-12">
+        <utilidades-component #menuutilidades (bread)="adicionaBread($event)"></utilidades-component>
     </div>
 </div>
 
