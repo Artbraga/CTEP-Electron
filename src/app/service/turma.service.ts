@@ -42,4 +42,12 @@ export class TurmaService extends BaseService{
             map(this.extractData),
             catchError(this.handleErrorObservable));
     }
+
+    public listarNotasDeUmaTurmaEDisciplina(codigoTurma: string, idDisciplina: number){
+        let url = this.baseURL + '/listarNotasDeUmaTurmaEDisciplina/'+ codigoTurma + '&' + idDisciplina;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
 }

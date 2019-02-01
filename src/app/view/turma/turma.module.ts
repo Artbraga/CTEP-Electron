@@ -11,18 +11,21 @@ import { FormularioAdicionaTurmaComponent } from "./formulario-adiciona-turma/fo
 import { MenuTurmaComponent } from "./menu-turma.component";
 import { TableListarTurmaComponent } from "./tabela-turma/table-listar-turma.component";
 import { TableXModule } from "../../components/table-x/table-x.module";
+import { NotaDisciplinaComponent } from "./nota-disciplina/nota-disciplina.component";
 
 
 @NgModule({
     declarations: [
         FormularioAdicionaTurmaComponent,
         TableListarTurmaComponent,
-        MenuTurmaComponent
+        MenuTurmaComponent,
+        NotaDisciplinaComponent
     ],
     exports: [
         FormularioAdicionaTurmaComponent,
         TableListarTurmaComponent,
-        MenuTurmaComponent
+        MenuTurmaComponent,
+        NotaDisciplinaComponent
     ],
     imports: [
         HttpClientModule,

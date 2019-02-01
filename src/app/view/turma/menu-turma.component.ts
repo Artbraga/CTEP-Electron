@@ -30,6 +30,9 @@ export class MenuTurmaComponent{
             case "tabela":
                 this.bread.emit({ icon: "fas fa-list-ul", label: "Pesquisar Alunos" });
                 break;
+            case "nota":
+                this.bread.emit({ icon: "fas fa-clipboard-list", label: "Inserir Nota em Disciplina" });
+                break;
         }
     }
 

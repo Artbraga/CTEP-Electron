@@ -7,12 +7,13 @@ import { DisciplinaService } from "src/app/service/disciplina.service";
 import { Curso } from "src/app/entities/curso";
 import { Disciplina } from "src/app/entities/disciplina";
 import { Coluna } from "src/app/components/table-x/table-x.component";
+import { NotaAluno } from "src/app/entities/notaAluno";
 
 @Component({
-    selector: 'formulario-adiciona-turma',
-    templateUrl: './formulario-adiciona-turma.component.html',
+    selector: 'nota-disciplina',
+    templateUrl: './nota-disciplina.component.html',
 })
-export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> implements OnInit{
+export class NotaDisciplinaComponent implements OnInit{
     
     cursoSuggestions: any[];
     turmaSuggestions: any[];
@@ -25,18 +26,19 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
     colunas: Coluna[];
     notas: {} = null;
 
+    list: NotaAluno[];
+
     constructor(private turmaService: TurmaService,
         private cursoService: CursoService,
         private disciplinaService: DisciplinaService,
         ref: ChangeDetectorRef){
-        super(turmaService, ref);
     }
 
     ngOnInit(){
         this.colunas = <Coluna[]>[
-            { header: "Matrícula", field: "matricula", style: { 'width': '120px' } },
+            { header: "Matrícula", field: "matricula", style: { 'width': '200px' } },
             { header: "Nome", field: "nome" },
-            { header: "Nota", bodyTemplateName:"inputNota"}
+            { header: "Nota", bodyTemplateName:"inputNota", style: { 'width': '200px'}}
         ];
     }
 
@@ -49,7 +51,7 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
                 });
                 break;
             case "turma":
-                this.turmaService.filtrarTurmasPeloNome(filter).subscribe(data =>{
+                this.turmaService.filtrarTurmasDeUmCurso(this.cursoSelecionado.id, filter).subscribe(data =>{
                     this.turmaSuggestions = data;
                 });
                 break;
@@ -61,14 +63,41 @@ export class FormularioAdicionaTurmaComponent extends BaseFormulario<Turma> impl
         }
     }
 
+    onSelect(campo: string){
+        switch(campo){
+            case "curso":
+                this.turmaSelecionada = null;
+                this.onSelect("turma");
+                break;
+            case "turma":
+                this.disciplinaSelecionada = null;
+                this.onSelect("disciplina");
+                break;
+            case "disciplina":
+                break;
+        }
+    }
+
     limparCampos(){
         this.cursoSelecionado = null;
         this.disciplinaSelecionada = null;
         this.turmaSelecionada = null;
-        this.updateView();
     }
 
     pesquisarNotasAlunos(){
+        
     }
 
+    getDisabled(campo: string){
+        switch(campo){
+            case "turma":
+                return this.cursoSelecionado == null;
+            case "disciplina":
+                return this.turmaSelecionada == null;
+        }
+    }
+
+    cadastrarNotas(){
+
+    }
 }

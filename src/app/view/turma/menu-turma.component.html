@@ -37,3 +37,6 @@
 <div *ngIf="selected['tabela']">
     <table-listar-turma (carregaTurma)="carregaTurma($event)" [list]="turmas"></table-listar-turma>
 </div>
+<div *ngIf="selected['nota']">
+    <nota-disciplina></nota-disciplina>
+</div>

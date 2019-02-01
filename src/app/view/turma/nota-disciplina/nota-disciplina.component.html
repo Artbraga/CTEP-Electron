@@ -23,7 +23,7 @@
                         [forceSelection]="true"
                         [emptyMessage]="'Não foram encontrados resultados'"
                         [inputStyle]="{'width':'calc(100% - 2em)'}"
-                        field="nome"
+                        field="codigo"
                         (onSelect)="onSelect('disciplina')" 
                         [disabled]="getDisabled('turma')"
                         [dropdown]="true"></p-autoComplete>
@@ -39,25 +39,25 @@
                         [emptyMessage]="'Não foram encontrados resultados'"
                         [inputStyle]="{'width':'calc(100% - 2em)'}"
                         field="nome"
-                        (onSelect)="onSelect('disciplina')" 
                         [disabled]="getDisabled('disciplina')"
                         [dropdown]="true"></p-autoComplete>
     </div>
 </div>
-<div class="ui-g form-group" style="align-items:center">
-    <button (click)="pesquisarNotasAlunos()" 
-            pButton type="button" 
-            [disabled]="desabilitarBotaoCodigo()" 
-            icon="fas fa-search" 
-            label="Pesquisar Alunos"
-            class="form-button"
-            title="Pesquisar Alunos"></button>
-    <button (click)="limparCampos()" 
-            pButton type="button"
-            icon="fas fa-eraser" 
-            label="Limpar Campos"
-            class="form-button"
-            title="Pesquisar Alunos"></button>
+<div class="ui-g" style="display:block; padding:15px 0">
+    <div class="col-lg-3 col-md-4" style="float:right">
+        <button (click)="limparCampos()" 
+                pButton type="button"
+                label="Limpar Campos"
+                class="form-button"
+                title="Pesquisar Alunos"></button>
+    </div>
+    <div class="col-lg-3 col-md-4" style="float:right">
+        <button (click)="pesquisarNotasAlunos()" 
+                pButton type="button" 
+                label="Pesquisar Alunos"
+                class="form-button"
+                title="Pesquisar Alunos"></button>
+    </div>
 </div>
 
 <table-x [value]="list" 
@@ -66,5 +66,14 @@
         emptyMessage="Não encontrou resultados para a busca."
         scrollHeight="50vh"
         #tableComponent>
-
 </table-x>
+
+<div class="col-lg-4 col-md-6" style="float:right">
+        <button (click)="cadastrarNotas()" 
+                pButton type="button" 
+                class="form-button"
+                label="Salvar Notas"
+                style="height:34px"
+                class="form-button"
+                title="Salvar Notas"></button>
+</div>
