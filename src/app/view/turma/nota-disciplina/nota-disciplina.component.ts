@@ -24,7 +24,7 @@ export class NotaDisciplinaComponent implements OnInit{
     disciplinaSelecionada: Disciplina;
 
     colunas: Coluna[];
-    notas: {} = null;
+    notas: NotaAluno[] = [];
 
     list: NotaAluno[];
 
@@ -36,8 +36,8 @@ export class NotaDisciplinaComponent implements OnInit{
 
     ngOnInit(){
         this.colunas = <Coluna[]>[
-            { header: "Matrícula", field: "matricula", style: { 'width': '200px' } },
-            { header: "Nome", field: "nome" },
+            { header: "Matrícula", field: "aluno.matricula", style: { 'width': '200px' } },
+            { header: "Nome", field: "aluno.nome" },
             { header: "Nota", bodyTemplateName:"inputNota", style: { 'width': '200px'}}
         ];
     }
@@ -56,7 +56,7 @@ export class NotaDisciplinaComponent implements OnInit{
                 });
                 break;
             case "disciplina":
-                this.disciplinaService.listarDisciplinasDeUmCurso(filter).subscribe(data =>{
+                this.disciplinaService.filtrarDisciplinasDeUmCurso(this.cursoSelecionado.id, filter).subscribe(data =>{
                     this.disciplinaSuggestions = data;
                 });
                 break;
@@ -85,7 +85,12 @@ export class NotaDisciplinaComponent implements OnInit{
     }
 
     pesquisarNotasAlunos(){
-        
+        this.notas = [];
+        this.turmaService.listarNotasDeUmaTurmaEDisciplina(this.turmaSelecionada.codigo, this.disciplinaSelecionada.id).subscribe(data =>{
+            data.forEach(n =>{
+                this.notas.push(Object.assign(new NotaAluno(), n));
+            })
+        });
     }
 
     getDisabled(campo: string){
@@ -98,6 +103,6 @@ export class NotaDisciplinaComponent implements OnInit{
     }
 
     cadastrarNotas(){
-
+        this.turmaService.salvarNotas(this.notas).subscribe();
     }
 }

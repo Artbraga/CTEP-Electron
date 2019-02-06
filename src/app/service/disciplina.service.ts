@@ -19,4 +19,13 @@ export class DisciplinaService extends BaseService{
             map(this.extractData),
             catchError(this.handleErrorObservable));
     }
+
+    public filtrarDisciplinasDeUmCurso(cursoId: number, nome: String) : Observable<any>{
+        let url = this.baseURL + '/filtrarDisciplinasDeUmCurso/' + cursoId + "&" + nome;
+
+        return this.http.get(url).pipe(
+            map(this.extractData),
+            catchError(this.handleErrorObservable));
+    }
+    
 }

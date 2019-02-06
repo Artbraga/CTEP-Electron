@@ -11,6 +11,7 @@
                         [emptyMessage]="'Não foram encontrados resultados'"
                         [inputStyle]="{'width':'calc(100% - 2em)'}"
                         field="nome"
+                        (onSelect)="onSelect('curso')" 
                         [dropdown]="true"></p-autoComplete>
     </div>
     <div class="col-lg-4 col-md-6">
@@ -24,7 +25,7 @@
                         [emptyMessage]="'Não foram encontrados resultados'"
                         [inputStyle]="{'width':'calc(100% - 2em)'}"
                         field="codigo"
-                        (onSelect)="onSelect('disciplina')" 
+                        (onSelect)="onSelect('turma')" 
                         [disabled]="getDisabled('turma')"
                         [dropdown]="true"></p-autoComplete>
     </div>
@@ -45,27 +46,35 @@
 </div>
 <div class="ui-g" style="display:block; padding:15px 0">
     <div class="col-lg-3 col-md-4" style="float:right">
-        <button (click)="limparCampos()" 
-                pButton type="button"
-                label="Limpar Campos"
-                class="form-button"
-                title="Pesquisar Alunos"></button>
-    </div>
-    <div class="col-lg-3 col-md-4" style="float:right">
         <button (click)="pesquisarNotasAlunos()" 
                 pButton type="button" 
                 label="Pesquisar Alunos"
                 class="form-button"
                 title="Pesquisar Alunos"></button>
     </div>
+    <div class="col-lg-3 col-md-4" style="float:right">
+        <button (click)="limparCampos()" 
+                pButton type="button"
+                label="Limpar Campos"
+                class="form-button"
+                title="Limpar Campos"></button>
+    </div>
 </div>
 
-<table-x [value]="list" 
+<table-x [value]="notas" 
         [colunas]="colunas" 
         [loading]="loadingTable" 
         emptyMessage="Não encontrou resultados para a busca."
         scrollHeight="50vh"
+        [style]="{'padding':'10px 0'}"
         #tableComponent>
+    <ng-template pTemplate="inputNota" let-data let-index="rowIndex">
+        <input id="valorProgramado"
+                type="number"
+                step="0.1"
+                pInputText
+                [(ngModel)]="data.nota"/>
+    </ng-template>
 </table-x>
 
 <div class="col-lg-4 col-md-6" style="float:right">
