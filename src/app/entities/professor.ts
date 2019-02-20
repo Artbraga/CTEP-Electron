@@ -1,4 +1,5 @@
 import { Turma } from "./turma";
+import { BaseConverter } from "../base/base-converter";
 
 export class Professor{
     id: number;
@@ -19,8 +20,20 @@ export class Professor{
 
     turmas: Turma[];
 
+    edicao: boolean;
+
     get cpfFormatado(){
-        return this.cpf == null || this.cpf.length != 11 ? "" : this.cpf.substring(0,3) + "." + this.cpf.substring(3,6) + "." + this.cpf.substring(6,9) + "-" + this.cpf.substring(9,11)
+        return this.cpf == null ? "" : this.cpf.length == 14 ? this.cpf : this.cpf.length != 11 ? "" : this.cpf.substring(0,3) + "." + this.cpf.substring(3,6) + "." + this.cpf.substring(6,9) + "-" + this.cpf.substring(9,11)
+    }
+
+    get dataNascimentoStr(){
+        return BaseConverter.convertDate(this.dataNascimento);
+    }
+
+    set dataNascimentoStr(date){
+        if(typeof(date) != typeof(new Date())){
+            this.dataNascimento = BaseConverter.convertStringDateBRToDate(date);
+        }
     }
 
     constructor(){
@@ -38,5 +51,6 @@ export class Professor{
         this.celular = null;
         this.dataNascimento = null;
         this.turmas = [];
+        this.edicao = false;
     }
 }

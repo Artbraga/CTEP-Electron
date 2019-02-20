@@ -26,15 +26,23 @@ export class MenuProfessorComponent{
         this.selected[component] = true;
         switch(component){
             case "formulario":
-                this.bread.emit({ icon: "far fa-plus-square", label: "Adicionar Professor" })
+                this.bread.emit({ icon: "far fa-plus-square", label: "Adicionar Professor" });
+                break;
             case "tabela":
-                this.bread.emit({ icon: "fas fa-list-ul", label: "Listar Professores" })
+                this.bread.emit({ icon: "fas fa-list-ul", label: "Listar Professores" });
+                break;
+            case "default":
+                this.bread.emit(null);
+                break;
         }
     }
 
     carregaProfessor(id: number){
         this.professorService.getById(id).subscribe(data =>{
             this.element = Object.assign(new Professor(), data);
+            this.element.dataNascimento = new Date(data.dataNascimento);
+            this.element.edicao = true;
+            this.bread.emit(null);
             this.exibir("formulario");
         })
     }

@@ -1,10 +1,11 @@
-import { Input, ChangeDetectorRef } from "@angular/core";
+import { Input, ChangeDetectorRef, Output, EventEmitter } from "@angular/core";
 import { Message } from "primeng/primeng";
 import { BaseService } from "./base-service";
 
 export class BaseFormulario<T>{
     @Input() element: T;
     @Input() loading: number;
+    @Output() fechar = new  EventEmitter<any>()
     msgs: Message[] = [];
 
     br = {

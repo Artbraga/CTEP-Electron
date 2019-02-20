@@ -1,7 +1,7 @@
 <div *ngIf="loading>0" class="block-back-wrap">
     <i class="fa fa-spinner fa-pulse fa-2x"></i>
 </div>
-<p-growl [(value)]="msgs" [life]="400"></p-growl>
+<p-growl [(value)]="msgs" [life]="3000" [immutable]= "false"></p-growl>
 <nav class="main-menu">
     <ul>
         <li class="hamburger-menu">

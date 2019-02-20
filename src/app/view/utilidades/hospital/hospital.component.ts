@@ -12,7 +12,6 @@ export class HospitalComponent extends BaseFormulario<Hospital> implements OnIni
 
     tentouAdicionar: boolean;
     @Output() showFeedback = new EventEmitter<Message>();
-    @Output() fechar = new EventEmitter<any>();
     @Input() idElement: number;
 
     constructor(hospitalService: HospitalService, ref: ChangeDetectorRef) { 

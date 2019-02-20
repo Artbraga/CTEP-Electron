@@ -4,6 +4,7 @@ import { Professor } from "../../../entities/professor";
 import { TurmaService } from "../../../service/turma.service";
 import { ViacepService } from "../../../service/ngx-viacep/viacep.service";
 import { Endereco, CepError } from "../../../service/ngx-viacep/endereco";
+import { ProfessorService } from "src/app/service/professor.service";
 
 @Component({
     selector: 'formulario-adiciona-professor',
@@ -14,9 +15,9 @@ export class FormularioAdicionaProfessorComponent extends BaseFormulario<Profess
     tentouAdicionarProfessor: boolean = false;
 
     constructor(private viacep: ViacepService,
-        private turmaService: TurmaService,
+        private professorService: ProfessorService,
         ref: ChangeDetectorRef){
-        super(turmaService, ref);
+        super(professorService, ref);
     }
 
     ngOnInit(){
@@ -65,5 +66,29 @@ export class FormularioAdicionaProfessorComponent extends BaseFormulario<Profess
                 return this.tentouAdicionarProfessor && (this.element == null || !this.validField(this.element.rg));
         }
         return false;
+    }
+
+    public cadastrarProfessor(){
+        this.tentouAdicionarProfessor = true;
+        if (!this.validField(this.element.nome) ||
+            !this.validField(this.element.cpf) ||
+            !this.validField(this.element.endereco) ||
+            !this.validField(this.element.cep) ||
+            !this.validField(this.element.rg)){
+                return;
+        }
+        this.baseService.salvar(this.element, ()=>{
+            if(this.element.edicao){
+                this.showFeedbackMessage({ severity: 'success', summary: 'Sucesso!', detail: 'Professor editado com sucesso!' });
+            }
+            else{
+                this.showFeedbackMessage({ severity: 'success', summary: 'Sucesso!', detail: 'Professor cadastrado com sucesso!' });
+            }
+            this.tentouAdicionarProfessor = false;
+            this.element = new Professor();
+            this.fechar.emit();
+        }, (erro) =>{
+            this.showFeedbackMessage(erro);
+        });
     }
 }

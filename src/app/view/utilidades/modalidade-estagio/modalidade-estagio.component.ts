@@ -13,7 +13,6 @@ export class ModalidadeEstagioComponent extends BaseFormulario<ModalidadeEstagio
 
     tentouAdicionar: boolean;
     @Output() showFeedback = new EventEmitter<Message>();
-    @Output() fechar = new EventEmitter<any>();
     @Input() idElement: number;
 
     cursoSuggestions: any[];
