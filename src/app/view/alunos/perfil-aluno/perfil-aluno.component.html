@@ -2,17 +2,20 @@
     <i class="fa fa-spinner fa-pulse fa-2x"></i>
 </div>
 
-<div *ngIf="!loading" class="ui-g perfil">
+<div class="menu-perfil ui-g">
+    <div class="ui-lg-3 ui-md-4"><a><li>Editar Aluno</li></a></div>
+    <div class="ui-lg-3 ui-md-4"><a><li>Adicionar Observação</li></a></div>
+    <div class="ui-lg-3 ui-md-4"><a><li>Adicionar Conclusão</li></a></div>
+    <div class="ui-lg-3 ui-md-4"><a><li>Editar Notas</li></a></div>
+</div>
+
+<div *ngIf="!loading" class="ui-g perfil" id="printProfile">
     <h3>Informações Pessoais</h3>
-    <div class="ui-lg-6">
+    <div class="ui-lg-8">
         <label>Nome Completo:</label>
         <h6>{{element.nome}}</h6>
     </div>
-    <div class="ui-lg-3">
-        <label>Matrícula:</label>
-        <h6>{{element.matricula}}</h6>
-    </div>
-    <div class="ui-lg-3">
+    <div class="ui-lg-4">
         <label>CPF:</label>
         <h6>{{element.cpfFormatado}}</h6>
     </div>
@@ -22,13 +25,15 @@
     </div>
     <div class="ui-lg-3">
         <label>Data de Nascimento:</label>
-        <h6>{{element.dataNascimento}}</h6>
+        <h6>{{element.dataNascimentoStr}}</h6>
+    </div>
+    <div class="ui-lg-3">
+        <label>Matrícula:</label>
+        <h6>{{element.matricula}}</h6>
     </div>
     <div class="ui-lg-3">
         <label>Situacao:</label>
         <h6>{{getStatus(element.status)}}</h6>
-    </div>
-    <div class="ui-lg-3">
     </div>
     <div class="ui-lg-3">
         <label>Telefone:</label>
@@ -86,11 +91,11 @@
     </div>
     <div class="ui-lg-3">
         <label>Data de Matrícula:</label>
-        <h6>{{element.dataMatricula}}</h6>
+        <h6>{{element.dataMatriculaStr}}</h6>
     </div>
     <div class="ui-lg-3">
         <label>Data de Validade:</label>
-        <h6>{{element.dataValidade}}</h6>
+        <h6>{{element.dataValidadeStr}}</h6>
     </div>
     <div class="ui-lg-6">
         <label>Curso Anterior:</label>
