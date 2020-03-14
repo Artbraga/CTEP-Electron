@@ -1,0 +1,35 @@
+<div class="container">
+    <mat-card class="list">
+        <mat-selection-list #firstList>
+            <div [ngStyle]="{'max-height':maxHeight, 'overflow':'auto'}">
+                <h3 mat-subheader>{{leftHeader}}</h3>
+                <mat-list-option style="height: 40px" #op *ngFor="let option of left" [ngClass]="op.selected?'selected':''" [value]="option">
+                    <h4>{{option[field]}}</h4>
+                </mat-list-option>
+            </div>
+
+        </mat-selection-list>
+    </mat-card>
+
+    <div class="buttons">       
+        <button class="line-h" mat-fab color="primary" (click)="allToLeft()" [disabled]="isButtonDisabled()"><i class="material-icons">first_page</i></button>
+        <button class="line-h" mat-fab color="primary" (click)="selectedToLeft()" [disabled]="isButtonDisabled()"><i class="material-icons">chevron_left</i></button>
+        <button class="line-h" mat-fab color="primary" (click)="selectedToRight()" [disabled]="isButtonDisabled()"><i class="material-icons">chevron_right</i></button>
+        <button class="line-h" mat-fab color="primary" (click)="allToRight()" [disabled]="isButtonDisabled()"><i class="material-icons">last_page</i></button>        
+    </div>
+    <mat-card class="list">
+        <mat-selection-list #secondList>
+            <ng-container *ngIf="right!=null else loading">
+                <div [ngStyle]="{'max-height': maxHeight, 'overflow':'auto'}">
+                        <h3 mat-subheader>{{rightHeader}}</h3>
+                    <mat-list-option style="height: 40px" #op *ngFor="let option of right" [ngClass]="op.selected?'selected':''" [value]="option">
+                        <h4>{{option[field]}}</h4>
+                    </mat-list-option>
+                </div>
+            </ng-container>
+            <ng-template #loading>
+                <mat-progress-spinner color="primary" mode="indeterminate" diameter="30"></mat-progress-spinner>
+            </ng-template>
+        </mat-selection-list>
+    </mat-card>
+</div>
