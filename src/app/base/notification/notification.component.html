@@ -1,9 +1,0 @@
-<div class="notification-toast-wrapper" style="z-index: 15000">
-    <div class="toast"
-        [ngClass]="notification.type == NotificationType.Error ? 'error' : notification.type == NotificationType.Warnning ?'alert': notification.type == NotificationType.Success? 'positive': '' "
-        *ngFor="let notification of (notificationMessages$ | async)">
-        <button class="close" (click)="closeToast(notification)">x</button>
-        <label for="">{{ notification.title }}</label>
-        <p>{{ notification.text }}</p>
-    </div>
-</div>
