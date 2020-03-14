@@ -1,0 +1,126 @@
+<div *ngIf="loading>0" class="block-back-wrap">
+    <i class="fa fa-spinner fa-pulse fa-2x"></i>
+</div>
+<p-growl [(value)]="msgs" [life]="3000" [immutable]= "false"></p-growl>
+<nav class="main-menu">
+    <ul>
+        <li class="hamburger-menu">
+            <a>
+                <i class="fas fa-bars fa-2x"></i>
+            </a>
+        </li>
+        <li class="logo">
+            <img src="assets/images/logo.png">
+        </li>
+        <li class="has-subnav">
+            <a (click)="abrirMenu('aluno')">
+                <i class="fas fa-user-graduate fa-2x"></i>
+                <span class="nav-text">
+                    Aluno
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a (click)="abrirMenu('turma')">
+                <i class="fas fa-users fa-2x"></i>
+                <span class="nav-text">
+                    Turma
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a (click)="abrirMenu('professor')">
+                <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                <span class="nav-text">
+                    Professor
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a (click)="abrirMenu('utilidades')">
+                <i class="fas fa-toolbox fa-2x"></i>
+                <span class="nav-text">
+                    Utilidades
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav">
+            <a (click)="abrirMenu('configuracao')">
+                <i class="fas fa-cog fa-2x"></i>
+                <span class="nav-text">
+                    Configurações
+                </span>
+            </a>
+        </li>
+        <li class="has-subnav" style="bottom:10px; position:absolute">
+            <a (click)="logout()">
+                <i class="fas fa-arrow-left fa-2x"></i>
+                <span class="nav-text">
+                    Sair
+                </span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="home-container">
+    <p-breadcrumb [home]="home" [model]="breadCrumbItems"></p-breadcrumb>
+    <div *ngIf="selected['aluno']" class="ui-lg-12">
+        <menu-aluno #menuAluno [(loading)]="loading" (bread)="adicionaBread($event)"></menu-aluno>
+    </div>
+    <div *ngIf="selected['turma']" class="ui-lg-12">
+        <menu-turma #menuTurma [(loading)]="loading" (bread)="adicionaBread($event)"></menu-turma>
+    </div>
+    <div *ngIf="selected['professor']" class="ui-lg-12">
+        <menu-professor #menuProfessor [(loading)]="loading" (bread)="adicionaBread($event)"></menu-professor>
+    </div>
+    <div *ngIf="selected['configuracao']" class="ui-lg-12">
+        <configuracao-component #menuconfiguracao [(loading)]="loading" (bread)="adicionaBread($event)"></configuracao-component>
+    </div>
+    <div *ngIf="selected['utilidades']" class="ui-lg-12">
+        <utilidades-component #menuutilidades (bread)="adicionaBread($event)"></utilidades-component>
+    </div>
+</div>
+
+<p-dialog [(visible)]="displayLogin"
+          [closable]="false"
+          [contentStyle]="{'width':'400px'}"
+          [modal]="true">
+    <p-header>
+        Entrar no Sistema
+    </p-header>
+    <div class="ui-g form-group">
+        <div class="ui-lg-12">
+            <label>Login:</label>
+            <input type="text" 
+                    [(ngModel)]="usuario.login"
+                    pInputText 
+                    autofocus="autofocus"
+                    maxlength="50"
+                    style="width: 100%"/>
+        </div>
+        <div class="ui-lg-12">
+            <label>Senha:</label>
+            <input type="password" 
+                    [(ngModel)]="usuario.senha"
+                    pInputText 
+                    maxlength="50"
+                    style="width: 100%"/>
+        </div>
+    </div>
+
+    <p-footer>
+        <button (click)="login()" 
+                [disabled]="usuario.login==null && usuario.senha==null"
+                pButton type="button" 
+                label="Entrar"
+                class="form-button btn-success"
+                style="width:150px;"
+                title="Entrar no sistema"></button>
+        <button (click)="fechar()" 
+                pButton type="button" 
+                label="Fechar"
+                class="form-button btn-danger"
+                style="width:150px;"
+                title="Sair do sistema"></button>
+    </p-footer>
+</p-dialog>

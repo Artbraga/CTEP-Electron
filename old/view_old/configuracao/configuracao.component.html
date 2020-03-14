@@ -1,0 +1,13 @@
+<div *ngIf="selected['default']" class="ui-g">
+    <div class="ui-lg-4 ui-md-4">
+        <p-card title="Usuário" [style]="{width: '100%'}" [styleClass]="">
+            <ul style="list-style-type:square">
+                <li><a (click)="exibir('cadastro-usuario')">Cadastrar Usuário</a></li>
+            </ul>
+        </p-card>
+    </div>
+</div>
+
+<div *ngIf="selected['cadastro-usuario']">
+    <formulario-cadastro-usuario [loading]="loading" [(element)]="usuario"></formulario-cadastro-usuario>
+</div>

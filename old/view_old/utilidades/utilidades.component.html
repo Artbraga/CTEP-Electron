@@ -1,0 +1,29 @@
+<p-growl [(value)]="msgs"></p-growl>
+
+<div class="ui-g">
+    <div class="ui-lg-4 ui-md-4">
+        <p-card [style]="{width: '100%'}">
+            <h4>Hospital</h4>
+            <ul style="list-style-type:square">
+                <li><a (click)="exibir('formulario-hospital')">Adicionar Hospital</a></li>
+                <li><a (click)="exibir('tabela-hospital')">Listar Hospitais</a></li>
+            </ul>
+            <h4>Modalidade de Estágio</h4>
+            <ul style="list-style-type:square">
+                <li><a (click)="exibir('formulario-modalidade')">Adicionar Modalidade de Estágio</a></li>
+                <li><a (click)="exibir('tabela-modalidade')">Listar Modalidades de Estágio</a></li>
+            </ul>
+        </p-card>
+    </div>
+    <div class="ui-lg-8 ui-md-8">
+        <div *ngIf="tipo=='formulario-hospital'">
+            <formulario-hospital [idElement]="idElement" (showFeedback)="showFeedbackMessage($event)" (fechar)="exibir($event)" ></formulario-hospital>
+        </div>
+        <div *ngIf="tipo=='formulario-modalidade'">
+            <formulario-modalidade-estagio [idElement]="idElement" (showFeedback)="showFeedbackMessage($event)" (fechar)="exibir($event)" ></formulario-modalidade-estagio>
+        </div>
+        <div *ngIf="tipo=='tabela-hospital' || tipo == 'tabela-modalidade'">
+            <tabela-utilidades [tipo]="tipo" (fechar)="carregar($event)" (edit)="carregar($event)" (showFeedback)="showFeedbackMessage($event)"></tabela-utilidades>
+        </div>
+    </div>
+</div>

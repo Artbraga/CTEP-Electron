@@ -1,0 +1,45 @@
+<p-panel [header]="(element !=null && element.id > 0 ? 'Editar' : 'Adicionar') + ' Modalidade de Estágio'" 
+    [style]="{'margin-bottom':'20px', 'width':'100%'}">
+    <div class="ui-g form-group">
+        <div class="ui-lg-12">
+            <label>Nome Completo:</label>
+            <input type="text" 
+                    [(ngModel)]="element.modalidade"
+                    pInputText 
+                    style="width: 100%"
+                    [ngClass]="isCampoInvalido('modalidade')?'invalidField':''"/>
+        </div>
+        <div class="col-lg-6">
+            <label>Curso:</label>
+            <p-autoComplete [(ngModel)]="element.curso" 
+                            [suggestions]="cursoSuggestions" 
+                            (completeMethod)="buscarDropdown($event, 'curso')"
+                            [style]="{'width':'100%'}"
+                            minLength="3"
+                            [forceSelection]="true"
+                            [emptyMessage]="'Não foram encontrados resultados'"
+                            [inputStyle]="{'width':'calc(100% - 2em)'}"
+                            field="nome"
+                            [dropdown]="true"
+                            [styleClass]="isCampoInvalido('curso')?'invalidField':''"></p-autoComplete>
+        </div>
+    </div>
+</p-panel>
+<div class="col-lg-4 col-md-6" style="float:right">
+    <button (click)="cadastrarModalidade()" 
+            pButton type="button" 
+            class="form-button"
+            label="Cadastrar"
+            style="height:34px"
+            class="form-button"
+            title="Cadastrar Modalidade"></button>
+</div>
+<div class="col-lg-4 col-md-6" style="float:right">
+    <button (click)="voltar()" 
+            pButton type="button" 
+            class="form-button"
+            label="Cancelar"
+            style="height:34px"
+            class="form-button"
+            title="Cancelar"></button>
+</div>

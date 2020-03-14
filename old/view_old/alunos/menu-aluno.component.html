@@ -1,0 +1,48 @@
+<div class="ui-g">
+    <div class="ui-lg-4" *ngIf="selected['default'] || selected['pesquisa']">
+        <p-card [style]="{width: '100%'}">
+            <h4>Cadastro</h4>
+            <ul style="list-style-type:square">
+                <li><a (click)="exibir('formulario')">Adicionar Aluno</a></li>
+            </ul>
+            <h4>Pesquisa</h4>
+            <ul style="list-style-type:square">
+                <li><a (click)="exibir('pesquisa')">Pesquisar Alunos</a></li>
+                <li><a (click)="pesquisar('todos')">Listar Todos os Alunos</a></li>
+            </ul>
+        </p-card>
+    </div>
+
+    <div *ngIf="selected['pesquisa']" class="ui-lg-8">
+        <p-card>
+            <h4>Pesquisa de Aluno</h4>
+            <div class="ui-g" style="text-align: center">
+                <div class="ui-lg-12 ui-md-12">
+                    <p-radioButton name="pesquisa" (onClick)="inputPesquisa=''" value="Nome" [(ngModel)]="radioPesquisa" label="Nome"></p-radioButton>
+                    <p-radioButton name="pesquisa" (onClick)="inputPesquisa=''" value="Matrícula" [(ngModel)]="radioPesquisa" label="Matrícula"></p-radioButton>
+                    <p-radioButton name="pesquisa" (onClick)="inputPesquisa=''" value="Turma" [(ngModel)]="radioPesquisa" label="Turma"></p-radioButton>
+                </div>
+            </div>
+            <div class="ui-g" style="text-align: center" *ngIf="radioPesquisa!=null">
+                <div class="ui-lg-2 ui-md-2" style="text-align: right">
+                    <label>{{radioPesquisa}}:</label>
+                </div>
+                <div class="ui-lg-6 ui-md-6">
+                    <input type="text" [(ngModel)]="inputPesquisa" pInputText style="width: 100%">
+                </div>
+                <div class="ui-lg-4 ui-md-4">
+                    <button class="form-button" icon="fas fa-search" type="button" label="Pesquisar" pButton (click)="pesquisar(radioPesquisa)" [disabled]="inputPesquisa.length==0"></button>
+                </div>
+            </div>        
+        </p-card>
+    </div>
+</div>
+<div *ngIf="selected['formulario']">
+    <formulario-adiciona-aluno [loading]="loading" [(element)]="element"></formulario-adiciona-aluno>
+</div>
+<div *ngIf="selected['tabela']">
+    <table-listar-aluno (carregaAluno)="carregaAluno($event)" (visualizarPerfil)="visualizarPerfil($event)" [list]="alunos"></table-listar-aluno>
+</div>
+<div *ngIf="selected['perfil']">
+    <perfil-aluno #perfilAluno [element]="element"></perfil-aluno>
+</div>
