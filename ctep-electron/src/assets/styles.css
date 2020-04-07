@@ -1,0 +1,442 @@
+@font-face {
+  font-family: NimbusSansBecker;
+  src: url(./fonts/nimbus-sans-becker.ttf);
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(./fonts/Roboto-Medium.ttf);
+}
+@font-face {
+  font-family: Roboto-Black;
+  src: url(./fonts/Roboto-Black.ttf);
+}
+
+:root{
+  --fundo:#4d575b;
+  --fundoopac:#4d575b80;
+  --escuro:#191716;
+  --claro:#bbced3;
+  --azulcl:#4f7cac;
+  --azules:#0f084b;
+  --error:#520B03;
+  --gelo: #F0F8FF;
+}
+
+.fa-2x {
+    position: relative;
+    padding: 20px 0;
+    width: 80px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 30px;
+}
+
+.main-menu:hover, nav.main-menu.expanded {
+  width: 250px;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.main-menu:hover .hamburger-menu{
+  display: none;
+}
+.main-menu:hover .logo img{
+  display: block;
+  margin: 0 auto;
+}
+
+.main-menu {
+  background: var(--escuro);
+  border-right: 1px solid var(--claro);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  width: 80px;
+  overflow: hidden;
+  -webkit-transition: width .05s linear;
+  transition: width .05s linear;
+  -webkit-transform: translateZ(0) scale(1, 1);
+  z-index: 1000;
+}
+
+.logo img{
+  width: auto;
+  max-width: 250px;
+  height: auto;
+  max-height: 70px;
+  display: none;
+}
+
+.main-menu>ul {
+  margin: 20px 0;
+}
+
+.main-menu li {
+  position: relative;
+  display: block;
+  width: 250px;
+}
+
+.main-menu li>a {
+  position: relative;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: var(--claro) !important;
+  font-family: arial;
+  font-size: 16px;
+  text-decoration: none;
+  -webkit-transform: translateZ(0) scale(1, 1);
+  -webkit-transition: all .1s linear;
+  transition: all .1s linear;
+}
+
+.main-menu .nav-icon {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.main-menu .nav-text {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  width: 190px;
+  font-family: 'Roboto';
+  font-size: 1.3em;
+}
+
+.main-menu>ul.logout {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.no-touch .scrollable.hover {
+  overflow-y: hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+  overflow-y: auto;
+  overflow: visible;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+}
+
+nav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+nav ul, nav li {
+  outline: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu li:hover>a, nav.main-menu li.active>a, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus, .no-touch .dashboard-page nav.dashboard-menu ul li:hover a, .dashboard-page nav.dashboard-menu ul li.active a {
+  color: var(--claro) !important;
+  background-color: var(--azulcl);
+}
+
+.home-container{
+  padding-left: 80px;
+  height: 100vh;
+  overflow-y: auto;
+  content: ' ';
+  background-image: url("images/logo-opac.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: 90% auto;
+}
+
+label{
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 0 !important;
+  padding: 0 5px;
+  color: var(--escuro);
+}
+
+.tableListagem{
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.ui-chkbox {
+  padding-top: 30px;
+}
+
+.ui-autocomplete-dropdown{
+  height: 34px;
+}
+
+.form-button{
+  width:100%; 
+  height:31px;
+}
+
+.ui-widget-content{
+  border: none;
+}
+
+.scrollbar {
+  background-color: var(--claro);
+  float: left;
+  height: 300px;
+  margin-bottom: 25px;
+  margin-left: 22px;
+  margin-top: 40px;
+  width: 65px;
+  overflow-y: scroll;
+}
+
+.force-overflow {
+  min-height: 450px;
+}
+
+a:hover {
+  color: var(--azulcl);
+  cursor: pointer;
+}
+
+.form-group > input.ui-inputtext.invalidField {
+  border: 2px solid var(--red) !important;
+  width: 100%;
+}
+
+.ui-calendar.invalidField > input {
+  border: 2px solid var(--red) !important;
+}
+
+.form-group input.ui-inputtext.invalidField, .invalidFieldData {
+  border: 2px solid var(--red) !important;
+}
+
+.form-group textarea.ui-inputtext.invalidField, .invalidFieldData {
+  border: 2px solid var(--red) !important;
+}
+
+p-autocomplete .invalidField {
+  border: 2px solid var(--red) !important;
+}
+
+.ui-card.ui-widget.ui-widget-content {
+  box-shadow: 3px 4px 3px var(--claro);
+  background-color: var(--escuro)
+}
+
+.ui-card.ui-widget.ui-widget-content a{
+  font-size: 1.3em;
+}
+
+.ui-card.ui-widget.ui-widget-content a:hover{
+  color: var(--azulcl);
+  font-weight: bold;
+}
+
+.ui-chkbox-label{
+  vertical-align: text-top;
+  padding-top: 15px;
+}
+.ui-card-title{
+  text-decoration: underline;
+  font-family: 'Roboto-Black';
+  font-size: 2em;
+}
+
+.home-container .ui-breadcrumb{
+  padding: .5em 1.5em;
+  border-bottom: 2px solid var(--escuro);
+  font-size: 20px;
+  font-weight: normal;
+  font-family: Roboto-Black;
+  border-radius: 0;
+  background-color: var(--fundoopac);
+}
+
+.ui-dialog .ui-dialog-titlebar{
+  background-color: var(--escuro);
+}
+
+.ui-state-highlight.ui-growl-message-error{
+  background-color: var(--error);
+}
+
+.ui-autocomplete-panel.ui-widget-content.ui-corner-all{
+  border: 1px solid var(--escuro);
+  border-radius: 0px;
+}
+
+.table-striped tbody tr:hover{
+  background-color: var(--azulcl);
+}
+
+.ui-button.ui-button-success.ui-state-default{
+  background-color: var(--azulcl);
+  border-color: var(--azulcl);
+}
+
+.ui-button.ui-button-danger.ui-state-default{
+  background-color: var(--error);
+  border-color: var(--error);
+}
+
+.corpo-modal-confirmacao{
+  border: double var(--gelo);
+}
+
+.ui-dialog-footer{
+  background-color: var(--escuro);
+  text-align: center;
+}
+.ui-calendar.ui-calendar-button{
+  height: 31px;
+}
+
+.ui-autocomplete.ui-autocomplete-dropdown{
+  height: 32px;
+}
+
+.ui-chkbox-box.ui-widget{
+  background-color: var(--claro)
+}
+
+.ui-card-content ul{
+  padding-left: 20px;
+}
+
+.ui-card-content p-radiobutton{
+  margin: 0 30px;
+}  
+
+.ui-autocomplete .ui-autocomplete-dropdown {
+  height: 32px;
+}
+
+.ui-card-body{
+  padding: 1.5em;
+  color: var(--claro);
+}
+
+.ui-panel{
+  background-color: initial;
+}
+
+.ui-panel .ui-panel-content {
+  border: 1px solid var(--azules);
+  background-color: var(--gelo);
+}
+
+.ui-panel .ui-panel-titlebar{
+  background-color: var(--azules);
+  color: var(--gelo);
+  font-size: 1.2em;
+  font-family: Roboto;
+  font-weight: normal;
+  padding: 0.75em;
+}
+
+.ui-datepicker{
+  border: 1px solid var(--escuro)!important;
+}
+
+.ui-radiobutton-label{
+  color: var(--gelo);
+}
+
+
+.table-striped tbody tr:nth-of-type(odd){
+  background-color: white
+}
+
+.table-striped tbody tr:nth-of-type(odd):hover {
+  background-color: var(--azulcl);
+}
+
+.ui-table-scrollable-view {
+  border: 1px solid var(--escuro);
+}
+
+.perfil {
+  background: white;
+  border: 2px solid var(--escuro);
+  border-radius: 10px;
+  padding: 0 20px 20px;
+  margin: 20px;
+  min-width: 800px;
+}
+
+.perfil label {
+  width: 170px;
+  font-size: 16px;
+  font-family: Roboto;
+  padding: 10px;
+  text-align: right;
+}
+
+.perfil h6 {
+  width: calc(100% - 170px);
+  display: flex;
+  background-color: var(--gelo);
+  padding: 10px;
+  border: 1px solid var(--azulcl);
+  border-radius: 5px;
+}
+
+.perfil > * {
+  display: flex;
+  padding: 5px;
+}
+
+.perfil h3 {
+  width: 100%;
+  font-family: Roboto-Black;
+  text-decoration: underline;
+  margin-top: 20px;
+}
+
+.ui-card h4 {
+  font-family: Roboto;
+  text-decoration: underline;
+  margin: 10px 0 0 0;
+}
+
+.ui-growl-item{
+  color: var(--gelo);
+}
+
+tabela-utilidades h3{
+  font-family: Roboto-Black;
+}
+
+.menu-perfil{
+  border: 1px solid black;
+  border-radius: 10px;
+  background: var(--escuro);
+  color: var(--gelo);
+  font-family: Roboto;
+  font-size: 1.3em;
+  padding: 0 20px;
+  margin: 20px;
+}
+
+.menu-perfil>div>a:hover{
+  text-decoration: underline!important;
+  color: var(--azulcl)!important;
+  font-weight: bold;
+}

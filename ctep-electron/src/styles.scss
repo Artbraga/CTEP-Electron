@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./theming";
+
+body{
+	background: $white;
+	font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    min-width: 1000px;
+    overflow-x: auto;
+    home {
+        .formulario {
+            >h1 {
+                font-weight: 800;
+                font-family: 'Roboto-Black';
+                color: $primary;
+                text-transform: uppercase;
+                margin: 10px 5px;
+            }
+            .mat-card {
+                margin: 20px 0;
+            }
+        }
+    }
+    a:-webkit-any-link {
+        text-decoration: unset;
+        color: unset;
+    }
+}
+
+.mat-accordion {
+    width: 100%;
+}
+
+.mat-expansion-panel {
+    .mat-expansion-panel-header {
+        background-color: $black;
+        font-family: 'Roboto-Black';
+        font-size: 18px;
+        &:hover, &:focus {
+            background-color: $black!important;
+        }
+        .mat-expansion-panel-header-title, .mat-expansion-indicator::after{
+            color: $white;
+        }
+    }
+    .mat-expansion-panel-body{
+        padding: 25px;
+        .menu-secao > a{
+            height: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+                color: $gray-blue;
+            }
+            span {
+                margin: 5px;
+                top: -4px;
+                position: relative;
+            }
+        }
+    }
+}
+
+.form-grid{
+	display: flex;
+	flex-wrap: wrap;
+    .twelve {
+        width: 100%;
+        min-width: 120px;
+    }
+    .ten {
+        width: 83.33333%;
+        min-width: 120px;
+    }
+    .nine {
+        width: 75%;
+        min-width: 120px;
+    }
+    .eight {
+        width: 66.66666%;
+        min-width: 120px;
+    }
+    .six {
+        width: 50%;
+        min-width: 120px;
+    }
+    .four {
+        width: 33.33333%;
+        min-width: 120px;
+    }
+    .three {
+        width: 25%;
+        min-width: 120px;
+    }
+    .two {
+        width: 16.66666%;
+        min-width: 120px;
+    }
+    .one {
+        width: 8.33333%;
+        min-width: 120px;
+    }
+    .mat-form-field-label {
+        font-size: 15px;
+        color: $primary;
+        font-weight: 700;
+    }
+    .mat-datepicker-toggle .mat-icon-button {
+        color: $primary;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        margin: 0 10px;
+    }
+}
+.mat-raised-button.mat-accent {
+    background-color: $gray;
+}
+.form-grid .mat-form-field-appearance-outline .mat-form-field-suffix .mat-raised-button {
+    top: -8px;
+}

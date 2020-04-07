@@ -1,0 +1,33 @@
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <mat-icon aria-hidden="false" (mouseover)="desenhar('in')">menu</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container [hasBackdrop]="false">
+    <mat-sidenav #sidenav 
+                 [fixedInViewport]="false"
+                 [mode]="'over'"
+                 disableClose>
+        <section  (mouseout)="desenhar('out')" (mouseover)="desenhar('in')" class="items">
+            <a class='logo' routerLink="/">
+                <img src="/assets/images/logo.png" alt="">
+            </a>
+            <a class="menu-item" (mouseover)="desenhar('in')" routerLink="/aluno">
+                <mat-icon aria-hidden="false">person</mat-icon> 
+                <span>Aluno</span>
+            </a>
+            <div class="menu-item" (mouseover)="desenhar('in')">
+                dsjlfadjfd
+            </div>
+            <div class="menu-item" (mouseover)="desenhar('in')">
+                dsjlfadjfd
+            </div>
+        </section>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+        <router-outlet name="secondRouter"></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

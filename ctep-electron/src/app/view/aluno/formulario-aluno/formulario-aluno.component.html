@@ -1,0 +1,64 @@
+<div class="formulario">
+    <h1>{{aluno.matricula!=null ? 'Edição' : 'Cadastro' }} de Aluno</h1>
+    <mat-card>
+        <mat-card-subtitle>Informações Pessoais</mat-card-subtitle>
+        <div class="form-grid">
+            <mat-form-field class="six">
+                <mat-label>Nome:</mat-label>
+                <input matInput [(ngModel)]="aluno.nome">
+            </mat-form-field>
+            <mat-form-field class="two">
+                <mat-label>RG:</mat-label>
+                <input matInput [(ngModel)]="aluno.rg">
+            </mat-form-field>
+            <mat-form-field class="two">
+                <mat-label>CPF:</mat-label>
+                <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="aluno.cpf">
+            </mat-form-field>
+            <custom-datetimepicker [(value)]="aluno.dataNascimento" class='two' name="Data de Nascimento"></custom-datetimepicker>
+            <mat-form-field class="six">
+                <mat-label>Nome do Pai:</mat-label>
+                <input matInput [(ngModel)]="aluno.nomePai">
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>Nome da Mãe:</mat-label>
+                <input matInput [(ngModel)]="aluno.nomeMae">
+            </mat-form-field>
+        </div>
+    </mat-card>
+    <mat-card>
+        <mat-card-subtitle>Endereço e Contato</mat-card-subtitle>
+        <div class="form-grid">
+            <mat-form-field class="three" >
+                <mat-label>CEP:</mat-label>
+                <input matInput [textMask]="{mask: masks.CEP}" [(ngModel)]="aluno.cep">
+                <button mat-raised-button color="accent" matSuffix>Buscar CEP</button>
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>Endereço:</mat-label>
+                <input matInput [(ngModel)]="aluno.endereco">
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>Bairro:</mat-label>
+                <input matInput [(ngModel)]="aluno.bairro">
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>Cidade:</mat-label>
+                <input matInput [(ngModel)]="aluno.cidade">
+            </mat-form-field>
+            
+            <mat-form-field class="three">
+                <mat-label>Telefone:</mat-label>
+                <input matInput [textMask]="{mask: masks.Telefone}" [(ngModel)]="aluno.telefone">
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>Celular:</mat-label>
+                <input matInput [textMask]="{mask: masks.Celular}" [(ngModel)]="aluno.celular">
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>E-mail:</mat-label>
+                <input matInput [(ngModel)]="aluno.email">
+            </mat-form-field>
+        </div>
+    </mat-card>
+</div>
