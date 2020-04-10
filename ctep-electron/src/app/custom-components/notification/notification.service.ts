@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Notification, NotificationType } from '@ons/material';
+import { NotificationType, Notification } from './toaster/toaster';
 
 @Injectable({
     providedIn: 'root'

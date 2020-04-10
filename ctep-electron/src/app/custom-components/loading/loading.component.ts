@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { LoadingService } from './loading.service';
 
 @Component({
-    selector: "app-loading",
+    selector: "loading-component",
     templateUrl: "./loading.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ["./loading.component.less"]

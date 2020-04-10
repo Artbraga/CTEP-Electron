@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NotificationService } from './notification.service';
 import { Observable } from 'rxjs';
-import { Notification, NotificationType } from '@ons/material';
+import { NotificationType, Notification } from './toaster/toaster';
 
 @Component({
-    selector: 'app-notification',
+    selector: 'notification-component',
     templateUrl: './notification.component.html',
     styleUrls: ['./notification.component.less']
 })

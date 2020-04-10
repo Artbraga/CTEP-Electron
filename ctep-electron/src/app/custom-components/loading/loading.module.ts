@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LoadingComponent } from './loading.component';
-import { LoadingService } from './loading.service';
-import { MatProgressSpinnerModule } from '@ons/material';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { LoadingComponent } from "./loading.component";
+import { LoadingService } from "./loading.service";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @NgModule({
     declarations: [LoadingComponent],
@@ -10,9 +10,7 @@ import { MatProgressSpinnerModule } from '@ons/material';
         CommonModule,
         MatProgressSpinnerModule
     ],
-    providers: [
-        LoadingService
-    ],
-    exports: [LoadingComponent]
+    providers: [LoadingService],
+    exports: [LoadingComponent],
 })
 export class LoadingModule {}

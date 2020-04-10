@@ -12,10 +12,10 @@ export class Aluno {
     endereco: string;
     bairro: string;
     cidade: string;
-    cep: number;
+    cep: string;
 
-    telefone: number;
-    celular: number;
+    telefone: string;
+    celular: string;
     email: string;
 
     dataNascimento: Date;
