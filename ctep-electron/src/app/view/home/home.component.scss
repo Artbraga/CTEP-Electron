@@ -53,6 +53,7 @@
     max-width: 300px;
     height: auto;
     max-height: 95px;
+    outline: none;
 }
 
 .items {
@@ -78,3 +79,8 @@
     }
 }
 
+.logout {
+    cursor: pointer!important;
+    margin-left: auto;
+    margin-right: 10px;
+}

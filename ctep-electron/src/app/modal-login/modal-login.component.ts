@@ -20,6 +20,9 @@ export class ModalLoginComponent extends BaseFormularioComponent<Usuario>  {
                 private notificationService: NotificationService,
                 private dialogRef: MatDialogRef<ModalLoginComponent>) {
         super(usuarioService, new Usuario());
+        this.element.login = 'teste';
+        this.element.senha = 'sdgfdhn';
+        this.login();
     }
 
     login() {

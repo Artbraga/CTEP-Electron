@@ -1,39 +1,34 @@
 <div style="display: grid; width: 100%;">
-    <label *ngIf="customSearch" class="label-pesquisar">
-        Procurar: <input class="form-control" type="search" name="searching" [(ngModel)]="filter">
-    </label>
     <div class="table-container" style="max-height: 80vh; overflow: auto;" #tableToExport>
-        <table mat-table datatable [dataSource]="listOfElements | filtroPesquisa:filter:columns" multiTemplateDataRows
-            matSort (matSortChange)="sortData($event)">
+        <table mat-table datatable [dataSource]="listOfElements" multiTemplateDataRows matSort
+            (matSortChange)="sortData($event)">
             <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
                 <th mat-header-cell mat-sort-header="{{column.key}}"
                     [disabled]="column.sortable == null || !column.sortable" *matHeaderCellDef
                     [attr.colspan]="column.colspan" [ngClass]="column.classHeader" style="align-items: left">
                     {{ column.header }}
                 </th>
-                <td mat-cell *matCellDef= "let element; let i = dataIndex" [attr.colspan]= "column.colspan"
-                    [ngClass]= "column.classBody" [attr.rowspan]="column.mesclavel ? element.rowspan : 1"
-                    [style.display]= "column.mesclavel && element.rowspan == 0 ? 'none' : ''">
-                    <ng-container *ngIf="
-                column.bodyTemplateName == null ||
-                templatesCustomTable[column.bodyTemplateName] == null
-            ">
-                        <span
-                            class="{{isNumber(element, column.field, column.isNumeric)}}">{{ resolveField(element, column.field) }}</span>
+                <td mat-cell 
+                    *matCellDef="let element; let i = dataIndex" 
+                    [attr.colspan]="column.colspan"
+                    [ngClass]="column.classBody" 
+                    [attr.rowspan]="column.mesclavel ? element.rowspan : 1"
+                    [style.display]="column.mesclavel && element.rowspan == 0 ? 'none' : ''">
+                    <ng-container *ngIf="column.bodyTemplateName == null ||
+                                        templatesCustomTable[column.bodyTemplateName] == null">
+                        <span class="{{isNumber(element, column.field, column.isNumeric)}}">
+                            {{ resolveField(element, column.field) }}
+                        </span>
                     </ng-container>
-                    <ng-container *ngIf="
-                column.bodyTemplateName != null &&
-                templatesCustomTable[column.bodyTemplateName] != null
-            ">
-                        <ng-container *ngTemplateOutlet="
-                templatesCustomTable[column.bodyTemplateName];
-                context: {
-                    $implicit: element,
-                    column: column,
-                    rowData: element,
-                    rowIndex: i
-                }
-                ">
+                    <ng-container *ngIf="column.bodyTemplateName != null && templatesCustomTable[column.bodyTemplateName] != null">
+                        <ng-container 
+                            *ngTemplateOutlet="templatesCustomTable[column.bodyTemplateName];
+                            context: {
+                                $implicit: element,
+                                column: column,
+                                rowData: element,
+                                rowIndex: i
+                            }">
                         </ng-container>
                     </ng-container>
                 </td>
@@ -45,12 +40,14 @@
                         [ngClass]="colGroup.groupHeaderClass"></tr>
                 </ng-container>
                 <ng-container *ngIf="colGroup.groupHasBody">
-                    <tr mat-row *matRowDef="
-                let element;
-                let i = index;
-                let row;
-                columns: displayedColumns(colGroup.keyGroup)
-            " [ngClass]="colGroup.groupBodyClass" (click)="elementClicked(element, $event)"></tr>
+                    <tr mat-row 
+                        *matRowDef="
+                            let element;
+                            let i = index;
+                            let row;
+                            columns: displayedColumns(colGroup.keyGroup)" 
+                        [ngClass]="colGroup.groupBodyClass" 
+                        (click)="elementClicked(element, $event)"></tr>
                 </ng-container>
             </ng-container>
 

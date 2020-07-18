@@ -1,5 +1,5 @@
 import { CustomTemplate } from '../shared/customTemplate';
-import { Coluna, ColumnGroup, Table } from '../base-table';
+import { Coluna, ColumnGroup } from '../base-table';
 import { Sort } from '@angular/material/sort';
 
 import {
@@ -11,51 +11,47 @@ import {
     ContentChildren,
     Output,
     EventEmitter,
-    ViewChild,
-    ElementRef,
     AfterViewInit
 } from '@angular/core';
-import { MatTableDataSource, MatSort, PageEvent } from '@angular/material';
-import { stringify } from 'querystring';
+import { MatTableDataSource } from '@angular/material/table';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
-    // tslint:disable-next-line: component-selector
     selector: 'custom-table',
     templateUrl: './custom-table.component.html',
     styleUrls: ['./custom-table.component.scss']
 })
-export class CustomTableComponent implements OnInit, AfterViewInit {
+export class CustomTableComponent implements AfterViewInit {
     constructor() { }
 
     @ContentChildren(CustomTemplate) templates: QueryList<any>;
 
-    @Input() paginated: boolean = false;
+    @Input() paginated = false;
     @Input() listOfElements: any[] = [];
     @Input() columns: Coluna[] = [];
     @Input() colGroups: ColumnGroup[] = [];
-    @Input() loading: boolean = false;
+    @Input() loading = false;
     @Input() scrollHeight: string = null;
-    @Input() emptyMessage: string = 'Nenhum registro adicionado.';
-    @Input() headerFixed: boolean = false;
+    @Input() emptyMessage = 'Nenhum registro adicionado.';
+    @Input() headerFixed = false;
     @Input() paginateData: any;
-    @Input() filter: any;
-    @Input() customSearch: boolean = true;
     @Input() paginaAtual: number;
 
     @Output() elementClick = new EventEmitter<any>();
     @Output() sort = new EventEmitter<any>();
 
-    //@ViewChild('tableToExport') tableToExport: ElementRef;
-
     public templatesCustomTable: { [nome: string]: TemplateRef<any> } = {};
     displayedColumns2 = this.displayedColumns();
     dataSource = new MatTableDataSource(this.listOfElements);
-    @Output() changePage = new EventEmitter<PageEvent>(); 
+    @Output() changePage = new EventEmitter<PageEvent>();
     pageEvent: PageEvent;
-    
+
 
     sortData(sort: Sort) {
-        this.sort.emit({ sortField: this.columns.find(x => x.key === sort.active).sortField || this.columns.find(x => x.key === sort.active).field , dir: sort.direction });
+        this.sort.emit({
+            sortField: this.columns.find(x => x.key === sort.active).sortField || this.columns.find(x => x.key === sort.active).field,
+            dir: sort.direction
+        });
     }
 
     ngAfterViewInit() {
@@ -64,9 +60,6 @@ export class CustomTableComponent implements OnInit, AfterViewInit {
                 this.templatesCustomTable[item.name] = item.template;
             });
         }, 0);
-    }
-
-    ngOnInit() {
     }
 
     public displayedColumns(group = null): string[] {
@@ -105,7 +98,7 @@ export class CustomTableComponent implements OnInit, AfterViewInit {
 
     public isNumber(obj: any, field: string, numerico?: boolean) {
         if (numerico) {
-            return "alinhaNumerosADireita";
+            return 'alinhaNumerosADireita';
         } else {
             if (field == null || field.trim() === '') {
                 return null;
@@ -119,16 +112,14 @@ export class CustomTableComponent implements OnInit, AfterViewInit {
                 }
             }
             if (typeof obj[field] === 'number') {
-                return "alinhaNumerosADireita";
+                return 'alinhaNumerosADireita';
             }
         }
     }
 
     public elementClicked(element, event) {
-        if (
-            event.target.localName !== 'button' &&
-            event.target.offsetParent.localName !== 'button'
-        ) {
+        if (event.target.localName !== 'button' &&
+            event.target.offsetParent.localName !== 'button') {
             this.elementClick.emit(element);
         }
     }
@@ -143,7 +134,7 @@ export class CustomTableComponent implements OnInit, AfterViewInit {
 
     onChangePage($event, paginator) {
 
-        if(paginator.hasNextPage()){
+        if (paginator.hasNextPage()) {
             $event.pageIndex++;
             this.pageEvent = $event;
             this.changePage.emit(this.pageEvent);

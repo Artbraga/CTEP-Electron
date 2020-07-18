@@ -1,9 +1,10 @@
 <div class="formulario">
     <div class="header">
         <div class="six">
-            <h1>{{aluno.matricula!=null ? 'Edição' : 'Cadastro' }} de Aluno</h1>
+            <h1>{{element.matricula!=null ? 'Edição' : 'Cadastro' }} de Aluno</h1>
         </div>
         <div class="six buttons">
+            <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
             <button mat-raised-button color="primary" >Salvar</button>
         </div>
     </div>
@@ -12,24 +13,24 @@
         <div class="form-grid">
             <mat-form-field class="six">
                 <mat-label>Nome:</mat-label>
-                <input matInput [(ngModel)]="aluno.nome">
+                <input matInput [(ngModel)]="element.nome">
             </mat-form-field>
             <mat-form-field class="two">
                 <mat-label>RG:</mat-label>
-                <input matInput [(ngModel)]="aluno.rg">
+                <input matInput [(ngModel)]="element.rg">
             </mat-form-field>
             <mat-form-field class="two">
                 <mat-label>CPF:</mat-label>
-                <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="aluno.cpf">
+                <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf">
             </mat-form-field>
-            <custom-datetimepicker [(value)]="aluno.dataNascimento" class='two' name="Data de Nascimento"></custom-datetimepicker>
+            <custom-datetimepicker [(value)]="element.dataNascimento" class='two' name="Data de Nascimento"></custom-datetimepicker>
             <mat-form-field class="six">
                 <mat-label>Nome do Pai:</mat-label>
-                <input matInput [(ngModel)]="aluno.nomePai">
+                <input matInput [(ngModel)]="element.nomePai">
             </mat-form-field>
             <mat-form-field class="six">
                 <mat-label>Nome da Mãe:</mat-label>
-                <input matInput [(ngModel)]="aluno.nomeMae">
+                <input matInput [(ngModel)]="element.nomeMae">
             </mat-form-field>
         </div>
     </mat-card>
@@ -38,33 +39,32 @@
         <div class="form-grid">
             <mat-form-field class="three" >
                 <mat-label>CEP:</mat-label>
-                <input matInput [textMask]="{mask: masks.CEP}" [(ngModel)]="aluno.cep">
+                <input matInput [textMask]="{mask: masks.CEP}" [(ngModel)]="element.cep">
                 <button mat-raised-button color="accent" matSuffix (click)="buscarCep()">Buscar CEP</button>
             </mat-form-field>
             <mat-form-field class="six">
                 <mat-label>Endereço:</mat-label>
-                <input matInput [(ngModel)]="aluno.endereco">
+                <input matInput [(ngModel)]="element.endereco">
             </mat-form-field>
             <mat-form-field class="three">
                 <mat-label>Bairro:</mat-label>
-                <input matInput [(ngModel)]="aluno.bairro">
+                <input matInput [(ngModel)]="element.bairro">
             </mat-form-field>
             <mat-form-field class="three">
                 <mat-label>Cidade:</mat-label>
-                <input matInput [(ngModel)]="aluno.cidade">
+                <input matInput [(ngModel)]="element.cidade">
             </mat-form-field>
-
             <mat-form-field class="three">
                 <mat-label>Telefone:</mat-label>
-                <input matInput [textMask]="{mask: masks.Telefone}" [(ngModel)]="aluno.telefone">
+                <input matInput [textMask]="{mask: masks.Telefone}" [(ngModel)]="element.telefone">
             </mat-form-field>
             <mat-form-field class="three">
                 <mat-label>Celular:</mat-label>
-                <input matInput [textMask]="{mask: masks.Celular}" [(ngModel)]="aluno.celular">
+                <input matInput [textMask]="{mask: masks.Celular}" [(ngModel)]="element.celular">
             </mat-form-field>
             <mat-form-field class="three">
                 <mat-label>E-mail:</mat-label>
-                <input matInput [(ngModel)]="aluno.email">
+                <input matInput [(ngModel)]="element.email">
             </mat-form-field>
         </div>
     </mat-card>

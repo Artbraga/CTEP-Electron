@@ -1,5 +1,5 @@
 export class BaseConverter {
-    public static DateToString(data: Date) {
+    public static DateToString(data: Date): string {
         if (data == null) {
             return "";
         }
@@ -12,7 +12,7 @@ export class BaseConverter {
         )}`;
     }
 
-    public static DateToStringOnlyDate(data: Date) {
+    public static DateToStringOnlyDate(data: Date): string {
         return `${this.prependZero(data.getDate())}/${this.prependZero(
             data.getMonth() + 1
         )}/${data.getFullYear()}`;

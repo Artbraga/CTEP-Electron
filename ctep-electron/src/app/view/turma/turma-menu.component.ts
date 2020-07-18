@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-aluno-menu',
-  templateUrl: './aluno-menu.component.html',
-  styleUrls: ['./aluno-menu.component.scss']
+    selector: 'app-turma-menu',
+    templateUrl: './turma-menu.component.html',
+    styleUrls: ['./turma-menu.component.scss']
 })
-export class AlunoMenuComponent implements OnInit {
+export class TurmaMenuComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }
