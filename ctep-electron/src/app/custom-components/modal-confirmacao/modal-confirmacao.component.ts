@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Input, TemplateRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@ons/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
     templateUrl: './modal-confirmacao.component.html',

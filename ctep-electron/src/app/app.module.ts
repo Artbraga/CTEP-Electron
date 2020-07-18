@@ -26,6 +26,8 @@ import { ViacepService } from 'src/services/ngx-viacep/viacep.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingModule } from './custom-components/loading/loading.module';
 import { NotificationModule } from './custom-components/notification/notification.module';
+import { ModalLoginComponent } from './modal-login/modal-login.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -34,6 +36,7 @@ import { NotificationModule } from './custom-components/notification/notificatio
         PainelGeralComponent,
         AlunoMenuComponent,
         FormularioAlunoComponent,
+        ModalLoginComponent,
     ],
     imports: [
         BrowserModule,
@@ -47,6 +50,7 @@ import { NotificationModule } from './custom-components/notification/notificatio
         MatButtonModule,
         MatInputModule,
         MatIconModule,
+        MatDialogModule,
         MatExpansionModule,
         CustomDatetimepickerModule,
         TextMaskModule,
@@ -60,6 +64,9 @@ import { NotificationModule } from './custom-components/notification/notificatio
             useValue: { appearance: "outline" },
         },
         ViacepService,
+    ],
+    entryComponents: [
+        ModalLoginComponent
     ],
     bootstrap: [AppComponent],
 })

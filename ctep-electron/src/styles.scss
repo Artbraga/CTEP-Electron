@@ -28,6 +28,10 @@ body{
     }
 }
 
+.mat-card {
+    background-color: $white;
+}
+
 .mat-accordion {
     width: 100%;
 }
@@ -121,4 +125,66 @@ body{
 }
 .form-grid .mat-form-field-appearance-outline .mat-form-field-suffix .mat-raised-button {
     top: -8px;
+}
+
+.mat-dialog-container {
+    padding: 0!important;
+}
+
+.modal {
+	padding: 15px;
+	.close {
+		font-size: 20px;
+		top: 0;
+		color: $black!important;
+		width: auto !important;
+		height: auto !important;
+		position: absolute;
+		min-width: auto;
+	}
+	.modal-header {
+		font-size: 22px;
+		position: relative;
+		h3 {
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+		label {
+			font-size: 12px;
+			color: #4B81C1;
+			font-weight: normal;
+			margin-bottom: 0;
+			margin-top: 0;
+		}
+		button {
+			position: absolute;
+			right: 0px;
+			top: 5px;
+			background: transparent;
+			box-shadow: none;
+			color: black;
+			width: auto!important;
+			height: auto!important;
+		}
+	}
+	.modal-body {
+		margin-top: 15px;
+		margin-bottom: 15px;
+		max-height: 70vh;
+		overflow: auto;
+		.form-grid {
+			padding: 0px;
+			background-color: white;
+			border-radius: 0px;
+			box-shadow: none;
+			label {
+				font-size: 13px;
+			}
+		}
+	}
+	.modal-footer {
+		height: 45px;
+		display: flex;
+		align-items: center;
+	}
 }

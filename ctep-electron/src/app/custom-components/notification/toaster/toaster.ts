@@ -4,12 +4,12 @@ import {
     Output,
     EventEmitter,
     TemplateRef,
-} from "@angular/core";
+} from '@angular/core';
 
 @Component({
-    selector: "toaster",
-    templateUrl: "./toaster.html",
-    styleUrls: ["./toaster.scss"],
+    selector: 'toaster',
+    templateUrl: './toaster.html',
+    styleUrls: ['./toaster.scss'],
 })
 export class Toaster {
     @Input() notificationMessages: Notification[] = [];
@@ -25,19 +25,18 @@ export class Toaster {
             (x) => x != not
         );
         this.notificationMessagesChange.emit(this.notificationMessages);
-        console.log(this.notificationMessages);
     }
 
     getClass(type: NotificationType) {
         switch (type) {
             case NotificationType.Error:
-                return "error";
+                return 'error';
             case NotificationType.Warnning:
-                return "alert";
+                return 'alert';
             case NotificationType.Success:
-                return "positive";
+                return 'positive';
             case NotificationType.Notification:
-                return "notification";
+                return 'notification';
         }
     }
 }
