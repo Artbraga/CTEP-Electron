@@ -84,7 +84,6 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     }
 
     salvar() {
-        console.log(this.element);
-        console.log(this.element.dataNascimentoStr);
+
     }
 }
