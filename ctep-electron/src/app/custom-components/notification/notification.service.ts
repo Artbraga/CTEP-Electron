@@ -18,7 +18,7 @@ export class NotificationService {
             notificationList = this.notifications.value;
             this.notifications.next(notificationList);
             if (notificationList && notificationList.length > 0) {
-                notificationList.filter(x => x !== not);
+                notificationList = notificationList.filter(x => x !== not);
                 this.notifications.next(notificationList);
             }
         }, tempo * 1000);

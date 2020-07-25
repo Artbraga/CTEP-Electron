@@ -9,7 +9,7 @@ import { Usuario } from '../model/usuario.model';
 export class UsuarioService extends BaseService<Usuario> {
     usuario: BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(null);
     constructor(http: HttpClient) {
-        super(http, 'usuarios');
+        super(http, 'Usuario');
     }
 
     public salvarUsuario(usr: Usuario) {
@@ -22,20 +22,8 @@ export class UsuarioService extends BaseService<Usuario> {
 
 
     public logar(usuario: Usuario): Observable<Usuario> {
-        const ob =  new BehaviorSubject<Usuario>(null);
-        if (usuario.login === 'teste') {
-            const usr = new Usuario();
-            usr.login = 'teste';
-            usr.senha = '12345';
-            ob.next(usr);
-        }
-        return ob.asObservable();
-        // const headers = new HttpHeaders();
-        // const url = this.baseURL + '/logar';
-        // headers.append('Content-Type', 'application/json');
+        const url = this.baseURL + '/BuscarUsuarioPorLoginESenha';
 
-        // const options = { headers };
-
-        // return this.http.post<Usuario>(url, usuario, options);
+        return this.http.post<Usuario>(url, usuario);
     }
 }

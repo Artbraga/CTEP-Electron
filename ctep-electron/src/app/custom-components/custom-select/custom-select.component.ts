@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ViewChild, TemplateRef } from '
 
 @Component({
     // tslint:disable-next-line: component-selector
-    selector: 'app-custom-select',
+    selector: 'custom-select',
     templateUrl: './custom-select.component.html',
     styleUrls: ['./custom-select.component.scss']
 })

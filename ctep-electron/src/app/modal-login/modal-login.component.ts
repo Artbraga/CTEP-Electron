@@ -6,6 +6,7 @@ import { LoadingService } from '../custom-components/loading/loading.service';
 import { NotificationService } from '../custom-components/notification/notification.service';
 import { BaseFormularioComponent } from '../base/base-formulario.component';
 import { NotificationType } from '../custom-components/notification/toaster/toaster';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-modal-login',
@@ -20,21 +21,19 @@ export class ModalLoginComponent extends BaseFormularioComponent<Usuario>  {
                 private notificationService: NotificationService,
                 private dialogRef: MatDialogRef<ModalLoginComponent>) {
         super(usuarioService, new Usuario());
-        this.element.login = 'teste';
-        this.element.senha = 'sdgfdhn';
-        this.login();
+        if (environment.loginAutomatico) {
+            this.element.login = 'admin';
+            this.element.senha = 'admin';
+            this.login();
+        }
     }
 
     login() {
         if (this.validar()) {
             this.loadingService.addLoading();
             this.usuarioService.logar(this.element).subscribe(data => {
-                if (data != null) {
-                    this.element = Object.assign(new Usuario(), data);
-                    this.dialogRef.close(data);
-                } else {
-                    this.notificationService.addNotification('Erro!', 'Login ou senha incorretos.', NotificationType.Error);
-                }
+                this.element = Object.assign(new Usuario(), data);
+                this.dialogRef.close(data);
                 this.loadingService.removeLoading();
             });
         }

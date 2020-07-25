@@ -1,34 +1,63 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, Input, Output, ViewChild } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'custom-datetimepicker',
-  templateUrl: './custom-datetimepicker.component.html',
-  styleUrls: ['./custom-datetimepicker.component.scss']
+    selector: 'custom-datetimepicker',
+    templateUrl: './custom-datetimepicker.component.html',
+    styleUrls: ['./custom-datetimepicker.component.scss'],
 })
-export class CustomDatetimepickerComponent implements OnInit {
+export class CustomDatetimepickerComponent {
 
-  private _value: Date;
+    private _value: Date;
 
-  @Input() name: string;
+    classeInvalido;
 
-  get value() {
-    return this._value;
-  }
+    @Input() name: string;
+    @Input() disabled = false;
+    @Input() obrigatorio: boolean;
 
-  @Input()
-  set value(x) {
-    this.valueChange.emit(x);
-    this._value = x;
-  }
-  
-  @Output() valueChange = new EventEmitter();
+    @Output() validaCampo = new EventEmitter();
+    @ViewChild('campo', { static: true }) selectControl;
 
-
-    constructor() {
+    get value() {
+        return this._value;
     }
 
-  ngOnInit() {
-  }
+    @Input()
+    set value(x) {
+        this.valueChange.emit(x);
+        this._value = x;
+    }
 
+    @Output() valueChange = new EventEmitter();
+    events: string[] = [];
+
+    campoInvalido() {
+        if (this.obrigatorio) {
+            if (!this.selectControl.nativeElement.value) {
+                this.classeInvalido = { 'mat-form-field-invalid': true, 'mat-form-field-outline-end': true };
+                return false;
+            } else {
+                this.classeInvalido = { 'mat-form-field-invalid': false, 'mat-form-field-outline-end': false };
+                return true;
+            }
+        }
+    }
+
+    validarPreenchimentoCampo(event) {
+        const data = event.currentTarget.value;
+        const partes = data.split('/');
+        let cont = 0;
+
+        partes.forEach(x => {
+            if (x == '') {
+                cont++;
+            }
+        });
+
+        if (cont != 0 || !data) {
+            event.currentTarget.value = null;
+        }
+        this.campoInvalido();
+    }
 }

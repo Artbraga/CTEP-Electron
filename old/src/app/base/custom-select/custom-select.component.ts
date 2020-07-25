@@ -4,18 +4,22 @@ import { Component, Input, Output, EventEmitter, ViewChild, TemplateRef } from '
     // tslint:disable-next-line: component-selector
     selector: 'custom-select',
     templateUrl: './custom-select.component.html',
-    styleUrls: ['./custom-select.component.less']
+    styleUrls: ['./custom-select.component.scss']
 })
 export class CustomSelectComponent {
     isOpen: boolean = false;
     @Input() options: any[];
     @Input() field: string;
+    @Input() class: string = '';
     @Input() selected: any;
     @Input() multiple: boolean = false;
     @Input() label: string;
     @Input() disabled: boolean = false;
     @Input() style: any;
     @Input() placeholder: string = 'Selecione';
+    @Input() obrigatorio: boolean;
+
+    classeInvalido;
 
     @ViewChild('selectControl') selectControl;
     @Output() selectedChange = new EventEmitter();
@@ -40,6 +44,19 @@ export class CustomSelectComponent {
 
     getLoading(): boolean {
         return this.options !== null && (this.isOpen || (!this.selectControl.panelOpen && this.selected !== null));
+    }
+
+    campoInvalido() {
+        if (this.obrigatorio) {
+            if (!this.selected || !this.selected.Nome) {
+              this.classeInvalido = {"mat-form-field-invalid" : true, "mat-form-field-outline-end": true};
+              return false;
+            }
+            else {
+                this.classeInvalido = {"mat-form-field-invalid" : false, "mat-form-field-outline-end": false};
+                return true;
+            }
+        }
     }
 }
 

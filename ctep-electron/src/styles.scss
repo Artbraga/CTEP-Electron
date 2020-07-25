@@ -20,6 +20,7 @@ body {
             }
             .mat-card {
                 margin: 20px 0;
+                box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
             }
             .header {
                 display: flex;
@@ -36,8 +37,12 @@ body {
                 background-color: $primary;
             }
             &.mat-accent {
-                background-color: $gray;
+                background-color: $light-gray;
             }
+        }
+        .mat-card-subtitle, .mat-card-content {
+            font-size: 16px;
+            font-weight: bold;
         }
     }
     a:-webkit-any-link {
@@ -254,3 +259,20 @@ body {
     }
 }
 
+.mat-tab-group {
+    .mat-tab-header {
+        background-color: $gray-blue;
+        border-radius: 4px 4px 0 0;
+        .mat-tab-label {
+            color: white;
+        }
+    }
+    .mat-tab-body {
+        padding: 0 15px;
+    }
+    &.mat-primary .mat-ink-bar {
+        background-color: $primary;
+        height: 4px;
+    }
+    background-color: white;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);}

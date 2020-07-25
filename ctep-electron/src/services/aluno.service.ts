@@ -7,6 +7,6 @@ import { Aluno } from '../model/aluno.model';
 export class AlunoService extends BaseService<Aluno> {
 
     constructor(http: HttpClient) {
-        super(http, 'aluno');
+        super(http, 'Aluno');
     }
 }

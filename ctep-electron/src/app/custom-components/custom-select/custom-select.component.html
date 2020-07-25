@@ -1,18 +1,18 @@
-<ons-core-form-field>
-    <ons-core-label class="selectLabel" *ngIf="label != null">{{label}}</ons-core-label>
-    <ons-core-select #selectControl [(value)]="selected" [multiple]="multiple" [disabled]="disabled"
+<mat-form-field>
+    <mat-label class="selectLabel" *ngIf="label != null">{{label}}</mat-label>
+    <mat-select #selectControl [(value)]="selected" [multiple]="multiple" [disabled]="disabled"
         (selectionChange)="onChange($event.value)" [compareWith]="compareWith" (openedChange)="openChanged($event)"
         [ngStyle]="style" [placeholder]="placeholder">
 
         <ng-container *ngIf="getLoading(); else loading">
 
-            <ons-core-option *ngFor="let op of options" [value]="op">
+            <mat-option *ngFor="let op of options" [value]="op">
                 {{op[field]}}
-            </ons-core-option>
+            </mat-option>
 
         </ng-container>
         <ng-template #loading>
-            <ons-core-option disabled>
+            <mat-option disabled>
                 <div style="display:flex">
                     <span>Loading...</span>
                     <span>
@@ -20,8 +20,8 @@
                         </mat-progress-spinner>
                     </span>
                 </div>
-            </ons-core-option>
+            </mat-option>
         </ng-template>
 
-    </ons-core-select>
-</ons-core-form-field>
+    </mat-select>
+</mat-form-field>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Aluno } from 'src/model/aluno.model';
 import { MaskPatterns } from 'src/model/enums/mask.enum';
 import { ViacepService } from 'src/services/ngx-viacep/viacep.service';
@@ -9,16 +9,29 @@ import { NotificationType } from 'src/app/custom-components/notification/toaster
 import { Router } from '@angular/router';
 import { BaseFormularioComponent } from '../../../base/base-formulario.component';
 import { AlunoService } from '../../../../services/aluno.service';
+import { Curso } from '../../../../model/curso.model';
+import { CursoService } from '../../../../services/curso.service';
+import { TurmaService } from '../../../../services/turma.service';
+import { Turma } from '../../../../model/turma.model';
 
 @Component({
     selector: 'app-formulario-aluno',
     templateUrl: './formulario-aluno.component.html',
     styleUrls: ['./formulario-aluno.component.scss'],
 })
-export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> {
+export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> implements OnInit {
 
     masks = MaskPatterns;
+
+    cursosOptions: Curso[] = [];
+    cursoSelecionado: Curso;
+
+    turmasOptions: Turma[] = [];
+    turmaSelecionada: Turma;
+    matricula: string;
     constructor(private alunoService: AlunoService,
+                private cusroService: CursoService,
+                private turmaService: TurmaService,
                 private cepService: ViacepService,
                 private loadingService: LoadingService,
                 private notificationService: NotificationService,
@@ -26,8 +39,25 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> {
         super(alunoService, new Aluno());
     }
 
+    ngOnInit() {
+        this.listarCursos();
+    }
+
     validar(): boolean {
         return true;
+    }
+
+    listarCursos() {
+        this.cusroService.listarCursos().subscribe(data => {
+            this.cursosOptions = data.map(x => Object.assign(new Curso(), x));
+        });
+    }
+
+    buscarTurmas() {
+        this.turmaSelecionada = null;
+        this.turmaService.buscarTurmasDeUmCurso(this.cursoSelecionado.id).subscribe(data => {
+            this.turmasOptions = data.map(x => Object.assign(new Turma(), x));
+        });
     }
 
     buscarCep() {
@@ -51,5 +81,10 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> {
 
     voltar() {
         this.router.navigate([{ outlets: { secondRouter: null } }]);
+    }
+
+    salvar() {
+        console.log(this.element);
+        console.log(this.element.dataNascimentoStr);
     }
 }

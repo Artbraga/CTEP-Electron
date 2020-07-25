@@ -9,7 +9,7 @@ import { Curso } from '../model/curso.model';
 export class TurmaService extends BaseService<Turma> {
 
     constructor(http: HttpClient) {
-        super(http, 'turma');
+        super(http, 'Turma');
     }
 
     public listar(): Observable<Turma[]> {
@@ -22,5 +22,11 @@ export class TurmaService extends BaseService<Turma> {
         ];
 
         return new BehaviorSubject<Turma[]>(turmas as Turma[]).asObservable();
+    }
+
+    public buscarTurmasDeUmCurso(cursoId: number) {
+        const url = this.baseURL + `/ListarTurmasDeUmCurso?cursoId=${cursoId}`;
+
+        return this.http.get<Turma[]>(url);
     }
 }

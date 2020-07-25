@@ -19,17 +19,20 @@ import { HomeComponent } from './view/home/home.component';
 import { AlunoMenuComponent } from './view/aluno/aluno-menu.component';
 import { FormularioAlunoComponent } from './view/aluno/formulario-aluno/formulario-aluno.component';
 import { ViacepService } from 'src/services/ngx-viacep/viacep.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingModule } from './custom-components/loading/loading.module';
 import { NotificationModule } from './custom-components/notification/notification.module';
 import { ModalLoginComponent } from './modal-login/modal-login.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TurmaMenuComponent } from './view/turma/turma-menu.component';
 import { FormularioTurmaComponent } from './view/turma/formulario-turma/formulario-turma.component';
 import { TabelaTurmaComponent } from './view/turma/tabela-turma/tabela-turma.component';
 import { CustomTableModule } from './custom-components/custom-table/custom-table.module';
 import { SharedModule } from './custom-components/shared/shared.module';
+import { HttpErrorHandleInterceptor } from '../services/interceptors/httpErrorHandlerInterceptor';
+import { CustomSelectModule } from './custom-components/custom-select/custom-select.module';
 
 @NgModule({
     declarations: [
@@ -52,6 +55,7 @@ import { SharedModule } from './custom-components/shared/shared.module';
         SharedModule,
         MatToolbarModule,
         MatSidenavModule,
+        MatTabsModule,
         MatTooltipModule,
         MatFormFieldModule,
         MatCardModule,
@@ -61,12 +65,14 @@ import { SharedModule } from './custom-components/shared/shared.module';
         MatDialogModule,
         MatExpansionModule,
         CustomDatetimepickerModule,
+        CustomSelectModule,
         TextMaskModule,
         HttpClientModule,
         LoadingModule,
         NotificationModule
     ],
     providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandleInterceptor, multi: true },
         {
             provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
             useValue: { appearance: 'outline' },
