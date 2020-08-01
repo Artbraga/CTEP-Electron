@@ -7,8 +7,8 @@ export class BaseService<T> {
 
     private readonly serverURL: string = environment.apiUrl;
     protected readonly baseURL: string = this.serverURL + this.controller;
-    protected readonly saveUrl: string = this.baseURL + '/Salvar/';
-    protected readonly deleteUrl: string = this.baseURL + '/Seletar/';
+    protected readonly saveUrl: string = this.baseURL + '/Salvar';
+    protected readonly deleteUrl: string = this.baseURL + '/Deletar/';
 
     constructor(protected http: HttpClient, protected readonly controller: string) { }
 
@@ -24,13 +24,8 @@ export class BaseService<T> {
         return this.http.get<T[]>(url);
     }
 
-    public salvar(element: T): Observable<any> {
-
-        const headers = new HttpHeaders();
-        headers.append('Content-Type', 'application/json');
-        const options = { headers };
-
-        return this.http.post(this.saveUrl, element, options);
+    public salvar(element: T): Observable<T> {
+        return this.http.post<T>(this.saveUrl, element);
     }
 
     public deletar(id: number): Observable<any> {

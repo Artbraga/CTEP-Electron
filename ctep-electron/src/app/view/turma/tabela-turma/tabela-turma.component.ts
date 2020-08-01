@@ -18,7 +18,7 @@ export class TabelaTurmaComponent extends BaseTable<Turma> implements OnInit {
         this.columns.push({ key: 'codigo', header: 'Código', field: 'codigo' } as Coluna);
         this.columns.push({ key: 'curso', header: 'Curso', field: 'curso.nome' } as Coluna);
         this.columns.push({ key: 'dia', header: 'Dias da Semana', field: 'diasDaSemana' } as Coluna);
-        this.turmaService.listar().subscribe(data => {
+        this.turmaService.listarTurmasAtivas().subscribe(data => {
             this.list = data.map(x => Object.assign(new Turma(), x));
         });
     }

@@ -12,21 +12,21 @@ export class TurmaService extends BaseService<Turma> {
         super(http, 'Turma');
     }
 
-    public listar(): Observable<Turma[]> {
-        const curso = new Curso();
-        curso.nome = 'Técnico de Enfermagem';
-        const turmas = [
-            { id: 1, codigo: 'TENF2001', diasDaSemana: 'Segundas e Quartas', horaInicio: '13:00', horaFim: '18:00', dataInicio: new Date(), anoInicio: 20, dataFim: null, curso: curso },
-            { id: 2, codigo: 'TENF2002', diasDaSemana: 'Terças e Quintas', horaInicio: '18:00', horaFim: '21:00', dataInicio: new Date(), anoInicio: 20, dataFim: null, curso: curso },
-            { id: 3, codigo: 'TENF2003', diasDaSemana: 'Sábados', horaInicio: '08:00', horaFim: '12:00', dataInicio: new Date(), anoInicio: 20, dataFim: null, curso: curso }
-        ];
-
-        return new BehaviorSubject<Turma[]>(turmas as Turma[]).asObservable();
-    }
-
     public buscarTurmasDeUmCurso(cursoId: number) {
         const url = this.baseURL + `/ListarTurmasDeUmCurso?cursoId=${cursoId}`;
 
         return this.http.get<Turma[]>(url);
+    }
+
+    public listarTurmasAtivas(): Observable<Turma[]> {
+        const url = this.baseURL + `/ListarTurmasAtivas`;
+
+        return this.http.get<Turma[]>(url);
+    }
+
+    public gerarCodigoDaTurma(cursoId: number, anoTurma: number): Observable<string> {
+        const url = this.baseURL + `/GerarCodigoDaTurma?cursoId=${cursoId}&anoTurma=${anoTurma}`;
+
+        return this.http.get(url, { responseType: 'text' });
     }
 }

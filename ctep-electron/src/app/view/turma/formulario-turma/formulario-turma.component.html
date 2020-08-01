@@ -1,45 +1,48 @@
-<!-- <div class="formulario">
+<div class="formulario">
     <div class="header">
         <div class="six">
-            <h1>{{element.id!=null ? 'Edição' : 'Cadastro' }} de Turma</h1>
+            <h1>{{element.id != null ? 'Edição' : 'Cadastro' }} de Turma</h1>
         </div>
         <div class="six buttons">
             <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
-            <button mat-raised-button color="primary" >Salvar</button>
+            <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
         </div>
     </div>
     <mat-card>
         <mat-card-subtitle>Endereço e Contato</mat-card-subtitle>
         <div class="form-grid">
-            <mat-form-field class="three" >
-                <mat-label>CEP:</mat-label>
-                <input matInput [textMask]="{mask: masks.CEP}" [(ngModel)]="aluno.cep">
-                <button mat-raised-button color="accent" matSuffix (click)="buscarCep()">Buscar CEP</button>
+            <div class="four" >
+                <custom-select label='Curso:'
+                               field='nome'
+                               [options]="cursosOptions"
+                               [(selected)]="cursoSelecionado">
+                </custom-select>
+            </div>
+            <div class="four">
+                <custom-datetimepicker [(value)]="element.dataInicio" name='Data de Início'>
+                </custom-datetimepicker>
+            </div>
+            <div class="four">
+                <custom-datetimepicker [(value)]="element.dataFim" name='Data de Término'>
+                </custom-datetimepicker>
+            </div>
+            <mat-form-field class="four" >
+                <mat-label>Código:</mat-label>
+                <input matInput [(ngModel)]="element.codigo">
+                <button mat-raised-button color="accent" matSuffix (click)="gerarCodigoDaTurma()">Buscar CEP</button>
             </mat-form-field>
-            <mat-form-field class="six">
-                <mat-label>Endereço:</mat-label>
-                <input matInput [(ngModel)]="aluno.endereco">
+            <mat-form-field class="four">
+                <mat-label>Dias da Semana:</mat-label>
+                <input matInput [(ngModel)]="element.diasDaSemana">
             </mat-form-field>
-            <mat-form-field class="three">
-                <mat-label>Bairro:</mat-label>
-                <input matInput [(ngModel)]="aluno.bairro">
+            <mat-form-field class="two">
+                <mat-label>Horário de Início:</mat-label>
+                <input matInput [textMask]="{mask: masks.Hora}" [(ngModel)]="element.horaInicio">
             </mat-form-field>
-            <mat-form-field class="three">
-                <mat-label>Cidade:</mat-label>
-                <input matInput [(ngModel)]="aluno.cidade">
-            </mat-form-field>
-            <mat-form-field class="three">
-                <mat-label>Telefone:</mat-label>
-                <input matInput [textMask]="{mask: masks.Telefone}" [(ngModel)]="aluno.telefone">
-            </mat-form-field>
-            <mat-form-field class="three">
-                <mat-label>Celular:</mat-label>
-                <input matInput [textMask]="{mask: masks.Celular}" [(ngModel)]="aluno.celular">
-            </mat-form-field>
-            <mat-form-field class="three">
-                <mat-label>E-mail:</mat-label>
-                <input matInput [(ngModel)]="aluno.email">
+            <mat-form-field class="two">
+                <mat-label>Horário de Fim:</mat-label>
+                <input matInput [textMask]="{mask: masks.Hora}" [(ngModel)]="element.horaFim">
             </mat-form-field>
         </div>
     </mat-card>
-</div> -->
+</div>
