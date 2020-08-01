@@ -7,9 +7,9 @@
     <mat-card>
         <custom-table [columns]="columns" [listOfElements]="list">
             <ng-template let-element customTemplate="acoesTemplate">
-                <div style="display: flex;">
+                <div style="text-align: end;">
                     <button mat-icon-button color="primary" 
-                            matTooltip="Mais informações"
+                            matTooltip="Mais Informações"
                             (click)="visualizarTurma(element)">
                         <i class="material-icons">visibility</i>
                     </button>

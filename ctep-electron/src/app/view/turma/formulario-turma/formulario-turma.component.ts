@@ -9,6 +9,7 @@ import { NotificationType } from '../../../custom-components/notification/toaste
 import { Curso } from '../../../../model/curso.model';
 import { CursoService } from '../../../../services/curso.service';
 import { MaskPatterns } from '../../../../model/enums/mask.enum';
+import { RoutingService } from '../../../../services/routing.service';
 
 @Component({
     selector: 'app-formulario-turma',
@@ -24,13 +25,16 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
 
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
-                private loadingService: LoadingService,
                 private notificationService: NotificationService,
+                private routingService: RoutingService,
                 private router: Router) {
         super(turmaService, new Turma());
     }
 
     ngOnInit(): void {
+        if (this.routingService.possuiValor('idTurma')) {
+            this.isEdicao = true;
+        }
         this.listarCursos();
     }
 
@@ -69,7 +73,6 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
         const ano = new Date(this.element.dataInicio).getFullYear();
         this.turmaService.gerarCodigoDaTurma(this.cursoSelecionado.id, ano).subscribe(data => {
             this.element.codigo = data;
-            this.loadingService.removeLoading();
         });
     }
 

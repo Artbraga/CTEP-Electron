@@ -33,6 +33,8 @@ import { CustomTableModule } from './custom-components/custom-table/custom-table
 import { SharedModule } from './custom-components/shared/shared.module';
 import { HttpErrorHandleInterceptor } from '../services/interceptors/httpErrorHandlerInterceptor';
 import { CustomSelectModule } from './custom-components/custom-select/custom-select.module';
+import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/modal-confirmacao.module';
+import { HttpLoadingInterceptor } from '../services/interceptors/httpLoadingInterceptor';
 
 @NgModule({
     declarations: [
@@ -69,10 +71,12 @@ import { CustomSelectModule } from './custom-components/custom-select/custom-sel
         TextMaskModule,
         HttpClientModule,
         LoadingModule,
-        NotificationModule
+        NotificationModule,
+        ModalConfirmacaoModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandleInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: HttpLoadingInterceptor, multi: true },
         {
             provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
             useValue: { appearance: 'outline' },
