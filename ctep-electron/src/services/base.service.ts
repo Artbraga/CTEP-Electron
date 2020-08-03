@@ -7,13 +7,14 @@ export class BaseService<T> {
 
     private readonly serverURL: string = environment.apiUrl;
     protected readonly baseURL: string = this.serverURL + this.controller;
+    protected readonly getByIdUrl: string = this.baseURL + '/GetById?id=';
     protected readonly saveUrl: string = this.baseURL + '/Salvar';
     protected readonly deleteUrl: string = this.baseURL + '/Deletar';
 
     constructor(protected http: HttpClient, protected readonly controller: string) { }
 
     public getById(id: number): Observable<T> {
-        const getByIdURL = this.baseURL + '/' + id;
+        const getByIdURL = this.getByIdUrl + id;
 
         return this.http.get<T>(getByIdURL);
     }

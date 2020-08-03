@@ -22,6 +22,7 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
 
     cursoSelecionado: Curso;
     cursosOptions: Curso[];
+    rotaVoltar: string = null;
 
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
@@ -34,13 +35,24 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
     ngOnInit(): void {
         if (this.routingService.possuiValor('idTurma')) {
             this.isEdicao = true;
+            const id = this.routingService.excluirValor('idTurma') as number;
+            this.rotaVoltar = this.routingService.excluirValor('rotaVoltar');
+            this.turmaService.getById(id).subscribe(data => {
+                this.element = Object.assign(new Turma(), data);
+                this.element.ajustarDatas();
+                this.listarCursos();
+            });
+        } else {
+            this.listarCursos();
         }
-        this.listarCursos();
     }
 
     listarCursos() {
         this.cursoService.listarCursos().subscribe(data => {
             this.cursosOptions = data.map(x => Object.assign(new Curso(), x));
+            if (this.element.curso != null) {
+                this.cursoSelecionado = this.cursosOptions.find(x => x.id === this.element.curso.id);
+            }
         });
     }
 
@@ -77,7 +89,7 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
     }
 
     voltar() {
-        this.router.navigate([{ outlets: { secondRouter: null } }]);
+        this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
     }
 
     salvar() {
