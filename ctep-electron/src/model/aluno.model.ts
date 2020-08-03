@@ -1,4 +1,5 @@
 import { BaseConverter } from '../app/custom-components/base-converter';
+import { Registro } from './registro.model';
 
 export class Aluno {
     id: number;
@@ -22,6 +23,7 @@ export class Aluno {
     cursoAnterior: string;
 
     dataNascimento: Date;
+    registros: Registro[];
     get dataNascimentoStr(): string {
         return BaseConverter.DateToStringOnlyDate(new Date(this.dataNascimento));
     }

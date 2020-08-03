@@ -37,16 +37,16 @@
                             <input matInput [(ngModel)]="element.nome">
                         </mat-form-field>
                         <mat-form-field class="four">
+                            <mat-label>CPF:</mat-label>
+                            <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf">
+                        </mat-form-field>
+                        <mat-form-field class="four">
                             <mat-label>RG:</mat-label>
                             <input matInput [(ngModel)]="element.rg">
                         </mat-form-field>
                         <mat-form-field class="four">
                             <mat-label>Orgão Emissor:</mat-label>
                             <input matInput [(ngModel)]="element.orgaoEmissor">
-                        </mat-form-field>
-                        <mat-form-field class="four">
-                            <mat-label>CPF:</mat-label>
-                            <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf">
                         </mat-form-field>
                         <custom-datetimepicker [(value)]="element.dataNascimento" name='Data de Nascimento' class="four">
                         </custom-datetimepicker>
@@ -146,5 +146,23 @@
                 </div>
             </mat-card>
         </mat-tab>
+        <mat-tab label="Registro">
+            <mat-card>
+                <div class="form-grid">
+                    <div class="three">
+                        <custom-datetimepicker [(value)]="element.dataMatricula" name='Data de Matrícula'>
+                        </custom-datetimepicker>
+                    </div>
+                    <div class="three">
+                        <custom-datetimepicker [(value)]="element.dataValidade" name='Data de Validade'>
+                        </custom-datetimepicker>
+                    </div>
+                    <mat-form-field class="six">
+                        <mat-label>Curso Anterior:</mat-label>
+                        <input matInput [(ngModel)]="element.cursoAnterior">
+                    </mat-form-field>
+                </div>
+            </mat-card>
+
       </mat-tab-group>
 </div>

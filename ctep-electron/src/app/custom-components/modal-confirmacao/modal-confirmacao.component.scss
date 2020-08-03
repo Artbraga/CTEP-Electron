@@ -1,6 +1,7 @@
+@import "../../../theming.scss";
 ::ng-deep custom-select {
     .mat-form-field-outline.ng-star-inserted{
-        background: white;
+        background: $white;
         border-radius: 7px;
     }
 }
@@ -17,79 +18,8 @@ app-tutorial {
   bottom: 0;
   border-radius: 10px;
 }
-.app-small {
-  &.modal {
-    width: 350px;
-  }
-}
-.app-big {
-  &.modal {
-    width: auto;
-  }
-}
-.modal {
-  padding: 15px;
-  background-color: #ececec;
-  .close {
-    font-size: 20px;
-    top: 0;
-    color: #6f6f6f !important;
-    width: auto !important;
-    height: auto !important;
-    position: absolute;
-    min-width: auto;
-  }
-  .modal-header {
-    font-weight: lighter;
-    color: #78849e;
-    font-size: 22px;
-    position: relative;
-    h3 {
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-    label {
-      font-size: 12px;
-      color: #4b81c1;
-      font-weight: normal;
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-    button {
-      position: absolute;
-      right: 0px;
-      top: 5px;
-      background: transparent;
-      box-shadow: none;
-      color: black;
-      width: auto !important;
-      height: auto !important;
-    }
-  }
-  .modal-body {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    max-height: 70vh;
-    overflow: auto;
-    .form-grid {
-      padding: 0px;
-      background-color: white;
-      border-radius: 0px;
-      box-shadow: none;
-      label {
-        font-size: 13px;
-      }
-    }
-  }
-  .modal-footer {
-    height: 45px;
-    display: flex;
-    align-items: center;
-  }
-}
-
 .dialog {
-    background-color: #2a2e43;
+    background-color: $off-white;
     height: 100%;
     position: absolute;
     top: 0;
@@ -98,7 +28,7 @@ app-tutorial {
     padding: 15px;
     border-radius: 10px;
     .material-icons {
-      color: white;
+      color: $white;
       min-width: 0;
       padding: 6px;
       font-style: normal;
@@ -109,7 +39,7 @@ app-tutorial {
       display: flex;
       align-items: center;
       h3 {
-        color: white;
+        color: $primary;
         margin: 0;
         padding: 0;
         font-size: 22px;
@@ -120,7 +50,7 @@ app-tutorial {
         top: 20px;
         background-color: transparent;
         box-shadow: none;
-        color: white;
+        color: $white;
         width: 20px;
         height: 20px;
         font-size: 20px;
@@ -130,11 +60,11 @@ app-tutorial {
       min-height: 80px;
       max-height: 100px;
       .gridONS {
-        background-color: #2a2e43;
+        background-color: $off-white;
         box-shadow: none;
       }
       p {
-        color: #cac4c4;
+        color: $primary;
         font-size: 14px;
         margin: 0;
       }
@@ -150,11 +80,12 @@ app-tutorial {
         border-radius: 50px;
         margin-left: 10px;
         border: none;
+        outline: none;
         cursor: pointer;
         &:nth-of-type(1) {
           width: 45px;
           height: 45px;
-          background-color: #8d8f9a;
+          background-color: $light-gray;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -162,7 +93,7 @@ app-tutorial {
         &:nth-of-type(2) {
           width: 45px;
           height: 45px;
-          background-color: #f1661f;
+          background-color: $primary;
           display: flex;
           justify-content: center;
           align-items: center;

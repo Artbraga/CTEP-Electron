@@ -1,3 +1,5 @@
+@import '../../../theming';
+
 tr .element-detail {
   overflow: hidden;
   display: flex;
@@ -26,7 +28,7 @@ tr.detail-row {
 .extra-table {
   font-size: 0.9em;
   padding: 15px;
-  background-color: #edeeef;
+  background-color: $off-white;
 }
 
 

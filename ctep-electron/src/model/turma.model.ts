@@ -21,6 +21,11 @@ export class Turma {
         return this.horaInicio + ' - ' + this.horaFim;
     }
 
+    ajustarDatas() {
+        this.dataInicio = BaseConverter.StringToDate(this.dataInicio.toString());
+        this.dataFim = this.dataFim == null ? null : BaseConverter.StringToDate(this.dataFim.toString());
+    }
+
     constructor() {
         this.codigo = null;
         this.diasDaSemana = null;
