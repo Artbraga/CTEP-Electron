@@ -13,21 +13,50 @@
             <mat-card>
                 <mat-card-subtitle>Informações Pessoais</mat-card-subtitle>
                 <div class="form-grid">
-                    <mat-form-field class="six">
-                        <mat-label>Nome:</mat-label>
-                        <input matInput [(ngModel)]="element.nome">
-                    </mat-form-field>
-                    <mat-form-field class="two">
-                        <mat-label>RG:</mat-label>
-                        <input matInput [(ngModel)]="element.rg">
-                    </mat-form-field>
-                    <mat-form-field class="two">
-                        <mat-label>CPF:</mat-label>
-                        <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf">
-                    </mat-form-field>
-                    <div class="two">
-                        <custom-datetimepicker [(value)]="element.dataNascimento" name='Data de Nascimento'>
+                    <div class="three image">
+                        <ng-container *ngIf="imagem==null; else elseFoto">
+                            <img src="/assets/images/empty-avatar.png" alt="">
+                            <label class="image-upload-container btn btn-bwm">
+                                <input #imageInput
+                                       type="file"
+                                       accept="image/*"
+                                       (change)="inserirFoto(imageInput)">
+                              </label>
+                        </ng-container>
+                        <ng-template #elseFoto>
+                            <img src="{{imagem}}" alt=""><br>
+                            <button mat-raised-button color="accent" matSuffix (click)="imagem=null">
+                                <mat-icon aria-hidden="false">delete</mat-icon>
+                                Remover foto
+                            </button>
+                        </ng-template>
+                    </div>
+                    <div class="nine">
+                        <mat-form-field class="twelve">
+                            <mat-label>Nome:</mat-label>
+                            <input matInput [(ngModel)]="element.nome">
+                        </mat-form-field>
+                        <mat-form-field class="four">
+                            <mat-label>RG:</mat-label>
+                            <input matInput [(ngModel)]="element.rg">
+                        </mat-form-field>
+                        <mat-form-field class="four">
+                            <mat-label>Orgão Emissor:</mat-label>
+                            <input matInput [(ngModel)]="element.orgaoEmissor">
+                        </mat-form-field>
+                        <mat-form-field class="four">
+                            <mat-label>CPF:</mat-label>
+                            <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf">
+                        </mat-form-field>
+                        <custom-datetimepicker [(value)]="element.dataNascimento" name='Data de Nascimento' class="four">
                         </custom-datetimepicker>
+                        <mat-form-field class="four">
+                            <mat-label>Sexo:</mat-label>
+                            <mat-select [(value)]="element.sexo">
+                                <mat-option value="m">Masculino</mat-option>
+                                <mat-option value="f">Feminino</mat-option>
+                            </mat-select>
+                        </mat-form-field>
                     </div>
                     <mat-form-field class="six">
                         <mat-label>Nome do Pai:</mat-label>
@@ -72,7 +101,7 @@
                         <input matInput [(ngModel)]="element.email">
                     </mat-form-field>
                 </div>
-            </mat-card>            
+            </mat-card>
         </mat-tab>
         <mat-tab label="Cursos e Turmas">
             <mat-card>
@@ -92,7 +121,7 @@
                 </div>
             </mat-card>
             <mat-card>
-                <mat-card-subtitle>Turmas e Cursos</mat-card-subtitle>
+                <mat-card-subtitle>Cursos e Turmas</mat-card-subtitle>
                 <div class="form-grid">
                     <div class="four" >
                         <custom-select label='Curso:'
@@ -103,7 +132,7 @@
                         </custom-select>
                     </div>
                     <div class="four" >
-                        <custom-select label='Turmas:'
+                        <custom-select label='Turma:'
                                        field='codigo'
                                        [options]="turmasOptions"
                                        [(selected)]="turmaSelecionada">
@@ -112,7 +141,7 @@
                     <mat-form-field class="four" >
                         <mat-label>Matrícula:</mat-label>
                         <input matInput [(ngModel)]="matricula">
-                        <button mat-raised-button color="accent" matSuffix>Gerar Matrícula</button>
+                        <button mat-raised-button color="accent" matSuffix (click)="gerarMatricula()">Gerar Matrícula</button>
                     </mat-form-field>
                 </div>
             </mat-card>

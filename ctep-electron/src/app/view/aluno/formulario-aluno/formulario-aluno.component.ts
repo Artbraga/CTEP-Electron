@@ -22,6 +22,7 @@ import { Turma } from '../../../../model/turma.model';
 export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> implements OnInit {
 
     masks = MaskPatterns;
+    imagem: any;
 
     cursosOptions: Curso[] = [];
     cursoSelecionado: Curso;
@@ -41,11 +42,33 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
 
     ngOnInit() {
         this.listarCursos();
+
+        this.element.dataMatricula = new Date();
     }
 
     validar(): boolean {
-        return true;
+        let valido = true;
+        if (!this.stringValida(this.element.nome)) {
+            valido = false;
+            this.notificationService.addNotification('Informação faltante!', 'O campo Nome é obrigatório para cadastrar um alino.', NotificationType.Error);
+        }
+        if (!this.stringValida(this.element.cpf)) {
+            valido = false;
+            this.notificationService.addNotification('Informação faltante!', 'O campo Nome é obrigatório para cadastrar um alino.', NotificationType.Error);
+        }
+
+        return valido;
     }
+
+    inserirFoto(imageInput: any) {
+        const file: File = imageInput.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener('load', (event: any) => {
+            this.imagem = event.target.result;
+        });
+        reader.readAsDataURL(file);
+      }
 
     listarCursos() {
         this.cusroService.listarCursos().subscribe(data => {
@@ -79,11 +102,20 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
         });
     }
 
+    gerarMatricula() {
+        const dataMatricula = new Date(this.element.dataMatricula);
+        this.loadingService.addLoading();
+        this.alunoService.gerarNumeroDeMatricula(this.cursoSelecionado.id, dataMatricula.getFullYear()).subscribe(data => {
+            this.matricula = data;
+            this.loadingService.removeLoading();
+        })
+    }
+
     voltar() {
         this.router.navigate([{ outlets: { secondRouter: null } }]);
     }
 
     salvar() {
-
+        console.log(this.element);
     }
 }

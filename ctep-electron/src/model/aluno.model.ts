@@ -3,10 +3,12 @@ import { BaseConverter } from '../app/custom-components/base-converter';
 export class Aluno {
     id: number;
     nome: string;
-    cpf: number;
-    rg: number;
+    cpf: string;
+    rg: string;
+    orgaoEmissor: string;
     nomePai: string;
     nomeMae: string;
+    sexo: string;
 
     endereco: string;
     bairro: string;
@@ -18,7 +20,7 @@ export class Aluno {
     email: string;
 
     cursoAnterior: string;
-    
+
     dataNascimento: Date;
     get dataNascimentoStr(): string {
         return BaseConverter.DateToStringOnlyDate(new Date(this.dataNascimento));
