@@ -75,6 +75,7 @@ export class CustomAutocompleteComponent implements OnInit {
         this._selected = event.option.value;
         this.selectedChange.emit(this._selected);
         if (this._selected !== null) {
+            this.inputSearch = null;
             this.inputSearch = this._selected[this.field];
         }
     }

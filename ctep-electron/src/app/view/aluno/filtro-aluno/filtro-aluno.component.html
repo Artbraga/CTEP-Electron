@@ -1,0 +1,47 @@
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            Filtro
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="form-grid">
+        <mat-form-field class="six">
+            <mat-label>Nome:</mat-label>
+            <input matInput [(ngModel)]="filtro.nome" />
+        </mat-form-field>
+        <mat-form-field class="three">
+            <mat-label>CPF:</mat-label>
+            <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="filtro.cpf">
+        </mat-form-field>
+        <div class="three">
+            <custom-select label='Situação:'
+                           field='name'
+                           [multiple]='true'
+                           [options]="tiposStatusAlunoOptions"
+                           [(selected)]="tiposStatusAlunoSelecionados">
+            </custom-select>
+        </div>
+        <div class="three">
+            <custom-select label='Curso:'
+                           field='nome'
+                           placeholder='Todos'
+                           [options]="cursosOptions"
+                           [(selected)]="cursoSelecionado"
+                           (select)="cursoSelected()">
+            </custom-select>
+        </div>
+        <div class="three">
+            <custom-autocomplete label='Turma:'
+                           field='codigo'
+                           [options]="turmasOptions"
+                           [(selected)]="turmaSelecionada"
+                           (filter)="pesquisarTurmas($event)"
+                           (select)="turmaSelected()">
+            </custom-autocomplete>
+        </div>
+        <div class="three buttons">
+            <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
+            <button mat-raised-button color="primary" (click)="pesquisarAlunos()">Pesquisar</button>
+        </div>
+    </div>
+</mat-expansion-panel>

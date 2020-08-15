@@ -1,20 +1,20 @@
 <div class="custom-autocomplete">
-    <ons-core-form-field appearance="outline">
-        <ons-core-label *ngIf="label != null">{{label}}</ons-core-label>
+    <mat-form-field appearance="outline">
+        <mat-label *ngIf="label != null">{{label}}</mat-label>
         <input matInput id="autocompleteInput" [(ngModel)]="inputSearch" [matAutocomplete]="auto"
             (ngModelChange)="onFilter($event)" [formControl]="myControl" placeholder="{{placeholder}}">
-        <ons-core-autocomplete #auto="matAutocomplete" (optionSelected)="onChange($event)" (opened)="opened()">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChange($event)" (opened)="opened()">
             <ng-container *ngIf="getLoading(); else loading">
-                <ons-core-option *ngFor="let op of options" [value]="op">
+                <mat-option *ngFor="let op of options" [value]="op">
                     {{op[field]}}
-                </ons-core-option>
-                <ons-core-option *ngIf="isEmpty()">
+                </mat-option>
+                <mat-option *ngIf="isEmpty()">
                     Nenhum resultado foi encontrado.
-                </ons-core-option>
+                </mat-option>
             </ng-container>
 
             <ng-template #loading>
-                <ons-core-option disabled>
+                <mat-option disabled>
                     <div style="display:flex">
                         <span>Carregando...</span>
                         <span>
@@ -22,8 +22,8 @@
                             </mat-progress-spinner>
                         </span>
                     </div>
-                </ons-core-option>
+                </mat-option>
             </ng-template>
-        </ons-core-autocomplete>
-    </ons-core-form-field>
+        </mat-autocomplete>
+    </mat-form-field>
 </div>

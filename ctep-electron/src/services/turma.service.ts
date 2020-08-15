@@ -24,6 +24,12 @@ export class TurmaService extends BaseService<Turma> {
         return this.http.get<Turma[]>(url);
     }
 
+    public buscarTurmasPorCodigoECurso(codigo: string, cursoId: number): Observable<Turma[]> {
+        const url = this.baseURL + `/buscarTurmasPorCodigoECurso?codigo=${codigo}${cursoId != null ? `&cursoId=${cursoId}`:''}`;
+
+        return this.http.get<Turma[]>(url);
+    }
+
     public gerarCodigoDaTurma(cursoId: number, anoTurma: number): Observable<string> {
         const url = this.baseURL + `/GerarCodigoDaTurma?cursoId=${cursoId}&anoTurma=${anoTurma}`;
 

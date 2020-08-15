@@ -20,7 +20,6 @@ export class Toaster {
     constructor() {}
 
     closeToast(not: Notification) {
-        console.log(this.notificationMessages);
         this.notificationMessages = this.notificationMessages.filter(
             (x) => x != not
         );

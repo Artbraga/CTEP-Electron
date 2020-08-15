@@ -7,7 +7,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container [hasBackdrop]="false">
-    <mat-sidenav #sidenav 
+    <mat-sidenav #sidenav
                  [fixedInViewport]="false"
                  [mode]="'over'"
                  disableClose>
@@ -16,17 +16,19 @@
                 <img src="/assets/images/logo.png" alt="">
             </a>
             <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('aluno')">
-                <mat-icon aria-hidden="false">person</mat-icon> 
+                <mat-icon aria-hidden="false">person</mat-icon>
                 <span>Aluno</span>
             </a>
             <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('turma')">
-                <mat-icon aria-hidden="false">school</mat-icon> 
+                <mat-icon aria-hidden="false">school</mat-icon>
                 <span>Turma</span>
             </a>
         </section>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
-        <router-outlet name="secondRouter"></router-outlet>
+        <div class="secondRouter">
+            <router-outlet name="secondRouter"></router-outlet>
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

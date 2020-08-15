@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BaseFormularioComponent } from '../../../base/base-formulario.component';
 import { Turma } from '../../../../model/turma.model';
 import { TurmaService } from '../../../../services/turma.service';
-import { LoadingService } from '../../../custom-components/loading/loading.service';
 import { NotificationService } from '../../../custom-components/notification/notification.service';
 import { Router } from '@angular/router';
 import { NotificationType } from '../../../custom-components/notification/toaster/toaster';

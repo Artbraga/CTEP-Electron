@@ -10,6 +10,7 @@ body {
     overflow-x: auto;
     home {
         .formulario,
+        .pesquisa,
         .tabela {
             h1 {
                 font-weight: 800;
@@ -59,6 +60,18 @@ body {
     width: 100%;
 }
 
+.pesquisa {
+    .mat-expansion-panel {
+        .mat-expansion-panel-header {
+            background-color: $gray;
+            &:hover,
+            &:focus {
+                background-color: $gray !important;
+            }
+        }
+        margin-bottom: 10px;
+    }
+}
 .mat-expansion-panel {
     .mat-expansion-panel-header {
         background-color: $black;
@@ -148,6 +161,10 @@ body {
 
 .form-grid .mat-form-field-appearance-outline .mat-form-field-suffix .mat-raised-button {
     top: -8px;
+}
+
+button.mat-raised-button {
+    min-width: 100px;
 }
 
 .mat-dialog-container {

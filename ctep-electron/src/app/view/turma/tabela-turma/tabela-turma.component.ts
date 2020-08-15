@@ -5,7 +5,6 @@ import { TurmaService } from '../../../../services/turma.service';
 import { RoutingService } from '../../../../services/routing.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
-import { LoadingService } from '../../../custom-components/loading/loading.service';
 import { Router } from '@angular/router';
 
 @Component({

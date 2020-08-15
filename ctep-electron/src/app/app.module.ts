@@ -37,6 +37,10 @@ import { HttpErrorHandleInterceptor } from '../services/interceptors/httpErrorHa
 import { CustomSelectModule } from './custom-components/custom-select/custom-select.module';
 import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/modal-confirmacao.module';
 import { HttpLoadingInterceptor } from '../services/interceptors/httpLoadingInterceptor';
+import { TabelaAlunoComponent } from './view/aluno/tabela-aluno/tabela-aluno.component';
+import { PesquisarAlunoComponent } from './view/aluno/pesquisar-aluno/pesquisar-aluno.component';
+import { FiltroAlunoComponent } from './view/aluno/filtro-aluno/filtro-aluno.component';
+import { CustomAutocompleteModule } from './custom-components/custom-autocomplete/custom-autocomplete.module';
 
 @NgModule({
     declarations: [
@@ -49,6 +53,9 @@ import { HttpLoadingInterceptor } from '../services/interceptors/httpLoadingInte
         FormularioTurmaComponent,
         ModalLoginComponent,
         TabelaTurmaComponent,
+        TabelaAlunoComponent,
+        PesquisarAlunoComponent,
+        FiltroAlunoComponent,
     ],
     imports: [
         BrowserModule,
@@ -72,6 +79,7 @@ import { HttpLoadingInterceptor } from '../services/interceptors/httpLoadingInte
         MatExpansionModule,
         CustomDatetimepickerModule,
         CustomSelectModule,
+        CustomAutocompleteModule,
         TextMaskModule,
         HttpClientModule,
         LoadingModule,

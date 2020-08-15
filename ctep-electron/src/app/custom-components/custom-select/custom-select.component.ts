@@ -43,7 +43,7 @@ export class CustomSelectComponent {
     }
 }
 
-export interface SelectItem {
+export interface SelectItem<T> {
     name: string;
-    value: any;
+    value: T;
 }

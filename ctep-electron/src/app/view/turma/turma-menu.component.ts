@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TurmaMenuComponent implements OnInit {
 
+    expanded: boolean = true;
+
     constructor() { }
 
     ngOnInit(): void {
