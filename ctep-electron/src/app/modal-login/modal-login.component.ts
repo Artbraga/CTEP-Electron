@@ -15,9 +15,8 @@ export class ModalLoginComponent extends BaseFormularioComponent<Usuario>  {
 
     usuario: Usuario;
     constructor(private usuarioService: UsuarioService,
-                private notificationService: NotificationService,
                 private dialogRef: MatDialogRef<ModalLoginComponent>) {
-        super(usuarioService, new Usuario());
+        super(new Usuario());
         if (environment.loginAutomatico) {
             this.element.login = 'admin';
             this.element.senha = 'admin';

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Aluno } from '../model/aluno.model';
 import { Observable } from 'rxjs';
 import { FiltroAluno } from 'src/model/filters/aluno.filter';
+import { TurmaAluno } from '../model/turma-aluno.model';
 
 @Injectable({ providedIn: 'root', })
 export class AlunoService extends BaseService<Aluno> {
@@ -22,5 +23,11 @@ export class AlunoService extends BaseService<Aluno> {
         const url = this.baseURL + `/FiltrarAlunos`;
 
         return this.http.post<Aluno[]>(url, filtro);
+    }
+
+    vincularAlunoTurma(turmaAluno: TurmaAluno): Observable<boolean> {
+        const url = this.baseURL + `/VincularAlunoTurma`;
+
+        return this.http.post<boolean>(url, turmaAluno);
     }
 }

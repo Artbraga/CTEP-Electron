@@ -24,7 +24,7 @@ export class Aluno {
     cursoAnterior: string;
 
     registros: Registro[];
-    turmasAluno: TurmaAluno[];
+    turmasAluno: TurmaAluno[] = [];
 
     dataNascimento: Date;
     tipoStatusAluno: string;

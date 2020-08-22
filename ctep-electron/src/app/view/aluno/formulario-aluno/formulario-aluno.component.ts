@@ -8,11 +8,9 @@ import { NotificationType } from 'src/app/custom-components/notification/toaster
 import { Router } from '@angular/router';
 import { BaseFormularioComponent } from '../../../base/base-formulario.component';
 import { AlunoService } from '../../../../services/aluno.service';
-import { Curso } from '../../../../model/curso.model';
-import { CursoService } from '../../../../services/curso.service';
-import { TurmaService } from '../../../../services/turma.service';
-import { Turma } from '../../../../model/turma.model';
-import { TurmaAluno } from 'src/model/turma-aluno.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
+import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
 
 @Component({
     selector: 'app-formulario-aluno',
@@ -24,23 +22,15 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     masks = MaskPatterns;
     imagem: any;
 
-    cursosOptions: Curso[] = [];
-    cursoSelecionado: Curso;
-
-    turmasOptions: Turma[] = [];
-    turmaSelecionada: Turma;
-    matricula: string;
     constructor(private alunoService: AlunoService,
-                private cusroService: CursoService,
-                private turmaService: TurmaService,
                 private cepService: ViacepService,
                 private notificationService: NotificationService,
-                private router: Router) {
-        super(alunoService, new Aluno());
+                private router: Router,
+                public dialog: MatDialog) {
+        super(new Aluno());
     }
 
     ngOnInit() {
-        this.listarCursos();
 
         this.element.dataMatricula = new Date();
     }
@@ -63,18 +53,6 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             valido = false;
             this.notificationService.addNotification('Erro!', 'O campo Endereço é obrigatório para cadastrar um aluno.', NotificationType.Error);
         }
-        if (this.cursoSelecionado == null) {
-            valido = false;
-            this.notificationService.addNotification('Erro!', 'O campo Curso é obrigatório para cadastrar um aluno.', NotificationType.Error);
-        }
-        if (this.turmaSelecionada == null) {
-            valido = false;
-            this.notificationService.addNotification('Erro!', 'O campo Turma é obrigatório para cadastrar um aluno.', NotificationType.Error);
-        }
-        if (!this.stringValida(this.matricula)) {
-            valido = false;
-            this.notificationService.addNotification('Erro!', 'O campo Matrícula é obrigatório para cadastrar um aluno.', NotificationType.Error);
-        }
         return valido;
     }
 
@@ -87,19 +65,6 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
         });
         reader.readAsDataURL(file);
       }
-
-    listarCursos() {
-        this.cusroService.listarCursos().subscribe(data => {
-            this.cursosOptions = data.map(x => Object.assign(new Curso(), x));
-        });
-    }
-
-    buscarTurmas() {
-        this.turmaSelecionada = null;
-        this.turmaService.buscarTurmasDeUmCurso(this.cursoSelecionado.id).subscribe(data => {
-            this.turmasOptions = data.map(x => Object.assign(new Turma(), x));
-        });
-    }
 
     buscarCep() {
         this.cepService.buscarPorCep(this. element.cep).then((x) => {
@@ -118,26 +83,29 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
         });
     }
 
-    gerarMatricula() {
-        const dataMatricula = new Date(this.element.dataMatricula);
-        this.alunoService.gerarNumeroDeMatricula(this.cursoSelecionado.id, dataMatricula.getFullYear()).subscribe(data => {
-            this.matricula = data;
-        })
-    }
-
     voltar() {
         this.router.navigate([{ outlets: { secondRouter: null } }]);
     }
 
     salvar() {
         if (this.validar()) {
-            const turmaAluno = new TurmaAluno();
-            turmaAluno.turma = this.turmaSelecionada;
-            turmaAluno.matricula = this.matricula;
-            this.element.turmasAluno = [turmaAluno];
             this.alunoService.salvar(this.element).subscribe(data => {
+                this.verificarVincularTurma(data);
                 this.notificationService.addNotification('Sucesso!', 'O aluno foi salvo com sucesso.', NotificationType.Success);
             });
         }
+    }
+
+    verificarVincularTurma(aluno: Aluno) {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja vincular o aluno ${aluno.nome} em uma turma?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.dialog.open(TurmaAlunoComponent, {
+                    data: aluno
+                });
+            }
+        });
     }
 }

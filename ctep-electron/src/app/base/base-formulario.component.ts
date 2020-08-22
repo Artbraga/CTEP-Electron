@@ -3,8 +3,7 @@ import { OnInit } from '@angular/core';
 
 export abstract class BaseFormularioComponent<T> {
     isEdicao = false;
-    constructor(public service: BaseService<T>,
-                public element: T) { }
+    constructor(public element: T) { }
 
     abstract validar(): boolean;
 

@@ -6,4 +6,5 @@ export class TurmaAluno {
     public dataConclusao: string;
     public codigoConlusaoSistec: string;
     public turma: Turma;
+    public alunoId: number;
 }

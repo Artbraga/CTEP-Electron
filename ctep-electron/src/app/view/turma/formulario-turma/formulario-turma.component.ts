@@ -28,7 +28,7 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
                 private notificationService: NotificationService,
                 private routingService: RoutingService,
                 private router: Router) {
-        super(turmaService, new Turma());
+        super(new Turma());
     }
 
     ngOnInit(): void {

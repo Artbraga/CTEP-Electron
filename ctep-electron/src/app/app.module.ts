@@ -18,8 +18,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { PainelGeralComponent } from './view/painel-geral/painel-geral.component';
 import { HomeComponent } from './view/home/home.component';
-import { AlunoMenuComponent } from './view/aluno/aluno-menu.component';
-import { FormularioAlunoComponent } from './view/aluno/formulario-aluno/formulario-aluno.component';
 import { ViacepService } from 'src/services/ngx-viacep/viacep.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingModule } from './custom-components/loading/loading.module';
@@ -35,56 +33,38 @@ import { CustomTableModule } from './custom-components/custom-table/custom-table
 import { SharedModule } from './custom-components/shared/shared.module';
 import { HttpErrorHandleInterceptor } from '../services/interceptors/httpErrorHandlerInterceptor';
 import { CustomSelectModule } from './custom-components/custom-select/custom-select.module';
-import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/modal-confirmacao.module';
 import { HttpLoadingInterceptor } from '../services/interceptors/httpLoadingInterceptor';
-import { TabelaAlunoComponent } from './view/aluno/tabela-aluno/tabela-aluno.component';
-import { PesquisarAlunoComponent } from './view/aluno/pesquisar-aluno/pesquisar-aluno.component';
 import { FiltroAlunoComponent } from './view/aluno/filtro-aluno/filtro-aluno.component';
 import { CustomAutocompleteModule } from './custom-components/custom-autocomplete/custom-autocomplete.module';
+import { AlunoModule } from './view/aluno/aluno.module';
+import { TurmaModule } from './view/turma/turma.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         PainelGeralComponent,
-        AlunoMenuComponent,
-        FormularioAlunoComponent,
-        TurmaMenuComponent,
-        FormularioTurmaComponent,
-        ModalLoginComponent,
-        TabelaTurmaComponent,
-        TabelaAlunoComponent,
-        PesquisarAlunoComponent,
-        FiltroAlunoComponent,
+        ModalLoginComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        AppRoutingModule,
         FormsModule,
-        CustomTableModule,
-        SharedModule,
+        AppRoutingModule,
         MatToolbarModule,
         MatSidenavModule,
-        MatTabsModule,
         MatTooltipModule,
-        MatRadioModule,
-        MatSelectModule,
         MatFormFieldModule,
         MatCardModule,
         MatButtonModule,
         MatInputModule,
         MatIconModule,
         MatDialogModule,
-        MatExpansionModule,
-        CustomDatetimepickerModule,
-        CustomSelectModule,
-        CustomAutocompleteModule,
-        TextMaskModule,
         HttpClientModule,
         LoadingModule,
         NotificationModule,
-        ModalConfirmacaoModule
+        AlunoModule,
+        TurmaModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandleInterceptor, multi: true },
