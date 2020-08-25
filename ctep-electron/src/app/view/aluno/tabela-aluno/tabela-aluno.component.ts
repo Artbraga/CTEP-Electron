@@ -1,10 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { Aluno } from 'src/model/aluno.model';
 import { BaseTable, Coluna } from 'src/app/custom-components/base-table';
 import { MatDialog } from '@angular/material/dialog';
 import { TurmaService } from 'src/services/turma.service';
 import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
+import { ModalConfirmacaoComponent } from 'src/app/custom-components/modal-confirmacao/modal-confirmacao.component';
+import { AlunoService } from 'src/services/aluno.service';
 
 @Component({
     selector: "tabela-aluno",
@@ -13,7 +15,10 @@ import { Router } from '@angular/router';
 })
 export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
 
+    @Output() pesquisar = new EventEmitter<any>();
+
     constructor(public dialog: MatDialog,
+                public alunoService: AlunoService,
                 private routingService: RoutingService,
                 private router: Router) {
         super();
@@ -37,6 +42,17 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
     }
 
     excluirAluno(element: Aluno) {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja realmente excluir o aluno "${element.nome}"?` }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.alunoService.deletar(element.id).subscribe(() => {
+                    this.pesquisar.emit();
+                });
+            }
+        });
 
     }
 }

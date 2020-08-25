@@ -25,6 +25,7 @@ import { FiltroAlunoComponent } from './filtro-aluno/filtro-aluno.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from '../../app-routing.module';
+import { FichaAlunoComponent } from './ficha-aluno/ficha-aluno.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +35,7 @@ import { AppRoutingModule } from '../../app-routing.module';
         PesquisarAlunoComponent,
         TurmaAlunoComponent,
         FiltroAlunoComponent,
+        FichaAlunoComponent
     ],
     imports: [
         AppRoutingModule,

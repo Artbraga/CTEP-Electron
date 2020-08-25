@@ -15,8 +15,11 @@ export class PesquisarAlunoComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    pesquisar(filtro: FiltroAluno) {
-        this.alunoService.pesquisarAlunos(filtro).subscribe(data => {
+    pesquisar(filtro: FiltroAluno = null) {
+        if (filtro != null) {
+            this.filtro = filtro;
+        }
+        this.alunoService.pesquisarAlunos(this.filtro).subscribe(data => {
             this.list = data.map(x => Object.assign(new Aluno(), x));
         })
     }

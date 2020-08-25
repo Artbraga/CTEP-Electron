@@ -45,6 +45,10 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             valido = false;
             this.notificationService.addNotification('Erro!', 'O campo CPF é obrigatório para cadastrar um aluno.', NotificationType.Error);
         }
+        if (!this.testaCPF()) {
+            valido = false;
+            this.notificationService.addNotification('Erro!', 'O CPF digitado não é válido.', NotificationType.Error);
+        }
         if (!this.stringValida(this.element.cep)) {
             valido = false;
             this.notificationService.addNotification('Erro!', 'O campo CEP é obrigatório para cadastrar um aluno.', NotificationType.Error);
@@ -55,6 +59,50 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
         }
         return valido;
     }
+
+    testaCPF() {
+        var Soma = 0;
+        if (this.element.cpf === undefined) {
+            return false;
+        }
+
+        var strCPF = this.element.cpf.replace('.', '').replace('.', '').replace('-', '');
+        if (strCPF === '00000000000' || strCPF === '11111111111' || strCPF === '22222222222' || strCPF === '33333333333' ||
+        strCPF === '44444444444' || strCPF === '55555555555' || strCPF === '66666666666' || strCPF === '77777777777' || strCPF === '88888888888' ||
+        strCPF === '99999999999' || strCPF.length !== 11) {
+            return false;
+        }
+
+        for (let i = 1; i <= 9; i++) {
+            Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+        }
+
+        var Resto = (Soma * 10) % 11;
+        if ((Resto === 10) || (Resto === 11)) {
+            Resto = 0;
+        }
+
+        if (Resto !== parseInt(strCPF.substring(9, 10))) {
+            return false;
+        }
+
+        Soma = 0;
+        for (let k = 1; k <= 10; k++) {
+            Soma = Soma + parseInt(strCPF.substring(k - 1, k)) * (12 - k)
+        }
+
+        Resto = (Soma * 10) % 11;
+        if ((Resto === 10) || (Resto === 11)) {
+            Resto = 0;
+        }
+
+        if (Resto !== parseInt(strCPF.substring(10, 11))) {
+          return false;
+        }
+
+        return true;
+      }
+
 
     inserirFoto(imageInput: any) {
         const file: File = imageInput.files[0];

@@ -21,7 +21,9 @@ body {
             }
             .mat-card {
                 margin-bottom: 20px;
-                box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+                box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+                    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+                    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
             }
             .header {
                 display: flex;
@@ -31,24 +33,30 @@ body {
                 }
             }
         }
-        .mat-raised-button{
-            min-width: 100px;
-            margin-left: 10px;
-            &.mat-primary {
-                background-color: $primary;
-            }
-            &.mat-accent {
-                background-color: $light-gray;
-            }
-        }
-        .mat-card-subtitle, .mat-card-content {
+        .mat-card-subtitle,
+        .mat-card-content {
             font-size: 16px;
             font-weight: bold;
+        }
+        .mat-raised-button {
+            min-width: 100px;
+            margin-left: 10px;
         }
     }
     a:-webkit-any-link {
         text-decoration: unset;
         color: unset;
+    }
+}
+
+.mat-raised-button {
+    min-width: 100px;
+    margin-left: 10px;
+    &.mat-primary {
+        background-color: $primary;
+    }
+    &.mat-accent {
+        background-color: $light-gray;
     }
 }
 
@@ -159,7 +167,10 @@ body {
     }
 }
 
-.form-grid .mat-form-field-appearance-outline .mat-form-field-suffix .mat-raised-button {
+.form-grid
+    .mat-form-field-appearance-outline
+    .mat-form-field-suffix
+    .mat-raised-button {
     top: -8px;
 }
 
@@ -208,6 +219,7 @@ button.mat-raised-button {
         .form-grid {
             padding: 0px;
             border-radius: 0px;
+            margin-top: 5px;
             box-shadow: none;
             label {
                 font-size: 13px;
@@ -215,9 +227,21 @@ button.mat-raised-button {
         }
     }
     .modal-footer {
-        height: 45px;
         display: flex;
+        justify-content: flex-end;
         align-items: center;
+        width: 100%;
+        height: 45px;
+        margin-top: 10px;
+        button {
+            margin-left: 10px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }
 
@@ -234,13 +258,14 @@ button.mat-raised-button {
             font-size: 15px;
         }
         th:first-child {
-            padding-left: 10px!important;
+            padding-left: 10px !important;
         }
         tr.mat-header-row {
             height: 45px;
         }
     }
-    th, td {
+    th,
+    td {
         height: 15px;
         padding: 1px 5px !important;
         font-size: 13px;
@@ -298,13 +323,16 @@ button.mat-raised-button {
         height: 4px;
     }
     background-color: white;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
-.mat-form-field-appearance-outline .mat-form-field-outline  {
-    background-color: white;
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white !important;
 }
 
-.mat-progress-spinner circle, .mat-spinner circle {
+.mat-progress-spinner circle,
+.mat-spinner circle {
     stroke: $off-white;
 }
