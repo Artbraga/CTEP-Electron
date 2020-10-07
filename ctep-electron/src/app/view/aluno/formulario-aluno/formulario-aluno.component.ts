@@ -11,6 +11,7 @@ import { AlunoService } from '../../../../services/aluno.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
+import { utf8Encode } from '@angular/compiler/src/util';
 
 @Component({
     selector: 'app-formulario-aluno',
@@ -21,6 +22,8 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
 
     masks = MaskPatterns;
     imagem: any;
+    imagemPerfil: File;
+    imagemMudou: boolean = false;
 
     constructor(private alunoService: AlunoService,
                 private cepService: ViacepService,
@@ -105,13 +108,14 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
 
 
     inserirFoto(imageInput: any) {
-        const file: File = imageInput.files[0];
+        this.imagemPerfil = imageInput.files[0];
+        this.imagemMudou = true;
         const reader = new FileReader();
 
         reader.addEventListener('load', (event: any) => {
             this.imagem = event.target.result;
         });
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(this.imagemPerfil);
       }
 
     buscarCep() {
@@ -140,6 +144,16 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             this.alunoService.salvar(this.element).subscribe(data => {
                 this.verificarVincularTurma(data);
                 this.notificationService.addNotification('Sucesso!', 'O aluno foi salvo com sucesso.', NotificationType.Success);
+                if (this.imagemMudou){
+                    this.alunoService.salvarImagem(data.id, this.imagemPerfil).subscribe(x => {
+                        if (x) {
+                            this.notificationService.addNotification('Sucesso!', 'Foto de perfil salva com sucesso.', NotificationType.Success);
+                        }
+                        else {
+                            this.notificationService.addNotification('Erro!', 'Erro ao salvar foto de perfil.', NotificationType.Error);
+                        }
+                    });
+                }
             });
         }
     }

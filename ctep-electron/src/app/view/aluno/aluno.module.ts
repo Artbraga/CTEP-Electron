@@ -23,9 +23,12 @@ import { PesquisarAlunoComponent } from './pesquisar-aluno/pesquisar-aluno.compo
 import { TextMaskModule } from 'angular2-text-mask';
 import { FiltroAlunoComponent } from './filtro-aluno/filtro-aluno.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AppRoutingModule } from '../../app-routing.module';
 import { FichaAlunoComponent } from './ficha-aluno/ficha-aluno.component';
+import { SharedModule } from 'src/app/custom-components/shared/shared.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [
@@ -50,6 +53,8 @@ import { FichaAlunoComponent } from './ficha-aluno/ficha-aluno.component';
         MatRadioModule,
         MatSelectModule,
         MatFormFieldModule,
+        MatTooltipModule,
+        MatMenuModule,
         MatCardModule,
         MatButtonModule,
         MatTabsModule,
@@ -57,7 +62,8 @@ import { FichaAlunoComponent } from './ficha-aluno/ficha-aluno.component';
         MatInputModule,
         MatIconModule,
         CustomAutocompleteModule,
-        ModalConfirmacaoModule
+        ModalConfirmacaoModule,
+        SharedModule
     ]
 })
 export class AlunoModule { }

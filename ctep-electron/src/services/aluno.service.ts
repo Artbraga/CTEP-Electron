@@ -30,4 +30,15 @@ export class AlunoService extends BaseService<Aluno> {
 
         return this.http.post<boolean>(url, turmaAluno);
     }
+
+    salvarImagem(id: number, imagemPerfil: File): Observable<boolean> {
+        const url: string = this.baseURL + '/SalvarImagemAluno';
+
+        const formData = new FormData();
+        formData.append(imagemPerfil.name, imagemPerfil);
+        formData.append("idAluno", id.toString());
+
+        return this.http.post<boolean>(url, formData);
+    }
+
 }

@@ -34,7 +34,9 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
     }
 
     visualizarAluno(element: Aluno) {
-
+        this.routingService.salvarValor('idAluno', element.id);
+        this.routingService.salvarValor('rotaVoltar', 'pesquisarAluno');
+        this.router.navigate([{ outlets: { secondRouter: 'fichaAluno' } }]);
     }
 
     editarAluno(element: Aluno) {

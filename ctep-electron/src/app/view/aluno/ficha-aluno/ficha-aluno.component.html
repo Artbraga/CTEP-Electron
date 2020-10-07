@@ -1,0 +1,82 @@
+<div class="formulario">
+    <div class="header">
+        <div class="six">
+            <h1>Ficha do Aluno</h1>
+        </div>
+        <div class="six buttons">
+            <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
+            <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+                Ações <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>Editar</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>link</mat-icon>
+                    <span>Vincular em Turma</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>print</mat-icon>
+                    <span>Imprimir</span>
+                </button>
+            </mat-menu>
+
+        </div>
+    </div>
+    <mat-tab-group>
+        <mat-tab label="Informações Básicas">
+            <div class="form-grid">
+                <span class="two image">
+                    <ng-container *ngIf="imagem==null; else elseFoto">
+                        <img src="/assets/images/empty-avatar.png" alt="">
+                    </ng-container>
+                    <ng-template #elseFoto>
+                        <img src="{{imagem}}" alt=""><br>
+                    </ng-template>
+                </span>
+                <div class="ten">
+                    <div class="six">
+                        <div class="field">
+                            <span>Nome</span>
+                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                        </div>
+                    </div>
+                    <div class="six">
+                        <div class="field">
+                            <span>Nome</span>
+                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                        </div>
+                    </div>
+                    <div class="six">
+                        <div class="field">
+                            <span>Nome</span>
+                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                        </div>
+                    </div>
+                    <div class="six">
+                        <div class="field">
+                            <span>Nome</span>
+                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                        </div>
+                    </div>
+                    <div class="six">
+                        <div class="field">
+                            <span>Nome</span>
+                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                        </div>
+                    </div>
+                    <div class="six">
+                        <!-- <div class="field">
+                            <span>Nome</span>
+                            <span class="campo">{{ tratarString(element.lalala) }}</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Registro"> Content 2 </mat-tab>
+        <mat-tab label="Turmas e Notas"></mat-tab>
+    </mat-tab-group>
+</div>

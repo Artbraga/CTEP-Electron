@@ -1,0 +1,29 @@
+.form-grid {
+    margin: 10px;
+    span {
+        font-weight: bolder;
+        font-size: 14px;
+        color: #4d575b;
+        &.campo {
+            font-weight: bold;
+            font-size: 16px;
+            color: black;
+        }
+    }
+    .field {
+        display: grid;
+        border: 2px solid #0f084b;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin: 5px;
+    }
+}
+.image {
+    img {
+        max-height: 150px;
+    }
+}
+.ten {
+    display: flex;
+    flex-wrap: wrap;
+}
