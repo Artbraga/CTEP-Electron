@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angu
 import { FormControl } from '@angular/forms';
 import { startWith, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
     // tslint:disable-next-line: component-selector
@@ -12,33 +12,34 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
 })
 export class CustomAutocompleteComponent implements OnInit {
 
-    MIN_STRING_LENGTH = 3;
-    isSearching = false;
+    MIN_STRING_LENGTH: number = 3;
+    isSearching: boolean = false;
 
-    myControl = new FormControl();
+    classeInvalido
 
     @Input() options: any[];
     @Input() field: string;
     private _selected: any;
-    @Input() multiple = false;
+    @Input() multiple: boolean = false;
     @Input() label: string;
     @Input() style: any;
+    @Input() placeholder: string;
+    @Input() obrigatorio: boolean;
 
     @Output() selectedChange = new EventEmitter();
     @Output() select: EventEmitter<any> = new EventEmitter<any>();
     @Output() open: EventEmitter<any> = new EventEmitter<any>();
     @Output() filter: EventEmitter<string> = new EventEmitter<string>();
 
-    @Input()
-    set disabled(value) {
-        value ? this.myControl.disable() : this.myControl.enable();
-    }
+    @Input() disabled;
 
     @Input()
     set selected(value) {
         this._selected = value;
         if (value == null) {
             this.inputSearch = "";
+        } else {
+            this.inputSearch = this._selected[this.field];
         }
     }
     get selected() {
@@ -46,17 +47,12 @@ export class CustomAutocompleteComponent implements OnInit {
     }
 
     input = document.getElementById("autocompleteInput");
-    inputSearch = "";
+    inputSearch: string = "";
     private searchSub$ = new Subject<string>();
 
     @Input() compareWith: (o1, o2) => boolean = (o1, o2) => o1 === o2;
 
     ngOnInit(): void {
-        this.myControl.valueChanges.pipe(
-            startWith(''),
-            map((value: string) => this.filter.emit(value))
-        );
-
         this.searchSub$.pipe(
             debounceTime(500),
             distinctUntilChanged()
@@ -85,6 +81,9 @@ export class CustomAutocompleteComponent implements OnInit {
     }
 
     displayFn(selected?: any): string | undefined {
+        if (typeof selected === 'string') {
+            return selected;
+        }
         return selected ? selected[this.field] : undefined;
     }
 

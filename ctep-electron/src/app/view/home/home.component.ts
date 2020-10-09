@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Router } from '@angular/router';
+import { Usuario } from '../../../model/usuario.model';
 
 @Component({
     selector: 'home',
@@ -11,6 +12,10 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
     @ViewChild('sidenav', {static: false}) sidenav: MatDrawer;
+
+    get usuarioLogado(): Usuario {
+        return this.usuarioService.buscarUsuarioLogado();
+    }
     constructor(private usuarioService: UsuarioService, private router: Router) { }
 
     ngOnInit(): void {

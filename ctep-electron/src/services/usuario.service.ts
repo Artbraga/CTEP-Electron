@@ -20,6 +20,10 @@ export class UsuarioService extends BaseService<Usuario> {
         this.usuario.next(null);
     }
 
+    public buscarUsuarioLogado(): Usuario {
+        return this.usuario.value;
+    }
+
 
     public logar(usuario: Usuario): Observable<Usuario> {
         const url = this.baseURL + '/BuscarUsuarioPorLoginESenha';

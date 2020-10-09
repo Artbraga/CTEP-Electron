@@ -30,7 +30,7 @@
             <mat-form-field class="four" >
                 <mat-label>Código:</mat-label>
                 <input matInput [(ngModel)]="element.codigo" [disabled]='isEdicao'>
-                <button mat-raised-button color="accent" matSuffix (click)="gerarCodigoDaTurma()" [disabled]='isEdicao'>Gerar Código</button>
+                <button mat-raised-button color="accent" matSuffix (click)="gerarCodigoDaTurma()" *ngIf='!isEdicao'>Gerar Código</button>
             </mat-form-field>
             <mat-form-field class="four">
                 <mat-label>Dias da Semana:</mat-label>

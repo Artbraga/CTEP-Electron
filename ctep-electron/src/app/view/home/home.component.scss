@@ -35,6 +35,7 @@
     color: $white;
     width: auto;
     text-decoration: none;
+    cursor: pointer;
     &:hover{
         background-color: $gray-blue;
     }
@@ -44,7 +45,6 @@
         font-size: 35px;
         top: -10px;
         position: relative;
-        cursor: pointer;
     }
 }
 
@@ -87,4 +87,8 @@
 
 .secondRouter {
     padding-top: 10px;
+}
+
+.logado {
+    padding-left: 30px;
 }

@@ -1,28 +1,27 @@
 <div class="custom-autocomplete">
-    <label *ngIf="label != null">{{label}}</label>
-    <mat-form-field appearance="outline">
-        <input matInput id="autocompleteInput" [(ngModel)]="inputSearch" [matAutocomplete]="auto" (ngModelChange)="onFilter($event)" [formControl]="myControl">
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChange($event)" 
-        (opened)="opened()">
+    <ons-core-form-field appearance="outline">
+        <ons-core-label *ngIf="label != null">{{label}}</ons-core-label>
+        <input matInput id="autocompleteInput" [(ngModel)]="inputSearch" [disabled]="disabled" [matAutocomplete]="auto" (ngModelChange)="onFilter($event)" placeholder="{{placeholder}}">
+        <ons-core-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)" (optionSelected)="onChange($event)" (opened)="opened()">
             <ng-container *ngIf="getLoading(); else loading">
-                <mat-option *ngFor="let op of options" [value]="op" >
+                <ons-core-option *ngFor="let op of options" [value]="op">
                     {{op[field]}}
-                </mat-option>
-                <mat-option *ngIf="isEmpty()">
+                </ons-core-option>
+                <ons-core-option *ngIf="isEmpty()" [value]="{}">
                     Nenhum resultado foi encontrado.
-                </mat-option>
+                </ons-core-option>
             </ng-container>
 
             <ng-template #loading>
-                <mat-option disabled>
+                <ons-core-option disabled>
                     <div style="display:flex">
                         <span>Carregando...</span>
                         <span>
-                            <mat-progress-spinner color="primary" mode="indeterminate" diameter="15"></mat-progress-spinner>
-                        </span>
+              <mat-progress-spinner color="primary" mode="indeterminate" diameter="15"></mat-progress-spinner>
+            </span>
                     </div>
-                </mat-option>
+                </ons-core-option>
             </ng-template>
-        </mat-autocomplete>
-    </mat-form-field>
+        </ons-core-autocomplete>
+    </ons-core-form-field>
 </div>
