@@ -26,6 +26,7 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
 
     ngOnInit() {
         this.columns.push({ key: 'nome', header: 'Nome', field: 'nome' } as Coluna);
+        this.columns.push({ key: 'cpf', header: 'CPF', field: 'cpf' } as Coluna);
         this.columns.push({ key: 'telefone', header: 'Telefone', field: 'telefone' } as Coluna);
         this.columns.push({ key: 'celular', header: 'Celular', field: 'celular' } as Coluna);
         this.columns.push({ key: 'turmas', header: 'Turmas', field: 'turmas' } as Coluna);
@@ -40,7 +41,9 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
     }
 
     editarAluno(element: Aluno) {
-
+        this.routingService.salvarValor('idAluno', element.id);
+        this.routingService.salvarValor('rotaVoltar', 'pesquisarAluno');
+        this.router.navigate([{ outlets: { secondRouter: 'formularioAluno' } }]);
     }
 
     excluirAluno(element: Aluno) {

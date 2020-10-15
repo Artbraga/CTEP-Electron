@@ -28,7 +28,17 @@ export class FichaAlunoComponent implements OnInit {
             this.rotaVoltar = this.routingService.excluirValor("rotaVoltar");
             this.alunoService.getById(id).subscribe((data) => {
                 this.element = Object.assign(new Aluno(), data);
-                console.log(this.element);
+            });
+            this.alunoService.buscarImagem(id).subscribe(data => {
+                if(data != null && data.size > 0) {
+                    var blob = new Blob([data], { type: 'image/png' });
+                    const reader = new FileReader();
+
+                    reader.addEventListener('load', (event: any) => {
+                        this.imagem = event.target.result;
+                    });
+                    reader.readAsDataURL(blob);
+                }
             });
         }
     }

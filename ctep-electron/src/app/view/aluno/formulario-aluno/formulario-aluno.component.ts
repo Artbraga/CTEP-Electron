@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
 import { utf8Encode } from '@angular/compiler/src/util';
+import { RoutingService } from 'src/services/routing.service';
 
 @Component({
     selector: 'app-formulario-aluno',
@@ -24,18 +25,38 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     imagem: any;
     imagemPerfil: File;
     imagemMudou: boolean = false;
+    rotaVoltar: string = null;
 
     constructor(private alunoService: AlunoService,
                 private cepService: ViacepService,
                 private notificationService: NotificationService,
+                private routingService: RoutingService,
                 private router: Router,
                 public dialog: MatDialog) {
         super(new Aluno());
     }
 
     ngOnInit() {
+        this.limparCampos();
+        if (this.routingService.possuiValor('idAluno')) {
+            this.isEdicao = true;
+            const id = this.routingService.excluirValor('idAluno') as number;
+            this.rotaVoltar = this.routingService.excluirValor('rotaVoltar');
+            this.alunoService.getById(id).subscribe(data => {
+                this.element = Object.assign(new Aluno(), data);
+            });
+            this.alunoService.buscarImagem(id).subscribe(data => {
+                if(data != null && data.size > 0) {
+                    var blob = new Blob([data], { type: 'image/png' });
+                    const reader = new FileReader();
 
-        this.element.dataMatricula = new Date();
+                    reader.addEventListener('load', (event: any) => {
+                        this.imagem = event.target.result;
+                    });
+                    reader.readAsDataURL(blob);
+                }
+            });
+        }
     }
 
     validar(): boolean {
@@ -136,7 +157,7 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     }
 
     voltar() {
-        this.router.navigate([{ outlets: { secondRouter: null } }]);
+        this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
     }
 
     salvar() {
@@ -158,6 +179,15 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
         }
     }
 
+    limparCampos() {
+        this.isEdicao = false;
+        this.imagem = null;
+        this.imagemMudou = false;
+        this.imagemPerfil = null;
+        this.element = new Aluno();
+        this.element.dataMatricula = new Date();
+    }
+
     verificarVincularTurma(aluno: Aluno) {
         const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
             data: { mensagem: `Deseja vincular o aluno ${aluno.nome} em uma turma?` }
@@ -168,6 +198,7 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
                     data: aluno
                 });
             }
+            this.limparCampos();
         });
     }
 }

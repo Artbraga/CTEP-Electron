@@ -41,4 +41,10 @@ export class AlunoService extends BaseService<Aluno> {
         return this.http.post<boolean>(url, formData);
     }
 
+    buscarImagem(id: number): Observable<Blob> {
+        const url = this.baseURL + `/BuscarImagemAluno?id=${id}`;
+
+        return this.http.get(url, { responseType: 'blob' });
+    }
+
 }

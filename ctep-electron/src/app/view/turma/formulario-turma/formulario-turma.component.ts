@@ -96,6 +96,9 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
             this.element.curso = this.cursoSelecionado;
             this.turmaService.salvar(this.element).subscribe(data => {
                 if (data != null) {
+                    if (this.element.id != null) {
+                        this.voltar();
+                    }
                     this.element = new Turma();
                     this.cursoSelecionado = null;
                     this.notificationService.addNotification('Sucesso!', 'A turma foi salva com sucesso.', NotificationType.Success);
