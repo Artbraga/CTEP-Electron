@@ -20,12 +20,16 @@ import { CustomSelectModule } from '../../custom-components/custom-select/custom
 import { CustomAutocompleteModule } from '../../custom-components/custom-autocomplete/custom-autocomplete.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { AppRoutingModule } from '../../app-routing.module';
+import { PesquisarTurmaComponent } from './pesquisar-turma/pesquisar-turma.component';
+import { FiltroTurmaComponent } from './filtro-turma/filtro-turma.component';
 
 @NgModule({
     declarations: [
         TurmaMenuComponent,
         FormularioTurmaComponent,
         TabelaTurmaComponent,
+        PesquisarTurmaComponent,
+        FiltroTurmaComponent,
     ],
     imports: [
         AppRoutingModule,
