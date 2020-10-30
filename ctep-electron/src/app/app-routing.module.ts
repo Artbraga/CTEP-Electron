@@ -5,9 +5,9 @@ import { AlunoMenuComponent } from './view/aluno/aluno-menu.component';
 import { FormularioAlunoComponent } from './view/aluno/formulario-aluno/formulario-aluno.component';
 import { TurmaMenuComponent } from './view/turma/turma-menu.component';
 import { FormularioTurmaComponent } from './view/turma/formulario-turma/formulario-turma.component';
-import { TabelaTurmaComponent } from './view/turma/tabela-turma/tabela-turma.component';
 import { PesquisarAlunoComponent } from './view/aluno/pesquisar-aluno/pesquisar-aluno.component';
 import { FichaAlunoComponent } from './view/aluno/ficha-aluno/ficha-aluno.component';
+import { PesquisarTurmaComponent } from './view/turma/pesquisar-turma/pesquisar-turma.component';
 
 const routes: Routes = [
     { path: '', component: PainelGeralComponent },
@@ -17,7 +17,7 @@ const routes: Routes = [
     { path: 'fichaAluno', component: FichaAlunoComponent, outlet: 'secondRouter' },
     { path: 'turma', component: TurmaMenuComponent },
     { path: 'formularioTurma', component: FormularioTurmaComponent, outlet: 'secondRouter' },
-    { path: 'tabelaTurma', component: TabelaTurmaComponent, outlet: 'secondRouter' }
+    { path: 'pesquisarTurma', component: PesquisarTurmaComponent, outlet: 'secondRouter' }
 ];
 
 @NgModule({

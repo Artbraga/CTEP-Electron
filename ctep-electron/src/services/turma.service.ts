@@ -4,9 +4,11 @@ import { Turma } from '../model/turma.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Curso } from '../model/curso.model';
+import { FiltroTurma } from 'src/model/filters/turma.filter';
 
 @Injectable({ providedIn: 'root', })
 export class TurmaService extends BaseService<Turma> {
+
 
     constructor(http: HttpClient) {
         super(http, 'Turma');
@@ -22,6 +24,12 @@ export class TurmaService extends BaseService<Turma> {
         const url = this.baseURL + `/ListarTurmasAtivas`;
 
         return this.http.get<Turma[]>(url);
+    }
+
+    public pesquisarTurmas(filtro: FiltroTurma) {
+        const url = this.baseURL + `/FiltrarTurmas`;
+
+        return this.http.post<Turma[]>(url, filtro);
     }
 
     public buscarTurmasPorCodigoECurso(codigo: string, cursoId: number): Observable<Turma[]> {

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FiltroTurma } from 'src/model/filters/turma.filter';
+import { Turma } from 'src/model/turma.model';
+import { TurmaService } from 'src/services/turma.service';
 
 @Component({
   selector: 'app-pesquisar-turma',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PesquisarTurmaComponent implements OnInit {
 
-  constructor() { }
+    filtro: FiltroTurma;
+    list: Turma[];
+    constructor(private turmaService: TurmaService) {}
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {}
 
+    pesquisar(filtro: FiltroTurma = null) {
+        if (filtro != null) {
+            this.filtro = filtro;
+        }
+        this.turmaService.pesquisarTurmas(this.filtro).subscribe(data => {
+            this.list = data.map(x => Object.assign(new Turma(), x));
+        })
+    }
 }

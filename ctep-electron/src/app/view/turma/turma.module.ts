@@ -22,6 +22,8 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { AppRoutingModule } from '../../app-routing.module';
 import { PesquisarTurmaComponent } from './pesquisar-turma/pesquisar-turma.component';
 import { FiltroTurmaComponent } from './filtro-turma/filtro-turma.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [
@@ -43,8 +45,10 @@ import { FiltroTurmaComponent } from './filtro-turma/filtro-turma.component';
         MatButtonModule,
         MatInputModule,
         MatIconModule,
+        MatCheckboxModule,
         MatDialogModule,
         MatExpansionModule,
+        MatDatepickerModule,
         CustomTableModule,
         CustomDatetimepickerModule,
         CustomSelectModule,

@@ -1,1 +1,50 @@
-<p>filtro-turma works!</p>
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+        <mat-panel-title> Filtro </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="form-grid">
+        <div class="three">
+            <custom-select
+                label="Curso:"
+                field="nome"
+                placeholder="Todos"
+                [options]="cursosOptions"
+                [(selected)]="cursoSelecionado">
+            </custom-select>
+        </div>
+
+        <mat-form-field class="two">
+            <mat-label>Código:</mat-label>
+            <input matInput [(ngModel)]="filtro.codigo" />
+        </mat-form-field>
+
+        <mat-form-field class="two">
+            <mat-label> Ano de Início</mat-label>
+            <input matInput [matDatepicker]="dp"  [(ngModel)]="filtro.anoInicio" />
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp
+                startView="multi-year"
+                (yearSelected)="chosenYearHandler($event, dp)">
+            </mat-datepicker>
+        </mat-form-field>
+
+        <div class="two checkbox">
+            <mat-checkbox class="example-margin"
+                        [(ngModel)]="filtro.concluidas"
+                        color="primary">
+                Concluídas
+            </mat-checkbox>
+        </div>
+        <div class="three buttons">
+            <button mat-raised-button color="accent" (click)="limpar()">
+                Limpar
+            </button>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="pesquisarTurmas()">
+                Pesquisar
+            </button>
+        </div>
+    </div>
+</mat-expansion-panel>

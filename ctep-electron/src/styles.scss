@@ -154,7 +154,7 @@ body {
         width: 8.33333%;
         min-width: 120px;
     }
-    .mat-form-field-label {
+    .mat-form-field-label, .mat-checkbox-label {
         font-size: 15px;
         color: $primary;
         font-weight: 700;
