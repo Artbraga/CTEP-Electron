@@ -9,6 +9,10 @@ import { Curso } from '../../../../model/curso.model';
 import { CursoService } from '../../../../services/curso.service';
 import { MaskPatterns } from '../../../../model/enums/mask.enum';
 import { RoutingService } from '../../../../services/routing.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RegistroTurmaComponent } from '../registro-turma/registro-turma.component';
+import { Coluna } from 'src/app/custom-components/base-table';
+import { RegistroTurma } from 'src/model/registro-turma.model';
 
 @Component({
     selector: 'app-formulario-turma',
@@ -23,11 +27,14 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
     cursosOptions: Curso[];
     rotaVoltar: string = null;
 
+    columnsRegistro: Coluna[] = [];
+
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
                 private notificationService: NotificationService,
                 private routingService: RoutingService,
-                private router: Router) {
+                private router: Router,
+                public dialog: MatDialog) {
         super(new Turma());
     }
 
@@ -41,6 +48,10 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
                 this.element.ajustarDatas();
                 this.listarCursos();
             });
+
+            this.columnsRegistro.push({ key: 'data', header: 'Data', field: 'dataStr' } as Coluna);
+            this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro' } as Coluna);
+            this.columnsRegistro.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
         } else {
             this.listarCursos();
         }
@@ -105,6 +116,20 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
                 }
             });
         }
-        console.log(this.element);
+    }
+
+    adicionarRegistro() {
+        const dialogRef = this.dialog.open(RegistroTurmaComponent, {
+            data: this.element
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result != null) {
+                this.turmaService.adicionarRegistro(result)
+            }
+        });
+    }
+
+    excluirRegistro(reg: RegistroTurma) {
+
     }
 }

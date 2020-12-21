@@ -59,6 +59,16 @@ body {
         background-color: $light-gray;
     }
 }
+.mat-button {
+    min-width: 100px;
+    margin-left: 10px;
+    &.mat-primary {
+        color: $primary;
+    }
+    &.mat-accent {
+        color: $light-gray;
+    }
+}
 
 .mat-card {
     background-color: $white;

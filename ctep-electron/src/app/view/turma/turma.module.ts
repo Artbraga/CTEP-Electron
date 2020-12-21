@@ -24,6 +24,7 @@ import { PesquisarTurmaComponent } from './pesquisar-turma/pesquisar-turma.compo
 import { FiltroTurmaComponent } from './filtro-turma/filtro-turma.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { RegistroTurmaComponent } from './registro-turma/registro-turma.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         TabelaTurmaComponent,
         PesquisarTurmaComponent,
         FiltroTurmaComponent,
+        RegistroTurmaComponent,
     ],
     imports: [
         AppRoutingModule,

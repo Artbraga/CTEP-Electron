@@ -8,18 +8,13 @@
         <custom-table [columns]="columns" [listOfElements]="list">
             <ng-template let-element customTemplate="acoesTemplate">
                 <div style="text-align: end;">
-                    <button mat-icon-button color="primary" 
-                            matTooltip="Mais Informações"
-                            (click)="visualizarTurma(element)">
-                        <i class="material-icons">visibility</i>
-                    </button>
-                    <button mat-icon-button color="primary" 
-                            matTooltip="Editar Turma" 
+                    <button mat-icon-button color="primary"
+                            matTooltip="Gerenciar Turma"
                             (click)="editarTurma(element)">
                         <i class="material-icons">edit</i>
                     </button>
-                    <button mat-icon-button color="primary" 
-                            matTooltip="Excluir Turma" 
+                    <button mat-icon-button color="primary"
+                            matTooltip="Excluir Turma"
                             (click)="excluirTurma(element)">
                         <i class="material-icons">delete</i>
                     </button>

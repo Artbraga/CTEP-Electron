@@ -1,5 +1,6 @@
 import { BaseConverter } from '../app/custom-components/base-converter';
 import { Curso } from './curso.model';
+import { RegistroTurma } from './registro-turma.model';
 
 export class Turma {
     id: number;
@@ -10,8 +11,9 @@ export class Turma {
     dataInicio: Date;
     dataFim: Date;
     curso: Curso;
-
     anoInicio: number;
+
+    registros: RegistroTurma[];
 
     get dataInicioStr(): string {
         return BaseConverter.DateToStringOnlyDate(this.dataInicio);
@@ -34,7 +36,8 @@ export class Turma {
         this.dataInicio = null;
         this.dataFim = null;
         this.curso = null;
-
         this.anoInicio = null;
+
+        this.registros = [];
     }
 }

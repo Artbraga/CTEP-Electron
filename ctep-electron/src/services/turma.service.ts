@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Curso } from '../model/curso.model';
 import { FiltroTurma } from 'src/model/filters/turma.filter';
+import { RegistroTurma } from 'src/model/registro-turma.model';
 
 @Injectable({ providedIn: 'root', })
 export class TurmaService extends BaseService<Turma> {
@@ -42,5 +43,18 @@ export class TurmaService extends BaseService<Turma> {
         const url = this.baseURL + `/GerarCodigoDaTurma?cursoId=${cursoId}&anoTurma=${anoTurma}`;
 
         return this.http.get(url, { responseType: 'text' });
+    }
+
+    // registro
+    public adicionarRegistro(registro: RegistroTurma): Observable<boolean> {
+        const url = this.baseURL + `/AdicionarRegistro`;
+
+        return this.http.post<boolean>(url, registro);
+    }
+
+    public excluirRegistro(id: number): Observable<boolean> {
+        const url = 'ExcluirRegistro?id=' + id;
+
+        return this.http.delete<boolean>(url);
     }
 }

@@ -47,11 +47,7 @@ export class TabelaTurmaComponent extends BaseTable<Turma> implements OnInit {
 
     editarTurma(element: Turma) {
         this.routingService.salvarValor('idTurma', element.id);
-        this.routingService.salvarValor('rotaVoltar', 'tabelaTurma');
+        this.routingService.salvarValor('rotaVoltar', 'pesquisarTurma');
         this.router.navigate([{ outlets: { secondRouter: 'formularioTurma' } }]);
-    }
-
-    visualizarTurma(element: Turma) {
-
     }
 }

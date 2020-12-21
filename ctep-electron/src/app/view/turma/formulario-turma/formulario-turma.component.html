@@ -1,7 +1,7 @@
 <div class="formulario">
     <div class="header">
         <div class="six">
-            <h1>{{element.id != null ? 'Edição' : 'Cadastro' }} de Turma</h1>
+            <h1>{{isEdicao ? 'Gerenciar' : 'Cadastro de' }} Turma</h1>
         </div>
         <div class="six buttons">
             <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
@@ -9,7 +9,6 @@
         </div>
     </div>
     <mat-card>
-        <mat-card-subtitle>Endereço e Contato</mat-card-subtitle>
         <div class="form-grid">
             <div class="four" >
                 <custom-select label='Curso:'
@@ -45,5 +44,28 @@
                 <input matInput [textMask]="{mask: masks.Hora}" [(ngModel)]="element.horaFim">
             </mat-form-field>
         </div>
+    </mat-card>
+    <mat-card *ngIf="isEdicao">
+        <div class="form-grid">
+            <div class="six">
+                <mat-card-subtitle>Registro da Turma</mat-card-subtitle>
+            </div>
+            <div class="buttons">
+                <button mat-button color="accent" (click)="adicionarRegistro()">
+                    <mat-icon>add</mat-icon>Adicionar
+                </button>
+            </div>
+        </div>
+        <custom-table [columns]="columnsRegistro" [listOfElements]="element.registros">
+            <ng-template let-element customTemplate="acoesTemplate">
+                <div style="text-align: end;">
+                    <button mat-icon-button color="primary"
+                            matTooltip="Excluir Registro"
+                            (click)="excluirRegistro(element)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </ng-template>
+        </custom-table>
     </mat-card>
 </div>
