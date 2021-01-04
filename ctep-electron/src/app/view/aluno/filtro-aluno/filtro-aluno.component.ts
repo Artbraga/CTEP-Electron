@@ -58,7 +58,7 @@ export class FiltroAlunoComponent implements OnInit {
     }
 
     pesquisarTurmas(value: string) {
-        let cursoId = this.cursoSelecionado != null ? this.cursoSelecionado.id : null;
+        const cursoId = this.cursoSelecionado != null ? this.cursoSelecionado.id : null;
         this.turmaService.buscarTurmasPorCodigoECurso(value, cursoId).subscribe((data) => {
             this.turmasOptions = data.map((x) => Object.assign(new Turma(), x));
         });

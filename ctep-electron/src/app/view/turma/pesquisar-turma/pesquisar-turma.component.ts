@@ -22,6 +22,6 @@ export class PesquisarTurmaComponent implements OnInit {
         }
         this.turmaService.pesquisarTurmas(this.filtro).subscribe(data => {
             this.list = data.map(x => Object.assign(new Turma(), x));
-        })
+        });
     }
 }

@@ -3,7 +3,6 @@ import { BaseService } from './base.service';
 import { Turma } from '../model/turma.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Curso } from '../model/curso.model';
 import { FiltroTurma } from 'src/model/filters/turma.filter';
 import { RegistroTurma } from 'src/model/registro-turma.model';
 
@@ -16,7 +15,7 @@ export class TurmaService extends BaseService<Turma> {
     }
 
     public buscarTurmasDeUmCurso(cursoId: number) {
-        const url = this.baseURL + `/ListarTurmasDeUmCurso?cursoId=${cursoId}`;
+        const url = this.baseURL + `/ListarTurmasDeUmCurso/${cursoId}`;
 
         return this.http.get<Turma[]>(url);
     }
@@ -34,13 +33,13 @@ export class TurmaService extends BaseService<Turma> {
     }
 
     public buscarTurmasPorCodigoECurso(codigo: string, cursoId: number): Observable<Turma[]> {
-        const url = this.baseURL + `/buscarTurmasPorCodigoECurso?codigo=${codigo}${cursoId != null ? `&cursoId=${cursoId}`:''}`;
+        const url = this.baseURL + `/buscarTurmasPorCodigoECurso/${codigo}${cursoId != null ? `/${cursoId}` : ''}`;
 
         return this.http.get<Turma[]>(url);
     }
 
     public gerarCodigoDaTurma(cursoId: number, anoTurma: number): Observable<string> {
-        const url = this.baseURL + `/GerarCodigoDaTurma?cursoId=${cursoId}&anoTurma=${anoTurma}`;
+        const url = this.baseURL + `/GerarCodigoDaTurma/${cursoId}/${anoTurma}`;
 
         return this.http.get(url, { responseType: 'text' });
     }
@@ -53,7 +52,7 @@ export class TurmaService extends BaseService<Turma> {
     }
 
     public excluirRegistro(id: number): Observable<boolean> {
-        const url = 'ExcluirRegistro?id=' + id;
+        const url = 'ExcluirRegistro/' + id;
 
         return this.http.delete<boolean>(url);
     }

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://localhost:5000/api/',
+  // apiUrl: 'http://cteptst.brazilsouth.cloudapp.azure.com/ctep-api/api/',
   loginAutomatico: true
 };
 

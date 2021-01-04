@@ -7,9 +7,9 @@ export class BaseService<T> {
 
     private readonly serverURL: string = environment.apiUrl;
     protected readonly baseURL: string = this.serverURL + this.controller;
-    protected readonly getByIdUrl: string = this.baseURL + '/GetById?id=';
+    protected readonly getByIdUrl: string = this.baseURL + '/GetById/';
     protected readonly saveUrl: string = this.baseURL + '/Salvar';
-    protected readonly deleteUrl: string = this.baseURL + '/Deletar';
+    protected readonly deleteUrl: string = this.baseURL + '/Deletar/';
 
     constructor(protected http: HttpClient, protected readonly controller: string) { }
 
@@ -30,7 +30,7 @@ export class BaseService<T> {
     }
 
     public deletar(id: number): Observable<any> {
-        const url = this.deleteUrl + '?id=' + id;
+        const url = this.deleteUrl + id;
         return this.http.delete(url);
     }
 }

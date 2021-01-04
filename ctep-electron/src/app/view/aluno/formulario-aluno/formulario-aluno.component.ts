@@ -24,7 +24,7 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     masks = MaskPatterns;
     imagem: any;
     imagemPerfil: File;
-    imagemMudou: boolean = false;
+    imagemMudou = false;
     rotaVoltar: string = null;
 
     constructor(private alunoService: AlunoService,
@@ -44,10 +44,11 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             this.rotaVoltar = this.routingService.excluirValor('rotaVoltar');
             this.alunoService.getById(id).subscribe(data => {
                 this.element = Object.assign(new Aluno(), data);
+                this.element.corrigirDatas();
             });
             this.alunoService.buscarImagem(id).subscribe(data => {
-                if(data != null && data.size > 0) {
-                    var blob = new Blob([data], { type: 'image/png' });
+                if (data != null && data.size > 0) {
+                    const blob = new Blob([data], { type: 'image/png' });
                     const reader = new FileReader();
 
                     reader.addEventListener('load', (event: any) => {
@@ -85,12 +86,12 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     }
 
     testaCPF() {
-        var Soma = 0;
+        let Soma = 0;
         if (this.element.cpf === undefined) {
             return false;
         }
 
-        var strCPF = this.element.cpf.replace('.', '').replace('.', '').replace('-', '');
+        const strCPF = this.element.cpf.replace('.', '').replace('.', '').replace('-', '');
         if (strCPF === '00000000000' || strCPF === '11111111111' || strCPF === '22222222222' || strCPF === '33333333333' ||
         strCPF === '44444444444' || strCPF === '55555555555' || strCPF === '66666666666' || strCPF === '77777777777' || strCPF === '88888888888' ||
         strCPF === '99999999999' || strCPF.length !== 11) {
@@ -101,7 +102,7 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
         }
 
-        var Resto = (Soma * 10) % 11;
+        let Resto = (Soma * 10) % 11;
         if ((Resto === 10) || (Resto === 11)) {
             Resto = 0;
         }
@@ -112,7 +113,7 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
 
         Soma = 0;
         for (let k = 1; k <= 10; k++) {
-            Soma = Soma + parseInt(strCPF.substring(k - 1, k)) * (12 - k)
+            Soma = Soma + parseInt(strCPF.substring(k - 1, k)) * (12 - k);
         }
 
         Resto = (Soma * 10) % 11;
@@ -165,12 +166,11 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             this.alunoService.salvar(this.element).subscribe(data => {
                 this.verificarVincularTurma(data);
                 this.notificationService.addNotification('Sucesso!', 'O aluno foi salvo com sucesso.', NotificationType.Success);
-                if (this.imagemMudou){
+                if (this.imagemMudou) {
                     this.alunoService.salvarImagem(data.id, this.imagemPerfil).subscribe(x => {
                         if (x) {
                             this.notificationService.addNotification('Sucesso!', 'Foto de perfil salva com sucesso.', NotificationType.Success);
-                        }
-                        else {
+                        } else {
                             this.notificationService.addNotification('Erro!', 'Erro ao salvar foto de perfil.', NotificationType.Error);
                         }
                     });

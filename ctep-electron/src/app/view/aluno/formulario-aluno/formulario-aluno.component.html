@@ -69,23 +69,6 @@
     <mat-card>
         <mat-card-subtitle>Endereço e Contato</mat-card-subtitle>
         <div class="form-grid">
-            <mat-form-field class="three" >
-                <mat-label>CEP:</mat-label>
-                <input matInput [textMask]="{mask: masks.CEP}" [(ngModel)]="element.cep">
-                <button mat-raised-button color="accent" matSuffix (click)="buscarCep()">Buscar CEP</button>
-            </mat-form-field>
-            <mat-form-field class="six">
-                <mat-label>Endereço:</mat-label>
-                <input matInput [(ngModel)]="element.endereco">
-            </mat-form-field>
-            <mat-form-field class="three">
-                <mat-label>Bairro:</mat-label>
-                <input matInput [(ngModel)]="element.bairro">
-            </mat-form-field>
-            <mat-form-field class="three">
-                <mat-label>Cidade:</mat-label>
-                <input matInput [(ngModel)]="element.cidade">
-            </mat-form-field>
             <mat-form-field class="three">
                 <mat-label>Telefone:</mat-label>
                 <input matInput [textMask]="{mask: masks.Telefone}" [(ngModel)]="element.telefone">
@@ -98,6 +81,28 @@
                 <mat-label>E-mail:</mat-label>
                 <input matInput [(ngModel)]="element.email">
             </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>CEP:</mat-label>
+                <input matInput [textMask]="{mask: masks.CEP}" [(ngModel)]="element.cep">
+                <button mat-raised-button color="accent" matSuffix (click)="buscarCep()">Buscar CEP</button>
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>Endereço:</mat-label>
+                <input matInput [(ngModel)]="element.endereco">
+            </mat-form-field>
+            <mat-form-field class="two">
+                <mat-label>Complemento:</mat-label>
+                <input matInput [(ngModel)]="element.complemento">
+            </mat-form-field>
+            <mat-form-field class="two">
+                <mat-label>Bairro:</mat-label>
+                <input matInput [(ngModel)]="element.bairro">
+            </mat-form-field>
+            <mat-form-field class="two">
+                <mat-label>Cidade:</mat-label>
+                <input matInput [(ngModel)]="element.cidade">
+            </mat-form-field>
+
         </div>
     </mat-card>
     <mat-card>

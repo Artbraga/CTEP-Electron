@@ -14,7 +14,7 @@ export class AlunoService extends BaseService<Aluno> {
     }
 
     gerarNumeroDeMatricula(cursoId: number, anoMatricula: number): Observable<string> {
-        const url = this.baseURL + `/GerarNumeroDeMatricula?cursoId=${cursoId}&anoMatricula=${anoMatricula}`;
+        const url = this.baseURL + `/GerarNumeroDeMatricula/${cursoId}/${anoMatricula}`;
 
         return this.http.get(url, { responseType: 'text' });
     }
@@ -36,13 +36,13 @@ export class AlunoService extends BaseService<Aluno> {
 
         const formData = new FormData();
         formData.append(imagemPerfil.name, imagemPerfil);
-        formData.append("idAluno", id.toString());
+        formData.append('idAluno', id.toString());
 
         return this.http.post<boolean>(url, formData);
     }
 
     buscarImagem(id: number): Observable<Blob> {
-        const url = this.baseURL + `/BuscarImagemAluno?id=${id}`;
+        const url = this.baseURL + `/BuscarImagemAluno/${id}`;
 
         return this.http.get(url, { responseType: 'blob' });
     }

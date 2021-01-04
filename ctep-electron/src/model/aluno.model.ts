@@ -14,6 +14,7 @@ export class Aluno {
 
     endereco: string;
     bairro: string;
+    complemento: string;
     cidade: string;
     cep: string;
 
@@ -30,20 +31,26 @@ export class Aluno {
     tipoStatusAluno: string;
 
     get dataNascimentoStr(): string {
-        return BaseConverter.DateToStringOnlyDate(new Date(this.dataNascimento));
+        return BaseConverter.DateToStringOnlyDate(this.dataNascimento);
     }
 
     dataMatricula: Date;
     get dataMatriculaStr(): string {
-        return BaseConverter.DateToStringOnlyDate(new Date(this.dataMatricula));
+        return BaseConverter.DateToStringOnlyDate(this.dataMatricula);
     }
 
     dataValidade: Date;
     get dataValidadeStr(): string {
-        return BaseConverter.DateToStringOnlyDate(new Date(this.dataValidade));
+        return BaseConverter.DateToStringOnlyDate(this.dataValidade);
     }
 
     get turmas(): string {
         return this.turmasAluno.map(x => x.turma.codigo).join(', ');
+    }
+
+    corrigirDatas() {
+        this.dataMatricula = BaseConverter.StringToDate(this.dataMatricula.toString());
+        this.dataNascimento = BaseConverter.StringToDate(this.dataNascimento.toString());
+        this.dataValidade = BaseConverter.StringToDate(this.dataValidade.toString());
     }
 }
