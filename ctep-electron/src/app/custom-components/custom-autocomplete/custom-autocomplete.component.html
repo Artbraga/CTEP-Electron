@@ -1,5 +1,5 @@
 <div class="custom-autocomplete">
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" [ngClass]="classeInvalido">
         <mat-label *ngIf="label != null">{{label}}</mat-label>
         <input matInput id="autocompleteInput" [(ngModel)]="inputSearch" [matAutocomplete]="auto"
             (ngModelChange)="onFilter($event)" [formControl]="myControl" placeholder="{{placeholder}}">

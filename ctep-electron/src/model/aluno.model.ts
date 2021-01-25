@@ -49,8 +49,14 @@ export class Aluno {
     }
 
     corrigirDatas() {
-        this.dataMatricula = BaseConverter.StringToDate(this.dataMatricula.toString());
-        this.dataNascimento = BaseConverter.StringToDate(this.dataNascimento.toString());
-        this.dataValidade = BaseConverter.StringToDate(this.dataValidade.toString());
+        if (this.dataMatricula != null) {
+            this.dataMatricula = BaseConverter.StringToDate(this.dataMatricula.toString());
+        }
+        if (this.dataNascimento != null) {
+            this.dataNascimento = BaseConverter.StringToDate(this.dataNascimento.toString());
+        }
+        if (this.dataValidade != null) {
+            this.dataValidade = BaseConverter.StringToDate(this.dataValidade.toString());
+        }
     }
 }

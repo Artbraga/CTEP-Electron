@@ -13,6 +13,9 @@ export class BaseConverter {
     }
 
     public static DateToStringOnlyDate(data: Date): string {
+        if (data == null) {
+            return null;
+        }
         return `${this.prependZero(data.getDate())}/${this.prependZero(
             data.getMonth() + 1
         )}/${data.getFullYear()}`;

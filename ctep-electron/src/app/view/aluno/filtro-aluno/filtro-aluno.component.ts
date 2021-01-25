@@ -1,24 +1,24 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { FiltroAluno } from "src/model/filters/aluno.filter";
-import { CursoService } from "src/services/curso.service";
-import { TurmaService } from "src/services/turma.service";
-import { Curso } from "src/model/curso.model";
+import { Component, Output, EventEmitter, Input, AfterViewInit } from '@angular/core';
+import { FiltroAluno } from 'src/model/filters/aluno.filter';
+import { CursoService } from 'src/services/curso.service';
+import { TurmaService } from 'src/services/turma.service';
+import { Curso } from 'src/model/curso.model';
 import { MaskPatterns } from 'src/model/enums/mask.enum';
 import { SelectItem } from 'src/app/custom-components/custom-select/custom-select.component';
 import { Turma } from 'src/model/turma.model';
 import { TipoStatusAlunoEnum } from 'src/model/enums/tipo-status-aluno.enum';
 
 @Component({
-    selector: "filtro-aluno",
-    templateUrl: "./filtro-aluno.component.html",
-    styleUrls: ["./filtro-aluno.component.scss"],
+    selector: 'filtro-aluno',
+    templateUrl: './filtro-aluno.component.html',
+    styleUrls: ['./filtro-aluno.component.scss'],
 })
-export class FiltroAlunoComponent implements OnInit {
+export class FiltroAlunoComponent implements AfterViewInit {
     masks = MaskPatterns;
 
     @Output() pesquisar = new EventEmitter<FiltroAluno>();
 
-    filtro: FiltroAluno;
+    @Input() filtro: FiltroAluno;
 
     cursosOptions: Curso[];
     cursoSelecionado: Curso;
@@ -34,15 +34,21 @@ export class FiltroAlunoComponent implements OnInit {
         private turmaService: TurmaService
     ) {}
 
-    ngOnInit(): void {
-        this.limpar();
+    ngAfterViewInit(): void {
+        this.tiposStatusAlunoSelecionados = [TipoStatusAlunoEnum.Ativo];
         this.listarCursos();
+        if (this.filtro.codigoTurma != null) {
+            this.pesquisarTurmas(this.filtro.codigoTurma);
+        }
         this.tiposStatusAlunoOptions = TipoStatusAlunoEnum.List();
     }
 
     listarCursos() {
         this.cursoService.listarCursos().subscribe((data) => {
             this.cursosOptions = data.map((x) => Object.assign(new Curso(), x));
+            if (this.filtro.cursoId != null) {
+                this.cursoSelecionado = this.cursosOptions.find(x => x.id = this.filtro.cursoId);
+            }
         });
     }
 
@@ -61,11 +67,15 @@ export class FiltroAlunoComponent implements OnInit {
         const cursoId = this.cursoSelecionado != null ? this.cursoSelecionado.id : null;
         this.turmaService.buscarTurmasPorCodigoECurso(value, cursoId).subscribe((data) => {
             this.turmasOptions = data.map((x) => Object.assign(new Turma(), x));
+            if (this.turmasOptions.length == 1) {
+                this.turmaSelecionada = this.turmasOptions[0];
+                this.turmaSelected();
+            }
         });
     }
 
     cursoSelected() {
-        if (this.turmaSelecionada != null && this.turmaSelecionada.curso.id != this.cursoSelecionado.id){
+        if (this.turmaSelecionada != null && this.turmaSelecionada.curso.id != this.cursoSelecionado.id) {
             this.turmaSelecionada = null;
         }
     }

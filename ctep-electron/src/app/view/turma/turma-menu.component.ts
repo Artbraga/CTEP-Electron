@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RoutingService } from '../../../services/routing.service';
 
 @Component({
     selector: 'app-turma-menu',
@@ -7,11 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TurmaMenuComponent implements OnInit {
 
-    expanded: boolean = true;
+    expanded = true;
 
-    constructor() { }
+    constructor(private routingService: RoutingService) { }
 
     ngOnInit(): void {
     }
 
+    mudarRota() {
+        this.expanded = false;
+        this.routingService.limparParametros();
+    }
 }

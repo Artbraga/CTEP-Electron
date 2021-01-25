@@ -6,6 +6,7 @@ import { RoutingService } from '../../../../services/routing.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { Router } from '@angular/router';
+import { IdTurmaParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 
 @Component({
     selector: 'tabela-turma',
@@ -46,8 +47,8 @@ export class TabelaTurmaComponent extends BaseTable<Turma> implements OnInit {
     }
 
     editarTurma(element: Turma) {
-        this.routingService.salvarValor('idTurma', element.id);
-        this.routingService.salvarValor('rotaVoltar', 'pesquisarTurma');
+        this.routingService.salvarValor(IdTurmaParameter, element.id);
+        this.routingService.salvarValor(RotaVoltarParameter, 'pesquisarTurma');
         this.router.navigate([{ outlets: { secondRouter: 'formularioTurma' } }]);
     }
 }

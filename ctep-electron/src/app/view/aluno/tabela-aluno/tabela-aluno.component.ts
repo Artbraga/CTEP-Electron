@@ -1,17 +1,17 @@
-import { Component, OnInit, EventEmitter, Output } from "@angular/core";
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Aluno } from 'src/model/aluno.model';
 import { BaseTable, Coluna } from 'src/app/custom-components/base-table';
 import { MatDialog } from '@angular/material/dialog';
-import { TurmaService } from 'src/services/turma.service';
 import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
 import { ModalConfirmacaoComponent } from 'src/app/custom-components/modal-confirmacao/modal-confirmacao.component';
 import { AlunoService } from 'src/services/aluno.service';
+import { IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 
 @Component({
-    selector: "tabela-aluno",
-    templateUrl: "./tabela-aluno.component.html",
-    styleUrls: ["./tabela-aluno.component.scss"],
+    selector: 'tabela-aluno',
+    templateUrl: './tabela-aluno.component.html',
+    styleUrls: ['./tabela-aluno.component.scss'],
 })
 export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
 
@@ -35,14 +35,14 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
     }
 
     visualizarAluno(element: Aluno) {
-        this.routingService.salvarValor('idAluno', element.id);
-        this.routingService.salvarValor('rotaVoltar', 'pesquisarAluno');
+        this.routingService.salvarValor(IdAlunoParameter, element.id);
+        this.routingService.salvarValor(RotaVoltarParameter, 'pesquisarAluno');
         this.router.navigate([{ outlets: { secondRouter: 'fichaAluno' } }]);
     }
 
     editarAluno(element: Aluno) {
-        this.routingService.salvarValor('idAluno', element.id);
-        this.routingService.salvarValor('rotaVoltar', 'pesquisarAluno');
+        this.routingService.salvarValor(IdAlunoParameter, element.id);
+        this.routingService.salvarValor(RotaVoltarParameter, 'pesquisarAluno');
         this.router.navigate([{ outlets: { secondRouter: 'formularioAluno' } }]);
     }
 

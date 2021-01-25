@@ -164,6 +164,14 @@ body {
         width: 8.33333%;
         min-width: 120px;
     }
+    .imagem-perfil {
+        width: 200px;
+    }
+    .perfil {
+        width: calc(100% - 200px);
+        display: flex;
+        flex-wrap: wrap;
+    }
     .mat-form-field-label, .mat-checkbox-label {
         font-size: 15px;
         color: $primary;

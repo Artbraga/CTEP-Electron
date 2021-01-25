@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { startWith, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
     selector: 'custom-autocomplete',
@@ -10,19 +11,22 @@ import { Observable, Subject } from 'rxjs';
 })
 export class CustomAutocompleteComponent implements OnInit {
 
-    MIN_STRING_LENGTH: number = 3;
-    isSearching: boolean = false;
+    MIN_STRING_LENGTH = 3;
+    isSearching = false;
 
     myControl = new FormControl();
+
+    classeInvalido;
 
     @Input() options: any[];
     @Input() field: string;
     private _selected: any;
-    @Input() multiple: boolean = false;
+    @Input() multiple = false;
     @Input() label: string;
     @Input() style: any;
-    @Input() placeholder:string;
+    @Input() placeholder: string;
 
+    @Input() obrigatorio: boolean;
     @Output() selectedChange = new EventEmitter();
     @Output() select: EventEmitter<any> = new EventEmitter<any>();
     @Output() open: EventEmitter<any> = new EventEmitter<any>();
@@ -36,16 +40,18 @@ export class CustomAutocompleteComponent implements OnInit {
     @Input()
     set selected(value) {
         this._selected = value;
-        if (value == null) {
-            this.inputSearch = "";
+        if (value != null) {
+            this.inputSearch = this._selected[this.field];
+        } else if (value == null) {
+            this.inputSearch = '';
         }
     }
     get selected() {
         return this._selected;
     }
 
-    input = document.getElementById("autocompleteInput");
-    inputSearch: string = "";
+    input = document.getElementById('autocompleteInput');
+    inputSearch = '';
     private searchSub$ = new Subject<string>();
 
     @Input() compareWith: (o1, o2) => boolean = (o1, o2) => o1 === o2;
@@ -67,16 +73,35 @@ export class CustomAutocompleteComponent implements OnInit {
                 this.isSearching = false;
                 this.options = null;
             }
-            this._selected = null;
+            if (this._selected != null && this.inputSearch !== this._selected[this.field]) {
+                this._selected = null;
+            }
+            if (this.inputSearch.trim() == '' || this.inputSearch.trim() == null) {
+                this._selected = null;
+                this.selectedChange.emit(this._selected);
+            }
         });
     }
 
-    onChange(event) {
+    onChange(event: MatAutocompleteSelectedEvent) {
         this._selected = event.option.value;
         this.selectedChange.emit(this._selected);
         if (this._selected !== null) {
-            this.inputSearch = null;
             this.inputSearch = this._selected[this.field];
+            this.campoInvalido();
+        }
+    }
+
+
+    campoInvalido() {
+        if (this.obrigatorio) {
+            if (!this._selected) {
+                this.classeInvalido = { 'mat-form-field-invalid': true, 'mat-form-field-outline-end': true };
+                return true;
+            } else {
+                this.classeInvalido = { 'mat-form-field-invalid': false, 'mat-form-field-outline-end': false };
+                return false;
+            }
         }
     }
 

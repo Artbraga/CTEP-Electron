@@ -13,7 +13,7 @@
                     <mat-icon>edit</mat-icon>
                     <span>Editar</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="vincularTurma()">
                     <mat-icon>link</mat-icon>
                     <span>Vincular em Turma</span>
                 </button>
@@ -28,7 +28,7 @@
     <mat-tab-group>
         <mat-tab label="Informações Básicas">
             <div class="form-grid">
-                <span class="two image">
+                <span class="imagem-perfil image">
                     <ng-container *ngIf="imagem==null; else elseFoto">
                         <img src="/assets/images/empty-avatar.png" alt="">
                     </ng-container>
@@ -36,42 +36,55 @@
                         <img src="{{imagem}}" alt=""><br>
                     </ng-template>
                 </span>
-                <div class="ten">
+                <div class="perfil">
                     <div class="six">
                         <div class="field">
                             <span>Nome</span>
                             <span class="campo">{{ tratarString(element.nome) }}</span>
                         </div>
                     </div>
-                    <div class="six">
+                    <div class="three">
                         <div class="field">
-                            <span>Nome</span>
-                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                            <span>Data de Nascimento</span>
+                            <span class="campo">{{ tratarString(element.dataMatriculaStr) }}</span>
+                        </div>
+                    </div>
+                    <div class="three">
+                        <div class="field">
+                            <span>CPF</span>
+                            <span class="campo">{{ tratarString(element.cpf) }}</span>
+                        </div>
+                    </div>
+                    <div class="three">
+                        <div class="field">
+                            <span>RG</span>
+                            <span class="campo">{{ tratarString(element.rg) }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="three">
+                        <div class="field">
+                            <span>Órgão Emissor</span>
+                            <span class="campo">{{ tratarString(element.orgaoEmissor) }}</span>
+                        </div>
+                    </div>
+                    <div class="three">
+                        <div class="field">
+                            <span>Sexo</span>
+                            <span class="campo">{{ getCampo('sexo', element) }}</span>
                         </div>
                     </div>
                     <div class="six">
                         <div class="field">
-                            <span>Nome</span>
-                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                            <span>Nome do Pai</span>
+                            <span class="campo">{{ tratarString(element.nomePai) }}</span>
                         </div>
                     </div>
                     <div class="six">
                         <div class="field">
-                            <span>Nome</span>
-                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                            <span>Nome da Mãe</span>
+                            <span class="campo">{{ tratarString(element.nomeMae) }}</span>
                         </div>
-                    </div>
-                    <div class="six">
-                        <div class="field">
-                            <span>Nome</span>
-                            <span class="campo">{{ tratarString(element.nome) }}</span>
-                        </div>
-                    </div>
-                    <div class="six">
-                        <!-- <div class="field">
-                            <span>Nome</span>
-                            <span class="campo">{{ tratarString(element.lalala) }}</span>
-                        </div> -->
                     </div>
                 </div>
             </div>

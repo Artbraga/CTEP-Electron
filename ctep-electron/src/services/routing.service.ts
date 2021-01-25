@@ -21,4 +21,8 @@ export class RoutingService {
         this.values[key] = null;
         return valor;
     }
+
+    limparParametros() {
+        this.values = {};
+    }
 }

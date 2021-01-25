@@ -11,8 +11,8 @@ import { AlunoService } from '../../../../services/aluno.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
-import { utf8Encode } from '@angular/compiler/src/util';
 import { RoutingService } from 'src/services/routing.service';
+import { IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 
 @Component({
     selector: 'app-formulario-aluno',
@@ -38,10 +38,10 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
 
     ngOnInit() {
         this.limparCampos();
-        if (this.routingService.possuiValor('idAluno')) {
+        if (this.routingService.possuiValor(IdAlunoParameter)) {
             this.isEdicao = true;
-            const id = this.routingService.excluirValor('idAluno') as number;
-            this.rotaVoltar = this.routingService.excluirValor('rotaVoltar');
+            const id = this.routingService.excluirValor(IdAlunoParameter) as number;
+            this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
             this.alunoService.getById(id).subscribe(data => {
                 this.element = Object.assign(new Aluno(), data);
                 this.element.corrigirDatas();
@@ -189,16 +189,16 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     }
 
     verificarVincularTurma(aluno: Aluno) {
-        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
-            data: { mensagem: `Deseja vincular o aluno ${aluno.nome} em uma turma?` }
-        });
-        dialogRef.afterClosed().subscribe(result => {
-            if (result) {
-                this.dialog.open(TurmaAlunoComponent, {
-                    data: aluno
-                });
-            }
-            this.limparCampos();
-        });
+        if (!this.isEdicao) {
+            const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+                data: { mensagem: `Deseja vincular o aluno ${aluno.nome} em uma turma?` }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+                if (result) {
+                    this.dialog.open(TurmaAlunoComponent, { data: aluno });
+                }
+                this.limparCampos();
+            });
+        }
     }
 }

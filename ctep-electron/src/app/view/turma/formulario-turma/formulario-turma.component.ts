@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RegistroTurmaComponent } from '../registro-turma/registro-turma.component';
 import { Coluna } from 'src/app/custom-components/base-table';
 import { RegistroTurma } from 'src/model/registro-turma.model';
+import { IdTurmaParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 
 @Component({
     selector: 'app-formulario-turma',
@@ -39,10 +40,10 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
     }
 
     ngOnInit(): void {
-        if (this.routingService.possuiValor('idTurma')) {
+        if (this.routingService.possuiValor(IdTurmaParameter)) {
             this.isEdicao = true;
-            const id = this.routingService.excluirValor('idTurma') as number;
-            this.rotaVoltar = this.routingService.excluirValor('rotaVoltar');
+            const id = this.routingService.excluirValor(IdTurmaParameter) as number;
+            this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
             this.turmaService.getById(id).subscribe(data => {
                 this.element = Object.assign(new Turma(), data);
                 this.element.ajustarDatas();
@@ -124,7 +125,7 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result != null) {
-                this.turmaService.adicionarRegistro(result)
+                this.turmaService.adicionarRegistro(result);
             }
         });
     }

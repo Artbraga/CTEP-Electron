@@ -6,10 +6,10 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
         <div class="form-grid menu-secao">
-            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['formularioTurma'] } }]" (click)="expanded=false">
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['formularioTurma'] } }]" (click)="mudarRota()">
                 <mat-icon>person_add</mat-icon><span>Adicionar Turma</span>
             </a>
-            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['pesquisarTurma'] } }]" (click)="expanded=false">
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['pesquisarTurma'] } }]" (click)="mudarRota()">
                 <mat-icon>list</mat-icon><span>Pesquisar Turmas</span>
             </a>
         </div>
