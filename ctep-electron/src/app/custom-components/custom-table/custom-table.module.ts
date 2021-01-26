@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
     declarations: [CustomTableComponent],
@@ -20,6 +21,7 @@ import { MatSortModule } from '@angular/material/sort';
         SharedModule,
         MatProgressSpinnerModule,
         MatCardModule,
+        MatTooltipModule,
         MatSortModule,
         FormsModule
     ],

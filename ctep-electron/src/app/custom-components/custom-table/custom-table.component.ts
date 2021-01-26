@@ -117,6 +117,24 @@ export class CustomTableComponent implements AfterViewInit {
         }
     }
 
+    stringTooltip(element: any, col: Coluna, isTooltip: boolean) {
+        const str = this.resolveField(element, col.field);
+        if (isTooltip) {
+            return str
+        }
+        return str.substr(0, col.tooltipMinSize) + '...';
+    }
+
+    mostrarTooltip(element: any, col: Coluna) {
+        if (col.addTooltip) {
+            const str: string = this.resolveField(element, col.field);
+            if (str.length > col.tooltipMinSize) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public elementClicked(element, event) {
         if (event.target.localName !== 'button' &&
             event.target.offsetParent.localName !== 'button') {

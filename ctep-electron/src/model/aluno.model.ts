@@ -1,5 +1,5 @@
 import { BaseConverter } from '../app/custom-components/base-converter';
-import { Registro } from './registro.model';
+import { RegistroAluno } from './registro-aluno.model';
 import { TurmaAluno } from './turma-aluno.model';
 
 export class Aluno {
@@ -24,7 +24,7 @@ export class Aluno {
 
     cursoAnterior: string;
 
-    registros: Registro[];
+    registros: RegistroAluno[];
     turmasAluno: TurmaAluno[] = [];
 
     dataNascimento: Date;
@@ -48,7 +48,7 @@ export class Aluno {
         return this.turmasAluno.map(x => x.turma.codigo).join(', ');
     }
 
-    corrigirDatas() {
+    corrigirInformacoes() {
         if (this.dataMatricula != null) {
             this.dataMatricula = BaseConverter.StringToDate(this.dataMatricula.toString());
         }
@@ -57,6 +57,13 @@ export class Aluno {
         }
         if (this.dataValidade != null) {
             this.dataValidade = BaseConverter.StringToDate(this.dataValidade.toString());
+        }
+        if(this.registros != null) {
+            this.registros = this.registros.map(reg => {
+                reg = Object.assign(new RegistroAluno(), reg);
+                reg.data = BaseConverter.StringToDate(reg.data.toString());
+                return reg;
+            });
         }
     }
 }

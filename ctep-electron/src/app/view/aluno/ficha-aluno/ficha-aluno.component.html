@@ -26,7 +26,8 @@
         </div>
     </div>
     <mat-tab-group>
-        <mat-tab label="Informações Básicas">
+        <mat-tab label="Informações">
+            <h4>Informações Básicas</h4>
             <div class="form-grid">
                 <span class="imagem-perfil image">
                     <ng-container *ngIf="imagem==null; else elseFoto">
@@ -61,7 +62,7 @@
                             <span class="campo">{{ tratarString(element.rg) }}</span>
                         </div>
                     </div>
-                    
+
                     <div class="three">
                         <div class="field">
                             <span>Órgão Emissor</span>
@@ -88,8 +89,78 @@
                     </div>
                 </div>
             </div>
+            <h4>Endereço e Contato</h4>
+            <div class="form-grid">
+                <div class="three">
+                    <div class="field">
+                        <span>Telefone</span>
+                        <span class="campo">{{ tratarString(element.telefone) }}</span>
+                    </div>
+                </div>
+                <div class="three">
+                    <div class="field">
+                        <span>Celular</span>
+                        <span class="campo">{{ tratarString(element.celular) }}</span>
+                    </div>
+                </div>
+                <div class="three">
+                    <div class="field">
+                        <span>E-mail</span>
+                        <span class="campo">{{ tratarString(element.email) }}</span>
+                    </div>
+                </div>
+                <div class="three">
+                    <div class="field">
+                        <span>CEP</span>
+                        <span class="campo">{{ tratarString(element.cep) }}</span>
+                    </div>
+                </div>
+                <div class="six">
+                    <div class="field">
+                        <span>Endereço</span>
+                        <span class="campo">{{ tratarString(element.endereco) }}</span>
+                    </div>
+                </div>
+                <div class="two">
+                    <div class="field">
+                        <span>Complemento</span>
+                        <span class="campo">{{ tratarString(element.complemento) }}</span>
+                    </div>
+                </div>
+                <div class="two">
+                    <div class="field">
+                        <span>Bairro</span>
+                        <span class="campo">{{ tratarString(element.bairro) }}</span>
+                    </div>
+                </div>
+                <div class="two">
+                    <div class="field">
+                        <span>Cidade</span>
+                        <span class="campo">{{ tratarString(element.cidade) }}</span>
+                    </div>
+                </div>
+            </div>
         </mat-tab>
-        <mat-tab label="Registro"> Content 2 </mat-tab>
+        <mat-tab label="Registro">
+            <h4>Registro do Aluno
+                <div class="buttons">
+                    <button mat-button color="accent" (click)="adicionarRegistro()">
+                        <mat-icon>add</mat-icon>Adicionar
+                    </button>
+                </div>
+            </h4>
+            <custom-table [columns]="columnsRegistro" [listOfElements]="element.registros">
+                <ng-template let-element customTemplate="acoesTemplate">
+                    <div style="text-align: end;">
+                        <button mat-icon-button color="primary"
+                                matTooltip="Excluir Registro"
+                                (click)="excluirRegistro(element)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </ng-template>
+            </custom-table>
+        </mat-tab>
         <mat-tab label="Turmas e Notas"></mat-tab>
     </mat-tab-group>
 </div>

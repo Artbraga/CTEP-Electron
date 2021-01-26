@@ -75,17 +75,19 @@ export class TurmaAlunoComponent extends BaseFormularioComponent<TurmaAluno> imp
     }
 
     closeModal(salvar: boolean) {
-        if (salvar && this.validar()) {
-            const turmaAluno = new TurmaAluno();
-            turmaAluno.turma = this.turmaSelecionada;
-            turmaAluno.matricula = this.matricula;
-            turmaAluno.alunoId = this.data.id;
-            this.alunoService.vincularAlunoTurma(turmaAluno).subscribe(data => {
-                if (data) {
-                    this.notificationService.addNotification('Sucesso!', 'O aluno vinculado na turma com sucesso.', NotificationType.Success);
-                    this.dialogRef.close();
-                }
-            });
+        if (salvar) {
+            if (this.validar()){
+                const turmaAluno = new TurmaAluno();
+                turmaAluno.turma = this.turmaSelecionada;
+                turmaAluno.matricula = this.matricula;
+                turmaAluno.alunoId = this.data.id;
+                this.alunoService.vincularAlunoTurma(turmaAluno).subscribe(data => {
+                    if (data) {
+                        this.notificationService.addNotification('Sucesso!', 'O aluno vinculado na turma com sucesso.', NotificationType.Success);
+                        this.dialogRef.close();
+                    }
+                });
+            }
         } else {
             this.dialogRef.close();
         }

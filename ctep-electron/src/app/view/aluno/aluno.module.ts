@@ -29,6 +29,7 @@ import { AppRoutingModule } from '../../app-routing.module';
 import { FichaAlunoComponent } from './ficha-aluno/ficha-aluno.component';
 import { SharedModule } from 'src/app/custom-components/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RegistroAlunoComponent } from './registro-aluno/registro-aluno.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         PesquisarAlunoComponent,
         TurmaAlunoComponent,
         FiltroAlunoComponent,
-        FichaAlunoComponent
+        FichaAlunoComponent,
+        RegistroAlunoComponent
     ],
     imports: [
         AppRoutingModule,

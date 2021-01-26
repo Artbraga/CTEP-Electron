@@ -44,7 +44,7 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
             this.alunoService.getById(id).subscribe(data => {
                 this.element = Object.assign(new Aluno(), data);
-                this.element.corrigirDatas();
+                this.element.corrigirInformacoes();
             });
             this.alunoService.buscarImagem(id).subscribe(data => {
                 if (data != null && data.size > 0) {
@@ -138,7 +138,13 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
             this.imagem = event.target.result;
         });
         reader.readAsDataURL(this.imagemPerfil);
-      }
+    }
+
+    removerFoto() {
+        this.imagem = null;
+        this.imagemPerfil = null;
+        this.imagemMudou = true;
+    }
 
     buscarCep() {
         this.cepService.buscarPorCep(this. element.cep).then((x) => {

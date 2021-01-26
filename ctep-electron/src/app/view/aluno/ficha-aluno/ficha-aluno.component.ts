@@ -4,10 +4,14 @@ import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
 import { Aluno } from 'src/model/aluno.model';
 import { IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
-import { BaseConverter } from '../../../custom-components/base-converter';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
+import { Coluna } from 'src/app/custom-components/base-table';
+import { RegistroAlunoComponent } from '../registro-aluno/registro-aluno.component';
+import { NotificationService } from 'src/app/custom-components/notification/notification.service';
+import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
+import { RegistroAluno } from 'src/model/registro-aluno.model';
 
 @Component({
     selector: 'ficha-aluno',
@@ -18,24 +22,28 @@ export class FichaAlunoComponent implements OnInit {
     rotaVoltar: string;
     element: Aluno;
     imagem: any;
+    columnsRegistro: Coluna[] = [];
+    idAluno: number;
 
     constructor(
         private alunoService: AlunoService,
+        private notificationService: NotificationService,
         private routingService: RoutingService,
         private router: Router,
         public dialog: MatDialog) {
         this.element = new Aluno();
+        this.columnsRegistro.push({ key: 'data', header: 'Data', field: 'dataStr' } as Coluna);
+        this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro', addTooltip: true, tooltipMinSize: 150 } as Coluna);
+        this.columnsRegistro.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
+
     }
 
     ngOnInit(): void {
         if (this.routingService.possuiValor(IdAlunoParameter)) {
-            const id = this.routingService.excluirValor(IdAlunoParameter) as number;
+            this.idAluno = this.routingService.excluirValor(IdAlunoParameter) as number;
             this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
-            this.alunoService.getById(id).subscribe((data) => {
-                this.element = Object.assign(new Aluno(), data);
-                this.element.corrigirDatas();
-            });
-            this.alunoService.buscarImagem(id).subscribe(data => {
+            this.carregarAluno();
+            this.alunoService.buscarImagem(this.idAluno).subscribe(data => {
                 if (data != null && data.size > 0) {
                     const blob = new Blob([data], { type: 'image/png' });
                     const reader = new FileReader();
@@ -47,6 +55,13 @@ export class FichaAlunoComponent implements OnInit {
                 }
             });
         }
+    }
+
+    carregarAluno() {
+        this.alunoService.getById(this.idAluno).subscribe((data) => {
+            this.element = Object.assign(new Aluno(), data);
+            this.element.corrigirInformacoes();
+        });
     }
 
     voltar() {
@@ -77,6 +92,38 @@ export class FichaAlunoComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.dialog.open(TurmaAlunoComponent, { data: this.element });
+            }
+        });
+    }
+
+    adicionarRegistro() {
+        const dialogRef = this.dialog.open(RegistroAlunoComponent, {
+            data: this.element
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result != null) {
+                this.alunoService.adicionarRegistro(result).subscribe(data => {
+                    if (data) {
+                        this.notificationService.addNotification('Sucesso!', 'Registro adicionado.', NotificationType.Success);
+                        this.carregarAluno();
+                    }
+                });
+            }
+        });
+    }
+
+    excluirRegistro(registro: RegistroAluno) {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja excluir o registro?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.alunoService.excluirRegistro(registro.id).subscribe(data => {
+                    if (data) {
+                        this.notificationService.addNotification('Sucesso!', 'Registro excluído.', NotificationType.Success);
+                        this.carregarAluno();
+                    }
+                })
             }
         });
     }

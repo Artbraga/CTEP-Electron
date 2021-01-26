@@ -58,6 +58,8 @@ export class Coluna {
     sortable = true;
     sortField?: string = null;
     isNumeric = false;
+    addTooltip = false;
+    tooltipMinSize?: number;
 }
 
 export class ColumnGroup {
