@@ -7,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class ModalConfirmacaoComponent implements OnInit {
     mensagem: string;
-    tipoModal: string = "Confirmacao";
+    tipoModal = 'Confirmacao';
     @Input() modalTemplate: TemplateRef<any>;
 
     constructor(
@@ -16,12 +16,12 @@ export class ModalConfirmacaoComponent implements OnInit {
     ) {
         this.mensagem = data.mensagem;
         this.modalTemplate = data.template;
-        this.tipoModal = data.tipoModal ? data.tipoModal: "Confirmacao";
+        this.tipoModal = data.tipoModal ? data.tipoModal : 'Confirmacao';
     }
 
     ngOnInit() { }
 
     showClearBtn() {
-        return this.tipoModal != "Alerta"
+        return this.tipoModal != 'Alerta';
     }
 }

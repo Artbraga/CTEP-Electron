@@ -38,13 +38,15 @@ import { FiltroAlunoComponent } from './view/aluno/filtro-aluno/filtro-aluno.com
 import { CustomAutocompleteModule } from './custom-components/custom-autocomplete/custom-autocomplete.module';
 import { AlunoModule } from './view/aluno/aluno.module';
 import { TurmaModule } from './view/turma/turma.module';
+import { TransferenciaAlunoComponent } from './src/app/view/aluno/transferencia-aluno/transferencia-aluno.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         PainelGeralComponent,
-        ModalLoginComponent
+        ModalLoginComponent,
+        TransferenciaAlunoComponent
     ],
     imports: [
         BrowserModule,

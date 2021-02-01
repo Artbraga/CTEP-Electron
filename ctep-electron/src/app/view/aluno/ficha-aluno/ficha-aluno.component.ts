@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AlunoService } from 'src/services/aluno.service';
 import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
 import { Aluno } from 'src/model/aluno.model';
-import { IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FichaAlunoParameter, FormularioAlunoParameter, IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
@@ -12,6 +12,7 @@ import { RegistroAlunoComponent } from '../registro-aluno/registro-aluno.compone
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
 import { RegistroAluno } from 'src/model/registro-aluno.model';
+import { TransferenciaAlunoComponent } from '../transferencia-aluno/transferencia-aluno.component';
 
 @Component({
     selector: 'ficha-aluno',
@@ -24,6 +25,7 @@ export class FichaAlunoComponent implements OnInit {
     imagem: any;
     columnsRegistro: Coluna[] = [];
     idAluno: number;
+    @ViewChild('confirmacaoExclusaoTemplate', { static: false }) confirmacaoExclusaoTemplate: TemplateRef<any>;
 
     constructor(
         private alunoService: AlunoService,
@@ -96,6 +98,23 @@ export class FichaAlunoComponent implements OnInit {
         });
     }
 
+    transferirTurma() {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja transferir o aluno ${this.element.nome} de turma?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.dialog.open(TransferenciaAlunoComponent, { data: this.element });
+            }
+        });
+    }
+
+    editarAluno() {
+        this.routingService.salvarValor(IdAlunoParameter, this.element.id);
+        this.routingService.salvarValor(RotaVoltarParameter, FichaAlunoParameter );
+        this.router.navigate([{ outlets: { secondRouter: FormularioAlunoParameter } }]);
+    }
+
     adicionarRegistro() {
         const dialogRef = this.dialog.open(RegistroAlunoComponent, {
             data: this.element
@@ -123,7 +142,7 @@ export class FichaAlunoComponent implements OnInit {
                         this.notificationService.addNotification('Sucesso!', 'Registro excluído.', NotificationType.Success);
                         this.carregarAluno();
                     }
-                })
+                });
             }
         });
     }

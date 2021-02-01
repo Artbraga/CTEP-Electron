@@ -30,6 +30,7 @@ import { FichaAlunoComponent } from './ficha-aluno/ficha-aluno.component';
 import { SharedModule } from 'src/app/custom-components/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegistroAlunoComponent } from './registro-aluno/registro-aluno.component';
+import { TransferenciaAlunoComponent } from './transferencia-aluno/transferencia-aluno.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { RegistroAlunoComponent } from './registro-aluno/registro-aluno.componen
         TurmaAlunoComponent,
         FiltroAlunoComponent,
         FichaAlunoComponent,
-        RegistroAlunoComponent
+        RegistroAlunoComponent,
+        TransferenciaAlunoComponent
     ],
     imports: [
         AppRoutingModule,

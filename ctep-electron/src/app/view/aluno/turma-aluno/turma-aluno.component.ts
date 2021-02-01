@@ -76,7 +76,7 @@ export class TurmaAlunoComponent extends BaseFormularioComponent<TurmaAluno> imp
 
     closeModal(salvar: boolean) {
         if (salvar) {
-            if (this.validar()){
+            if (this.validar()) {
                 const turmaAluno = new TurmaAluno();
                 turmaAluno.turma = this.turmaSelecionada;
                 turmaAluno.matricula = this.matricula;

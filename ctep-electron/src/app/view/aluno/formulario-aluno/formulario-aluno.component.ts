@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
 import { RoutingService } from 'src/services/routing.service';
-import { IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FichaAlunoParameter, IdAlunoParameter, PesquisarAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 
 @Component({
     selector: 'app-formulario-aluno',
@@ -164,6 +164,10 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     }
 
     voltar() {
+        if (this.rotaVoltar == FichaAlunoParameter) {
+            this.routingService.salvarValor(IdAlunoParameter, this.element.id);
+            this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoParameter);
+        }
         this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
     }
 

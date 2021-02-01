@@ -9,13 +9,17 @@
                 Ações <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item>
+                <button mat-menu-item (click)="editarAluno()">
                     <mat-icon>edit</mat-icon>
                     <span>Editar</span>
                 </button>
                 <button mat-menu-item (click)="vincularTurma()">
                     <mat-icon>link</mat-icon>
                     <span>Vincular em Turma</span>
+                </button>
+                <button mat-menu-item (click)="transferirTurma()">
+                    <mat-icon>link</mat-icon>
+                    <span>Transferir de Turma</span>
                 </button>
                 <button mat-menu-item>
                     <mat-icon>print</mat-icon>
@@ -164,3 +168,8 @@
         <mat-tab label="Turmas e Notas"></mat-tab>
     </mat-tab-group>
 </div>
+
+
+<ng-template #confirmacaoExclusaoTemplate>
+    teste
+</ng-template>
