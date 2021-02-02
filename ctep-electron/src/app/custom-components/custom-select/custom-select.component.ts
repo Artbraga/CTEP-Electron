@@ -41,6 +41,26 @@ export class CustomSelectComponent {
     getLoading(): boolean {
         return this.options !== null && (this.isOpen || (!this.selectControl.panelOpen && this.selected !== null));
     }
+
+    public resolveField(obj: any, field: string) {
+        if (field == null || field.trim() === '') { return null; }
+        let fields = field.split('.');
+        if (fields.length > 1) {
+            const campo = fields[0];
+            fields = fields.slice(1);
+            if (obj[campo] != null) {
+                return this.resolveField(obj[campo], fields.join('.'));
+            }
+        }
+        if (typeof obj[field] === 'number') {
+            return obj[field].toLocaleString();
+        }
+        if (typeof obj[field] === 'number') {
+            return obj[field].toLocaleString();
+        }
+        return obj[field];
+    }
+
 }
 
 export interface SelectItem<T> {

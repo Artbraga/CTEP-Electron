@@ -93,7 +93,9 @@ export class FichaAlunoComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.dialog.open(TurmaAlunoComponent, { data: this.element });
+                this.dialog.open(TurmaAlunoComponent, { data: this.element }).afterClosed().subscribe(res => {
+                    this.carregarAluno();
+                });
             }
         });
     }
@@ -104,7 +106,9 @@ export class FichaAlunoComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.dialog.open(TransferenciaAlunoComponent, { data: this.element });
+                this.dialog.open(TransferenciaAlunoComponent, { data: this.element }).afterClosed().subscribe(res => {
+                    this.carregarAluno();
+                });
             }
         });
     }

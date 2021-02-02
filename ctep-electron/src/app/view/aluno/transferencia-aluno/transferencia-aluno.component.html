@@ -4,13 +4,13 @@
     </div>
     <mat-card>
         <div class="form-grid">
-            <div class="four">
+            <div class="six">
                 <custom-select label="Turma Atual:" field="turma.codigo" [options]="turmasVinculadas"
                     [(selected)]="turmaAtualSelecionada" (select)="buscarTurmas()"[disabled]="turmaDesabilitada">
                 </custom-select>
             </div>
-            <div class="four">
-                <custom-select label="Nova Turma:" field="codigo" [options]="turmasOptions" [(selected)]="turmaSelecionada">
+            <div class="six">
+                <custom-select label="Nova Turma:" field="codigo" [options]="turmasOptions" [(selected)]="turmaNovaSelecionada">
                 </custom-select>
             </div>
         </div>

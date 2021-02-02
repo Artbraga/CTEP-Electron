@@ -42,6 +42,7 @@ export class TransferenciaAlunoComponent extends BaseFormularioComponent<TurmaAl
         } else if (this.turmasVinculadas.length == 1) {
             this.turmaAtualSelecionada = this.turmasVinculadas[0];
             this.turmaDesabilitada = true;
+            this.buscarTurmas();
         }
     }
 
@@ -62,10 +63,11 @@ export class TransferenciaAlunoComponent extends BaseFormularioComponent<TurmaAl
         if (salvar) {
             if (this.validar()) {
                 this.turmaAtualSelecionada.turma = this.turmaNovaSelecionada;
+                this.turmaAtualSelecionada.alunoId = this.data.id;
                 this.alunoService.vincularAlunoTurma(this.turmaAtualSelecionada).subscribe(data => {
                     if (data) {
                         this.notificationService.addNotification('Sucesso!', 'O aluno vinculado na turma com sucesso.', NotificationType.Success);
-                        this.dialogRef.close();
+                        this.dialogRef.close(true);
                     }
                 });
             }

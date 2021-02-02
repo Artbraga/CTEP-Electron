@@ -84,12 +84,12 @@ export class TurmaAlunoComponent extends BaseFormularioComponent<TurmaAluno> imp
                 this.alunoService.vincularAlunoTurma(turmaAluno).subscribe(data => {
                     if (data) {
                         this.notificationService.addNotification('Sucesso!', 'O aluno vinculado na turma com sucesso.', NotificationType.Success);
-                        this.dialogRef.close();
+                        this.dialogRef.close(true);
                     }
                 });
             }
         } else {
-            this.dialogRef.close();
+            this.dialogRef.close(false);
         }
     }
 }
