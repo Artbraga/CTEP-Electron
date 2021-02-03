@@ -1,0 +1,22 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Transferir aluno de turma</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="six">
+                <custom-select label="Turma Atual:" field="turma.codigo" [options]="turmasVinculadas"
+                    [(selected)]="turmaAtualSelecionada" (select)="buscarTurmas()"[disabled]="turmaDesabilitada">
+                </custom-select>
+            </div>
+            <div class="six">
+                <custom-select label="Nova Turma:" field="codigo" [options]="turmasOptions" [(selected)]="turmaNovaSelecionada">
+                </custom-select>
+            </div>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

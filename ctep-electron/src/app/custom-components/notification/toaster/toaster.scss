@@ -1,0 +1,90 @@
+@import "../../../../theming.scss";
+
+.toast-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1500;
+}
+
+.toast {
+    padding: 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    margin-top: 10px;
+
+    .toast-header {
+        display: flex;
+    }
+
+    .close {
+        position: relative;
+        right: 0;
+        font-size: 16px;
+        font-weight: lighter;
+        background-color: transparent;
+        min-width: 20px;
+        padding: 0;
+        box-shadow: none;
+        color: $white;
+        text-align: right;
+        margin-left: 80px;
+    }
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: $white;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+
+    p {
+        font-size: 14px;
+        color: $white;
+        max-width: 350px;
+    }
+
+    .btn {
+        width: 100px;
+        height: 28px;
+        font-size: 12px;
+        border-radius: 4px;
+        background-color: $white;
+        margin: auto;
+    }
+
+    &.notification {
+        background-color: $secondary;
+
+        .btn {
+            color: $secondary;
+        }
+    }
+
+    &.positive {
+        background-color: #00bd9d;
+
+        .btn {
+            color: #00bd9d;
+        }
+    }
+
+    &.error {
+        background-color: $red;
+
+        .btn {
+            color: $red;
+        }
+    }
+
+    &.alert {
+        background-color: #f8b20d;
+
+        .btn {
+            color: #f8b20d;
+        }
+    }
+}

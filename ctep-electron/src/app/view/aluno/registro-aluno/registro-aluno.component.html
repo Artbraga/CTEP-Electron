@@ -1,0 +1,26 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Adicionar registro de aluno</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <mat-form-field class="six">
+                <mat-label>Turma:</mat-label>
+                <input matInput [(ngModel)]="data.nome" [disabled]='true'>
+            </mat-form-field>
+            <div class="six">
+                <custom-datetimepicker [(value)]="element.data" name='Data do Registro'>
+                </custom-datetimepicker>
+            </div>
+            <mat-form-field class="twelve">
+                <mat-label>Registro:</mat-label>
+                <textarea matInput [(ngModel)]="element.registro"></textarea>
+            </mat-form-field>
+            <span *ngIf="element.registro!=null" class="contador">{{element.registro.length}}/5000</span>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

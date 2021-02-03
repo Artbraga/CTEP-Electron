@@ -1,0 +1,27 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+@font-face {
+  font-family: NimbusSansBecker;
+  src: url(/src//assets/fonts/nimbus-sans-becker.ttf);
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url(/assets/fonts/Roboto-Medium.ttf);
+}
+@font-face {
+  font-family: Roboto-Black;
+  src: url(/assets/fonts/Roboto-Black.ttf);
+}
+
+$primary:#0f084b;
+$secondary:#4f7cac;
+$gray:#4d575b;
+$light-gray:#75848a;
+$black: #191716;
+$red: #520B03;
+$white: #F0F8FF;
+$off-white: #edeeef;
+$gray-blue: #78849E;
+$light-blue: #bbced3;

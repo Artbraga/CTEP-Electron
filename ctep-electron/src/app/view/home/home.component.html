@@ -1,0 +1,35 @@
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <mat-icon aria-hidden="false" (mouseover)="desenhar('in')">menu</mat-icon>
+        <!-- <h3 class="logado">Usuário logado: {{usuarioLogado.nome}}</h3> -->
+        <mat-icon aria-hidden="false" class="logout" matTooltip="Sair do sistema." (click)="logout()">logout</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container [hasBackdrop]="false">
+    <mat-sidenav #sidenav
+                 [fixedInViewport]="false"
+                 [mode]="'over'"
+                 disableClose>
+        <section  (mouseout)="desenhar('out')" (mouseover)="desenhar('in')" class="items">
+            <a class='logo' routerLink="/">
+                <img src="/assets/images/logo.png" alt="">
+            </a>
+            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('aluno')">
+                <mat-icon aria-hidden="false">person</mat-icon>
+                <span>Aluno</span>
+            </a>
+            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('turma')">
+                <mat-icon aria-hidden="false">school</mat-icon>
+                <span>Turma</span>
+            </a>
+        </section>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+        <div class="secondRouter">
+            <router-outlet name="secondRouter"></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

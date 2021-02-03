@@ -1,0 +1,43 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Vincular aluno em turma</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="four">
+                <custom-select
+                    label="Curso:"
+                    field="nome"
+                    [options]="cursosOptions"
+                    [(selected)]="cursoSelecionado"
+                    (select)="buscarTurmas()"
+                >
+                </custom-select>
+            </div>
+            <div class="four">
+                <custom-select
+                    label="Turma:"
+                    field="codigo"
+                    [options]="turmasOptions"
+                    [(selected)]="turmaSelecionada"
+                >
+                </custom-select>
+            </div>
+            <mat-form-field class="four">
+                <mat-label>Matrícula:</mat-label>
+                <input matInput [(ngModel)]="matricula" />
+                <button
+                    mat-raised-button
+                    color="accent"
+                    matSuffix
+                    (click)="gerarMatricula()">
+                    Gerar Matrícula
+                </button>
+            </mat-form-field>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

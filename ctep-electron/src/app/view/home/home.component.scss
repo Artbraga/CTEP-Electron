@@ -1,0 +1,94 @@
+@import '../../../theming.scss';
+
+.mat-sidenav-container {
+    background-image: url(/assets/images/logo-opac.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 90% auto;
+    display: flex;
+    .mat-sidenav-content {
+        position: absolute;
+        padding: 20px;
+        width: calc(100% - 40px);
+        max-height: calc(100% - 40px);
+        overflow-y: auto;
+    }
+}
+
+.mat-sidenav-transition {
+    .mat-sidenav {
+        box-shadow: 8px 0px 14px 0px rgba(0,0,0,0.75);
+        border-right: 3px solid $light-blue;
+    }
+}
+
+.menu-item {
+    position: relative;
+    display: flex;
+    padding: 20px;
+    width: 80px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 30px;
+    font-family: 'Roboto-Black';
+    color: $white;
+    width: auto;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover{
+        background-color: $gray-blue;
+    }
+    .mat-icon {
+        margin: 0 10px 0 0;
+        padding-right: 10px;
+        font-size: 35px;
+        top: -10px;
+        position: relative;
+    }
+}
+
+.logo img{
+    width: auto;
+    max-width: 300px;
+    height: auto;
+    max-height: 95px;
+    outline: none;
+}
+
+.items {
+    margin-top: 20px;
+    height: calc(100vh - 84px);
+}
+
+.mat-drawer-container > .mat-drawer {
+    position: relative;
+    width: 300px;
+    background-color: $primary;
+}
+
+.mat-toolbar-row {
+    background-color: $primary;
+    z-index: 2;
+    box-shadow: 0px 8px 14px 0px rgba(0,0,0,0.75);
+    .mat-icon {
+        top: -8px;
+        font-size: 35px;
+        position: relative;
+        cursor: default;
+    }
+}
+
+.logout {
+    cursor: pointer!important;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.secondRouter {
+    padding-top: 10px;
+}
+
+.logado {
+    padding-left: 30px;
+}

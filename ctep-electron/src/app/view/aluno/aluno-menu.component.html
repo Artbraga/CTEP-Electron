@@ -1,0 +1,17 @@
+<mat-accordion>
+    <mat-expansion-panel [(expanded)]='expanded'>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Alunos
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-grid menu-secao">
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['formularioAluno'] } }]" (click)="mudarRota()">
+                <mat-icon>person_add</mat-icon><span>Adicionar Aluno</span>
+            </a>
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['pesquisarAluno'] } }]" (click)="mudarRota()">
+                <mat-icon>list</mat-icon><span>Pesquisar Alunos</span>
+            </a>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

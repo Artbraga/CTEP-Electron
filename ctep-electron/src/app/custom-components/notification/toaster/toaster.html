@@ -1,0 +1,18 @@
+<div class="notification-toast-wrapper" style="z-index: 15000;">
+    <div class="toast-container">
+        <div
+            class="toast"
+            [ngClass]="getClass(not.type)"
+            *ngFor="let not of notificationMessages"
+        >
+            <div class="toast-header" *ngIf="not.type != 5">
+                <label for="">{{ not.title }}</label>
+                <button mat-button class="close" (click)="closeToast(not)">
+                    x
+                </button>
+            </div>
+            <ng-container [ngTemplateOutlet]="versionTemplate"></ng-container>
+            <p>{{ not.text }}</p>
+        </div>
+    </div>
+</div>

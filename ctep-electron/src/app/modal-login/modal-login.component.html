@@ -1,0 +1,20 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Entrar no sistema</h2>
+    </div>
+    <div class="modal-body">
+        <div class="form-grid">
+            <mat-form-field class="six">
+                <mat-label>Login:</mat-label>
+                <input matInput [(ngModel)]="element.login">
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>Senha:</mat-label>
+                <input matInput type="password" [(ngModel)]="element.senha">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button color="primary" (click)="login()">Entrar</button>
+    </div>
+</div>

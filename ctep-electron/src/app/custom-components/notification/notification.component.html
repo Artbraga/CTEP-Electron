@@ -1,0 +1,4 @@
+<toaster
+    [notificationMessages]="notificationMessages$ | async"
+    (notificationMessagesChange)="closeToast($event)"
+></toaster>
