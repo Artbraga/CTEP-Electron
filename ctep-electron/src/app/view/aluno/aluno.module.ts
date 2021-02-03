@@ -31,6 +31,7 @@ import { SharedModule } from 'src/app/custom-components/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegistroAlunoComponent } from './registro-aluno/registro-aluno.component';
 import { TransferenciaAlunoComponent } from './transferencia-aluno/transferencia-aluno.component';
+import { DirectivesModule } from 'src/directives/directives.module';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,7 @@ import { TransferenciaAlunoComponent } from './transferencia-aluno/transferencia
         MatIconModule,
         CustomAutocompleteModule,
         ModalConfirmacaoModule,
+        DirectivesModule,
         SharedModule
     ]
 })

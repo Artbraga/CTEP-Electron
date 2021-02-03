@@ -4,8 +4,8 @@
             <h1>Ficha do Aluno</h1>
         </div>
         <div class="six buttons">
-            <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
-            <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+            <button *ngIf="rotaVoltar" mat-raised-button color="accent" (click)="voltar()">Voltar</button>
+            <button *ngIf="idAluno" mat-raised-button color="primary" [matMenuTriggerFor]="menu">
                 Ações <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -21,7 +21,7 @@
                     <mat-icon>link</mat-icon>
                     <span>Transferir de Turma</span>
                 </button>
-                <button mat-menu-item>
+                <button mat-menu-item (click)="imprimir()">
                     <mat-icon>print</mat-icon>
                     <span>Imprimir</span>
                 </button>
@@ -29,10 +29,10 @@
 
         </div>
     </div>
-    <mat-tab-group>
+    <mat-tab-group ngxPrint>
         <mat-tab label="Informações">
             <h4>Informações Básicas</h4>
-            <div class="form-grid">
+            <div class="form-grid" >
                 <span class="imagem-perfil image">
                     <ng-container *ngIf="imagem==null; else elseFoto">
                         <img src="/assets/images/empty-avatar.png" alt="">

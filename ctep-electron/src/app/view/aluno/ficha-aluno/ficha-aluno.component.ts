@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { AlunoService } from 'src/services/aluno.service';
 import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/custom-components/notification/noti
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
 import { RegistroAluno } from 'src/model/registro-aluno.model';
 import { TransferenciaAlunoComponent } from '../transferencia-aluno/transferencia-aluno.component';
+import { PrintTabDirective } from 'src/directives/printTabsDirective.directive';
 
 @Component({
     selector: 'ficha-aluno',
@@ -26,6 +27,7 @@ export class FichaAlunoComponent implements OnInit {
     columnsRegistro: Coluna[] = [];
     idAluno: number;
     @ViewChild('confirmacaoExclusaoTemplate', { static: false }) confirmacaoExclusaoTemplate: TemplateRef<any>;
+    @ViewChildren(PrintTabDirective) tab;
 
     constructor(
         private alunoService: AlunoService,
@@ -98,6 +100,10 @@ export class FichaAlunoComponent implements OnInit {
                 });
             }
         });
+    }
+
+    imprimir() {
+        this.tab.first.print();
     }
 
     transferirTurma() {
