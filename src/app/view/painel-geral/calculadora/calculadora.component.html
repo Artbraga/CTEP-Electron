@@ -1,0 +1,72 @@
+<div class="formulario">
+    <div class="header">
+        <h1>Calculadora de mensalidades</h1>
+    </div>
+
+    <div class="form-grid">
+        <mat-form-field class="four">
+            <mat-label>Valor:</mat-label>
+            <input matInput 
+                    type="text"
+                    [textMask]="{mask: moneyMask}"
+                    [(ngModel)]="valor">
+        </mat-form-field>
+        <mat-form-field class="four">
+            <mat-label>Multa:</mat-label>
+            <input matInput 
+                    [textMask]="{mask: percentMask}"
+                    [(ngModel)]="multa">
+        </mat-form-field>
+        <mat-form-field class="four">
+            <mat-label>Juros ao dia:</mat-label>
+            <input matInput 
+                    [textMask]="{mask: moneyMask}"
+                    [(ngModel)]="juros">
+        </mat-form-field>
+        <div class="four">
+            <custom-datetimepicker [(value)]="vencimento" name='Vencimento'>
+            </custom-datetimepicker>
+        </div>
+        <div class="four">
+            <custom-datetimepicker [(value)]="dataPagamento" name='Data do Pagamento'>
+            </custom-datetimepicker>
+        </div>
+        <div class="four buttons">
+            <button mat-mini-fab color="accent" (click)="limpar()"><mat-icon>clear</mat-icon></button>
+            <button mat-mini-fab color="primary" (click)="calcular()"><mat-icon>calculate</mat-icon></button>
+        </div>
+        <div class="resultado">
+            <mat-form-field class="three">
+                <mat-label>Valor do boleto:</mat-label>
+                <input matInput 
+                        type="text"
+                        [value]="valor"
+                        disabled>
+            </mat-form-field>        
+            <mat-form-field class="three">
+                <mat-label>Valor de juros:</mat-label>
+                <input matInput 
+                        type="text"
+                        [value]="valorComoString(valorJuros)"
+                        [textMask]="{mask: moneyMask}"
+                        disabled>
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>Valor de multa:</mat-label>
+                <input matInput 
+                        type="text"
+                        [value]="valorComoString(valorMulta)"
+                        [textMask]="{mask: moneyMask}"
+                        disabled>
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>Valor total:</mat-label>
+                <input matInput 
+                        type="text"
+                        [value]="valorComoString(valorTotal)"
+                        [textMask]="{mask: moneyMask}"
+                        disabled>
+            </mat-form-field>            
+        </div>
+    </div>
+</div>

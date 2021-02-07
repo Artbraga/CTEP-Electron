@@ -52,13 +52,8 @@ body {
 .mat-raised-button {
     min-width: 100px;
     margin-left: 10px;
-    &.mat-primary {
-        background-color: $primary;
-    }
-    &.mat-accent {
-        background-color: $light-gray;
-    }
 }
+
 .mat-button {
     min-width: 100px;
     margin-left: 10px;
@@ -68,6 +63,14 @@ body {
     &.mat-accent {
         color: $light-gray;
     }
+}
+.mat-fab, .mat-mini-fab, .mat-raised-button, .mat-button {
+    &.mat-primary {
+        background-color: $primary;
+    }
+    &.mat-accent {
+        background-color: $light-gray;
+    }   
 }
 
 .mat-card {
