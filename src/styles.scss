@@ -1,4 +1,5 @@
 @import "./theming";
+@import "./fonts";
 
 body {
     background: $white;
@@ -47,6 +48,14 @@ body {
         text-decoration: unset;
         color: unset;
     }
+}
+
+.mat-sidenav-container {
+    background-image: url('./assets/images/logo-opac.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 90% auto;
 }
 
 .mat-raised-button {
