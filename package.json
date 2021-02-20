@@ -1,56 +1,101 @@
 {
-  "name": "ctep-geral",
-  "version": "0.0.0",
-  "main": "main.js",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "start:electron": "ng build --base-href ./ && electron ."
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "~9.0.6",
-    "@angular/cdk": "9.2.4",
-    "@angular/common": "~9.0.6",
-    "@angular/compiler": "~9.0.6",
-    "@angular/core": "~9.0.6",
-    "@angular/forms": "~9.0.6",
-    "@angular/material": "9.2.4",
-    "@angular/material-moment-adapter": "^10.1.0",
-    "@angular/platform-browser": "~9.0.6",
-    "@angular/platform-browser-dynamic": "~9.0.6",
-    "@angular/router": "~9.0.6",
-    "angular2-text-mask": "^9.0.0",
-    "moment": "^2.27.0",
-    "rxjs": "~6.5.4",
-    "text-mask-addons": "^3.8.0",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "~0.900.6",
-    "@angular/cli": "~9.0.6",
-    "@angular/compiler-cli": "~9.0.6",
-    "@angular/language-service": "~9.0.6",
-    "@types/jasmine": "~3.5.0",
-    "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.11.1",
-    "codelyzer": "^5.1.2",
-    "electron": "^8.1.1",
-    "jasmine-core": "~3.5.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~4.3.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage-istanbul-reporter": "~2.1.0",
-    "karma-jasmine": "~2.0.1",
-    "karma-jasmine-html-reporter": "^1.4.2",
-    "protractor": "~5.4.3",
-    "ts-node": "~8.3.0",
-    "tslint": "~5.18.0",
-    "typescript": "~3.7.5"
-  }
+    "name": "build-electron",
+    "productName": "build-electron",
+    "version": "1.0.0",
+    "description": "My Electron application description",
+    "main": "src/index.ts",
+    "scripts": {
+        "build": "ng build --base-href ./",
+        "build:prod": "npm run build -- -c production",
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "publish": "electron-forge publish",
+        "lint": "tslint src"
+    },
+    "keywords": [],
+    "author": "arthur.coelho",
+    "license": "MIT",
+    "config": {
+        "forge": {
+            "make_targets": {
+                "win32": [
+                    "squirrel"
+                ],
+                "darwin": [
+                    "zip"
+                ],
+                "linux": [
+                    "deb",
+                    "rpm"
+                ]
+            },
+            "electronPackagerConfig": {
+                "packageManager": "yarn"
+            },
+            "electronWinstallerConfig": {
+                "name": "build_electron"
+            },
+            "electronInstallerDebian": {},
+            "electronInstallerRedhat": {},
+            "github_repository": {
+                "owner": "",
+                "name": ""
+            },
+            "windowsStoreConfig": {
+                "packageName": "",
+                "name": "buildelectron"
+            }
+        }
+    },
+    "dependencies": {
+        "@angular/animations": "~9.0.6",
+        "@angular/cdk": "9.2.4",
+        "@angular/common": "~9.0.6",
+        "@angular/compiler": "~9.0.6",
+        "@angular/core": "~9.0.6",
+        "@angular/forms": "~9.0.6",
+        "@angular/material": "9.2.4",
+        "@angular/material-moment-adapter": "^10.1.0",
+        "@angular/platform-browser": "~9.0.6",
+        "@angular/platform-browser-dynamic": "~9.0.6",
+        "@angular/router": "~9.0.6",
+        "angular2-text-mask": "^9.0.0",
+        "electron-compile": "^6.4.4",
+        "electron-devtools-installer": "^2.1.0",
+        "electron-squirrel-startup": "^1.0.0",
+        "moment": "^2.27.0",
+        "ngx-electron": "^2.2.0",
+        "reflect-metadata": "^0.1.9",
+        "rxjs": "~6.5.4",
+        "text-mask-addons": "^3.8.0",
+        "tslib": "^1.10.0",
+        "zone.js": "~0.10.2"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "~0.900.6",
+        "@angular/cli": "~9.0.6",
+        "@angular/compiler-cli": "~9.0.6",
+        "@angular/language-service": "~9.0.6",
+        "@types/jasmine": "~3.5.0",
+        "@types/jasminewd2": "~2.0.3",
+        "@types/node": "^12.11.1",
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "codelyzer": "^5.1.2",
+        "electron-forge": "^5.2.4",
+        "electron-prebuilt-compile": "8.2.0",
+        "jasmine-core": "~3.5.0",
+        "jasmine-spec-reporter": "~4.2.1",
+        "karma": "~4.3.0",
+        "karma-chrome-launcher": "~3.1.0",
+        "karma-coverage-istanbul-reporter": "~2.1.0",
+        "karma-jasmine": "~2.0.1",
+        "karma-jasmine-html-reporter": "^1.4.2",
+        "protractor": "~5.4.3",
+        "ts-node": "~8.3.0",
+        "tslint": "~5.18.0",
+        "typescript": "~3.7.5"
+    }
 }
