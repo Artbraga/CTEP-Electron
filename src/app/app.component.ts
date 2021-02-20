@@ -24,7 +24,7 @@ export class AppComponent {
                 this.logar();
             }
         });
-        this.matIconRegistry.addSvgIcon('logout', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/logout.svg'));
+        this.matIconRegistry.addSvgIcon('logout', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/logout.svg'));
     }
 
     logar() {

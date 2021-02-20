@@ -1,6 +1,17 @@
+@import "../../../../theming.scss";
+
 .buttons {
     text-align: end;
     button {
         margin-left: 10px;
+    }
+}
+.resultado {
+    input.mat-input-element {
+        color: black;
+        font-weight: bolder;
+    }
+    mat-label {
+        color: $primary!important;
     }
 }

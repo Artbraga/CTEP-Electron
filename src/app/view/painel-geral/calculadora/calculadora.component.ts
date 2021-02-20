@@ -49,10 +49,10 @@ export class CalculadoraComponent implements OnInit {
             return;
         }
         const dias = this.dateDiffInDays(new Date(this.vencimento), new Date(this.dataPagamento));
-        if (dias <= 0) {
-            return this.valor;
-        } else {
-            const valorNumber = this.lerValor(this.valor);
+        const valorNumber = this.lerValor(this.valor);
+        this.valorJuros = 0;
+        this.valorMulta = 0;
+        if (dias > 0) {
             if (this.multa != null) {
                 const multaNumber = this.lerValor(this.multa);
                 this.valorMulta = (multaNumber / 100) * valorNumber;
@@ -61,10 +61,8 @@ export class CalculadoraComponent implements OnInit {
                 const jurosNumber = this.lerValor(this.juros);
                 this.valorJuros = jurosNumber * dias;
             }
-            this.valorTotal = valorNumber + this.valorJuros + this.valorMulta;
-            console.log(this.valorTotal);
-            return this.valorTotal;
         }
+        this.valorTotal = valorNumber + this.valorJuros + this.valorMulta;
     }
 
     lerValor(valor: string): number {
@@ -79,7 +77,8 @@ export class CalculadoraComponent implements OnInit {
         if (casas.length == 1) {
             return `R$ ${casas[0]},00`;
         } else {
-            const decimal = casas [1].substring(0, 2);
+            let decimal = casas [1].substring(0, 2);
+            if (decimal.length == 1) { decimal += '0'; }
             return `R$ ${casas[0]},${decimal}`;
         }
     }
