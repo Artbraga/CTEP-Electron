@@ -1,8 +1,8 @@
 {
-    "name": "build-electron",
-    "productName": "build-electron",
+    "name": "secretaria_facil_ctep",
+    "productName": "secretaria_facil_ctep",
     "version": "1.0.0",
-    "description": "My Electron application description",
+    "description": "Secretaria Fácil - CTEP",
     "main": "src/index.ts",
     "scripts": {
         "build": "ng build --base-href ./",
@@ -11,7 +11,8 @@
         "package": "electron-forge package",
         "make": "electron-forge make",
         "publish": "electron-forge publish",
-        "lint": "tslint src"
+        "lint": "tslint src",
+        "deploy": "npm run build:prod && npm run make"
     },
     "keywords": [],
     "author": "arthur.coelho",
@@ -77,6 +78,7 @@
         "@angular/cli": "~9.0.6",
         "@angular/compiler-cli": "~9.0.6",
         "@angular/language-service": "~9.0.6",
+        "@electron-forge/maker-wix": "^6.0.0-beta.54",
         "@types/jasmine": "~3.5.0",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "^12.11.1",
