@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, dialog } from 'electron';
 import { enableLiveReload } from 'electron-compile';
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -11,7 +11,7 @@ if (isDevMode) { enableLiveReload(); }
 
 const createWindow = async () => {
     // Create the browser window.
-    let mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true
         }
@@ -35,6 +35,20 @@ const createWindow = async () => {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
+
+    mainWindow.on('close', function(e) {
+        const choice = dialog.showMessageBoxSync(this,
+            {
+                type: 'question',
+                buttons: ['Sim', 'Não'],
+                title: 'Confirmação',
+                message: 'Deseja sair da aplicação?'
+            });
+        if (choice == 1) {
+            e.preventDefault();
+        }
+    });
+
 };
 
 // This method will be called when Electron has finished
