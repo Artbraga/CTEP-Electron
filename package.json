@@ -7,7 +7,7 @@
     "scripts": {
         "build": "ng build --base-href ./",
         "build:prod": "npm run build -- -c production",
-        "start": "electron-forge start",
+        "start": "npm run build && electron-forge start",
         "package": "electron-forge package",
         "make": "electron-forge make",
         "publish": "electron-forge publish",

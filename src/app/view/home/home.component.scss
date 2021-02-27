@@ -87,3 +87,11 @@
 .logado {
     padding-left: 30px;
 }
+.version {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    font-size: 0.8em;
+    color: $white;
+    opacity: 0.8;
+}

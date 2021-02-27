@@ -3,6 +3,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { UsuarioService } from '../../../services/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../../../model/usuario.model';
+import { version } from '../../../../package.json';
 
 @Component({
     selector: 'home',
@@ -10,7 +11,7 @@ import { Usuario } from '../../../model/usuario.model';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+    public version: string = version;
     @ViewChild('sidenav', {static: false}) sidenav: MatDrawer;
 
     get usuarioLogado(): Usuario {
