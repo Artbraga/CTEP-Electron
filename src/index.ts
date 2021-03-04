@@ -1,6 +1,7 @@
-import { app, BrowserWindow, dialog, ipcMain } from "electron";
-import { enableLiveReload } from "electron-compile";
-import * as fs from "fs";
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { enableLiveReload } from 'electron-compile';
+import * as fs from 'fs';
+import * as path from 'path';
 
 let mainWindow: BrowserWindow | null;
 let secondWindow: BrowserWindow | null;
@@ -27,19 +28,19 @@ const createWindow = async () => {
         mainWindow.webContents.openDevTools();
     }
 
-    mainWindow.on("closed", () => {
+    mainWindow.on('closed', () => {
         mainWindow = null;
         if (secondWindow != null) {
             secondWindow.close();
         }
     });
 
-    mainWindow.on("close", function (e) {
+    mainWindow.on('close', function(e) {
         const choice = dialog.showMessageBoxSync(this, {
-            type: "question",
-            buttons: ["Sim", "Não"],
-            title: "Confirmação",
-            message: "Deseja sair da aplicação?",
+            type: 'question',
+            buttons: ['Sim', 'Não'],
+            title: 'Confirmação',
+            message: 'Deseja sair da aplicação?',
         });
         if (choice == 1) {
             e.preventDefault();
@@ -47,33 +48,33 @@ const createWindow = async () => {
     });
 
     secondWindow = new BrowserWindow({
-        show: true,
+        show: false,
         webPreferences: {
             nodeIntegration: true
         }
     });
 
-    secondWindow.on("closed", () => {
+    secondWindow.on('closed', () => {
         secondWindow = null;
     });
 };
 
-app.on("ready", createWindow);
+app.on('ready', createWindow);
 
-app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
         app.quit();
     }
 });
 
-app.on("activate", () => {
+app.on('activate', () => {
     if (mainWindow === null) {
         createWindow();
     }
 });
 
-ipcMain.on("print", (event, message) => {
-    var options = {
+ipcMain.on('print', (event, message) => {
+    const options = {
         silent: false,
         printBackground: true,
         color: false,
@@ -86,22 +87,37 @@ ipcMain.on("print", (event, message) => {
         copies: 1,
         header: 'Header of the Page',
         footer: 'Footer of the Page'
+    };
+
+    console.log();
+    const folder = `${app.getPath('userData')}/printfolder`;
+    if (!fs.existsSync(folder)) {
+        fs.mkdirSync(folder);
     }
+    fs.readdir(folder, (err, files) => {
+        for (const file of files) {
+            fs.unlinkSync(path.join(folder, file));
+        }
+    });
 
+    const filename = `print${newGuid()}.html`;
 
-    // fs.writeFileSync(`${__dirname}/../aux/print.html`, message, 'utf-8');
-    // secondWindow.loadURL(`file://${__dirname}/../aux/print.html`);
-    // secondWindow.loadURL(`data:text/html;charset=utf-8,${message}`);
-    secondWindow.loadURL(`data:text/html;charset=utf-8,<html></html>`);
+    fs.writeFileSync(`${folder}/${filename}`, message, 'utf-8');
+    secondWindow.loadURL(`${folder}/${filename}`);
 
     secondWindow.webContents.on('did-finish-load', () => {
-        secondWindow.webContents.executeJavaScript(`document.getElementsByTagName("html").innerHtml=${message}`)
-        secondWindow.webContents.reload();
         secondWindow.webContents.print(options, (success, failureReason) => {
             if (success) {
-                event.sender.send("print", true);
+                event.sender.send('print', true);
+                fs.unlinkSync(`${folder}/${filename}`);
             }
-            // fs.unlinkSync(`${__dirname}/../aux/print.html`);
         });
     });
 });
+
+const newGuid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+};
