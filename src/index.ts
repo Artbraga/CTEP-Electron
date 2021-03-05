@@ -48,7 +48,7 @@ const createWindow = async () => {
     });
 
     secondWindow = new BrowserWindow({
-        show: true,
+        show: false,
         webPreferences: {
             nodeIntegration: true
         }
