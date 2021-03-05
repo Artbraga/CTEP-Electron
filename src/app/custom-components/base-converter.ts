@@ -1,7 +1,7 @@
 export class BaseConverter {
     public static DateToString(data: Date): string {
         if (data == null) {
-            return "";
+            return '';
         }
         return `${this.prependZero(data.getDate())}/${this.prependZero(
             data.getMonth() + 1

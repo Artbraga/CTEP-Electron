@@ -1,63 +1,130 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import { enableLiveReload } from 'electron-compile';
+import * as fs from 'fs';
+import * as path from 'path';
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: BrowserWindow | null;
+let secondWindow: BrowserWindow | null;
 
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
-if (isDevMode) { enableLiveReload(); }
+if (isDevMode) {
+    enableLiveReload();
+}
 
 const createWindow = async () => {
     // Create the browser window.
-    let mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         webPreferences: {
-            nodeIntegration: true
-        }
+            nodeIntegration: true,
+        },
     });
     mainWindow.maximize();
-    mainWindow.menuBarVisible = false;
+    mainWindow.removeMenu();
 
     // and load the index.html of the app.
     mainWindow.loadURL(`file://${__dirname}/../dist/index.html`);
     if (isDevMode) {
         mainWindow.webContents.openDevTools();
     }
-    // else {
-    //     mainWindow.loadURL(`file://${__dirname}/index.html`);
-    // }
 
-    // Emitted when the window is closed.
     mainWindow.on('closed', () => {
-        // Dereference the window object, usually you would store windows
-        // in an array if your app supports multi windows, this is the time
-        // when you should delete the corresponding element.
         mainWindow = null;
+        if (secondWindow != null) {
+            secondWindow.close();
+        }
+    });
+
+    mainWindow.on('close', function(e) {
+        const choice = dialog.showMessageBoxSync(this, {
+            type: 'question',
+            buttons: ['Sim', 'Não'],
+            title: 'Confirmação',
+            message: 'Deseja sair da aplicação?',
+        });
+        if (choice == 1) {
+            e.preventDefault();
+        }
+    });
+
+    secondWindow = new BrowserWindow({
+        show: false,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+
+    secondWindow.on('closed', () => {
+        secondWindow = null;
     });
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
-// Quit when all windows are closed.
 app.on('window-all-closed', () => {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
         app.quit();
     }
 });
 
 app.on('activate', () => {
-    // On OS X it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) {
         createWindow();
     }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
+ipcMain.on('print', (event, message) => {
+    const options = {
+        silent: false,
+        printBackground: true,
+        color: false,
+        margin: {
+            marginType: 'printableArea'
+        },
+        landscape: false,
+        pagesPerSheet: 1,
+        collate: false,
+        copies: 1
+    };
+
+    const tmpfolder = `${app.getPath('userData')}/printfolder`;
+    const distFolder = `${__dirname}/../dist`;
+    if (!fs.existsSync(tmpfolder)) {
+        fs.mkdirSync(tmpfolder);
+    }
+    let files = fs.readdirSync(tmpfolder);
+    for (const file of files) {
+        try{
+            fs.unlinkSync(path.join(tmpfolder, file));
+        }
+        catch{}
+    }
+    files = fs.readdirSync(distFolder);
+    const styleFile = files.find(x => x.startsWith('styles'));
+    console.log(styleFile);
+    fs.copyFileSync(path.join(distFolder, styleFile), path.join(tmpfolder, styleFile));
+
+    const filename = `print${newGuid()}.html`;
+
+    fs.writeFileSync(`${tmpfolder}/${filename}`, message, 'utf-8');
+    secondWindow.loadURL(`${tmpfolder}/${filename}`);
+
+    secondWindow.webContents.on('did-finish-load', () => {
+        secondWindow.webContents.print(options, (success, failureReason) => {
+            if (success) {
+                event.sender.send('print', true);
+                try{
+                    fs.unlinkSync(path.join(tmpfolder, filename));
+                }
+                catch{}
+                }
+        });
+    });
+});
+
+const newGuid = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+};

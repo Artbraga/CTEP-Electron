@@ -73,13 +73,13 @@ body {
         color: $light-gray;
     }
 }
-.mat-fab, .mat-mini-fab, .mat-raised-button, .mat-button {
+.mat-fab, .mat-mini-fab, .mat-raised-button {
     &.mat-primary {
         background-color: $primary;
     }
     &.mat-accent {
         background-color: $light-gray;
-    }   
+    }
 }
 
 .mat-card {
@@ -361,7 +361,7 @@ button.mat-raised-button {
         0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
-.print-container {
+#print-container {
     .mat-tab-body-content {
         height: unset;
         padding-bottom: 40px;

@@ -48,6 +48,11 @@ export class Aluno {
         return this.turmasAluno.map(x => x.turma.codigo).join(', ');
     }
 
+    get matriculas(): string {
+        return this.turmasAluno.map(x => x.matricula).join(', ');
+    }
+
+
     corrigirInformacoes() {
         if (this.dataMatricula != null) {
             this.dataMatricula = BaseConverter.StringToDate(this.dataMatricula.toString());

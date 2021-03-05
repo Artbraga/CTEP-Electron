@@ -1,19 +1,17 @@
-import { Directive, HostListener, Input } from "@angular/core";
+import { Directive, Input } from "@angular/core";
 import { MatTab, MatTabGroup } from "@angular/material/tabs";
-import { reduce } from "rxjs/operators";
+import { ElectronService } from "ngx-electron";
+
 @Directive({
     selector: "mat-tab-group[ngxPrint]",
 })
 export class PrintTabDirective {
-
     @Input() printSectionId: string;
 
     useExistingCss = true;
     printDelay: number = 0;
 
-    constructor(private tabs: MatTabGroup) {
-
-    }
+    constructor(private tabs: MatTabGroup, private _electronService : ElectronService) {}
 
     private getElementTag(tag: keyof HTMLElementTagNameMap): string {
         const html: string[] = [];
@@ -29,7 +27,7 @@ export class PrintTabDirective {
         var ret = await this.tabs._allTabs.reduce(async (acc, tab, i) => {
             var old = await acc;
             old.innerHTML += await this.buscarElementosdaTab(tab, this.tabs, i);
-            var buttons = old.getElementsByTagName('button');
+            var buttons = old.getElementsByTagName("button");
             if (buttons) {
                 for (var i = 0; i < buttons.length; i++) {
                     buttons[i].remove();
@@ -41,61 +39,47 @@ export class PrintTabDirective {
         return ret.innerHTML;
     }
 
-    private async buscarElementosdaTab(tab: MatTab, tabGroup: MatTabGroup, index: number): Promise<string> {
-        return new Promise(resolve => {
+    private async buscarElementosdaTab(
+        tab: MatTab,
+        tabGroup: MatTabGroup,
+        index: number
+    ): Promise<string> {
+        return new Promise((resolve) => {
             tabGroup.selectedIndex = index;
             setTimeout(() => {
-                let printContents = Array.from(document.getElementsByClassName('mat-tab-body-active'))
+                let printContents = Array.from(
+                    document.getElementsByClassName("mat-tab-body-active")
+                );
                 const reducedDivs = printContents.reduce((acc, div) => {
                     acc.innerHTML += div.innerHTML;
                     return acc;
-                }, );
+                });
                 resolve(reducedDivs.innerHTML);
             }, 100);
         });
     }
 
     public async print() {
-        let printContents,
-            popupWin,
-            styles = "",
-            links = "";
-
-        if (this.useExistingCss) {
-            styles = this.getElementTag("style");
-            links = this.getElementTag("link");
-        }
-
-        printContents = await this.getHtmlContents();
-        popupWin = window.open(
-            "",
-            "_blank",
-            "top=0,left=0,height=auto,width=auto"
-        );
-        popupWin.document.open();
-        popupWin.document.write(`
-      <html>
-        <head>
-          ${styles}
-          ${links}
-        </head>
-        <body>
-        <div class="print-container">
-        <h1>Ficha do Aluno</h1>
-          ${printContents}
-        </div>
-          <script defer>
-            function triggerPrint(event) {
-              window.removeEventListener('load', triggerPrint, false);
-              setTimeout(function() {
-                window.print();
-                setTimeout(function() { window.close(); }, 0);
-              }, ${this.printDelay});
-            }
-            window.addEventListener('load', triggerPrint, false);
-          </script>
-        </body>
-      </html>`);
-        popupWin.document.close();
+        let printContents = await this.getHtmlContents();
+        let styles = this.getElementTag("style");
+        let links = this.getElementTag("link");
+            const html = `
+            <!doctype html>
+            <html lang="en">
+                <head>
+                    <meta charset="utf-8">
+                    ${styles}
+                    ${links}
+                </head>
+                <body>
+                    <div id="print-container">
+                        <h1>Ficha do Aluno</h1>
+                        ${printContents}
+                    </div>
+                </body>`;
+        this._electronService.ipcRenderer.on('print', (event, resp) => {
+            console.log(resp);
+        });
+        this._electronService.ipcRenderer.send('print', html);
     }
 }

@@ -29,6 +29,7 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
         this.columns.push({ key: 'cpf', header: 'CPF', field: 'cpf' } as Coluna);
         this.columns.push({ key: 'telefone', header: 'Telefone', field: 'telefone' } as Coluna);
         this.columns.push({ key: 'celular', header: 'Celular', field: 'celular' } as Coluna);
+        this.columns.push({ key: 'matricula', header: 'Matrículas', field: 'matriculas' } as Coluna);
         this.columns.push({ key: 'turmas', header: 'Turmas', field: 'turmas' } as Coluna);
         this.columns.push({ key: 'status', header: 'Situação', field: 'tipoStatusAluno' } as Coluna);
         this.columns.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);

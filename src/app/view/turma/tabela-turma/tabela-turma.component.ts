@@ -28,6 +28,8 @@ export class TabelaTurmaComponent extends BaseTable<Turma> implements OnInit {
         this.columns.push({ key: 'codigo', header: 'Código', field: 'codigo' } as Coluna);
         this.columns.push({ key: 'curso', header: 'Curso', field: 'curso.nome' } as Coluna);
         this.columns.push({ key: 'dia', header: 'Dias da Semana', field: 'diasDaSemana' } as Coluna);
+        this.columns.push({ key: 'horario', header: 'Horário', field: 'horario' } as Coluna);
+        this.columns.push({ key: 'inicio', header: 'Início', field: 'diasDaSemana' } as Coluna);
         this.columns.push({ key: 'status', header: 'Situação', field: 'status' } as Coluna);
         this.columns.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
     }

@@ -1,12 +1,13 @@
 {
     "name": "secretaria_facil_ctep",
     "productName": "secretaria_facil_ctep",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Secretaria Fácil - CTEP",
     "main": "src/index.ts",
     "scripts": {
         "build": "ng build --base-href ./",
         "build:prod": "npm run build -- -c production",
+        "build:start": "npm run build && electron-forge start",
         "start": "electron-forge start",
         "package": "electron-forge package",
         "make": "electron-forge make",
@@ -86,6 +87,7 @@
         "babel-preset-env": "^1.7.0",
         "babel-preset-react": "^6.24.1",
         "codelyzer": "^5.1.2",
+        "electron": "^11.3.0",
         "electron-forge": "^5.2.4",
         "electron-prebuilt-compile": "8.2.0",
         "jasmine-core": "~3.5.0",
