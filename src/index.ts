@@ -48,7 +48,7 @@ const createWindow = async () => {
     });
 
     secondWindow = new BrowserWindow({
-        show: false,
+        show: true,
         webPreferences: {
             nodeIntegration: true
         }
@@ -84,33 +84,40 @@ ipcMain.on('print', (event, message) => {
         landscape: false,
         pagesPerSheet: 1,
         collate: false,
-        copies: 1,
-        header: 'Header of the Page',
-        footer: 'Footer of the Page'
+        copies: 1
     };
 
-    console.log();
-    const folder = `${app.getPath('userData')}/printfolder`;
-    if (!fs.existsSync(folder)) {
-        fs.mkdirSync(folder);
+    const tmpfolder = `${app.getPath('userData')}/printfolder`;
+    const distFolder = `${__dirname}/../dist`;
+    if (!fs.existsSync(tmpfolder)) {
+        fs.mkdirSync(tmpfolder);
     }
-    fs.readdir(folder, (err, files) => {
-        for (const file of files) {
-            fs.unlinkSync(path.join(folder, file));
+    let files = fs.readdirSync(tmpfolder);
+    for (const file of files) {
+        try{
+            fs.unlinkSync(path.join(tmpfolder, file));
         }
-    });
+        catch{}
+    }
+    files = fs.readdirSync(distFolder);
+    const styleFile = files.find(x => x.startsWith('styles'));
+    console.log(styleFile);
+    fs.copyFileSync(path.join(distFolder, styleFile), path.join(tmpfolder, styleFile));
 
     const filename = `print${newGuid()}.html`;
 
-    fs.writeFileSync(`${folder}/${filename}`, message, 'utf-8');
-    secondWindow.loadURL(`${folder}/${filename}`);
+    fs.writeFileSync(`${tmpfolder}/${filename}`, message, 'utf-8');
+    secondWindow.loadURL(`${tmpfolder}/${filename}`);
 
     secondWindow.webContents.on('did-finish-load', () => {
         secondWindow.webContents.print(options, (success, failureReason) => {
             if (success) {
                 event.sender.send('print', true);
-                fs.unlinkSync(`${folder}/${filename}`);
-            }
+                try{
+                    fs.unlinkSync(path.join(tmpfolder, filename));
+                }
+                catch{}
+                }
         });
     });
 });

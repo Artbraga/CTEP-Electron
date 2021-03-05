@@ -5,7 +5,7 @@
     "description": "Secretaria Fácil - CTEP",
     "main": "src/index.ts",
     "scripts": {
-        "build": "ng build --base-href ./ --extract-css",
+        "build": "ng build --base-href ./",
         "build:prod": "npm run build -- -c production",
         "build:start": "npm run build && electron-forge start",
         "start": "electron-forge start",
