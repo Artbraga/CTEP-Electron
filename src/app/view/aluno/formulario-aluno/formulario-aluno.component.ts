@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Aluno } from 'src/model/aluno.model';
 import { MaskPatterns } from 'src/model/enums/mask.enum';
-import { ViacepService } from 'src/services/ngx-viacep/viacep.service';
-import { Endereco } from 'src/services/ngx-viacep/endereco';
+import { ViacepService } from 'src/services/application-services/ngx-viacep/viacep.service';
+import { Endereco } from 'src/services/application-services/ngx-viacep/endereco';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
 import { Router } from '@angular/router';

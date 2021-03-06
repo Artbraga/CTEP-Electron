@@ -26,6 +26,13 @@ export class AlunoService extends BaseService<Aluno> {
         return this.http.post<Aluno[]>(url, filtro);
     }
 
+    baixarPesquisa(filtro: FiltroAluno): Observable<Aluno[]> {
+        const url = this.baseURL + `/BaixarPesquisa`;
+
+        return this.http.post<Aluno[]>(url, filtro);
+    }
+
+
     vincularAlunoTurma(turmaAluno: TurmaAluno): Observable<boolean> {
         const url = this.baseURL + `/VincularAlunoTurma`;
 

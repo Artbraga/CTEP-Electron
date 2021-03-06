@@ -25,6 +25,7 @@ export class AppComponent {
             }
         });
         this.matIconRegistry.addSvgIcon('logout', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/logout.svg'));
+        this.matIconRegistry.addSvgIcon('xls_icon', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/ms_excel.svg'));
     }
 
     logar() {

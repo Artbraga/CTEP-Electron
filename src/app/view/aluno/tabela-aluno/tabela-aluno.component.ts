@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { ModalConfirmacaoComponent } from 'src/app/custom-components/modal-confirmacao/modal-confirmacao.component';
 import { AlunoService } from 'src/services/aluno.service';
 import { FichaAlunoParameter, FormularioAlunoParameter, IdAlunoParameter, PesquisarAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { NotificationService } from '../../../custom-components/notification/notification.service';
+import { NotificationType } from '../../../custom-components/notification/toaster/toaster';
 
 @Component({
     selector: 'tabela-aluno',
@@ -19,6 +21,7 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
 
     constructor(public dialog: MatDialog,
                 public alunoService: AlunoService,
+                public notificationService: NotificationService,
                 private routingService: RoutingService,
                 private router: Router) {
         super();

@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { PainelGeralComponent } from './view/painel-geral/painel-geral.component';
 import { HomeComponent } from './view/home/home.component';
-import { ViacepService } from 'src/services/ngx-viacep/viacep.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoadingModule } from './custom-components/loading/loading.module';
 import { NotificationModule } from './custom-components/notification/notification.module';
@@ -65,7 +64,6 @@ import { TextMaskModule } from 'angular2-text-mask';
             provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
             useValue: { appearance: 'outline' },
         },
-        ViacepService,
     ],
     entryComponents: [ModalLoginComponent],
     bootstrap: [AppComponent],

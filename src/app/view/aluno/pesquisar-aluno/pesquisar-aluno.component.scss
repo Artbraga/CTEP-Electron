@@ -1,0 +1,13 @@
+@import '../../../../theming.scss';
+
+.buttons {
+    text-align: right;
+    margin-left: auto;
+    margin-top: 12px;
+    button {
+        background-color: $white;
+        &:hover {
+            background-color: $primary;
+        }
+    }
+}

@@ -1,7 +1,14 @@
 
 <div class="pesquisa">
-    <h1>Pesquisar Alunos</h1>
+    <div style="display: flex;">
+        <h1>Pesquisar Alunos</h1>
+        <div class="buttons">
+            <button mat-button color="primary" (click)="exportarPesquisa()">
+                <mat-icon svgIcon="xls_icon"></mat-icon> Exportar Pesquisa
+            </button>
+        </div>
+    </div>
     <filtro-aluno [filtro]="filtro" (pesquisar)="pesquisar($event)"></filtro-aluno>
-    <tabela-aluno [list]="list" (pesquisar)="pesquisar()"></tabela-aluno>
+    <tabela-aluno [list]="list" (pesquisar)="pesquisar()" (exportar)="exportarPesquisa()"></tabela-aluno>
 </div>
 

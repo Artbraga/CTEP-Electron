@@ -68,9 +68,17 @@ body {
     margin-left: 10px;
     &.mat-primary {
         color: $primary;
+        &:hover {
+            background-color: $primary;
+            color: $white;
+        }
     }
     &.mat-accent {
         color: $light-gray;
+        &:hover {
+            background-color: $light-gray;
+            color: $white;
+        }
     }
 }
 .mat-fab, .mat-mini-fab, .mat-raised-button {
