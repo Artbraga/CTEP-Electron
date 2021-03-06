@@ -26,6 +26,7 @@ import { TurmaModule } from './view/turma/turma.module';
 import { CalculadoraComponent } from './view/painel-geral/calculadora/calculadora.component';
 import { CustomDatetimepickerModule } from './custom-components/custom-datetimepicker/custom-datetimepicker.module';
 import { TextMaskModule } from 'angular2-text-mask';
+import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/modal-confirmacao.module';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { TextMaskModule } from 'angular2-text-mask';
         CustomDatetimepickerModule,
         AlunoModule,
         TurmaModule,
+        ModalConfirmacaoModule,
         TextMaskModule
     ],
     providers: [

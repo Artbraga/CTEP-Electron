@@ -1,13 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Aluno } from '../../../../model/aluno.model';
-import { Curso } from '../../../../model/curso.model';
 import { TipoStatusAlunoEnum } from '../../../../model/enums/tipo-status-aluno.enum';
 import { FiltroTurma } from '../../../../model/filters/turma.filter';
 import { TurmaAluno } from '../../../../model/turma-aluno.model';
 import { Turma } from '../../../../model/turma.model';
 import { AlunoService } from '../../../../services/aluno.service';
-import { CursoService } from '../../../../services/curso.service';
 import { TurmaService } from '../../../../services/turma.service';
 import { BaseFormularioComponent } from '../../../base/base-formulario.component';
 import { NotificationService } from '../../../custom-components/notification/notification.service';

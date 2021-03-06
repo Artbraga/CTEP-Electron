@@ -21,7 +21,11 @@ export class PesquisarTurmaComponent implements OnInit {
             this.filtro = filtro;
         }
         this.turmaService.pesquisarTurmas(this.filtro).subscribe(data => {
-            this.list = data.map(x => Object.assign(new Turma(), x));
+            this.list = data.map(x => {
+                const turma = Object.assign(new Turma(), x);
+                turma.ajustarDatas();
+                return turma;
+            });
         });
     }
 }

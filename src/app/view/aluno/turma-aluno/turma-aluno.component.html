@@ -5,34 +5,22 @@
     <mat-card>
         <div class="form-grid">
             <div class="four">
-                <custom-select
-                    label="Curso:"
-                    field="nome"
-                    [options]="cursosOptions"
-                    [(selected)]="cursoSelecionado"
-                    (select)="buscarTurmas()"
-                >
+                <custom-select label="Curso:" field="nome" [options]="cursosOptions" [(selected)]="cursoSelecionado"
+                    (select)="buscarTurmas()">
                 </custom-select>
             </div>
             <div class="four">
-                <custom-select
-                    label="Turma:"
-                    field="codigo"
-                    [options]="turmasOptions"
-                    [(selected)]="turmaSelecionada"
-                >
+                <custom-select label="Turma:" field="codigo" [options]="turmasOptions" [(selected)]="turmaSelecionada">
                 </custom-select>
             </div>
             <mat-form-field class="four">
                 <mat-label>Matrícula:</mat-label>
                 <input matInput [(ngModel)]="matricula" />
-                <button
-                    mat-raised-button
-                    color="accent"
-                    matSuffix
+                <button mat-icon-button matSuffix color="primary" matTooltip="Gerar Matrícula"
                     (click)="gerarMatricula()">
-                    Gerar Matrícula
+                    <i class="material-icons">create</i>
                 </button>
+
             </mat-form-field>
         </div>
     </mat-card>

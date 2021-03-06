@@ -3,5 +3,6 @@ export class FiltroAluno {
     cpf: string;
     codigoTurma: string;
     cursoId: number;
+    matricula: string;
     situacaoId: number[];
 }

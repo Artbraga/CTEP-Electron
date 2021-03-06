@@ -56,6 +56,10 @@ export class TurmaAlunoComponent extends BaseFormularioComponent<TurmaAluno> imp
 
     gerarMatricula() {
         const dataMatricula = new Date();
+        if (this.cursoSelecionado == null) {
+            this.notificationService.addNotification('Erro!', 'Selecione um curso para gerar a matrícula.', NotificationType.Error);
+            return;
+        }
         this.alunoService.gerarNumeroDeMatricula(this.cursoSelecionado.id, dataMatricula.getFullYear()).subscribe(data => {
             this.matricula = data;
         });
