@@ -40,7 +40,7 @@ const createWindow = async () => {
             type: 'question',
             buttons: ['Sim', 'Não'],
             title: 'Confirmação',
-            message: 'Deseja sair da aplicação?',
+            message: 'Deseja sair do sistema?',
         });
         if (choice == 1) {
             e.preventDefault();
@@ -94,14 +94,12 @@ ipcMain.on('print', (event, message) => {
     }
     let files = fs.readdirSync(tmpfolder);
     for (const file of files) {
-        try{
+        try {
             fs.unlinkSync(path.join(tmpfolder, file));
-        }
-        catch{}
+        } catch {}
     }
     files = fs.readdirSync(distFolder);
     const styleFile = files.find(x => x.startsWith('styles'));
-    console.log(styleFile);
     fs.copyFileSync(path.join(distFolder, styleFile), path.join(tmpfolder, styleFile));
 
     const filename = `print${newGuid()}.html`;
@@ -113,10 +111,9 @@ ipcMain.on('print', (event, message) => {
         secondWindow.webContents.print(options, (success, failureReason) => {
             if (success) {
                 event.sender.send('print', true);
-                try{
+                try {
                     fs.unlinkSync(path.join(tmpfolder, filename));
-                }
-                catch{}
+                } catch {}
                 }
         });
     });
@@ -124,7 +121,10 @@ ipcMain.on('print', (event, message) => {
 
 const newGuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        // tslint:disable-next-line: no-bitwise
+        const r = Math.random() * 16 | 0;
+        // tslint:disable-next-line: no-bitwise
+        const v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
     });
 };
