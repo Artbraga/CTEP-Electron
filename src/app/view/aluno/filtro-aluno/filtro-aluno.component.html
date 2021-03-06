@@ -39,6 +39,10 @@
                            (select)="turmaSelected()">
             </custom-autocomplete>
         </div>
+        <mat-form-field class="three">
+            <mat-label>Matrícula:</mat-label>
+            <input matInput [(ngModel)]="filtro.matricula" />
+        </mat-form-field>
         <div class="three buttons">
             <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
             <button mat-raised-button color="primary" (click)="pesquisarAlunos()">Pesquisar</button>

@@ -4,6 +4,8 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../../../model/usuario.model';
 import { version } from '../../../../package.json';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalConfirmacaoComponent } from '../../custom-components/modal-confirmacao/modal-confirmacao.component';
 
 @Component({
     selector: 'home',
@@ -17,7 +19,9 @@ export class HomeComponent implements OnInit {
     get usuarioLogado(): Usuario {
         return this.usuarioService.buscarUsuarioLogado();
     }
-    constructor(private usuarioService: UsuarioService, private router: Router) { }
+    constructor(private usuarioService: UsuarioService,
+                private router: Router,
+                public dialog: MatDialog) { }
 
     ngOnInit(): void {
     }
@@ -45,6 +49,13 @@ export class HomeComponent implements OnInit {
     }
 
     logout() {
-        this.usuarioService.deslogar();
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja realmente sair do sistema?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.usuarioService.deslogar();
+            }
+        });
     }
 }
