@@ -22,8 +22,7 @@ body {
             }
             .mat-card {
                 margin-bottom: 20px;
-                box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-                    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+                box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
                     0px 1px 10px 0px rgba(0, 0, 0, 0.12);
             }
             .header {
@@ -51,11 +50,18 @@ body {
 }
 
 .mat-sidenav-container {
-    background-image: url('./assets/images/logo-opac.png');
+    background-image: url("./assets/images/logo-opac.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-size: 90% auto;
+}
+
+body {
+    .mat-dialog-container {
+        width: 50vw;
+
+    }
 }
 
 .mat-raised-button {
@@ -84,12 +90,22 @@ button:hover {
         }
     }
 }
-.mat-fab, .mat-mini-fab, .mat-raised-button {
+.mat-fab,
+.mat-mini-fab,
+.mat-raised-button {
     &.mat-primary {
         background-color: $primary;
     }
     &.mat-accent {
         background-color: $light-gray;
+    }
+}
+.mat-icon-button {
+    &.mat-primary {
+        color: $primary;
+    }
+    &.mat-accent {
+        color: $light-gray;
     }
 }
 
@@ -195,7 +211,8 @@ button:hover {
         display: flex;
         flex-wrap: wrap;
     }
-    .mat-form-field-label, .mat-checkbox-label {
+    .mat-form-field-label,
+    .mat-checkbox-label {
         font-size: 15px;
         color: $primary;
         font-weight: 700;
@@ -208,10 +225,7 @@ button:hover {
     }
 }
 
-.form-grid
-    .mat-form-field-appearance-outline
-    .mat-form-field-suffix
-    .mat-raised-button {
+.form-grid .mat-form-field-appearance-outline .mat-form-field-suffix .mat-raised-button {
     top: -8px;
 }
 
@@ -367,8 +381,7 @@ button.mat-raised-button {
         height: 4px;
     }
     background-color: white;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-        0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
         0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
@@ -379,7 +392,6 @@ button.mat-raised-button {
     }
 }
 
-
 .mat-form-field-appearance-outline .mat-form-field-outline {
     background-color: white !important;
 }
@@ -387,4 +399,12 @@ button.mat-raised-button {
 .mat-progress-spinner circle,
 .mat-spinner circle {
     stroke: $off-white;
+}
+
+.contador {
+    margin-left: auto;
+    margin-right: 10px;
+    font-size: 10px;
+    top: -18px;
+    position: relative;
 }

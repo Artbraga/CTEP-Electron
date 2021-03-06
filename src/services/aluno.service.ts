@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { FiltroAluno } from 'src/model/filters/aluno.filter';
 import { TurmaAluno } from '../model/turma-aluno.model';
 import { RegistroAluno } from 'src/model/registro-aluno.model';
+import { MudancaSituacao } from '../model/mudanca-situacao.model';
 
 @Injectable({ providedIn: 'root', })
 export class AlunoService extends BaseService<Aluno> {
@@ -37,6 +38,12 @@ export class AlunoService extends BaseService<Aluno> {
         const url = this.baseURL + `/VincularAlunoTurma`;
 
         return this.http.post<boolean>(url, turmaAluno);
+    }
+
+    alterarSituacao(mudancaSituacao: MudancaSituacao): Observable<boolean> {
+        const url = this.baseURL + `/AlterarSituacao`;
+
+        return this.http.post<boolean>(url, mudancaSituacao);
     }
 
     salvarImagem(id: number, imagemPerfil: File): Observable<boolean> {

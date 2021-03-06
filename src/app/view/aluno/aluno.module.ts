@@ -32,6 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegistroAlunoComponent } from './registro-aluno/registro-aluno.component';
 import { TransferenciaAlunoComponent } from './transferencia-aluno/transferencia-aluno.component';
 import { DirectivesModule } from 'src/directives/directives.module';
+import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situacao.component';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { DirectivesModule } from 'src/directives/directives.module';
         FiltroAlunoComponent,
         FichaAlunoComponent,
         RegistroAlunoComponent,
-        TransferenciaAlunoComponent
+        TransferenciaAlunoComponent,
+        AlteracaoSituacaoComponent
     ],
     imports: [
         AppRoutingModule,

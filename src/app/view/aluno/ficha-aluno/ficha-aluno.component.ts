@@ -14,6 +14,7 @@ import { NotificationType } from 'src/app/custom-components/notification/toaster
 import { RegistroAluno } from 'src/model/registro-aluno.model';
 import { TransferenciaAlunoComponent } from '../transferencia-aluno/transferencia-aluno.component';
 import { PrintTabDirective } from 'src/directives/printTabsDirective.directive';
+import { AlteracaoSituacaoComponent } from '../alteracao-situacao/alteracao-situacao.component';
 
 @Component({
     selector: 'ficha-aluno',
@@ -113,6 +114,19 @@ export class FichaAlunoComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.dialog.open(TransferenciaAlunoComponent, { data: this.element }).afterClosed().subscribe(res => {
+                    this.carregarAluno();
+                });
+            }
+        });
+    }
+
+    alterarSituacao() {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja alterar a situação do aluno ${this.element.nome}?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.dialog.open(AlteracaoSituacaoComponent, { data: this.element }).afterClosed().subscribe(res => {
                     this.carregarAluno();
                 });
             }

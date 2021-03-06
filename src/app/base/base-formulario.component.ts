@@ -1,5 +1,3 @@
-import { BaseService } from '../../services/base.service';
-import { OnInit } from '@angular/core';
 
 export abstract class BaseFormularioComponent<T> {
     isEdicao = false;
