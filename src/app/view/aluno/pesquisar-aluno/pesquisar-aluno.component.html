@@ -9,6 +9,6 @@
         </div>
     </div>
     <filtro-aluno [filtro]="filtro" (pesquisar)="pesquisar($event)"></filtro-aluno>
-    <tabela-aluno [list]="list" (pesquisar)="pesquisar()" (exportar)="exportarPesquisa()"></tabela-aluno>
+    <tabela-aluno [pageList]="pageList" (pesquisar)="pesquisar()" (paginar)="paginar($event)" (exportar)="exportarPesquisa()"></tabela-aluno>
 </div>
 

@@ -5,9 +5,9 @@ import { FiltroAluno } from 'src/model/filters/aluno.filter';
 import { RoutingService } from '../../../../services/routing.service';
 import { FiltroAlunoParameter } from '../../../../model/enums/constants';
 import { BaixarArquivoService } from '../../../../services/application-services/baixarArquivo.service';
-import { Arquivo } from '../../../../model/application-model/arquivo';
 import { NotificationService } from '../../../custom-components/notification/notification.service';
 import { NotificationType } from '../../../custom-components/notification/toaster/toaster';
+import { PageTableResult } from '../../../custom-components/page-table-result';
 
 @Component({
     selector: 'pesquisar-aluno',
@@ -16,7 +16,7 @@ import { NotificationType } from '../../../custom-components/notification/toaste
 })
 export class PesquisarAlunoComponent implements OnInit {
     filtro: FiltroAluno;
-    list: Aluno[];
+    pageList: PageTableResult<Aluno>;
     constructor(private alunoService: AlunoService,
                 private baixarArquivoService: BaixarArquivoService,
                 private notificationService: NotificationService,
@@ -29,6 +29,7 @@ export class PesquisarAlunoComponent implements OnInit {
         } else {
             this.filtro = new FiltroAluno();
         }
+        this.pageList = new PageTableResult<Aluno>();
     }
 
     pesquisar(filtro: FiltroAluno = null) {
@@ -37,12 +38,13 @@ export class PesquisarAlunoComponent implements OnInit {
             this.routingService.salvarValor(FiltroAlunoParameter, this.filtro);
         }
         this.alunoService.pesquisarAlunos(this.filtro).subscribe(data => {
-            this.list = data.map(x => Object.assign(new Aluno(), x));
+            this.pageList = data;
+            this.pageList.lista = data.lista.map(x => Object.assign(new Aluno(), x));
         });
     }
 
     exportarPesquisa() {
-        if (this.list == null || this.list.length == 0) {
+        if (this.pageList.lista == null || this.pageList.lista.length == 0) {
             this.notificationService.addNotification('Atenção', 'A pesquisa não possui resultados a serem exportados.', NotificationType.Warnning);
             return;
         }
@@ -55,6 +57,11 @@ export class PesquisarAlunoComponent implements OnInit {
         err => {
             this.notificationService.addNotification('Erro', 'Erro ao baixar a pesquisa!', NotificationType.Error);
         });
+    }
+
+    paginar(pagina: number) {
+        this.filtro.pagina = pagina;
+        this.pesquisar(this.filtro);
     }
 
 }

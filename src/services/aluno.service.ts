@@ -7,6 +7,7 @@ import { FiltroAluno } from 'src/model/filters/aluno.filter';
 import { TurmaAluno } from '../model/turma-aluno.model';
 import { RegistroAluno } from 'src/model/registro-aluno.model';
 import { MudancaSituacao } from '../model/mudanca-situacao.model';
+import { PageTableResult } from '../app/custom-components/page-table-result';
 
 @Injectable({ providedIn: 'root', })
 export class AlunoService extends BaseService<Aluno> {
@@ -21,10 +22,10 @@ export class AlunoService extends BaseService<Aluno> {
         return this.http.get(url, { responseType: 'text' });
     }
 
-    pesquisarAlunos(filtro: FiltroAluno): Observable<Aluno[]> {
+    pesquisarAlunos(filtro: FiltroAluno): Observable<PageTableResult<Aluno>> {
         const url = this.baseURL + `/FiltrarAlunos`;
 
-        return this.http.post<Aluno[]>(url, filtro);
+        return this.http.post<PageTableResult<Aluno>>(url, filtro);
     }
 
     baixarPesquisa(filtro: FiltroAluno): Observable<Aluno[]> {
