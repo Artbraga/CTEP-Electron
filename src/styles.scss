@@ -42,6 +42,9 @@ body {
             min-width: 100px;
             margin-left: 10px;
         }
+        .mat-drawer-inner-container {
+            overflow-x: hidden;
+        }    
     }
     a:-webkit-any-link {
         text-decoration: unset;
