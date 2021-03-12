@@ -1,5 +1,5 @@
 <div style="display: grid; width: 100%;margin-bottom: 10px;">
-    <div class="table-container" style="max-height: 80vh; overflow: auto;" #tableToExport>
+    <div class="table-container" style="overflow: auto;" [ngStyle]="{ 'max-height': maxHeigth }" #tableToExport>
         <table mat-table datatable [dataSource]="listOfElements" multiTemplateDataRows matSort
             (matSortChange)="sortData($event)">
             <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">

@@ -36,6 +36,7 @@ export class CustomTableComponent implements AfterViewInit {
     @Input() headerFixed = false;
     @Input() paginateData: any;
     @Input() paginaAtual: number;
+    @Input() maxHeigth = '60vh';
 
     @Output() elementClick = new EventEmitter<any>();
     @Output() sort = new EventEmitter<any>();
