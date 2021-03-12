@@ -1,6 +1,6 @@
 <div class="tabela">
     <mat-card>
-        <custom-table [columns]="columns" [listOfElements]="list">
+        <custom-table [columns]="columns" [listOfElements]="pageList.lista">
             <ng-template let-element customTemplate="acoesTemplate">
                 <div style="text-align: end;">
                     <button mat-icon-button color="primary"
@@ -21,5 +21,7 @@
                 </div>
             </ng-template>
         </custom-table>
+        <custom-paginator [pageList]="pageList" (paginacao)="paginacao($event)"></custom-paginator>
+
     </mat-card>
 </div>

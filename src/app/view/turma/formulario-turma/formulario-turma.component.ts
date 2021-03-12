@@ -14,6 +14,7 @@ import { RegistroTurmaComponent } from '../registro-turma/registro-turma.compone
 import { Coluna } from 'src/app/custom-components/base-table';
 import { RegistroTurma } from 'src/model/registro-turma.model';
 import { IdTurmaParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 
 @Component({
     selector: 'app-formulario-turma',
@@ -29,6 +30,7 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
     rotaVoltar: string = null;
 
     columnsRegistro: Coluna[] = [];
+    id: number;
 
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
@@ -42,13 +44,9 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
     ngOnInit(): void {
         if (this.routingService.possuiValor(IdTurmaParameter)) {
             this.isEdicao = true;
-            const id = this.routingService.excluirValor(IdTurmaParameter) as number;
+            this.id = this.routingService.excluirValor(IdTurmaParameter) as number;
             this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
-            this.turmaService.getById(id).subscribe(data => {
-                this.element = Object.assign(new Turma(), data);
-                this.element.ajustarDatas();
-                this.listarCursos();
-            });
+            this.carregarTurma();
 
             this.columnsRegistro.push({ key: 'data', header: 'Data', field: 'dataStr' } as Coluna);
             this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro' } as Coluna);
@@ -56,6 +54,19 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
         } else {
             this.listarCursos();
         }
+    }
+
+    carregarTurma() {
+        this.turmaService.getById(this.id).subscribe(data => {
+            this.element = Object.assign(new Turma(), data);
+            this.element.registros = this.element.registros.map(reg => {
+                reg = Object.assign(new RegistroTurma(), reg);
+                reg.ajustarDatas();
+                return reg;
+            });
+            this.element.ajustarDatas();
+            this.listarCursos();
+        });
     }
 
     listarCursos() {
@@ -125,12 +136,30 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result != null) {
-                this.turmaService.adicionarRegistro(result);
+                this.turmaService.adicionarRegistro(result).subscribe(data => {
+                    if (data) {
+                        this.notificationService.addNotification('Sucesso!', 'Registro adicionado.', NotificationType.Success);
+                        this.carregarTurma();
+                    }
+                });
             }
         });
     }
 
-    excluirRegistro(reg: RegistroTurma) {
-
+    excluirRegistro(registro: RegistroTurma) {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja excluir o registro?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.turmaService.excluirRegistro(registro.id).subscribe(data => {
+                    if (data) {
+                        this.notificationService.addNotification('Sucesso!', 'Registro excluído.', NotificationType.Success);
+                        this.carregarTurma();
+                    }
+                });
+            }
+        });
     }
+
 }

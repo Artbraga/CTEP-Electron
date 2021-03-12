@@ -1,7 +1,9 @@
 import { Input, Output, EventEmitter } from '@angular/core';
+import { PageTableResult } from './page-table-result';
 
 export abstract class BaseTable<T> {
     @Input() list: T[] = [];
+    @Input() pageList = new PageTableResult<T>();
     @Output() listChange = new EventEmitter();
 
     columns: Coluna[] = [];

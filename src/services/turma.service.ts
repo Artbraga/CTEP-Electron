@@ -52,7 +52,7 @@ export class TurmaService extends BaseService<Turma> {
     }
 
     public excluirRegistro(id: number): Observable<boolean> {
-        const url = 'ExcluirRegistro/' + id;
+        const url = this.baseURL + '/ExcluirRegistro/' + id;
 
         return this.http.delete<boolean>(url);
     }

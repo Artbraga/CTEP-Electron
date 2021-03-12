@@ -33,6 +33,7 @@ import { RegistroAlunoComponent } from './registro-aluno/registro-aluno.componen
 import { TransferenciaAlunoComponent } from './transferencia-aluno/transferencia-aluno.component';
 import { DirectivesModule } from 'src/directives/directives.module';
 import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situacao.component';
+import { CustomPaginatorModule } from '../../custom-components/custom-paginator/custom-paginator.module';
 
 @NgModule({
     declarations: [
@@ -59,6 +60,7 @@ import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situa
         CustomSelectModule,
         MatRadioModule,
         MatSelectModule,
+        CustomPaginatorModule,
         MatFormFieldModule,
         MatTooltipModule,
         MatMenuModule,
