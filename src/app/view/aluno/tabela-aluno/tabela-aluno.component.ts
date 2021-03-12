@@ -10,7 +10,6 @@ import { FichaAlunoParameter, FormularioAlunoParameter, IdAlunoParameter, Pesqui
 import { NotificationService } from '../../../custom-components/notification/notification.service';
 import { PageEvent } from '@angular/material/paginator';
 import { PageTableResult } from '../../../custom-components/page-table-result';
-import * as $ from 'jquery';
 
 @Component({
     selector: 'tabela-aluno',
@@ -21,11 +20,6 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
 
     @Output() pesquisar = new EventEmitter<any>();
     @Output() paginar = new EventEmitter<number>();
-
-    get heigthTabela(): string {
-        const t = $('.tabela');
-        return  window.innerHeight - t.offset().top - 140 + 'px';
-    }
 
     constructor(public dialog: MatDialog,
                 public alunoService: AlunoService,

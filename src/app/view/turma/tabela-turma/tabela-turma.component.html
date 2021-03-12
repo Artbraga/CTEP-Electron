@@ -1,6 +1,6 @@
 <div class="tabela">
     <mat-card>
-        <custom-table [columns]="columns" [listOfElements]="list">
+        <custom-table [columns]="columns" [listOfElements]="list" [maxHeigth]='heigthTabela'>
             <ng-template let-element customTemplate="acoesTemplate">
                 <div style="text-align: end;">
                     <button mat-icon-button color="primary"
