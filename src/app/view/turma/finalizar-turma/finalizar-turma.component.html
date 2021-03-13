@@ -1,0 +1,20 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Finalizar turma</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="six">
+                <h4 class="info-field">Codigo: {{data.codigo}}</h4>
+            </div>
+            <div class="six">
+                <custom-datetimepicker [(value)]="data.dataFim" name='Data de Término'>
+                </custom-datetimepicker>
+            </div>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

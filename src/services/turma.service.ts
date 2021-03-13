@@ -44,6 +44,13 @@ export class TurmaService extends BaseService<Turma> {
         return this.http.get(url, { responseType: 'text' });
     }
 
+    public finalizarTurma(turma: Turma): Observable<boolean> {
+        const url = this.baseURL + `/FinalizarTurma`;
+
+        return this.http.post<boolean>(url, turma);
+    }
+
+
     // registro
     public adicionarRegistro(registro: RegistroTurma): Observable<boolean> {
         const url = this.baseURL + `/AdicionarRegistro`;

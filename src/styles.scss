@@ -44,7 +44,7 @@ body {
         }
         .mat-drawer-inner-container {
             overflow-x: hidden;
-        }    
+        }
     }
     a:-webkit-any-link {
         text-decoration: unset;
@@ -410,4 +410,11 @@ button.mat-raised-button {
     font-size: 10px;
     top: -18px;
     position: relative;
+}
+
+.info-field {
+    opacity: 0.7;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 10px;
 }

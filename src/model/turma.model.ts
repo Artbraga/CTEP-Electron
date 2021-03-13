@@ -8,6 +8,7 @@ export class Turma {
     diasDaSemana: string;
     horaInicio: string;
     horaFim: string;
+    status: string;
     dataInicio: Date;
     dataFim: Date;
     curso: Curso;
