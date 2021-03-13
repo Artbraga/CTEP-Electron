@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
@@ -33,7 +33,7 @@ export const MY_FORMATS = {
 export class FiltroTurmaComponent implements OnInit {
     @Output() pesquisar = new EventEmitter<FiltroTurma>();
 
-    filtro: FiltroTurma;
+    @Input() filtro: FiltroTurma;
 
     cursosOptions: Curso[];
     cursoSelecionado: Curso;
@@ -41,13 +41,15 @@ export class FiltroTurmaComponent implements OnInit {
     constructor(private cursoService: CursoService) {}
 
     ngOnInit(): void {
-        this.limpar();
         this.listarCursos();
     }
 
     listarCursos() {
         this.cursoService.listarCursos().subscribe((data) => {
             this.cursosOptions = data.map((x) => Object.assign(new Curso(), x));
+            if (this.filtro.cursoId != null) {
+                this.cursoSelecionado = this.cursosOptions.find(x => x.id = this.filtro.cursoId);
+            }
         });
     }
 

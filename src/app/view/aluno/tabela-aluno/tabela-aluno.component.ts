@@ -8,7 +8,6 @@ import { ModalConfirmacaoComponent } from 'src/app/custom-components/modal-confi
 import { AlunoService } from 'src/services/aluno.service';
 import { FichaAlunoParameter, FormularioAlunoParameter, IdAlunoParameter, PesquisarAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { NotificationService } from '../../../custom-components/notification/notification.service';
-import { NotificationType } from '../../../custom-components/notification/toaster/toaster';
 import { PageEvent } from '@angular/material/paginator';
 import { PageTableResult } from '../../../custom-components/page-table-result';
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FiltroTurmaParameter } from 'src/model/enums/constants';
 import { FiltroTurma } from 'src/model/filters/turma.filter';
 import { Turma } from 'src/model/turma.model';
+import { RoutingService } from 'src/services/routing.service';
 import { TurmaService } from 'src/services/turma.service';
 
 @Component({
@@ -12,13 +14,21 @@ export class PesquisarTurmaComponent implements OnInit {
 
     filtro: FiltroTurma;
     list: Turma[];
-    constructor(private turmaService: TurmaService) {}
+    constructor(private turmaService: TurmaService, private routingService: RoutingService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (this.routingService.possuiValor(FiltroTurmaParameter)) {
+            this.filtro = this.routingService.buscarValor(FiltroTurmaParameter);
+            this.pesquisar();
+        } else {
+            this.filtro = new FiltroTurma();
+        }
+    }
 
     pesquisar(filtro: FiltroTurma = null) {
         if (filtro != null) {
             this.filtro = filtro;
+            this.routingService.salvarValor(FiltroTurmaParameter, this.filtro);
         }
         this.turmaService.pesquisarTurmas(this.filtro).subscribe(data => {
             this.list = data.map(x => {

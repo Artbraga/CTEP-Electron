@@ -5,7 +5,21 @@
         </div>
         <div class="six buttons">
             <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
-            <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+            <button *ngIf="!isEdicao" mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+            <button *ngIf="isEdicao && emAndamento" mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+                Ações <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="salvar()">
+                    <mat-icon>edit</mat-icon>
+                    <span>Salvar</span>
+                </button>
+                <button mat-menu-item (click)="finalizarTurma()">
+                    <mat-icon>check</mat-icon>
+                    <span>Finalizar</span>
+                </button>
+
+            </mat-menu>
         </div>
     </div>
     <mat-card>
@@ -43,6 +57,7 @@
                 <mat-label>Horário de Fim:</mat-label>
                 <input matInput [textMask]="{mask: masks.Hora}" [(ngModel)]="element.horaFim">
             </mat-form-field>
+            <h4 *ngIf="isEdicao" class="info-field">Situação: {{element.status}}</h4>
         </div>
     </mat-card>
     <mat-card *ngIf="isEdicao">

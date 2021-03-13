@@ -15,6 +15,7 @@ import { Coluna } from 'src/app/custom-components/base-table';
 import { RegistroTurma } from 'src/model/registro-turma.model';
 import { IdTurmaParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
+import { FinalizarTurmaComponent } from '../finalizar-turma/finalizar-turma.component';
 
 @Component({
     selector: 'app-formulario-turma',
@@ -31,6 +32,10 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
 
     columnsRegistro: Coluna[] = [];
     id: number;
+
+    get emAndamento(): boolean {
+        return this.element.status == 'Em Andamento';
+    }
 
     constructor(private turmaService: TurmaService,
                 private cursoService: CursoService,
@@ -155,6 +160,21 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
                 this.turmaService.excluirRegistro(registro.id).subscribe(data => {
                     if (data) {
                         this.notificationService.addNotification('Sucesso!', 'Registro excluído.', NotificationType.Success);
+                        this.carregarTurma();
+                    }
+                });
+            }
+        });
+    }
+
+    finalizarTurma() {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja finalizar a turma ${this.element.codigo}?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.dialog.open(FinalizarTurmaComponent, { data: this.element }).afterClosed().subscribe(res => {
+                    if (res) {
                         this.carregarTurma();
                     }
                 });

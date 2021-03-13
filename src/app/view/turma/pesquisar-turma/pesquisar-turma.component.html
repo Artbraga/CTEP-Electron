@@ -1,5 +1,5 @@
 <div class="pesquisa">
     <h1>Pesquisar Turma</h1>
-    <filtro-turma (pesquisar)="pesquisar($event)"></filtro-turma>
+    <filtro-turma [filtro]="filtro" (pesquisar)="pesquisar($event)"></filtro-turma>
     <tabela-turma [list]="list" (pesquisar)="pesquisar()"></tabela-turma>
 </div>

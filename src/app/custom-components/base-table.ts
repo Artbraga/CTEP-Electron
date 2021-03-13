@@ -1,10 +1,16 @@
 import { Input, Output, EventEmitter } from '@angular/core';
 import { PageTableResult } from './page-table-result';
+import * as $ from 'jquery';
 
 export abstract class BaseTable<T> {
     @Input() list: T[] = [];
     @Input() pageList = new PageTableResult<T>();
     @Output() listChange = new EventEmitter();
+
+    get heigthTabela(): string {
+        const t = $('.tabela');
+        return  window.innerHeight - t.offset().top - 140 + 'px';
+    }
 
     columns: Coluna[] = [];
     loadingTabela: number;

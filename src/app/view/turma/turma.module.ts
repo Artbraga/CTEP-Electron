@@ -25,6 +25,11 @@ import { FiltroTurmaComponent } from './filtro-turma/filtro-turma.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RegistroTurmaComponent } from './registro-turma/registro-turma.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatMenuModule } from '@angular/material/menu';
+import { FinalizarTurmaComponent } from './finalizar-turma/finalizar-turma.component';
 
 @NgModule({
     declarations: [
@@ -34,9 +39,12 @@ import { RegistroTurmaComponent } from './registro-turma/registro-turma.componen
         PesquisarTurmaComponent,
         FiltroTurmaComponent,
         RegistroTurmaComponent,
+        FinalizarTurmaComponent,
     ],
     imports: [
         AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
         CommonModule,
         FormsModule,
         SharedModule,
@@ -46,8 +54,10 @@ import { RegistroTurmaComponent } from './registro-turma/registro-turma.componen
         MatCardModule,
         MatButtonModule,
         MatInputModule,
+        MatMenuModule,
         MatIconModule,
         MatCheckboxModule,
+        MatTooltipModule,
         MatDialogModule,
         MatExpansionModule,
         MatDatepickerModule,
