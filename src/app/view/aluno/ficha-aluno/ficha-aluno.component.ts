@@ -26,6 +26,7 @@ export class FichaAlunoComponent implements OnInit {
     element: Aluno;
     imagem: any;
     columnsRegistro: Coluna[] = [];
+    columnsTurma: Coluna[] = [];
     idAluno: number;
     @ViewChild('confirmacaoExclusaoTemplate', { static: false }) confirmacaoExclusaoTemplate: TemplateRef<any>;
     @ViewChildren(PrintTabDirective) tab;
@@ -41,6 +42,12 @@ export class FichaAlunoComponent implements OnInit {
         this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro', addTooltip: true, tooltipMinSize: 150 } as Coluna);
         this.columnsRegistro.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
 
+        this.columnsTurma.push({ key: 'curso', header: 'Curso', field: 'turma.curso.nome', addTooltip: true, tooltipMinSize: 150 } as Coluna);
+        this.columnsTurma.push({ key: 'turma', header: 'Turma', field: 'turma.codigo', addTooltip: true, tooltipMinSize: 150 } as Coluna);
+        this.columnsTurma.push({ key: 'horario', header: 'Turma', field: 'turma.horarioCompleto', addTooltip: true, tooltipMinSize: 150 } as Coluna);
+        this.columnsTurma.push({ key: 'matricula', header: 'Matricula', field: 'matricula', addTooltip: true, tooltipMinSize: 150 } as Coluna);
+        this.columnsTurma.push({ key: 'status', header: 'Situação', field: 'tipoStatusAluno', addTooltip: true, tooltipMinSize: 150 } as Coluna);
+        this.columnsTurma.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
     }
 
     ngOnInit(): void {

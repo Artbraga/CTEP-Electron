@@ -20,6 +20,10 @@ export class Turma {
         return BaseConverter.DateToStringOnlyDate(this.dataInicio);
     }
 
+    get horarioCompleto(): string {
+        return `${this.diasDaSemana} das ${this.horario}`;
+    }
+
     get horario(): string {
         return this.horaInicio + ' - ' + this.horaFim;
     }
