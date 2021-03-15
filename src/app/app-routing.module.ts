@@ -10,7 +10,8 @@ import { FichaAlunoComponent } from './view/aluno/ficha-aluno/ficha-aluno.compon
 import { PesquisarTurmaComponent } from './view/turma/pesquisar-turma/pesquisar-turma.component';
 
 const routes: Routes = [
-    { path: '', component: PainelGeralComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: PainelGeralComponent },
     { path: 'aluno', component: AlunoMenuComponent },
     { path: 'formularioAluno', component: FormularioAlunoComponent, outlet: 'secondRouter' },
     { path: 'pesquisarAluno', component: PesquisarAlunoComponent, outlet: 'secondRouter' },
@@ -21,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [ RouterModule.forRoot(routes, {enableTracing: false, useHash: true})],
-    exports: [ RouterModule ]
+    imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }
