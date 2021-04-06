@@ -68,6 +68,9 @@ export class Aluno {
             this.turmasAluno = this.turmasAluno.map(ta => {
                 const turmaAluno = Object.assign(new TurmaAluno(), ta);
                 turmaAluno.turma = Object.assign(new Turma(), ta.turma);
+                if (turmaAluno.dataConclusao != null) {
+                    turmaAluno.dataConclusao = BaseConverter.StringToDate(turmaAluno.dataConclusao.toString());
+                }
                 return turmaAluno;
             });
         }

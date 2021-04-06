@@ -13,7 +13,7 @@ export class CustomDatetimepickerComponent {
     classeInvalido;
 
     @Input() name: string;
-    @Input() class: string;
+    @Input() classe: string;
     @Input() disabled = false;
     @Input() obrigatorio: boolean;
 

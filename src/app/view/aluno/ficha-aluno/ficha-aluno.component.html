@@ -169,9 +169,22 @@
                 </ng-template>
 
                 <ng-template let-element customTemplate="expandedDetailTemplate">
-                    <div class="element-detail" [@detailExpand]="
+                    <div class="form-grid" [@detailExpand]="
                       expandedTurma.includes(element) ? 'expanded' : 'collapsed'">
-                        <h4>Relatórios</h4>
+                        <div class="three">
+                            <div class="field">
+                                <span>Código de conclusão do Sistec</span>
+                                <span class="campo">{{ tratarString(element.codigoConlusaoSistec) }}</span>
+                            </div>
+                        </div>
+                        <div class="three">
+                            <div class="field">
+                                <span>Data de Conclusão</span>
+                                <span class="campo">{{ tratarString(element.dataConclusaoStr) }}</span>
+                            </div>
+                        </div>
+
+                            
                     </div>
                 </ng-template>
 
@@ -202,8 +215,3 @@
         </mat-tab>
     </mat-tab-group>
 </div>
-
-
-<ng-template #confirmacaoExclusaoTemplate>
-    teste
-</ng-template>

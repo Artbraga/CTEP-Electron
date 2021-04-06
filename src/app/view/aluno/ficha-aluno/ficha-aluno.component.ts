@@ -56,7 +56,6 @@ export class FichaAlunoComponent implements OnInit {
 
     idAluno: number;
 
-    @ViewChild('confirmacaoExclusaoTemplate', { static: false }) confirmacaoExclusaoTemplate: TemplateRef<any>;
     @ViewChildren(PrintTabDirective) tab;
 
     constructor(
@@ -77,7 +76,7 @@ export class FichaAlunoComponent implements OnInit {
         this.columnsTurma.push({ key: 'matricula', header: 'Matricula', groupKey: 'table', field: 'matricula' } as Coluna);
         this.columnsTurma.push({ key: 'status', header: 'Situação', groupKey: 'table', field: 'tipoStatusAluno' } as Coluna);
         this.columnsTurma.push({ key: 'buttons', groupKey: 'table', bodyTemplateName: 'acoesTemplate' } as Coluna);
-        this.columnsTurma.push({ key: 'expandedDetail', classBody: 'rowexpansion', colspan: 7, groupKey: 'expandGroupping', bodyTemplateName: 'expandedDetailTemplate' } as Coluna)
+        this.columnsTurma.push({ key: 'expandedDetail', classBody: 'rowexpansion', colspan: 7, groupKey: 'expandGroupping', bodyTemplateName: 'expandedDetailTemplate' } as Coluna);
     }
 
     ngOnInit(): void {
