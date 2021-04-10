@@ -1,6 +1,7 @@
 import { BaseConverter } from '../app/custom-components/base-converter';
 import { RegistroAluno } from './registro-aluno.model';
 import { TurmaAluno } from './turma-aluno.model';
+import { Turma } from './turma.model';
 
 export class Aluno {
     id: number;
@@ -63,7 +64,17 @@ export class Aluno {
         if (this.dataValidade != null) {
             this.dataValidade = BaseConverter.StringToDate(this.dataValidade.toString());
         }
-        if(this.registros != null) {
+        if (this.turmasAluno != null) {
+            this.turmasAluno = this.turmasAluno.map(ta => {
+                const turmaAluno = Object.assign(new TurmaAluno(), ta);
+                turmaAluno.turma = Object.assign(new Turma(), ta.turma);
+                if (turmaAluno.dataConclusao != null) {
+                    turmaAluno.dataConclusao = BaseConverter.StringToDate(turmaAluno.dataConclusao.toString());
+                }
+                return turmaAluno;
+            });
+        }
+        if (this.registros != null) {
             this.registros = this.registros.map(reg => {
                 reg = Object.assign(new RegistroAluno(), reg);
                 reg.data = BaseConverter.StringToDate(reg.data.toString());

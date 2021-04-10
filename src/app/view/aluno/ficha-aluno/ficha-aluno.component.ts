@@ -7,7 +7,7 @@ import { FichaAlunoParameter, FormularioAlunoParameter, IdAlunoParameter, RotaVo
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
-import { Coluna } from 'src/app/custom-components/base-table';
+import { ColumnGroup, Coluna } from 'src/app/custom-components/base-table';
 import { RegistroAlunoComponent } from '../registro-aluno/registro-aluno.component';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
@@ -15,19 +15,47 @@ import { RegistroAluno } from 'src/model/registro-aluno.model';
 import { TransferenciaAlunoComponent } from '../transferencia-aluno/transferencia-aluno.component';
 import { PrintTabDirective } from 'src/directives/printTabsDirective.directive';
 import { AlteracaoSituacaoComponent } from '../alteracao-situacao/alteracao-situacao.component';
+import { TurmaAluno } from 'src/model/turma-aluno.model';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
     selector: 'ficha-aluno',
     templateUrl: './ficha-aluno.component.html',
     styleUrls: ['./ficha-aluno.component.scss'],
+    animations: [
+        trigger('detailExpand', [
+            state(
+                'collapsed',
+                style({ height: '0px', minHeight: '0', display: 'none' })
+            ),
+            state('expanded', style({ height: '*' })),
+            transition(
+                'expanded <=> collapsed',
+                animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+            )
+        ])
+    ]
 })
 export class FichaAlunoComponent implements OnInit {
     rotaVoltar: string;
     element: Aluno;
     imagem: any;
     columnsRegistro: Coluna[] = [];
+    columnsTurma: Coluna[] = [];
+    expandedTurma: TurmaAluno[] = [];
+    changeIconTurma: boolean[] = [];
+    columnGroupsTurma: ColumnGroup[] = [
+        { keyGroup: 'table', groupHasBody: true, groupHasHeader: true },
+        {
+            keyGroup: 'expandGroupping',
+            groupHasBody: true,
+            groupHasHeader: false,
+            groupBodyClass: 'detail-row'
+        }
+    ];
+
     idAluno: number;
-    @ViewChild('confirmacaoExclusaoTemplate', { static: false }) confirmacaoExclusaoTemplate: TemplateRef<any>;
+
     @ViewChildren(PrintTabDirective) tab;
 
     constructor(
@@ -41,6 +69,14 @@ export class FichaAlunoComponent implements OnInit {
         this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro', addTooltip: true, tooltipMinSize: 150 } as Coluna);
         this.columnsRegistro.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
 
+        this.columnsTurma.push({ key: 'expand', groupKey: 'table', bodyTemplateName: 'expand' } as Coluna);
+        this.columnsTurma.push({ key: 'curso', header: 'Curso', groupKey: 'table', field: 'turma.curso.nome' } as Coluna);
+        this.columnsTurma.push({ key: 'turma', header: 'Turma', groupKey: 'table', field: 'turma.codigo' } as Coluna);
+        this.columnsTurma.push({ key: 'horario', header: 'Turma', groupKey: 'table', field: 'turma.horarioCompleto' } as Coluna);
+        this.columnsTurma.push({ key: 'matricula', header: 'Matricula', groupKey: 'table', field: 'matricula' } as Coluna);
+        this.columnsTurma.push({ key: 'status', header: 'Situação', groupKey: 'table', field: 'tipoStatusAluno' } as Coluna);
+        this.columnsTurma.push({ key: 'buttons', groupKey: 'table', bodyTemplateName: 'acoesTemplate' } as Coluna);
+        this.columnsTurma.push({ key: 'expandedDetail', classBody: 'rowexpansion', colspan: 7, groupKey: 'expandGroupping', bodyTemplateName: 'expandedDetailTemplate' } as Coluna);
     }
 
     ngOnInit(): void {
@@ -67,6 +103,8 @@ export class FichaAlunoComponent implements OnInit {
             this.element = Object.assign(new Aluno(), data);
             this.element.corrigirInformacoes();
         });
+        this.expandedTurma = [];
+        this.changeIconTurma = [];
     }
 
     voltar() {
@@ -169,5 +207,16 @@ export class FichaAlunoComponent implements OnInit {
                 });
             }
         });
+    }
+
+    expandTable(element) {
+        const index = this.element.turmasAluno.indexOf(element);
+        if (this.expandedTurma.includes(element)) {
+            this.expandedTurma = this.expandedTurma.filter(x => x !== element);
+            this.changeIconTurma[index] = false;
+        } else {
+            this.expandedTurma = this.expandedTurma.concat([element]);
+            this.changeIconTurma[index] = true;
+        }
     }
 }

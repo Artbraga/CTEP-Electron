@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { UsuarioService } from '../../../services/usuario.service';
-import { Router } from '@angular/router';
+import { ActivationStart, Router, RouterOutlet } from '@angular/router';
 import { Usuario } from '../../../model/usuario.model';
 import { version } from '../../../../package.json';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,7 +14,7 @@ import { ModalConfirmacaoComponent } from '../../custom-components/modal-confirm
 })
 export class HomeComponent implements OnInit {
     public version: string = version;
-    @ViewChild('sidenav', {static: false}) sidenav: MatDrawer;
+    @ViewChild('sidenav', { static: false }) sidenav: MatDrawer;
 
     get usuarioLogado(): Usuario {
         return this.usuarioService.buscarUsuarioLogado();
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
     redirecionar(rota: string) {
         this.router.navigate([{ outlets: { secondRouter: null } }])
-           .then(() => this.router.navigate([rota]));
+            .then(() => this.router.navigate([rota]));
     }
 
     logout() {
@@ -54,7 +54,15 @@ export class HomeComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.usuarioService.deslogar();
+                this.router.navigate([{ outlets: { secondRouter: null } }]).then(() => {
+                    this.router.navigate(['home']).then(() => {
+                        this.usuarioService.deslogar();
+                    });
+                });
+                // this.router.navigate([{ outlets: { primary: 'home', secondRouter: null } }]);
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 100);
             }
         });
     }

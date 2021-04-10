@@ -4,4 +4,5 @@ export class MudancaSituacao {
     situacaoId: number;
     registro: string;
     codigoSistec: string;
+    dataConclusao: Date;
 }

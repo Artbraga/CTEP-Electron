@@ -1,4 +1,4 @@
-<mat-form-field appearance="outline" class="{{class}}">
+<mat-form-field appearance="outline" class="{{classe}}">
     <mat-label>{{name}}</mat-label>
     <input #campo matInput [matDatepicker]="myDatepicker" [(ngModel)]="value" [disabled]="disabled" (dateChange)="campoInvalido()" (blur)="validarPreenchimentoCampo($event)" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)||(event.charCode == 47)">
     <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>

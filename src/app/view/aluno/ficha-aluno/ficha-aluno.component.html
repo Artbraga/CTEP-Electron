@@ -149,14 +149,58 @@
                 </div>
             </div>
         </mat-tab>
+        <mat-tab label="Turmas e Notas">
+            <h4>Turmas e Notas</h4>
+            <h4 class="info-field">Aluno: {{element.nome}}</h4>
+            <custom-table [columns]="columnsTurma" [colGroups]="columnGroupsTurma" [listOfElements]="element.turmasAluno">
+                <ng-template let-element customTemplate="acoesTemplate">
+                    <!-- <div style="text-align: end;">
+                        <button mat-icon-button color="primary"
+                                matTooltip="Excluir Registro"
+                                (click)="excluirRegistro(element)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div> -->
+                </ng-template>
+                <ng-template let-element let-column="column" let-index='rowIndex' customTemplate="expand">
+                    <button mat-icon-button color="primary" class="toggleButton" (click)="expandTable(element)">
+                        <mat-icon class="material-icons">{{changeIconTurma[index] ? 'expand_less' : 'expand_more'}}</mat-icon>
+                    </button>
+                </ng-template>
+
+                <ng-template let-element customTemplate="expandedDetailTemplate">
+                    <div class="form-grid" [@detailExpand]="
+                      expandedTurma.includes(element) ? 'expanded' : 'collapsed'">
+                        <div class="three">
+                            <div class="field">
+                                <span>Código de conclusão do Sistec</span>
+                                <span class="campo">{{ tratarString(element.codigoConlusaoSistec) }}</span>
+                            </div>
+                        </div>
+                        <div class="three">
+                            <div class="field">
+                                <span>Data de Conclusão</span>
+                                <span class="campo">{{ tratarString(element.dataConclusaoStr) }}</span>
+                            </div>
+                        </div>
+
+                            
+                    </div>
+                </ng-template>
+
+            </custom-table>
+
+        </mat-tab>
         <mat-tab label="Registro">
-            <h4>Registro do Aluno
+            <h4>Registro do Aluno</h4>
+            <div style="display: flex;">
+                <h4 class="info-field">Aluno: {{element.nome}}</h4>
                 <div class="buttons">
                     <button mat-button color="accent" (click)="adicionarRegistro()">
                         <mat-icon>add</mat-icon>Adicionar
                     </button>
                 </div>
-            </h4>
+            </div>
             <custom-table [columns]="columnsRegistro" [listOfElements]="element.registros">
                 <ng-template let-element customTemplate="acoesTemplate">
                     <div style="text-align: end;">
@@ -169,11 +213,5 @@
                 </ng-template>
             </custom-table>
         </mat-tab>
-        <mat-tab label="Turmas e Notas"></mat-tab>
     </mat-tab-group>
 </div>
-
-
-<ng-template #confirmacaoExclusaoTemplate>
-    teste
-</ng-template>

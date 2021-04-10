@@ -30,31 +30,33 @@
                 </ng-template>
             </div>
             <div class="nine">
-                <mat-form-field class="twelve">
-                    <mat-label>Nome:</mat-label>
-                    <input matInput [(ngModel)]="element.nome">
-                </mat-form-field>
-                <mat-form-field class="four">
-                    <mat-label>CPF:</mat-label>
-                    <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf">
-                </mat-form-field>
-                <mat-form-field class="four">
-                    <mat-label>RG:</mat-label>
-                    <input matInput [(ngModel)]="element.rg">
-                </mat-form-field>
-                <mat-form-field class="four">
-                    <mat-label>Órgão Emissor:</mat-label>
-                    <input matInput [(ngModel)]="element.orgaoEmissor">
-                </mat-form-field>
-                <custom-datetimepicker [(value)]="element.dataNascimento" name='Data de Nascimento' class="four">
-                </custom-datetimepicker>
-                <mat-form-field class="four">
-                    <mat-label>Sexo:</mat-label>
-                    <mat-select [(value)]="element.sexo">
-                        <mat-option value="m">Masculino</mat-option>
-                        <mat-option value="f">Feminino</mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <div class="form-grid">
+                    <mat-form-field class="twelve">
+                        <mat-label>Nome:</mat-label>
+                        <input matInput [(ngModel)]="element.nome">
+                    </mat-form-field>
+                    <mat-form-field class="four">
+                        <mat-label>CPF:</mat-label>
+                        <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf">
+                    </mat-form-field>
+                    <mat-form-field class="four">
+                        <mat-label>RG:</mat-label>
+                        <input matInput [(ngModel)]="element.rg">
+                    </mat-form-field>
+                    <mat-form-field class="four">
+                        <mat-label>Órgão Emissor:</mat-label>
+                        <input matInput [(ngModel)]="element.orgaoEmissor">
+                    </mat-form-field>
+                    <custom-datetimepicker [(value)]="element.dataNascimento" name='Data de Nascimento' class="four">
+                    </custom-datetimepicker>
+                    <mat-form-field class="four">
+                        <mat-label>Sexo:</mat-label>
+                        <mat-select [(value)]="element.sexo">
+                            <mat-option value="m">Masculino</mat-option>
+                            <mat-option value="f">Feminino</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
             <mat-form-field class="six">
                 <mat-label>Nome do Pai:</mat-label>
