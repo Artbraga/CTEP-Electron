@@ -148,19 +148,40 @@
                     </div>
                 </div>
             </div>
+            <div class="form-grid">
+                <div class="three">
+                    <div class="field">
+                        <span>Data de Matrícula</span>
+                        <span class="campo">{{ tratarString(element.dataMatriculaStr) }}</span>
+                    </div>
+                </div>
+                <div class="three">
+                    <div class="field">
+                        <span>Data de Validade</span>
+                        <span class="campo">{{ tratarString(element.dataValidadeStr) }}</span>
+                    </div>
+                </div>
+                <div class="six">
+                    <div class="field">
+                        <span>Curso Anterior</span>
+                        <span class="campo">{{ tratarString(element.cursoAnterior) }}</span>
+                    </div>
+                </div>
+            </div>
+
         </mat-tab>
         <mat-tab label="Turmas e Notas">
             <h4>Turmas e Notas</h4>
             <h4 class="info-field">Aluno: {{element.nome}}</h4>
             <custom-table [columns]="columnsTurma" [colGroups]="columnGroupsTurma" [listOfElements]="element.turmasAluno">
-                <ng-template let-element customTemplate="acoesTemplate">
-                    <!-- <div style="text-align: end;">
+                <ng-template let-turmaAluno customTemplate="acoesTemplate">
+                    <div style="text-align: end;">
                         <button mat-icon-button color="primary"
-                                matTooltip="Excluir Registro"
-                                (click)="excluirRegistro(element)">
-                            <i class="material-icons">delete</i>
+                                matTooltip="Visualizar Notas"
+                                (click)="visualizarNotas(turmaAluno)">
+                            <i class="material-icons">edit</i>
                         </button>
-                    </div> -->
+                    </div>
                 </ng-template>
                 <ng-template let-element let-column="column" let-index='rowIndex' customTemplate="expand">
                     <button mat-icon-button color="primary" class="toggleButton" (click)="expandTable(element)">
@@ -169,22 +190,30 @@
                 </ng-template>
 
                 <ng-template let-element customTemplate="expandedDetailTemplate">
-                    <div class="form-grid" [@detailExpand]="
-                      expandedTurma.includes(element) ? 'expanded' : 'collapsed'">
-                        <div class="three">
-                            <div class="field">
-                                <span>Código de conclusão do Sistec</span>
-                                <span class="campo">{{ tratarString(element.codigoConlusaoSistec) }}</span>
+                    <div [@detailExpand]="expandedTurma.includes(element) ? 'expanded' : 'collapsed'">
+                        <div *ngIf="concluido(element)" class="form-grid">
+                            <div class="three">
+                                <div class="field">
+                                    <span>Código de conclusão do Sistec</span>
+                                    <span class="campo">{{ tratarString(element.codigoConlusaoSistec) }}</span>
+                                </div>
+                            </div>
+                            <div class="three">
+                                <div class="field">
+                                    <span>Data de Conclusão</span>
+                                    <span class="campo">{{ tratarString(element.dataConclusaoStr) }}</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="three">
-                            <div class="field">
-                                <span>Data de Conclusão</span>
-                                <span class="campo">{{ tratarString(element.dataConclusaoStr) }}</span>
+                        <h4>Notas</h4>
+                        <div class="form-grid">
+                            <div *ngFor="let nota of element.notas" class="three">
+                                <div class="field">
+                                    <span>{{nota.disciplina.nome}}</span>
+                                    <span class="campo">{{ tratarString(nota.valorNota) }}</span>
+                                </div>
                             </div>
                         </div>
-
-                            
                     </div>
                 </ng-template>
 

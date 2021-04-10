@@ -1,0 +1,19 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Notas de Alunos</h2>
+    </div>
+    <mat-card>
+        <h4 class="nome-disabled">Aluno: {{aluno.nome}}</h4>
+        <h4 class="nome-disabled">Turma: {{turma.codigo}}</h4>
+        <div class="form-grid">
+            <mat-form-field *ngFor="let nota of notas" class="six">
+                <mat-label>{{nota.disciplina.nome}}:</mat-label>
+                <input matInput type="number" [(ngModel)]="nota.valorNota">
+            </mat-form-field>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>
