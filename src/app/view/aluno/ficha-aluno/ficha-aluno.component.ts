@@ -18,11 +18,11 @@ import { AlteracaoSituacaoComponent } from '../alteracao-situacao/alteracao-situ
 import { TurmaAluno } from 'src/model/turma-aluno.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { NotaAlunoComponent } from '../nota-aluno/nota-aluno.component';
-import { TipoStatusAlunoEnum } from '../../../../../out/secretaria_facil_ctep-win32-x64/resources/app/src/model/enums/tipo-status-aluno.enum';
 import { forkJoin } from 'rxjs';
 import { NotaAluno } from '../../../../model/nota-aluno.model';
 import { DisciplinaService } from '../../../../services/disciplina.service';
 import { NotaAlunoService } from '../../../../services/nota-aluno.service';
+import { TipoStatusAlunoEnum } from '../../../../model/enums/tipo-status-aluno.enum';
 
 @Component({
     selector: 'ficha-aluno',
