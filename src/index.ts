@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { enableLiveReload } from 'electron-compile';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -105,18 +105,19 @@ ipcMain.on('print', (event, message) => {
     const filename = `print${newGuid()}.html`;
 
     fs.writeFileSync(`${tmpfolder}/${filename}`, message, 'utf-8');
-    secondWindow.loadURL(`${tmpfolder}/${filename}`);
+    shell.openExternal(`${tmpfolder}/${filename}`);
+    // secondWindow.loadURL(`${tmpfolder}/${filename}`);
 
-    secondWindow.webContents.on('did-finish-load', () => {
-        secondWindow.webContents.print(options, (success, failureReason) => {
-            if (success) {
-                event.sender.send('print', true);
-                try {
-                    fs.unlinkSync(path.join(tmpfolder, filename));
-                } catch {}
-                }
-        });
-    });
+    // secondWindow.webContents.on('did-finish-load', () => {
+    //     secondWindow.webContents.print(options, (success, failureReason) => {
+    //         if (success) {
+    //             event.sender.send('print', true);
+    //             try {
+    //                 fs.unlinkSync(path.join(tmpfolder, filename));
+    //             } catch {}
+    //             }
+    //     });
+    // });
 });
 
 const newGuid = () => {

@@ -17,6 +17,12 @@ import { PrintTabDirective } from 'src/directives/printTabsDirective.directive';
 import { AlteracaoSituacaoComponent } from '../alteracao-situacao/alteracao-situacao.component';
 import { TurmaAluno } from 'src/model/turma-aluno.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { NotaAlunoComponent } from '../nota-aluno/nota-aluno.component';
+import { forkJoin } from 'rxjs';
+import { NotaAluno } from '../../../../model/nota-aluno.model';
+import { DisciplinaService } from '../../../../services/disciplina.service';
+import { NotaAlunoService } from '../../../../services/nota-aluno.service';
+import { TipoStatusAlunoEnum } from '../../../../model/enums/tipo-status-aluno.enum';
 
 @Component({
     selector: 'ficha-aluno',
@@ -60,6 +66,8 @@ export class FichaAlunoComponent implements OnInit {
 
     constructor(
         private alunoService: AlunoService,
+        private notaAlunoService: NotaAlunoService,
+        private disciplinaService: DisciplinaService,
         private notificationService: NotificationService,
         private routingService: RoutingService,
         private router: Router,
@@ -111,9 +119,13 @@ export class FichaAlunoComponent implements OnInit {
         this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
     }
 
-    tratarString(str: string): string {
-        if (str != null && str.length > 0) {
-            return str;
+    tratarString(str: string, tst = null): string {
+        if (tst) {
+            console.log(tst);
+            console.log(str);
+        }
+        if (str != null && str != '') {
+            return str.toString();
         }
         return '---';
     }
@@ -171,6 +183,23 @@ export class FichaAlunoComponent implements OnInit {
         });
     }
 
+    concluido(turmaAluno: TurmaAluno): boolean {
+        return turmaAluno.tipoStatusAluno == TipoStatusAlunoEnum.Concluido.name;
+    }
+
+    visualizarNotas(turmaAluno: TurmaAluno) {
+        this.dialog.open(
+            NotaAlunoComponent,
+            { width: '60vw', data: {
+                aluno: this.element,
+                turma: turmaAluno.turma
+            }
+            }).afterClosed().subscribe(res => {
+            this.carregarAluno();
+        });
+
+    }
+
     editarAluno() {
         this.routingService.salvarValor(IdAlunoParameter, this.element.id);
         this.routingService.salvarValor(RotaVoltarParameter, FichaAlunoParameter );
@@ -209,13 +238,32 @@ export class FichaAlunoComponent implements OnInit {
         });
     }
 
-    expandTable(element) {
+    expandTable(element: TurmaAluno) {
         const index = this.element.turmasAluno.indexOf(element);
         if (this.expandedTurma.includes(element)) {
             this.expandedTurma = this.expandedTurma.filter(x => x !== element);
             this.changeIconTurma[index] = false;
         } else {
             this.expandedTurma = this.expandedTurma.concat([element]);
+            forkJoin([
+                this.disciplinaService.listarDisciplinasDeUmCurso(element.turma.curso.id),
+                this.notaAlunoService.listarNotasDeUmAluno(this.element.id)
+            ]).subscribe(([disciplinas, notas]) => {
+                const notasCurso = [];
+                disciplinas.forEach(d => {
+                    let nota = notas.find(x => x.disciplinaId === d.id);
+                    if (nota == null) {
+                        nota = new NotaAluno();
+                        nota.disciplina = d;
+                        nota.disciplinaId = d.id;
+                    } else {
+                        nota.disciplina = d;
+                        nota.valorNota = parseFloat(nota.valorNota.toString().replace(',', '.'));
+                    }
+                    notasCurso.push(nota);
+                });
+                element.notas = notasCurso;
+            });
             this.changeIconTurma[index] = true;
         }
     }

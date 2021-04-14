@@ -34,6 +34,7 @@ import { TransferenciaAlunoComponent } from './transferencia-aluno/transferencia
 import { DirectivesModule } from 'src/directives/directives.module';
 import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situacao.component';
 import { CustomPaginatorModule } from '../../custom-components/custom-paginator/custom-paginator.module';
+import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { CustomPaginatorModule } from '../../custom-components/custom-paginator/
         FichaAlunoComponent,
         RegistroAlunoComponent,
         TransferenciaAlunoComponent,
-        AlteracaoSituacaoComponent
+        AlteracaoSituacaoComponent,
+        NotaAlunoComponent
     ],
     imports: [
         AppRoutingModule,

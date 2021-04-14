@@ -70,6 +70,10 @@ export class PrintTabDirective {
                     <meta charset="utf-8">
                     ${styles}
                     ${links}
+                    <script type="text/javascript">
+                        window.onload = function() { window.print(); }
+                        window.onfocus = function(){ window.close(); }
+                    </script>
                 </head>
                 <body>
                     <div id="print-container">
