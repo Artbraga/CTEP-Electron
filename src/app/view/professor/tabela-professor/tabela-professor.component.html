@@ -1,0 +1,20 @@
+<div class="tabela">
+    <mat-card>
+        <custom-table [columns]="columns" [listOfElements]="list" [maxHeigth]='heigthTabela'>
+            <ng-template let-element customTemplate="acoesTemplate">
+                <div style="text-align: end;">
+                    <button mat-icon-button color="primary"
+                            matTooltip="Gerenciar Turma"
+                            (click)="editarTurma(element)">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button mat-icon-button color="primary"
+                            matTooltip="Excluir Turma"
+                            (click)="excluirTurma(element)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </ng-template>
+        </custom-table>
+    </mat-card>
+</div>

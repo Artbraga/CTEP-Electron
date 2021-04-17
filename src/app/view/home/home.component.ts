@@ -59,10 +59,6 @@ export class HomeComponent implements OnInit {
                         this.usuarioService.deslogar();
                     });
                 });
-                // this.router.navigate([{ outlets: { primary: 'home', secondRouter: null } }]);
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 100);
             }
         });
     }
