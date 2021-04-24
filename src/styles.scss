@@ -418,3 +418,14 @@ button.mat-raised-button {
     font-weight: bold;
     margin: 10px;
 }
+
+.mat-radio-button, .mat-radio-button.mat-radio-checked  {
+    .mat-radio-container {
+        .mat-radio-inner-circle {
+            background-color: $secondary;
+        }
+        .mat-radio-outer-circle {
+            border-color: $secondary;
+        }
+    }
+} 

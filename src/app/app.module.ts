@@ -27,6 +27,7 @@ import { CalculadoraComponent } from './view/painel-geral/calculadora/calculador
 import { CustomDatetimepickerModule } from './custom-components/custom-datetimepicker/custom-datetimepicker.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/modal-confirmacao.module';
+import { UsuarioModule } from './view/usuario/usuario.module';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,7 @@ import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/mo
         HomeComponent,
         PainelGeralComponent,
         ModalLoginComponent,
-        CalculadoraComponent,
+        CalculadoraComponent
     ],
     imports: [
         BrowserModule,
@@ -56,6 +57,7 @@ import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/mo
         CustomDatetimepickerModule,
         AlunoModule,
         TurmaModule,
+        UsuarioModule,
         ModalConfirmacaoModule,
         TextMaskModule
     ],

@@ -24,6 +24,10 @@
                 <mat-icon aria-hidden="false">school</mat-icon>
                 <span>Turma</span>
             </a>
+            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('usuario')">
+                <mat-icon aria-hidden="false">manage_accounts</mat-icon>
+                <span>Usuário</span>
+            </a>
         </section>
         <span class="version">Versão do Sistema: {{version}}</span>
     </mat-sidenav>

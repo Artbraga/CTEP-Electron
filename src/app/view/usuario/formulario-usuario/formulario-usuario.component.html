@@ -1,0 +1,54 @@
+<div class="formulario">
+    <div class="header">
+        <div class="six">
+            <h1>{{isEdicao ? 'Edição' : 'Cadastro' }} de Usuário</h1>
+        </div>
+        <div class="six buttons">
+            <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
+            <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+        </div>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <ng-container *ngIf="vinculado; else elseTemplate">
+                <div class="twelve vinculo">
+                    <mat-radio-group [(ngModel)]="element.tipo" disabled>
+                        <mat-radio-button [value]="'aluno'">Aluno</mat-radio-button>
+                        <mat-radio-button [value]="'professor'">Professor</mat-radio-button>
+                    </mat-radio-group>
+
+                    <button mat-raised-button color="accent" (click)="removerVinculo()">
+                        <mat-icon>close</mat-icon>Remover
+                    </button>
+                </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <div class="twelve vinculo">
+                    <button mat-raised-button color="accent" (click)="vincular()">
+                        <mat-icon>add</mat-icon>Vincular
+                    </button>
+                </div>
+            </ng-template>
+            <mat-form-field class="eight">
+                <mat-label>Nome:</mat-label>
+                <input matInput [(ngModel)]="element.nome">
+            </mat-form-field>
+            <mat-form-field class="four">
+                <mat-label>Telefone:</mat-label>
+                <input matInput [(ngModel)]="element.telefone">
+            </mat-form-field>
+            <mat-form-field class="four">
+                <mat-label>E-mail:</mat-label>
+                <input matInput [(ngModel)]="element.email">
+            </mat-form-field>
+            <mat-form-field class="four">
+                <mat-label>Login:</mat-label>
+                <input matInput [(ngModel)]="element.login">
+            </mat-form-field>
+            <div class="four">
+                <custom-select label='Perfil:' field='nome' [options]="perfisOptions" [(selected)]="perfilSelecionado">
+                </custom-select>
+            </div>
+        </div>
+    </mat-card>
+</div>

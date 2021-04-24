@@ -1,6 +1,8 @@
 
 export abstract class BaseFormularioComponent<T> {
     isEdicao = false;
+    rotaVoltar: string = null;
+    id: number;
     constructor(public element: T) { }
 
     abstract validar(): boolean;

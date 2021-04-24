@@ -25,7 +25,6 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     imagem: any;
     imagemPerfil: File;
     imagemMudou = false;
-    rotaVoltar: string = null;
 
     constructor(private alunoService: AlunoService,
                 private cepService: ViacepService,
@@ -40,13 +39,13 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
         this.limparCampos();
         if (this.routingService.possuiValor(IdAlunoParameter)) {
             this.isEdicao = true;
-            const id = this.routingService.excluirValor(IdAlunoParameter) as number;
+            this.id = this.routingService.excluirValor(IdAlunoParameter) as number;
             this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
-            this.alunoService.getById(id).subscribe(data => {
+            this.alunoService.getById(this.id).subscribe(data => {
                 this.element = Object.assign(new Aluno(), data);
                 this.element.corrigirInformacoes();
             });
-            this.alunoService.buscarImagem(id).subscribe(data => {
+            this.alunoService.buscarImagem(this.id).subscribe(data => {
                 if (data != null && data.size > 0) {
                     const blob = new Blob([data], { type: 'image/png' });
                     const reader = new FileReader();
