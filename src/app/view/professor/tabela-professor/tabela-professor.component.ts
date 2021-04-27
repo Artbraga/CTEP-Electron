@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { IdProfessorParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { Professor } from '../../../../model/professor.model';
-import { Turma } from '../../../../model/turma.model';
 import { ProfessorService } from '../../../../services/professor.service';
 import { RoutingService } from '../../../../services/routing.service';
 import { BaseTable, Coluna } from '../../../custom-components/base-table';
@@ -16,8 +15,6 @@ import { ModalConfirmacaoComponent } from '../../../custom-components/modal-conf
 })
 export class TabelaProfessorComponent extends BaseTable<Professor> implements OnInit {
 
-    @Output() pesquisar = new EventEmitter<any>();
-
     constructor(public dialog: MatDialog,
                 private professorService: ProfessorService,
                 private routingService: RoutingService,
@@ -26,13 +23,20 @@ export class TabelaProfessorComponent extends BaseTable<Professor> implements On
     }
 
     ngOnInit() {
-        this.columns.push({ key: 'codigo', header: 'Código', field: 'codigo' } as Coluna);
-        this.columns.push({ key: 'curso', header: 'Curso', field: 'curso.nome' } as Coluna);
-        this.columns.push({ key: 'dia', header: 'Dias da Semana', field: 'diasDaSemana' } as Coluna);
-        this.columns.push({ key: 'horario', header: 'Horário', field: 'horario' } as Coluna);
-        this.columns.push({ key: 'inicio', header: 'Início', field: 'dataInicioStr' } as Coluna);
-        this.columns.push({ key: 'status', header: 'Situação', field: 'status' } as Coluna);
+        this.columns.push({ key: 'nome', header: 'Nome', field: 'nome' } as Coluna);
+        this.columns.push({ key: 'celular', header: 'Celular', field: 'celular' } as Coluna);
+        this.columns.push({ key: 'email', header: 'E-mail', field: 'email' } as Coluna);
+        this.columns.push({ key: 'formacao', header: 'Formação', field: 'formacao' } as Coluna);
+        this.columns.push({ key: 'ativo', header: 'Situação', field: 'ativo' } as Coluna);
         this.columns.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
+
+        this.buscarProfessores();
+    }
+
+    buscarProfessores() {
+        this.professorService.listarProfessores().subscribe(data => {
+            this.list = data.map(x => Object.assign(new Professor(), x));
+        });
     }
 
     excluirProfessor(element: Professor) {
@@ -43,13 +47,13 @@ export class TabelaProfessorComponent extends BaseTable<Professor> implements On
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.professorService.deletar(element.id).subscribe(() => {
-                    this.pesquisar.emit();
+                    this.buscarProfessores();
                 });
             }
         });
     }
 
-    editarTurma(element: Turma) {
+    editarProfessor(element: Professor) {
         this.routingService.salvarValor(IdProfessorParameter, element.id);
         this.routingService.salvarValor(RotaVoltarParameter, 'tabelaProfessor');
         this.router.navigate([{ outlets: { secondRouter: 'formularioProfessor' } }]);

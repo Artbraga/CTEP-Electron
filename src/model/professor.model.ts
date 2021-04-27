@@ -12,4 +12,9 @@ export class Professor {
     celular: string;
     email: string;
     formacao: string;
+    flagExclusao:boolean;
+
+    get ativo(): string {
+        return this.flagExclusao ? 'Inativo' : 'Ativo';
+    }
 }

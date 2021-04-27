@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { Turma } from '../model/turma.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Professor } from '../model/professor.model';
@@ -9,18 +8,12 @@ import { Professor } from '../model/professor.model';
 export class ProfessorService extends BaseService<Professor> {
 
     constructor(http: HttpClient) {
-        super(http, 'Turma');
+        super(http, 'Professor');
     }
 
-    public buscarTurmasDeUmCurso(cursoId: number) {
-        const url = this.baseURL + `/ListarTurmasDeUmCurso/${cursoId}`;
+    public listarProfessores() {
+        const url = this.baseURL + `/ListarProfessores`;
 
-        return this.http.get<Turma[]>(url);
-    }
-
-    public listarTurmasAtivas(): Observable<Turma[]> {
-        const url = this.baseURL + `/ListarTurmasAtivas`;
-
-        return this.http.get<Turma[]>(url);
+        return this.http.get<Professor[]>(url);
     }
 }
