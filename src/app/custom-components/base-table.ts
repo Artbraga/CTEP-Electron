@@ -13,7 +13,6 @@ export abstract class BaseTable<T> {
     }
 
     columns: Coluna[] = [];
-    loadingTabela: number;
 
     dynamicColumns: { key: string; col: Coluna }[];
 

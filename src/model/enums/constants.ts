@@ -10,3 +10,6 @@ export const IdAlunoParameter = 'idAluno';
 // Turma
 export const IdTurmaParameter = 'idTurma';
 export const FiltroTurmaParameter = 'filtroTurma';
+
+// Professor
+export const IdProfessorParameter = 'idProfessor';

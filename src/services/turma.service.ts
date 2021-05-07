@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FiltroTurma } from 'src/model/filters/turma.filter';
 import { RegistroTurma } from 'src/model/registro-turma.model';
+import { TurmaProfessor } from 'src/model/turma-professor.model';
 
 @Injectable({ providedIn: 'root', })
 export class TurmaService extends BaseService<Turma> {
@@ -62,5 +63,24 @@ export class TurmaService extends BaseService<Turma> {
         const url = this.baseURL + '/ExcluirRegistro/' + id;
 
         return this.http.delete<boolean>(url);
+    }
+
+    // professor
+    public adicionarProfessor(registro: TurmaProfessor): Observable<boolean> {
+        const url = this.baseURL + `/AdicionarProfessor`;
+
+        return this.http.post<boolean>(url, registro);
+    }
+
+    public excluirProfessor(id: number): Observable<boolean> {
+        const url = this.baseURL + '/ExcluirProfessor/' + id;
+
+        return this.http.delete<boolean>(url);
+    }
+
+    public buscarProfessoresDaTurma(id: number): Observable<TurmaProfessor[]> {
+        const url = this.baseURL + '/BuscarProfessoresDeUmaTurma/' + id;
+
+        return this.http.get<TurmaProfessor[]>(url);
     }
 }

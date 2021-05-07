@@ -1,6 +1,7 @@
 import { BaseConverter } from '../app/custom-components/base-converter';
 import { Curso } from './curso.model';
 import { RegistroTurma } from './registro-turma.model';
+import { TurmaProfessor } from './turma-professor.model';
 
 export class Turma {
     id: number;
@@ -15,6 +16,7 @@ export class Turma {
     anoInicio: number;
 
     registros: RegistroTurma[];
+    professores: TurmaProfessor[];
 
     get dataInicioStr(): string {
         return BaseConverter.DateToStringOnlyDate(this.dataInicio);
