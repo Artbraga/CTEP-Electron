@@ -58,11 +58,10 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
             this.carregarTurma();
 
             this.columnsRegistro.push({ key: 'data', header: 'Data', field: 'dataStr' } as Coluna);
-            this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro' } as Coluna);
+            this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro', addTooltip: true, tooltipMinSize: 150 } as Coluna);
             this.columnsRegistro.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
 
             this.columnsProfessor.push({ key: 'nome', header: 'Nome', field: 'professor.nome' } as Coluna);
-            this.columnsProfessor.push({ key: 'registro', header: 'Registro', field: 'registro' } as Coluna);
             this.columnsProfessor.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
         } else {
             this.listarCursos();
