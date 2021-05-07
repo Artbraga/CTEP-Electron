@@ -28,6 +28,7 @@ import { CustomDatetimepickerModule } from './custom-components/custom-datetimep
 import { TextMaskModule } from 'angular2-text-mask';
 import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/modal-confirmacao.module';
 import { UsuarioModule } from './view/usuario/usuario.module';
+import { ProfessorModule } from './view/professor/professor.module';
 
 @NgModule({
     declarations: [
@@ -58,6 +59,7 @@ import { UsuarioModule } from './view/usuario/usuario.module';
         AlunoModule,
         TurmaModule,
         UsuarioModule,
+        ProfessorModule,
         ModalConfirmacaoModule,
         TextMaskModule
     ],

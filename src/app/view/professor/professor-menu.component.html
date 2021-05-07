@@ -1,0 +1,17 @@
+<mat-accordion>
+    <mat-expansion-panel [(expanded)]='expanded'>
+        <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'50px'">
+            <mat-panel-title>
+                Professores
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-grid menu-secao">
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['formularioProfessor'] } }]" (click)="mudarRota()">
+                <mat-icon>person_add</mat-icon><span>Adicionar Professor</span>
+            </a>
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['tabelaProfessor'] } }]" (click)="mudarRota()">
+                <mat-icon>list</mat-icon><span>Listar Professores</span>
+            </a>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

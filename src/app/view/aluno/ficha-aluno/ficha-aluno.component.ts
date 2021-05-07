@@ -188,16 +188,15 @@ export class FichaAlunoComponent implements OnInit {
     }
 
     visualizarNotas(turmaAluno: TurmaAluno) {
-        this.dialog.open(
-            NotaAlunoComponent,
+        const dialogRef = this.dialog.open(NotaAlunoComponent,
             { width: '60vw', data: {
                 aluno: this.element,
                 turma: turmaAluno.turma
             }
-            }).afterClosed().subscribe(res => {
-            this.carregarAluno();
         });
-
+        dialogRef.afterClosed().subscribe(res => {
+            if(res) this.carregarAluno();
+        });
     }
 
     editarAluno() {

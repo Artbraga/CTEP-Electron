@@ -10,6 +10,9 @@ import { FichaAlunoComponent } from './view/aluno/ficha-aluno/ficha-aluno.compon
 import { PesquisarTurmaComponent } from './view/turma/pesquisar-turma/pesquisar-turma.component';
 import { UsuarioMenuComponent } from './view/usuario/usuario-menu.component';
 import { FormularioUsuarioComponent } from './view/usuario/formulario-usuario/formulario-usuario.component';
+import { ProfessorMenuComponent } from './view/professor/professor-menu.component';
+import { FormularioProfessorComponent } from './view/professor/formulario-professor/formulario-professor.component';
+import { TabelaProfessorComponent } from './view/professor/tabela-professor/tabela-professor.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -23,6 +26,9 @@ const routes: Routes = [
     { path: 'pesquisarTurma', component: PesquisarTurmaComponent, outlet: 'secondRouter' },
     { path: 'usuario', component: UsuarioMenuComponent },
     { path: 'formularioUsuario', component: FormularioUsuarioComponent, outlet: 'secondRouter' },
+    { path: 'professor', component: ProfessorMenuComponent },
+    { path: 'tabelaProfessor', component: TabelaProfessorComponent, outlet: 'secondRouter' },
+    { path: 'formularioProfessor', component: FormularioProfessorComponent, outlet: 'secondRouter' },
 ];
 
 @NgModule({

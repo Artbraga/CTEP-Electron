@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatMenuModule } from '@angular/material/menu';
 import { FinalizarTurmaComponent } from './finalizar-turma/finalizar-turma.component';
+import { TurmaProfessorComponent } from './turma-professor/turma-professor.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import { FinalizarTurmaComponent } from './finalizar-turma/finalizar-turma.compo
         FiltroTurmaComponent,
         RegistroTurmaComponent,
         FinalizarTurmaComponent,
+        TurmaProfessorComponent,
     ],
     imports: [
         AppRoutingModule,

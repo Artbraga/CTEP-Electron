@@ -16,6 +16,9 @@ import { RegistroTurma } from 'src/model/registro-turma.model';
 import { IdTurmaParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { FinalizarTurmaComponent } from '../finalizar-turma/finalizar-turma.component';
+import { TurmaProfessorComponent } from '../turma-professor/turma-professor.component';
+import { TurmaProfessor } from 'src/model/turma-professor.model';
+import { Professor } from 'src/model/professor.model';
 
 @Component({
     selector: 'app-formulario-turma',
@@ -30,6 +33,7 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
     cursosOptions: Curso[];
 
     columnsRegistro: Coluna[] = [];
+    columnsProfessor: Coluna[] = [];
 
     get emAndamento(): boolean {
         return this.element.status == 'Em Andamento';
@@ -52,8 +56,11 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
             this.carregarTurma();
 
             this.columnsRegistro.push({ key: 'data', header: 'Data', field: 'dataStr' } as Coluna);
-            this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro' } as Coluna);
+            this.columnsRegistro.push({ key: 'registro', header: 'Registro', field: 'registro', addTooltip: true, tooltipMinSize: 150 } as Coluna);
             this.columnsRegistro.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
+
+            this.columnsProfessor.push({ key: 'nome', header: 'Nome', field: 'professor.nome' } as Coluna);
+            this.columnsProfessor.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
         } else {
             this.listarCursos();
         }
@@ -69,6 +76,17 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
             });
             this.element.ajustarDatas();
             this.listarCursos();
+        });
+        this.carregarProfessoresDaTurma();
+    }
+
+    carregarProfessoresDaTurma() {
+        this.turmaService.buscarProfessoresDaTurma(this.id).subscribe(data => {
+            this.element.professores = data.map(x => {
+                const turmaProfessor = Object.assign(new TurmaProfessor(), x);
+                turmaProfessor.professor = Object.assign(new Professor(), x.professor);
+                return turmaProfessor;
+            });
         });
     }
 
@@ -180,4 +198,35 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
         });
     }
 
+    adicionarProfessor() {
+        const dialogRef = this.dialog.open(TurmaProfessorComponent, {
+            data: this.element
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result != null) {
+                this.turmaService.adicionarProfessor(result).subscribe(data => {
+                    if (data) {
+                        this.notificationService.addNotification('Sucesso!', 'Professor adicionado.', NotificationType.Success);
+                        this.carregarProfessoresDaTurma();
+                    }
+                });
+            }
+        });
+    }
+
+    excluirProfessor(professor: TurmaProfessor) {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja remover o professor da turma?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.turmaService.excluirProfessor(professor.id).subscribe(data => {
+                    if (data) {
+                        this.notificationService.addNotification('Sucesso!', 'Professor removido.', NotificationType.Success);
+                        this.carregarProfessoresDaTurma();
+                    }
+                });
+            }
+        });
+    }
 }

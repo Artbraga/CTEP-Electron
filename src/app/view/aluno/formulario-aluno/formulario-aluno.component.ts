@@ -22,6 +22,7 @@ import { FichaAlunoParameter, IdAlunoParameter, PesquisarAlunoParameter, RotaVol
 export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> implements OnInit {
 
     masks = MaskPatterns;
+    rotaVoltar: string = null;
     imagem: any;
     imagemPerfil: File;
     imagemMudou = false;

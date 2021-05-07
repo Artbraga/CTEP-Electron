@@ -13,3 +13,5 @@ export const FiltroTurmaParameter = 'filtroTurma';
 
 // Usuario
 export const IdUsuarioParameter = 'idUsuario';
+// Professor
+export const IdProfessorParameter = 'idProfessor';
