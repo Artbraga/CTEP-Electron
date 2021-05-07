@@ -16,4 +16,11 @@ export class ProfessorService extends BaseService<Professor> {
 
         return this.http.get<Professor[]>(url);
     }
+
+    public listarProfessoresAtivos() {
+        const url = this.baseURL + `/ListarProfessoresAtivos`;
+
+        return this.http.get<Professor[]>(url);
+    }
+    
 }

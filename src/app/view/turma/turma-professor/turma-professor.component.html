@@ -1,0 +1,17 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Vincular professor em turma</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="six">
+                <custom-select label="Professor:" field="nome" [options]="professoressOptions" [(selected)]="professorSelecionado">
+                </custom-select>
+            </div>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

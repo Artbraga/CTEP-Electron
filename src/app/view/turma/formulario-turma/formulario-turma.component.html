@@ -63,6 +63,29 @@
     <mat-card *ngIf="isEdicao">
         <div class="form-grid">
             <div class="six">
+                <mat-card-subtitle>Professores</mat-card-subtitle>
+            </div>
+            <div class="buttons">
+                <button mat-button color="accent" (click)="adicionarProfessor()">
+                    <mat-icon>add</mat-icon>Adicionar
+                </button>
+            </div>
+        </div>
+        <custom-table [columns]="columnsProfessor" [listOfElements]="element.professores">
+            <ng-template let-element customTemplate="acoesTemplate">
+                <div style="text-align: end;">
+                    <button mat-icon-button color="primary"
+                            matTooltip="Remover Professor"
+                            (click)="excluirProfessor(element)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </ng-template>
+        </custom-table>
+    </mat-card>
+    <mat-card *ngIf="isEdicao">
+        <div class="form-grid">
+            <div class="six">
                 <mat-card-subtitle>Registro da Turma</mat-card-subtitle>
             </div>
             <div class="buttons">
