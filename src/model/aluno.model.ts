@@ -12,6 +12,7 @@ export class Aluno {
     nomePai: string;
     nomeMae: string;
     sexo: string;
+    naturalidade: string;
 
     endereco: string;
     bairro: string;
