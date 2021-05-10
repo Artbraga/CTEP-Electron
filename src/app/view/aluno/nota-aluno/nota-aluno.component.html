@@ -6,7 +6,7 @@
         <h4 class="nome-disabled">Aluno: {{aluno.nome}}</h4>
         <h4 class="nome-disabled">Turma: {{turma.codigo}}</h4>
         <div class="form-grid">
-            <mat-form-field *ngFor="let nota of notas" class="six">
+            <mat-form-field *ngFor="let nota of notas" class="four">
                 <mat-label>{{nota.disciplina.nome}}:</mat-label>
                 <input matInput type="number" [(ngModel)]="nota.valorNota">
             </mat-form-field>

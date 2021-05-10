@@ -189,7 +189,7 @@ export class FichaAlunoComponent implements OnInit {
 
     visualizarNotas(turmaAluno: TurmaAluno) {
         const dialogRef = this.dialog.open(NotaAlunoComponent,
-            { width: '60vw', data: {
+            { width: '75vw', data: {
                 aluno: this.element,
                 turma: turmaAluno.turma
             }
