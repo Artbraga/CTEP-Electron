@@ -58,6 +58,8 @@ export class FiltroAlunoComponent implements AfterViewInit {
         }
         if (this.turmaSelecionada != null) {
             this.filtro.codigoTurma = this.turmaSelecionada.codigo;
+        } else {
+            this.filtro.codigoTurma = null;
         }
         this.filtro.situacaoId = this.tiposStatusAlunoSelecionados.map(x => x.value);
         this.pesquisar.emit(this.filtro);

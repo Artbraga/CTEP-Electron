@@ -60,13 +60,6 @@ body {
     background-size: 90% auto;
 }
 
-body {
-    .mat-dialog-container {
-        width: 50vw;
-
-    }
-}
-
 .mat-raised-button {
     min-width: 100px;
     margin-left: 10px;
@@ -342,7 +335,6 @@ button.mat-raised-button {
         tr {
             td {
                 font-size: 13px;
-                white-space: nowrap;
                 color: #2a2e43;
                 border-bottom: solid 1px #ccd0d8;
                 padding: 0px 10px !important;
