@@ -13,19 +13,22 @@ import { FormularioUsuarioComponent } from './view/usuario/formulario-usuario/fo
 import { ProfessorMenuComponent } from './view/professor/professor-menu.component';
 import { FormularioProfessorComponent } from './view/professor/formulario-professor/formulario-professor.component';
 import { TabelaProfessorComponent } from './view/professor/tabela-professor/tabela-professor.component';
+import { TabelaUsuarioComponent } from './view/usuario/tabela-usuario/tabela-usuario.component';
+import { FichaAlunoRoute, FormularioAlunoRoute, FormularioUsuarioRoute, PesquisarAlunoRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: PainelGeralComponent },
     { path: 'aluno', component: AlunoMenuComponent },
-    { path: 'formularioAluno', component: FormularioAlunoComponent, outlet: 'secondRouter' },
-    { path: 'pesquisarAluno', component: PesquisarAlunoComponent, outlet: 'secondRouter' },
-    { path: 'fichaAluno', component: FichaAlunoComponent, outlet: 'secondRouter' },
+    { path: FormularioAlunoRoute, component: FormularioAlunoComponent, outlet: 'secondRouter' },
+    { path: PesquisarAlunoRoute, component: PesquisarAlunoComponent, outlet: 'secondRouter' },
+    { path: FichaAlunoRoute, component: FichaAlunoComponent, outlet: 'secondRouter' },
     { path: 'turma', component: TurmaMenuComponent },
     { path: 'formularioTurma', component: FormularioTurmaComponent, outlet: 'secondRouter' },
     { path: 'pesquisarTurma', component: PesquisarTurmaComponent, outlet: 'secondRouter' },
     { path: 'usuario', component: UsuarioMenuComponent },
-    { path: 'formularioUsuario', component: FormularioUsuarioComponent, outlet: 'secondRouter' },
+    { path: TabelaUsuarioRoute, component: TabelaUsuarioComponent, outlet: 'secondRouter' },
+    { path: FormularioUsuarioRoute, component: FormularioUsuarioComponent, outlet: 'secondRouter' },
     { path: 'professor', component: ProfessorMenuComponent },
     { path: 'tabelaProfessor', component: TabelaProfessorComponent, outlet: 'secondRouter' },
     { path: 'formularioProfessor', component: FormularioProfessorComponent, outlet: 'secondRouter' },

@@ -3,6 +3,7 @@ import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Professor } from '../model/professor.model';
+import { FiltroProfessor } from 'src/model/filters/professor.filter';
 
 @Injectable({ providedIn: 'root', })
 export class ProfessorService extends BaseService<Professor> {
@@ -22,5 +23,10 @@ export class ProfessorService extends BaseService<Professor> {
 
         return this.http.get<Professor[]>(url);
     }
-    
+
+    filtrarProfessores(filtro: FiltroProfessor): Observable<Professor[]> {
+        const url = this.baseURL + `/FiltrarProfessores`;
+
+        return this.http.post<Professor[]>(url, filtro);
+    }
 }

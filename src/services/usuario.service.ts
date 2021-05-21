@@ -32,6 +32,12 @@ export class UsuarioService extends BaseService<Usuario> {
         return this.http.post<Usuario>(url, usuario);
     }
 
+    public listarUsuarios(): Observable<Usuario[]> {
+        const url = this.baseURL + '/ListarUsuarios';
+
+        return this.http.get<Usuario[]>(url);
+    }
+
     public listarPerfis(): Observable<Perfil[]> {
         const url = this.baseURL + '/ListarPerfis';
 

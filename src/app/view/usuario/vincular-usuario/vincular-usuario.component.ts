@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { FiltroProfessor } from 'src/model/filters/professor.filter';
+import { ProfessorService } from 'src/services/professor.service';
 import { FiltroAluno } from '../../../../model/filters/aluno.filter';
 import { Pessoa } from '../../../../model/pessoa.model';
 import { AlunoService } from '../../../../services/aluno.service';
@@ -18,6 +20,7 @@ export class VincularUsuarioComponent implements OnInit {
     pessoaSelecionada: Pessoa;
 
     constructor(private alunoService: AlunoService,
+                private professorService: ProfessorService,
                 private notificationService: NotificationService,
                 private dialogRef: MatDialogRef<VincularUsuarioComponent>,
         ) { }
@@ -44,6 +47,19 @@ export class VincularUsuarioComponent implements OnInit {
                 break;
             }
             case 'professor': {
+                const filtro = new FiltroProfessor()
+                filtro.nome = value;
+                this.professorService.filtrarProfessores(filtro).subscribe(data => {
+                    this.pessoasOptions = data.map(x => {
+                        const p = new Pessoa();
+                        p.id = x.id;
+                        p.nome = x.nome;
+                        p.telefone = x.celular;
+                        p.email = x.email;
+                        p.tipo = this.tipoVinculo;
+                        return p;
+                    });
+                });
                 break;
             }
         }
