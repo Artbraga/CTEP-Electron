@@ -26,7 +26,6 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
     perfilSelecionado: Perfil;
 
     vinculado: boolean;
-    pessoa: Pessoa;
     senha: string;
     senha2: string;
 
@@ -62,6 +61,7 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
 
     salvar() {
         if(this.validar()) {
+            this.element.perfil = this.perfilSelecionado;
             this.usuarioService.salvar(this.element).subscribe(data => {
                 this.notificationService.addNotification('Sucesso!', 'Usuário salvo com sucesso.', NotificationType.Success);
                 if (this.element.id != null) {
@@ -94,6 +94,10 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
             valido = false;
             this.notificationService.addNotification('Erro!', 'É necessário preencher o nome do usuário.', NotificationType.Error);
         }
+        if (this.perfilSelecionado == null) {
+            valido = false;
+            this.notificationService.addNotification('Erro!', 'Selecione um perfil para o usuário.', NotificationType.Error);
+        }
         if (!this.isEdicao) {
             if (!this.stringValida(this.senha) || this.senha.length < 6 || !this.stringValida(this.senha2) || this.senha2.length < 6) {
                 valido = false;
@@ -111,12 +115,12 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
         const dialogRef = this.dialog.open(VincularUsuarioComponent);
         dialogRef.afterClosed().subscribe((result: Pessoa) => {
             if (result != null) {
-                this.pessoa = result;
                 this.vinculado = true;
-                this.element.nome = this.pessoa.nome;
-                this.element.telefone = this.pessoa.telefone;
-                this.element.email = this.pessoa.email;
-                this.element.login = this.constroiLogin(this.pessoa.nome);
+                this.element.nome = result.nome;
+                this.element.telefone = result.telefone;
+                this.element.email = result.email;
+                this.element.login = this.constroiLogin(result.nome);
+                this.element.tipo = result.tipo;
                 if (result.tipo == 'aluno') {
                     this.perfilSelecionado = this.perfisOptions.find(x => x.nome == PerfilEnum.Aluno)
                     this.element.alunoId = result.id;
@@ -130,7 +134,6 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
 
     removerVinculo() {
         this.vinculado = false;
-        this.pessoa = null;
         this.element.alunoId = null;
         this.element.professorId = null;
     }
