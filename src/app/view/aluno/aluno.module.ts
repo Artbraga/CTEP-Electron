@@ -9,7 +9,6 @@ import { CustomAutocompleteModule } from '../../custom-components/custom-autocom
 import { CustomTableModule } from '../../custom-components/custom-table/custom-table.module';
 import { CustomDatetimepickerModule } from '../../custom-components/custom-datetimepicker/custom-datetimepicker.module';
 import { CustomSelectModule } from '../../custom-components/custom-select/custom-select.module';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -60,7 +59,6 @@ import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
         CustomTableModule,
         CustomDatetimepickerModule,
         CustomSelectModule,
-        MatRadioModule,
         MatSelectModule,
         CustomPaginatorModule,
         MatFormFieldModule,

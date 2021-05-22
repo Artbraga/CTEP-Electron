@@ -1,11 +1,19 @@
-export class Usuario{
+import { Perfil } from './perfil.model';
+
+export class Usuario {
     id: number;
     nome: string;
     login: string;
     senha: string;
     telefone: string;
+    email: string;
+    perfil: Perfil;
+    tipo: string;
 
-    constructor(){
+    alunoId: number;
+    professorId: number;
+
+    constructor() {
         this.id = null;
         this.nome = null;
         this.login = null;

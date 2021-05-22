@@ -31,11 +31,9 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
 
     cursoSelecionado: Curso;
     cursosOptions: Curso[];
-    rotaVoltar: string = null;
 
     columnsRegistro: Coluna[] = [];
     columnsProfessor: Coluna[] = [];
-    id: number;
 
     get emAndamento(): boolean {
         return this.element.status == 'Em Andamento';

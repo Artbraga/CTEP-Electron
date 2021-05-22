@@ -1,0 +1,27 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Vincular em usuário</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="twelve">
+                <mat-radio-group [(ngModel)]="tipoVinculo">
+                    <mat-radio-button [value]="'aluno'">Aluno</mat-radio-button>
+                    <mat-radio-button [value]="'professor'">Professor</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="twelve">
+                <custom-autocomplete 
+                           field='nome'
+                           [options]="pessoasOptions"
+                           [(selected)]="pessoaSelecionada"
+                           (filter)="pesquisar($event)">
+                </custom-autocomplete>
+            </div>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

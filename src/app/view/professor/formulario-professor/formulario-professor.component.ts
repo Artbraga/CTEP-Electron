@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BaseFormularioComponent } from "src/app/base/base-formulario.component";
 import { NotificationService } from "src/app/custom-components/notification/notification.service";
 import { NotificationType } from "src/app/custom-components/notification/toaster/toaster";
-import { FichaAlunoParameter, IdAlunoParameter, RotaVoltarParameter, PesquisarAlunoParameter, IdProfessorParameter } from "src/model/enums/constants";
+import { FichaAlunoRoute, IdAlunoParameter, RotaVoltarParameter, PesquisarAlunoRoute, IdProfessorParameter } from "src/model/enums/constants";
 import { MaskPatterns } from "src/model/enums/mask.enum";
 import { Professor } from "src/model/professor.model";
 import { Endereco } from "src/services/application-services/ngx-viacep/endereco";
@@ -99,6 +99,7 @@ export class FormularioProfessorComponent extends BaseFormularioComponent<Profes
             });
         }
     }
+
     carregarProfessor(professor: Professor) {
         this.element = Object.assign(new Professor(), professor);
     }
@@ -110,9 +111,9 @@ export class FormularioProfessorComponent extends BaseFormularioComponent<Profes
 
 
     voltar() {
-        if (this.rotaVoltar == FichaAlunoParameter) {
+        if (this.rotaVoltar == FichaAlunoRoute) {
             this.routingService.salvarValor(IdAlunoParameter, this.element.id);
-            this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoParameter);
+            this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoRoute);
         }
         this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
     }

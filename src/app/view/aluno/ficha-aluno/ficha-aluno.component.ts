@@ -3,7 +3,7 @@ import { AlunoService } from 'src/services/aluno.service';
 import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
 import { Aluno } from 'src/model/aluno.model';
-import { FichaAlunoParameter, FormularioAlunoParameter, IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FichaAlunoRoute, FormularioAlunoRoute, IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
@@ -201,8 +201,8 @@ export class FichaAlunoComponent implements OnInit {
 
     editarAluno() {
         this.routingService.salvarValor(IdAlunoParameter, this.element.id);
-        this.routingService.salvarValor(RotaVoltarParameter, FichaAlunoParameter );
-        this.router.navigate([{ outlets: { secondRouter: FormularioAlunoParameter } }]);
+        this.routingService.salvarValor(RotaVoltarParameter, FichaAlunoRoute );
+        this.router.navigate([{ outlets: { secondRouter: FormularioAlunoRoute } }]);
     }
 
     adicionarRegistro() {
