@@ -8,20 +8,27 @@ import { FormularioTurmaComponent } from './view/turma/formulario-turma/formular
 import { PesquisarAlunoComponent } from './view/aluno/pesquisar-aluno/pesquisar-aluno.component';
 import { FichaAlunoComponent } from './view/aluno/ficha-aluno/ficha-aluno.component';
 import { PesquisarTurmaComponent } from './view/turma/pesquisar-turma/pesquisar-turma.component';
+import { UsuarioMenuComponent } from './view/usuario/usuario-menu.component';
+import { FormularioUsuarioComponent } from './view/usuario/formulario-usuario/formulario-usuario.component';
 import { ProfessorMenuComponent } from './view/professor/professor-menu.component';
 import { FormularioProfessorComponent } from './view/professor/formulario-professor/formulario-professor.component';
 import { TabelaProfessorComponent } from './view/professor/tabela-professor/tabela-professor.component';
+import { TabelaUsuarioComponent } from './view/usuario/tabela-usuario/tabela-usuario.component';
+import { FichaAlunoRoute, FormularioAlunoRoute, FormularioUsuarioRoute, PesquisarAlunoRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: PainelGeralComponent },
     { path: 'aluno', component: AlunoMenuComponent },
-    { path: 'formularioAluno', component: FormularioAlunoComponent, outlet: 'secondRouter' },
-    { path: 'pesquisarAluno', component: PesquisarAlunoComponent, outlet: 'secondRouter' },
-    { path: 'fichaAluno', component: FichaAlunoComponent, outlet: 'secondRouter' },
+    { path: FormularioAlunoRoute, component: FormularioAlunoComponent, outlet: 'secondRouter' },
+    { path: PesquisarAlunoRoute, component: PesquisarAlunoComponent, outlet: 'secondRouter' },
+    { path: FichaAlunoRoute, component: FichaAlunoComponent, outlet: 'secondRouter' },
     { path: 'turma', component: TurmaMenuComponent },
     { path: 'formularioTurma', component: FormularioTurmaComponent, outlet: 'secondRouter' },
     { path: 'pesquisarTurma', component: PesquisarTurmaComponent, outlet: 'secondRouter' },
+    { path: 'usuario', component: UsuarioMenuComponent },
+    { path: TabelaUsuarioRoute, component: TabelaUsuarioComponent, outlet: 'secondRouter' },
+    { path: FormularioUsuarioRoute, component: FormularioUsuarioComponent, outlet: 'secondRouter' },
     { path: 'professor', component: ProfessorMenuComponent },
     { path: 'tabelaProfessor', component: TabelaProfessorComponent, outlet: 'secondRouter' },
     { path: 'formularioProfessor', component: FormularioProfessorComponent, outlet: 'secondRouter' },

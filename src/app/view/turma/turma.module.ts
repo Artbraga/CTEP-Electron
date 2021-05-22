@@ -5,7 +5,6 @@ import { FormularioTurmaComponent } from './formulario-turma/formulario-turma.co
 import { TabelaTurmaComponent } from './tabela-turma/tabela-turma.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../custom-components/shared/shared.module';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -50,7 +49,6 @@ import { TurmaProfessorComponent } from './turma-professor/turma-professor.compo
         CommonModule,
         FormsModule,
         SharedModule,
-        MatRadioModule,
         MatSelectModule,
         MatFormFieldModule,
         MatCardModule,

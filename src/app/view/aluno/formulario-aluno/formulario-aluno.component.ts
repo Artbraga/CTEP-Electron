@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
 import { RoutingService } from 'src/services/routing.service';
-import { FichaAlunoParameter, IdAlunoParameter, PesquisarAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FichaAlunoRoute, IdAlunoParameter, PesquisarAlunoRoute, RotaVoltarParameter } from '../../../../model/enums/constants';
 
 @Component({
     selector: 'app-formulario-aluno',
@@ -40,13 +40,13 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
         this.limparCampos();
         if (this.routingService.possuiValor(IdAlunoParameter)) {
             this.isEdicao = true;
-            const id = this.routingService.excluirValor(IdAlunoParameter) as number;
+            this.id = this.routingService.excluirValor(IdAlunoParameter) as number;
             this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
-            this.alunoService.getById(id).subscribe(data => {
+            this.alunoService.getById(this.id).subscribe(data => {
                 this.element = Object.assign(new Aluno(), data);
                 this.element.corrigirInformacoes();
             });
-            this.alunoService.buscarImagem(id).subscribe(data => {
+            this.alunoService.buscarImagem(this.id).subscribe(data => {
                 if (data != null && data.size > 0) {
                     const blob = new Blob([data], { type: 'image/png' });
                     const reader = new FileReader();
@@ -164,9 +164,9 @@ export class FormularioAlunoComponent extends BaseFormularioComponent<Aluno> imp
     }
 
     voltar() {
-        if (this.rotaVoltar == FichaAlunoParameter) {
+        if (this.rotaVoltar == FichaAlunoRoute) {
             this.routingService.salvarValor(IdAlunoParameter, this.element.id);
-            this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoParameter);
+            this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoRoute);
         }
         this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
     }

@@ -6,7 +6,7 @@ import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
 import { ModalConfirmacaoComponent } from 'src/app/custom-components/modal-confirmacao/modal-confirmacao.component';
 import { AlunoService } from 'src/services/aluno.service';
-import { FichaAlunoParameter, FormularioAlunoParameter, IdAlunoParameter, PesquisarAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FichaAlunoRoute, FormularioAlunoRoute, IdAlunoParameter, PesquisarAlunoRoute, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { NotificationService } from '../../../custom-components/notification/notification.service';
 import { PageEvent } from '@angular/material/paginator';
 import { PageTableResult } from '../../../custom-components/page-table-result';
@@ -43,14 +43,14 @@ export class TabelaAlunoComponent extends BaseTable<Aluno> implements OnInit {
 
     visualizarAluno(element: Aluno) {
         this.routingService.salvarValor(IdAlunoParameter, element.id);
-        this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoParameter);
-        this.router.navigate([{ outlets: { secondRouter: FichaAlunoParameter } }]);
+        this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoRoute);
+        this.router.navigate([{ outlets: { secondRouter: FichaAlunoRoute } }]);
     }
 
     editarAluno(element: Aluno) {
         this.routingService.salvarValor(IdAlunoParameter, element.id);
-        this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoParameter );
-        this.router.navigate([{ outlets: { secondRouter: FormularioAlunoParameter } }]);
+        this.routingService.salvarValor(RotaVoltarParameter, PesquisarAlunoRoute );
+        this.router.navigate([{ outlets: { secondRouter: FormularioAlunoRoute } }]);
     }
 
     excluirAluno(element: Aluno) {
