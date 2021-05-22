@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.router.navigate([{ outlets: { secondRouter: null } }], { preserveFragment: false }).then(() => {
-                    this.router.navigate(['home'], { preserveFragment: false }).then(() => {
+                this.router.navigate([{ outlets: { secondRouter: null } }]).then(() => {
+                    this.router.navigate(['home']).then(() => {
                         this.usuarioService.deslogar();
                     });
                 });
