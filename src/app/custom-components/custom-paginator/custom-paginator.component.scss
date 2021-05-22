@@ -1,3 +1,6 @@
 .mat-paginator {
     background-color: unset;
+    ::ng-deep .mat-paginator-container {
+        min-height: unset;
+    }
 }

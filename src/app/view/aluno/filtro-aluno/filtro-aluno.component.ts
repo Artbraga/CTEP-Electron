@@ -35,12 +35,16 @@ export class FiltroAlunoComponent implements AfterViewInit {
     ) {}
 
     ngAfterViewInit(): void {
-        this.tiposStatusAlunoSelecionados = [TipoStatusAlunoEnum.Ativo];
+        this.tiposStatusAlunoOptions = TipoStatusAlunoEnum.List();
         this.listarCursos();
         if (this.filtro.codigoTurma != null) {
             this.pesquisarTurmas(this.filtro.codigoTurma);
         }
-        this.tiposStatusAlunoOptions = TipoStatusAlunoEnum.List();
+        if (this.filtro.situacaoId != null) {
+            this.tiposStatusAlunoSelecionados = this.tiposStatusAlunoOptions.filter(x => this.filtro.situacaoId.includes(x.value));
+        } else {
+            this.tiposStatusAlunoSelecionados = [TipoStatusAlunoEnum.Ativo];
+        }
     }
 
     listarCursos() {
