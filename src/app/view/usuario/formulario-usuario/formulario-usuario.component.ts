@@ -51,8 +51,7 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
                 this.perfilSelecionado = this.perfisOptions.find(x => x.nome == this.element.perfil.nome);
             });
 
-        }
-        else {
+        } else {
             this.usuarioService.listarPerfis().subscribe(data => {
                 this.perfisOptions = data.map(x => Object.assign(new Perfil(), x));
             });
@@ -60,8 +59,9 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
     }
 
     salvar() {
-        if(this.validar()) {
+        if (this.validar()) {
             this.element.perfil = this.perfilSelecionado;
+            this.element.senha = this.senha;
             this.usuarioService.salvar(this.element).subscribe(data => {
                 this.notificationService.addNotification('Sucesso!', 'Usuário salvo com sucesso.', NotificationType.Success);
                 if (this.element.id != null) {
@@ -122,10 +122,10 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
                 this.element.login = this.constroiLogin(result.nome);
                 this.element.tipo = result.tipo;
                 if (result.tipo == 'aluno') {
-                    this.perfilSelecionado = this.perfisOptions.find(x => x.nome == PerfilEnum.Aluno)
+                    this.perfilSelecionado = this.perfisOptions.find(x => x.nome == PerfilEnum.Aluno);
                     this.element.alunoId = result.id;
                 } else if (result.tipo == 'professor') {
-                    this.perfilSelecionado = this.perfisOptions.find(x => x.nome == PerfilEnum.Professor)
+                    this.perfilSelecionado = this.perfisOptions.find(x => x.nome == PerfilEnum.Professor);
                     this.element.professorId = result.id;
                 }
             }
