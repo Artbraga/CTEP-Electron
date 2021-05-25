@@ -31,6 +31,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FinalizarTurmaComponent } from './finalizar-turma/finalizar-turma.component';
 import { TurmaProfessorComponent } from './turma-professor/turma-professor.component';
 import { NotasTurmaComponent } from './notas-turma/notas-turma.component';
+import { AdicionarNotaComponent } from './notas-turma/adicionar-nota/adicionar-nota.component';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import { NotasTurmaComponent } from './notas-turma/notas-turma.component';
         FinalizarTurmaComponent,
         TurmaProfessorComponent,
         NotasTurmaComponent,
+        AdicionarNotaComponent,
     ],
     imports: [
         AppRoutingModule,

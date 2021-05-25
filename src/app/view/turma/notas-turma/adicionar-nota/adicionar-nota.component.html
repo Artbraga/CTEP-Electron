@@ -1,0 +1,28 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Adicionar nota</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="six">
+                <custom-select label="Disciplina:" field="nome" [options]="data.disciplinas"
+                    [(selected)]="disciplinaSelecionada" (select)="listarNotasDaDisciplina()">
+                </custom-select>
+            </div>
+            <div class="six">
+                <custom-select label="Professor:" field="nome" [options]="professorOptions"
+                    [(selected)]="disciplinaSelecionada">
+                </custom-select>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card *ngIf="disciplinaSelecionada">
+        <div class="form-grid">
+            <div class="aluno-nota" *ngFor="let nota of notas"></div>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

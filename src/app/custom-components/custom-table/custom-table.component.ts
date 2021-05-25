@@ -122,7 +122,7 @@ export class CustomTableComponent implements AfterViewInit {
     stringTooltip(element: any, col: Coluna, isTooltip: boolean) {
         const str = this.resolveField(element, col.field);
         if (isTooltip) {
-            return str
+            return str;
         }
         return str.substr(0, col.tooltipMinSize) + '...';
     }
