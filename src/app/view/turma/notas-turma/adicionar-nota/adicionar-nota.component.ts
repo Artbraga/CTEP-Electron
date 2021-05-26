@@ -1,5 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { of } from 'rxjs';
+import { NotificationService } from 'src/app/custom-components/notification/notification.service';
+import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
+import { NotaAlunoService } from 'src/services/nota-aluno.service';
 import { AlunoNotas } from '../../../../../model/aluno-notas.entity';
 import { Disciplina } from '../../../../../model/disciplina.model';
 import { NotaAluno } from '../../../../../model/nota-aluno.model';
@@ -24,6 +28,8 @@ export class AdicionarNotaComponent implements OnInit {
     notas: NotaAluno[];
 
     constructor(private professorService: ProfessorService,
+                private notaAlunoService: NotaAlunoService,
+                private notificationService: NotificationService,
                 private dialogRef: MatDialogRef<AdicionarNotaComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: IDataAdicionarNotas) { }
 
@@ -42,6 +48,7 @@ export class AdicionarNotaComponent implements OnInit {
             nota.nomeAluno = x.nomeAluno;
             const notaSalva = x.notas.find(n => n.disciplinaId == this.disciplinaSelecionada.id);
             if (notaSalva != null) {
+                nota.id = notaSalva.id;
                 nota.valorNota = parseFloat(notaSalva.valorNota.toString().replace(',', '.'));
             }
             this.notas.push(nota);
@@ -50,10 +57,35 @@ export class AdicionarNotaComponent implements OnInit {
 
     closeModal(salvar: boolean) {
         if (salvar) {
-
+            if (this.validar(this.notas)) {
+                this.notaAlunoService.salvarNotas(this.notas).subscribe(data => {
+                    this.notificationService.addNotification('Sucesso!', 'Notas da turma salvas com sucesso!', NotificationType.Success)
+                    this.dialogRef.close(true);
+                });
+            }
         } else {
             this.dialogRef.close(false);
         }
     }
 
+    validar(notas: NotaAluno[]): boolean {
+        let retorno = true;
+        notas.forEach(n  => {
+            if (n.valorNota != null ) {
+                const nota = n.valorNota;
+                if (isNaN(nota)) {
+                    retorno = false;
+                    this.notificationService.addNotification('Nota inválida!', `A nota do aluno ${n.nomeAluno} está no formato incorreto.`, NotificationType.Warnning);
+                }
+                if (nota < 0 || nota > 10) {
+                    retorno = false;
+                    this.notificationService.addNotification('Nota inválida!', `A nota da disciplina ${n.nomeAluno} possui um valor inválido.`, NotificationType.Warnning);
+                }
+                if (this.professorSelecionado != null) {
+                    n.professorId = this.professorSelecionado.id;
+                }
+            }
+        });
+        return retorno;
+    }
 }
