@@ -2,11 +2,24 @@
     <div class="table-container" style="overflow: auto;" [ngStyle]="{ 'max-height': maxHeigth }" #tableToExport>
         <table mat-table datatable [dataSource]="listOfElements" multiTemplateDataRows matSort
             (matSortChange)="sortData($event)">
-            <ng-container *ngFor="let column of columns" [matColumnDef]="column.key">
+            <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.key">
                 <th mat-header-cell mat-sort-header="{{column.key}}"
                     [disabled]="column.sortable == null || !column.sortable" *matHeaderCellDef
                     [attr.colspan]="column.colspan" [ngClass]="column.classHeader" style="align-items: left">
-                    {{ column.header }}
+                    <ng-container *ngIf="headerTemplate != null && templatesCustomTable[headerTemplate] != null; else elseTemplate">
+                        <ng-container
+                            *ngTemplateOutlet="templatesCustomTable[headerTemplate];
+                            context: {
+                                $implicit: column,
+                                index: i
+                            }">
+                        </ng-container>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        {{ column.header }}
+
+                    </ng-template>
+                    
                 </th>
                 <td mat-cell
                     *matCellDef="let element; let i = dataIndex"

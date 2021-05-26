@@ -67,6 +67,7 @@ export class NotaAlunoComponent implements OnInit {
             this.dialogRef.close(false);
         }
     }
+
     validar(notas: NotaAluno[]): boolean {
         let retorno = true;
         notas.forEach(n  => {
@@ -84,5 +85,4 @@ export class NotaAlunoComponent implements OnInit {
         });
         return retorno;
     }
-
 }

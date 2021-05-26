@@ -8,6 +8,7 @@ import { TurmaAluno } from '../model/turma-aluno.model';
 import { RegistroAluno } from 'src/model/registro-aluno.model';
 import { MudancaSituacao } from '../model/mudanca-situacao.model';
 import { PageTableResult } from '../app/custom-components/page-table-result';
+import { AlunoNotas } from '../model/aluno-notas.entity';
 
 @Injectable({ providedIn: 'root', })
 export class AlunoService extends BaseService<Aluno> {
@@ -45,6 +46,12 @@ export class AlunoService extends BaseService<Aluno> {
         const url = this.baseURL + `/AlterarSituacao`;
 
         return this.http.post<boolean>(url, mudancaSituacao);
+    }
+
+    buscarAlunosENotasDeTurma(turmaId: number): Observable<AlunoNotas[]> {
+        const url = this.baseURL + `/BuscarAlunosENotasDeTurma/${turmaId}`;
+
+        return this.http.get<AlunoNotas[]>(url);
     }
 
     salvarImagem(id: number, imagemPerfil: File): Observable<boolean> {

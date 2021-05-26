@@ -1,0 +1,17 @@
+<div class="formulario">
+    <div class="header">
+        <div class="six">
+            <h1>Lançar Notas da Turma</h1>
+        </div>
+        <div class="six buttons">
+            <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
+            <button mat-raised-button color="primary" (click)="adicionar()"><mat-icon>add</mat-icon>Adicionar Nota</button>
+        </div>
+    </div>
+    <div class="tabela">
+        <mat-card>
+            <custom-table [columns]="columns" [listOfElements]="list">
+            </custom-table>
+        </mat-card>
+    </div>
+</div>

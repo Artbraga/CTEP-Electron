@@ -37,6 +37,7 @@ export class CustomTableComponent implements AfterViewInit {
     @Input() paginateData: any;
     @Input() paginaAtual: number;
     @Input() maxHeigth = '60vh';
+    @Input() headerTemplate: string;
 
     @Output() elementClick = new EventEmitter<any>();
     @Output() sort = new EventEmitter<any>();
@@ -121,7 +122,7 @@ export class CustomTableComponent implements AfterViewInit {
     stringTooltip(element: any, col: Coluna, isTooltip: boolean) {
         const str = this.resolveField(element, col.field);
         if (isTooltip) {
-            return str
+            return str;
         }
         return str.substr(0, col.tooltipMinSize) + '...';
     }

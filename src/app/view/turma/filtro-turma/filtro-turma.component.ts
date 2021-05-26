@@ -48,7 +48,7 @@ export class FiltroTurmaComponent implements OnInit {
         this.cursoService.listarCursos().subscribe((data) => {
             this.cursosOptions = data.map((x) => Object.assign(new Curso(), x));
             if (this.filtro.cursoId != null) {
-                this.cursoSelecionado = this.cursosOptions.find(x => x.id = this.filtro.cursoId);
+                this.cursoSelecionado = this.cursosOptions.find(x => x.id == this.filtro.cursoId);
             }
         });
     }

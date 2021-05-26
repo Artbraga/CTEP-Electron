@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RegistroTurmaComponent } from '../registro-turma/registro-turma.component';
 import { Coluna } from 'src/app/custom-components/base-table';
 import { RegistroTurma } from 'src/model/registro-turma.model';
-import { IdTurmaParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FormularioTurmaRoute, IdTurmaParameter, NotasTurmaRoute, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { FinalizarTurmaComponent } from '../finalizar-turma/finalizar-turma.component';
 import { TurmaProfessorComponent } from '../turma-professor/turma-professor.component';
@@ -200,7 +200,7 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
 
     adicionarProfessor() {
         const dialogRef = this.dialog.open(TurmaProfessorComponent, {
-            data: this.element
+            data: this.element,
         });
         dialogRef.afterClosed().subscribe(result => {
             if (result != null) {
@@ -228,5 +228,11 @@ export class FormularioTurmaComponent extends BaseFormularioComponent<Turma> imp
                 });
             }
         });
+    }
+
+    editarNotas() {
+        this.routingService.salvarValor(IdTurmaParameter, this.id);
+        this.routingService.salvarValor(RotaVoltarParameter, FormularioTurmaRoute);
+        this.router.navigate([{ outlets: { secondRouter: NotasTurmaRoute } }]);
     }
 }
