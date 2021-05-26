@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AlunoNotas } from '../../../../model/aluno-notas.entity';
 import { Disciplina } from '../../../../model/disciplina.model';
-import { IdTurmaParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { IdTurmaParameter, PesquisarTurmaRoute, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { Turma } from '../../../../model/turma.model';
 import { AlunoService } from '../../../../services/aluno.service';
 import { DisciplinaService } from '../../../../services/disciplina.service';
@@ -42,11 +42,16 @@ export class NotasTurmaComponent extends BaseFormularioComponent<any> implements
 
     ngOnInit(): void {
         this.rotaVoltar = this.routingService.excluirValor(RotaVoltarParameter);
-        const id = this.routingService.excluirValor(IdTurmaParameter) as number;
-        this.turmaService.getById(id).subscribe(data => {
-            this.turma = Object.assign(new Turma(), data);
-            this.carregarTabela();
-        });
+        this.id = this.routingService.excluirValor(IdTurmaParameter) as number;
+        if (this.id != null) {
+            this.turmaService.getById(this.id).subscribe(data => {
+                this.turma = Object.assign(new Turma(), data);
+                this.carregarTabela();
+            });
+        } else {
+            this.router.navigate([{ outlets: { secondRouter: null } }])
+            .then(() => this.router.navigate(['turma']));
+        }
     }
 
     carregarTabela() {
@@ -81,23 +86,20 @@ export class NotasTurmaComponent extends BaseFormularioComponent<any> implements
         });
     }
 
-    salvar() {
+    adicionar() {
         const dialogRef = this.dialog.open(AdicionarNotaComponent, {
-            data: { alunos: this.alunos, disciplinas: this.disciplinas }
+            data: { alunos: this.alunos, disciplinas: this.disciplinas, turmaId: this.id }
         });
         dialogRef.afterClosed().subscribe(result => {
-            if (result != null) {
-                this.turmaService.adicionarRegistro(result).subscribe(data => {
-                    if (data) {
-                        this.notificationService.addNotification('Sucesso!', 'Notas salvas com sucesso.', NotificationType.Success);
-                        this.carregarTabela();
-                    }
-                });
+            if (result) {
+                this.carregarTabela();
             }
         });
     }
 
     voltar() {
+        this.routingService.salvarValor(IdTurmaParameter, this.id);
+        this.routingService.salvarValor(RotaVoltarParameter, PesquisarTurmaRoute);
         this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
     }
 

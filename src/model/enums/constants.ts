@@ -10,7 +10,7 @@ export const IdAlunoParameter = 'idAluno';
 // Turma
 export const IdTurmaParameter = 'idTurma';
 export const FiltroTurmaParameter = 'filtroTurma';
-export const PesquisarTurmaParameter = 'pesquisarTurma';
+export const PesquisarTurmaRoute = 'pesquisarTurma';
 export const FormularioTurmaRoute = 'formularioTurma';
 export const NotasTurmaRoute = 'notasTurma';
 

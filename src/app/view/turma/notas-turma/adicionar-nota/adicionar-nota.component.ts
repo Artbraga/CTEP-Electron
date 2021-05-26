@@ -6,6 +6,12 @@ import { NotaAluno } from '../../../../../model/nota-aluno.model';
 import { Professor } from '../../../../../model/professor.model';
 import { ProfessorService } from '../../../../../services/professor.service';
 
+interface IDataAdicionarNotas {
+    alunos: AlunoNotas[];
+    disciplinas: Disciplina[];
+    turmaId: number;
+}
+
 @Component({
     selector: 'app-adicionar-nota',
     templateUrl: './adicionar-nota.component.html',
@@ -19,10 +25,10 @@ export class AdicionarNotaComponent implements OnInit {
 
     constructor(private professorService: ProfessorService,
                 private dialogRef: MatDialogRef<AdicionarNotaComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: { alunos: AlunoNotas[], disciplinas: Disciplina[] }) { }
+                @Inject(MAT_DIALOG_DATA) public data: IDataAdicionarNotas) { }
 
     ngOnInit(): void {
-        this.professorService.listarProfessoresAtivos().subscribe(data => {
+        this.professorService.listarProfessoresDaTurma(this.data.turmaId).subscribe(data => {
             this.professorOptions = data.map(x => Object.assign(new Professor(), x));
         });
     }
@@ -36,9 +42,18 @@ export class AdicionarNotaComponent implements OnInit {
             nota.nomeAluno = x.nomeAluno;
             const notaSalva = x.notas.find(n => n.disciplinaId == this.disciplinaSelecionada.id);
             if (notaSalva != null) {
-                nota.valorNota = notaSalva.valorNota;
+                nota.valorNota = parseFloat(notaSalva.valorNota.toString().replace(',', '.'));
             }
             this.notas.push(nota);
         });
     }
+
+    closeModal(salvar: boolean) {
+        if (salvar) {
+
+        } else {
+            this.dialogRef.close(false);
+        }
+    }
+
 }

@@ -11,14 +11,19 @@
             </div>
             <div class="six">
                 <custom-select label="Professor:" field="nome" [options]="professorOptions"
-                    [(selected)]="disciplinaSelecionada">
+                    [(selected)]="professorSelecionado">
                 </custom-select>
             </div>
         </div>
     </mat-card>
-    <mat-card *ngIf="disciplinaSelecionada">
+    <mat-card *ngIf="disciplinaSelecionada != null" class="notas">
         <div class="form-grid">
-            <div class="aluno-nota" *ngFor="let nota of notas"></div>
+            <ng-container *ngFor="let nota of notas">
+                <span class="nine aluno">{{nota.nomeAluno}}</span>
+                <mat-form-field class="three">
+                    <input matInput type="number" [(ngModel)]="nota.valorNota">
+                </mat-form-field>
+            </ng-container>
         </div>
     </mat-card>
     <div class="modal-footer">

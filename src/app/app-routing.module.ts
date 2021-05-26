@@ -14,7 +14,7 @@ import { ProfessorMenuComponent } from './view/professor/professor-menu.componen
 import { FormularioProfessorComponent } from './view/professor/formulario-professor/formulario-professor.component';
 import { TabelaProfessorComponent } from './view/professor/tabela-professor/tabela-professor.component';
 import { TabelaUsuarioComponent } from './view/usuario/tabela-usuario/tabela-usuario.component';
-import { FichaAlunoRoute, FormularioAlunoRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaParameter, TabelaUsuarioRoute } from 'src/model/enums/constants';
+import { FichaAlunoRoute, FormularioAlunoRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
 import { NotasTurmaComponent } from './view/turma/notas-turma/notas-turma.component';
 
 const routes: Routes = [
@@ -26,7 +26,7 @@ const routes: Routes = [
     { path: FichaAlunoRoute, component: FichaAlunoComponent, outlet: 'secondRouter' },
     { path: 'turma', component: TurmaMenuComponent },
     { path: FormularioTurmaRoute, component: FormularioTurmaComponent, outlet: 'secondRouter' },
-    { path: PesquisarTurmaParameter, component: PesquisarTurmaComponent, outlet: 'secondRouter' },
+    { path: PesquisarTurmaRoute, component: PesquisarTurmaComponent, outlet: 'secondRouter' },
     { path: NotasTurmaRoute, component: NotasTurmaComponent, outlet: 'secondRouter' },
     { path: 'usuario', component: UsuarioMenuComponent },
     { path: TabelaUsuarioRoute, component: TabelaUsuarioComponent, outlet: 'secondRouter' },

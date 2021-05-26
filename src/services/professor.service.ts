@@ -24,6 +24,12 @@ export class ProfessorService extends BaseService<Professor> {
         return this.http.get<Professor[]>(url);
     }
 
+    public listarProfessoresDaTurma(turmaId: number) {
+        const url = this.baseURL + `/ListarProfessoresDaTurma/${turmaId}`;
+
+        return this.http.get<Professor[]>(url);
+    }
+
     filtrarProfessores(filtro: FiltroProfessor): Observable<Professor[]> {
         const url = this.baseURL + `/FiltrarProfessores`;
 
