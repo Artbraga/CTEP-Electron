@@ -23,7 +23,7 @@ import { NotaAluno } from '../../../../model/nota-aluno.model';
 import { DisciplinaService } from '../../../../services/disciplina.service';
 import { NotaAlunoService } from '../../../../services/nota-aluno.service';
 import { TipoStatusAlunoEnum } from '../../../../model/enums/tipo-status-aluno.enum';
-import { BaixarArquivoService } from '../../../../../out/secretaria_facil_ctep-win32-x64/resources/app/src/services/application-services/baixarArquivo.service';
+import { BaixarArquivoService } from '../../../../services/application-services/baixarArquivo.service';
 
 @Component({
     selector: 'ficha-aluno',
