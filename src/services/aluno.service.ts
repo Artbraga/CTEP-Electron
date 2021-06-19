@@ -35,11 +35,18 @@ export class AlunoService extends BaseService<Aluno> {
         return this.http.post(url, filtro);
     }
 
-    gerarCracha(idTurmaAluno: number): Observable<Aluno[]> {
+    gerarCracha(idTurmaAluno: number): Observable<any> {
         const url = this.baseURL + `/GerarCracha/${idTurmaAluno}`;
 
-        return this.http.get<Aluno[]>(url);
+        return this.http.get(url);
     }
+
+    gerarHistorico(idTurmaAluno: number): Observable<any> {
+        const url = this.baseURL + `/GerarHistorico/${idTurmaAluno}`;
+
+        return this.http.get(url);
+    }
+
 
     vincularAlunoTurma(turmaAluno: TurmaAluno): Observable<boolean> {
         const url = this.baseURL + `/VincularAlunoTurma`;
