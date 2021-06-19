@@ -29,12 +29,17 @@ export class AlunoService extends BaseService<Aluno> {
         return this.http.post<PageTableResult<Aluno>>(url, filtro);
     }
 
-    baixarPesquisa(filtro: FiltroAluno): Observable<Aluno[]> {
+    baixarPesquisa(filtro: FiltroAluno): Observable<any> {
         const url = this.baseURL + `/BaixarPesquisa`;
 
-        return this.http.post<Aluno[]>(url, filtro);
+        return this.http.post(url, filtro);
     }
 
+    gerarCracha(idTurmaAluno: number): Observable<Aluno[]> {
+        const url = this.baseURL + `/GerarCracha/${idTurmaAluno}`;
+
+        return this.http.get<Aluno[]>(url);
+    }
 
     vincularAlunoTurma(turmaAluno: TurmaAluno): Observable<boolean> {
         const url = this.baseURL + `/VincularAlunoTurma`;

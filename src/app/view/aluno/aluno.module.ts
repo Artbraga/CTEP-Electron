@@ -34,6 +34,7 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situacao.component';
 import { CustomPaginatorModule } from '../../custom-components/custom-paginator/custom-paginator.module';
 import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
         MatFormFieldModule,
         MatTooltipModule,
         MatMenuModule,
+        MatRadioModule,
         MatCardModule,
         MatButtonModule,
         MatTabsModule,
