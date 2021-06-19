@@ -4,7 +4,7 @@ import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
 import { Aluno } from 'src/model/aluno.model';
 import { FichaAlunoRoute, FormularioAlunoRoute, IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
 import { ColumnGroup, Coluna } from 'src/app/custom-components/base-table';
@@ -23,6 +23,7 @@ import { NotaAluno } from '../../../../model/nota-aluno.model';
 import { DisciplinaService } from '../../../../services/disciplina.service';
 import { NotaAlunoService } from '../../../../services/nota-aluno.service';
 import { TipoStatusAlunoEnum } from '../../../../model/enums/tipo-status-aluno.enum';
+import { BaixarArquivoService } from '../../../../../out/secretaria_facil_ctep-win32-x64/resources/app/src/services/application-services/baixarArquivo.service';
 
 @Component({
     selector: 'ficha-aluno',
@@ -63,6 +64,9 @@ export class FichaAlunoComponent implements OnInit {
     idAluno: number;
 
     @ViewChildren(PrintTabDirective) tab;
+    @ViewChild('turmaCrachaTemplate', { static: true }) turmaCrachaTemplate: TemplateRef<any>;
+    turmaCrachaOptions: TurmaAluno[];
+    turmaCrachaSelecionada: TurmaAluno;
 
     constructor(
         private alunoService: AlunoService,
@@ -70,6 +74,7 @@ export class FichaAlunoComponent implements OnInit {
         private disciplinaService: DisciplinaService,
         private notificationService: NotificationService,
         private routingService: RoutingService,
+        private baixarArquivoService: BaixarArquivoService,
         private router: Router,
         public dialog: MatDialog) {
         this.element = new Aluno();
@@ -157,6 +162,32 @@ export class FichaAlunoComponent implements OnInit {
         this.tab.first.print();
     }
 
+    cracha() {
+        let dialogRef: MatDialogRef<any, any>;
+        this.turmaCrachaSelecionada = this.element.turmasAluno[0];
+        if (this.element.turmasAluno.length > 1) {
+            this.turmaCrachaOptions = this.element.turmasAluno;
+            dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+                data: { mensagem: `Deseja gerar o crachá do aluno ${this.element.nome} para qual turma?`, template: this.turmaCrachaTemplate }
+            });
+        } else {
+            dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+                data: { mensagem: `Deseja gerar o crachá do aluno ${this.element.nome}?` }
+            });
+        }
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.alunoService.gerarCracha(this.turmaCrachaSelecionada.id).subscribe(data => {
+                    if (data) {
+                        this.baixarArquivoService.downloadFile(data, 'cracha.pdf', 'application/pdf');
+                    }
+                    this.turmaCrachaSelecionada = null;
+                    this.turmaCrachaOptions = null;
+                });
+            }
+        });
+    }
+
     transferirTurma() {
         const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
             data: { mensagem: `Deseja transferir o aluno ${this.element.nome} de turma?` }
@@ -195,7 +226,7 @@ export class FichaAlunoComponent implements OnInit {
             }
         });
         dialogRef.afterClosed().subscribe(res => {
-            if(res) this.carregarAluno();
+            if (res) { this.carregarAluno(); }
         });
     }
 

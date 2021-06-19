@@ -412,6 +412,7 @@ button.mat-raised-button {
 }
 
 .mat-radio-button, .mat-radio-button.mat-radio-checked  {
+    padding-right: 10px;
     .mat-radio-container {
         .mat-radio-inner-circle {
             background-color: $secondary;
