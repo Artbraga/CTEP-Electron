@@ -189,7 +189,12 @@
                         <button mat-icon-button color="primary"
                                 matTooltip="Visualizar Notas"
                                 (click)="visualizarNotas(turmaAluno)">
-                            <i class="material-icons">edit</i>
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary"
+                                matTooltip="Gerar Histórico"
+                                (click)="gerarHistorico(turmaAluno)">
+                            <mat-icon>summarize</mat-icon>
                         </button>
                     </div>
                 </ng-template>

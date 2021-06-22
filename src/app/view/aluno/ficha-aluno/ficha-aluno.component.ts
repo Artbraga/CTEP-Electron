@@ -230,6 +230,21 @@ export class FichaAlunoComponent implements OnInit {
         });
     }
 
+    gerarHistorico(turmaAluno: TurmaAluno) {
+        const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
+            data: { mensagem: `Deseja gerar o histórico escolar de ${turmaAluno.turma.curso.nome} do aluno ${this.element.nome}?` }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.alunoService.gerarHistorico(turmaAluno.id).subscribe(data => {
+                    if (data) {
+                        this.baixarArquivoService.downloadFile(data, `${this.element.nome}.docx`, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                    }
+                });
+            }
+        });
+}
+
     editarAluno() {
         this.routingService.salvarValor(IdAlunoParameter, this.element.id);
         this.routingService.salvarValor(RotaVoltarParameter, FichaAlunoRoute );
