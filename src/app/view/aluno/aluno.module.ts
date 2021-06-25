@@ -34,6 +34,7 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situacao.component';
 import { CustomPaginatorModule } from '../../custom-components/custom-paginator/custom-paginator.module';
 import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
+import { VencimentoAlunoComponent } from './vencimento-aluno/vencimento-aluno.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
         RegistroAlunoComponent,
         TransferenciaAlunoComponent,
         AlteracaoSituacaoComponent,
-        NotaAlunoComponent
+        NotaAlunoComponent,
+        VencimentoAlunoComponent
     ],
     imports: [
         AppRoutingModule,
