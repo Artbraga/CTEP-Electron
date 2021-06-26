@@ -29,6 +29,12 @@ export class AlunoService extends BaseService<Aluno> {
         return this.http.post<PageTableResult<Aluno>>(url, filtro);
     }
 
+    listarAlunosPorVencimento(filtro: FiltroAluno): Observable<PageTableResult<Aluno>> {
+        const url = this.baseURL + `/ListarAlunosPorVencimento`;
+
+        return this.http.post<PageTableResult<Aluno>>(url, filtro);
+    }
+
     baixarPesquisa(filtro: FiltroAluno): Observable<Aluno[]> {
         const url = this.baseURL + `/BaixarPesquisa`;
 

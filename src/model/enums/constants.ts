@@ -21,3 +21,5 @@ export const FormularioUsuarioRoute = 'formularioUsuario';
 
 // Professor
 export const IdProfessorParameter = 'idProfessor';
+
+export const HomeRoute = 'home';

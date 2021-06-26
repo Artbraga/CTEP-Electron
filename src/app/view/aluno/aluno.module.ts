@@ -76,6 +76,9 @@ import { VencimentoAlunoComponent } from './vencimento-aluno/vencimento-aluno.co
         ModalConfirmacaoModule,
         DirectivesModule,
         SharedModule
+    ],
+    exports: [
+        VencimentoAlunoComponent
     ]
 })
 export class AlunoModule { }

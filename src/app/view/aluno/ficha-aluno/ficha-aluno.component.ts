@@ -3,7 +3,7 @@ import { AlunoService } from 'src/services/aluno.service';
 import { RoutingService } from 'src/services/routing.service';
 import { Router } from '@angular/router';
 import { Aluno } from 'src/model/aluno.model';
-import { FichaAlunoRoute, FormularioAlunoRoute, IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FichaAlunoRoute, FormularioAlunoRoute, HomeRoute, IdAlunoParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalConfirmacaoComponent } from '../../../custom-components/modal-confirmacao/modal-confirmacao.component';
 import { TurmaAlunoComponent } from '../turma-aluno/turma-aluno.component';
@@ -116,7 +116,12 @@ export class FichaAlunoComponent implements OnInit {
     }
 
     voltar() {
-        this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
+        if (this.rotaVoltar == HomeRoute) {
+            this.router.navigate([{ outlets: { secondRouter: null } }])
+            .then(() => this.router.navigate([this.rotaVoltar]));
+        } else {
+            this.router.navigate([{ outlets: { secondRouter: this.rotaVoltar } }]);
+        }
     }
 
     tratarString(str: string, tst = null): string {
