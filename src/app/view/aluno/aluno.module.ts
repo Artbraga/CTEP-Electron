@@ -78,6 +78,9 @@ import { MatRadioModule } from '@angular/material/radio';
         ModalConfirmacaoModule,
         DirectivesModule,
         SharedModule
+    ],
+    exports: [
+        VencimentoAlunoComponent
     ]
 })
 export class AlunoModule { }
