@@ -34,6 +34,7 @@ import { DirectivesModule } from 'src/directives/directives.module';
 import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situacao.component';
 import { CustomPaginatorModule } from '../../custom-components/custom-paginator/custom-paginator.module';
 import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
+import { VencimentoAlunoComponent } from './vencimento-aluno/vencimento-aluno.component';
 import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
@@ -48,7 +49,8 @@ import { MatRadioModule } from '@angular/material/radio';
         RegistroAlunoComponent,
         TransferenciaAlunoComponent,
         AlteracaoSituacaoComponent,
-        NotaAlunoComponent
+        NotaAlunoComponent,
+        VencimentoAlunoComponent
     ],
     imports: [
         AppRoutingModule,
@@ -76,6 +78,9 @@ import { MatRadioModule } from '@angular/material/radio';
         ModalConfirmacaoModule,
         DirectivesModule,
         SharedModule
+    ],
+    exports: [
+        VencimentoAlunoComponent
     ]
 })
 export class AlunoModule { }
