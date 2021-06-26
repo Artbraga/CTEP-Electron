@@ -35,6 +35,7 @@ import { AlteracaoSituacaoComponent } from './alteracao-situacao/alteracao-situa
 import { CustomPaginatorModule } from '../../custom-components/custom-paginator/custom-paginator.module';
 import { NotaAlunoComponent } from './nota-aluno/nota-aluno.component';
 import { VencimentoAlunoComponent } from './vencimento-aluno/vencimento-aluno.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
     declarations: [
@@ -66,6 +67,7 @@ import { VencimentoAlunoComponent } from './vencimento-aluno/vencimento-aluno.co
         MatFormFieldModule,
         MatTooltipModule,
         MatMenuModule,
+        MatRadioModule,
         MatCardModule,
         MatButtonModule,
         MatTabsModule,
