@@ -14,8 +14,10 @@ import { ProfessorMenuComponent } from './view/professor/professor-menu.componen
 import { FormularioProfessorComponent } from './view/professor/formulario-professor/formulario-professor.component';
 import { TabelaProfessorComponent } from './view/professor/tabela-professor/tabela-professor.component';
 import { TabelaUsuarioComponent } from './view/usuario/tabela-usuario/tabela-usuario.component';
-import { FichaAlunoRoute, FormularioAlunoRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
+import { ConsultaBoletoRoute, FichaAlunoRoute, FormularioAlunoRoute, FormularioProfessorRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, TabelaProfessorRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
 import { NotasTurmaComponent } from './view/turma/notas-turma/notas-turma.component';
+import { FinanceiroMenuComponent } from './view/financeiro/financeiro-menu.component';
+import { ConsultaBoletoComponent } from './view/financeiro/consulta-boleto/consulta-boleto.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,8 +34,10 @@ const routes: Routes = [
     { path: TabelaUsuarioRoute, component: TabelaUsuarioComponent, outlet: 'secondRouter' },
     { path: FormularioUsuarioRoute, component: FormularioUsuarioComponent, outlet: 'secondRouter' },
     { path: 'professor', component: ProfessorMenuComponent },
-    { path: 'tabelaProfessor', component: TabelaProfessorComponent, outlet: 'secondRouter' },
-    { path: 'formularioProfessor', component: FormularioProfessorComponent, outlet: 'secondRouter' },
+    { path: TabelaProfessorRoute, component: TabelaProfessorComponent, outlet: 'secondRouter' },
+    { path: FormularioProfessorRoute, component: FormularioProfessorComponent, outlet: 'secondRouter' },
+    { path: 'financeiro', component: FinanceiroMenuComponent },
+    { path: ConsultaBoletoRoute, component: ConsultaBoletoComponent, outlet: 'secondRouter' },
 ];
 
 @NgModule({

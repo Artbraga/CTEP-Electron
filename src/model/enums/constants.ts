@@ -21,5 +21,11 @@ export const FormularioUsuarioRoute = 'formularioUsuario';
 
 // Professor
 export const IdProfessorParameter = 'idProfessor';
+export const TabelaProfessorRoute = 'tabelaProfessor';
+export const FormularioProfessorRoute = 'formularioProfessor';
+
+// Financeiro
+export const FiltroBoletoParameter = 'filtroBoleto';
+export const ConsultaBoletoRoute = 'consultaBoleto';
 
 export const HomeRoute = 'home';

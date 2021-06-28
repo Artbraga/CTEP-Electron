@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { IdProfessorParameter, RotaVoltarParameter } from '../../../../model/enums/constants';
+import { FormularioProfessorRoute, IdProfessorParameter, RotaVoltarParameter, TabelaProfessorRoute } from '../../../../model/enums/constants';
 import { Professor } from '../../../../model/professor.model';
 import { ProfessorService } from '../../../../services/professor.service';
 import { RoutingService } from '../../../../services/routing.service';
@@ -55,7 +55,7 @@ export class TabelaProfessorComponent extends BaseTable<Professor> implements On
 
     editarProfessor(element: Professor) {
         this.routingService.salvarValor(IdProfessorParameter, element.id);
-        this.routingService.salvarValor(RotaVoltarParameter, 'tabelaProfessor');
-        this.router.navigate([{ outlets: { secondRouter: 'formularioProfessor' } }]);
+        this.routingService.salvarValor(RotaVoltarParameter, TabelaProfessorRoute);
+        this.router.navigate([{ outlets: { secondRouter: FormularioProfessorRoute } }]);
     }
 }

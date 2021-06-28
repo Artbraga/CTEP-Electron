@@ -1,0 +1,13 @@
+
+<div class="pesquisa">
+    <div style="display: flex;">
+        <h1>Consultar Boletos</h1>
+        <!-- <div class="buttons">
+            <button mat-raised-button color="primary" (click)="exportarPesquisa()">
+                <mat-icon svgIcon="xls_icon"></mat-icon> Exportar Pesquisa
+            </button>
+        </div> -->
+    </div>
+    <filtro-boleto [filtro]="filtro" (pesquisar)="pesquisar($event)"></filtro-boleto>
+    <tabela-aluno [pageList]="pageList" (pesquisar)="pesquisar()" (paginar)="paginar($event)" (exportar)="exportarPesquisa()"></tabela-tabela>
+</div>
