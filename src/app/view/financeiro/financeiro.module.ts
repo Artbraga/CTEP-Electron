@@ -26,6 +26,7 @@ import { CustomSelectModule } from 'src/app/custom-components/custom-select/cust
 import { CustomTableModule } from 'src/app/custom-components/custom-table/custom-table.module';
 import { SharedModule } from 'src/app/custom-components/shared/shared.module';
 import { FinanceiroMenuComponent } from './financeiro-menu.component';
+import { CustomPaginatorModule } from 'src/app/custom-components/custom-paginator/custom-paginator.module';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,7 @@ import { FinanceiroMenuComponent } from './financeiro-menu.component';
         CustomDatetimepickerModule,
         CustomSelectModule,
         CustomAutocompleteModule,
-
+        CustomPaginatorModule
     ]
 })
 export class FinanceiroModule { }

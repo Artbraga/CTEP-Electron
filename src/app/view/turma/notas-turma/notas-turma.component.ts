@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { AlunoNotas } from '../../../../model/aluno-notas.entity';
+import { AlunoNotas } from '../../../../model/aluno-notas.model';
 import { Disciplina } from '../../../../model/disciplina.model';
 import { IdTurmaParameter, PesquisarTurmaRoute, RotaVoltarParameter } from '../../../../model/enums/constants';
 import { Turma } from '../../../../model/turma.model';

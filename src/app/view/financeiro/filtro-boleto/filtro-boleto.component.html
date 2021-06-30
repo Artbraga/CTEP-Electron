@@ -1,1 +1,29 @@
-<p>filtro-boleto works!</p>
+<mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'50px'">
+        <mat-panel-title>
+            Filtro
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="form-grid">
+        <custom-datetimepicker [(value)]="filtro.dataVencimentoDe" name='Data de Vencimento (De)' class="three">
+        </custom-datetimepicker>
+        <custom-datetimepicker [(value)]="filtro.dataVencimentoAte" name='Data de Vencimento (Até)' class="three">
+        </custom-datetimepicker>
+        <div class="three">
+            <custom-select label='Situação:'
+                           field='name'
+                           [multiple]='true'
+                           [options]="tiposStatusBoletoOptions"
+                           [(selected)]="tiposStatusBoletoSelecionados">
+            </custom-select>
+        </div>
+        <mat-form-field class="six">
+            <mat-label>Nome:</mat-label>
+            <input matInput [(ngModel)]="filtro.nome" />
+        </mat-form-field>
+        <div class="three buttons">
+            <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
+            <button mat-raised-button color="primary" (click)="pesquisarBoletos()">Pesquisar</button>
+        </div>
+    </div>
+</mat-expansion-panel>

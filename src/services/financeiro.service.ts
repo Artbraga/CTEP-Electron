@@ -3,7 +3,9 @@ import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Professor } from '../model/professor.model';
-import { FiltroProfessor } from 'src/model/filters/professor.filter';
+import { FiltroBoleto } from 'src/model/filters/boleto.filter';
+import { Boleto } from 'src/model/boleto.model';
+import { PageTableResult } from 'src/app/custom-components/page-table-result';
 
 @Injectable({ providedIn: 'root', })
 export class FinanceiroService extends BaseService<Professor> {
@@ -12,27 +14,9 @@ export class FinanceiroService extends BaseService<Professor> {
         super(http, 'Financeiro');
     }
 
-    public listarProfessores() {
-        const url = this.baseURL + `/ListarProfessores`;
+    filtrarBoletos(filtro: FiltroBoleto): Observable<PageTableResult<Boleto>> {
+        const url = this.baseURL + `/FiltrarBoletos`;
 
-        return this.http.get<Professor[]>(url);
-    }
-
-    public listarProfessoresAtivos() {
-        const url = this.baseURL + `/ListarProfessoresAtivos`;
-
-        return this.http.get<Professor[]>(url);
-    }
-
-    public listarProfessoresDaTurma(turmaId: number) {
-        const url = this.baseURL + `/ListarProfessoresDaTurma/${turmaId}`;
-
-        return this.http.get<Professor[]>(url);
-    }
-
-    filtrarProfessores(filtro: FiltroProfessor): Observable<Professor[]> {
-        const url = this.baseURL + `/FiltrarProfessores`;
-
-        return this.http.post<Professor[]>(url, filtro);
+        return this.http.post<PageTableResult<Boleto>>(url, filtro);
     }
 }

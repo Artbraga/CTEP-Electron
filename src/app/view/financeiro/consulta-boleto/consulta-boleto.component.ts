@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/custom-components/notification/notification.service';
+import { PageTableResult } from 'src/app/custom-components/page-table-result';
+import { Boleto } from 'src/model/boleto.model';
+import { FiltroBoletoParameter } from 'src/model/enums/constants';
+import { FiltroBoleto } from 'src/model/filters/boleto.filter';
+import { FinanceiroService } from 'src/services/financeiro.service';
+import { RoutingService } from 'src/services/routing.service';
 
 @Component({
     selector: 'app-consulta-boleto',
@@ -7,48 +14,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultaBoletoComponent implements OnInit {
 
-    filtro: FiltroAluno;
-    pageList: PageTableResult<Aluno>;
-    constructor(private alunoService: AlunoService,
-        private baixarArquivoService: BaixarArquivoService,
-        private notificationService: NotificationService,
-        private routingService: RoutingService) { }
+    filtro: FiltroBoleto;
+    pageList: PageTableResult<Boleto>;
+    constructor(private financeiroService: FinanceiroService,
+               // private baixarArquivoService: BaixarArquivoService,
+                private notificationService: NotificationService,
+                private routingService: RoutingService) { }
 
     ngOnInit(): void {
-        if (this.routingService.possuiValor(FiltroAlunoParameter)) {
-            this.filtro = this.routingService.buscarValor(FiltroAlunoParameter);
+        if (this.routingService.possuiValor(FiltroBoletoParameter)) {
+            this.filtro = this.routingService.buscarValor(FiltroBoletoParameter);
             this.pesquisar();
         } else {
-            this.filtro = new FiltroAluno();
+            this.filtro = new FiltroBoleto();
         }
-        this.pageList = new PageTableResult<Aluno>();
+        this.pageList = new PageTableResult<Boleto>();
     }
 
-    pesquisar(filtro: FiltroAluno = null) {
+    pesquisar(filtro: FiltroBoleto = null) {
         if (filtro != null) {
             this.filtro = filtro;
-            this.routingService.salvarValor(FiltroAlunoParameter, this.filtro);
+            this.routingService.salvarValor(FiltroBoletoParameter, this.filtro);
         }
-        this.alunoService.pesquisarAlunos(this.filtro).subscribe(data => {
+        this.financeiroService.filtrarBoletos(this.filtro).subscribe(data => {
             this.pageList = data;
-            this.pageList.lista = data.lista.map(x => Object.assign(new Aluno(), x));
+            this.pageList.lista = data.lista.map(x => Object.assign(new Boleto(), x));
         });
     }
 
     exportarPesquisa() {
-        if (this.pageList.lista == null || this.pageList.lista.length == 0) {
-            this.notificationService.addNotification('Atenção', 'A pesquisa não possui resultados a serem exportados.', NotificationType.Warnning);
-            return;
-        }
+        // if (this.pageList.lista == null || this.pageList.lista.length == 0) {
+        //     this.notificationService.addNotification('Atenção', 'A pesquisa não possui resultados a serem exportados.', NotificationType.Warnning);
+        //     return;
+        // }
 
-        this.alunoService.baixarPesquisa(this.filtro).subscribe(data => {
-            if (data) {
-                this.baixarArquivoService.downloadFile(data, 'exportação.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            }
-        },
-            err => {
-                this.notificationService.addNotification('Erro', 'Erro ao baixar a pesquisa!', NotificationType.Error);
-            });
+        // this.alunoService.baixarPesquisa(this.filtro).subscribe(data => {
+        //     if (data) {
+        //         this.baixarArquivoService.downloadFile(data, 'exportação.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        //     }
+        // },
+        //     err => {
+        //         this.notificationService.addNotification('Erro', 'Erro ao baixar a pesquisa!', NotificationType.Error);
+        //     });
     }
 
     paginar(pagina: number) {
