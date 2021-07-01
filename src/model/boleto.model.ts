@@ -26,6 +26,14 @@ export class Boleto {
         return BaseConverter.DateToStringOnlyDate(this.dataPagamento);
     }
 
+    get valorStr(): string {
+        return this.valorComoString(this.valor);
+    }
+    get valorPagoStr(): string {
+        return this.valorComoString(this.valorPago);
+    }
+
+
     corrigirInformacoes() {
         if (this.dataVencimento != null) {
             this.dataVencimento = BaseConverter.StringToDate(this.dataVencimento.toString());
@@ -35,6 +43,20 @@ export class Boleto {
         }
         if (this.dataPagamento != null) {
             this.dataPagamento = BaseConverter.StringToDate(this.dataPagamento.toString());
+        }
+    }
+
+    private valorComoString(valor: number) {
+        if (valor == null) {
+            return '';
+        }
+        const casas = valor.toString().split('.');
+        if (casas.length == 1) {
+            return `R$ ${casas[0]},00`;
+        } else {
+            let decimal = casas [1].substring(0, 2);
+            if (decimal.length == 1) { decimal += '0'; }
+            return `R$ ${casas[0]},${decimal}`;
         }
     }
 }

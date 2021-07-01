@@ -114,5 +114,4 @@ export class AlteracaoSituacaoComponent extends BaseFormularioComponent<MudancaS
         }
         return valido;
     }
-
 }

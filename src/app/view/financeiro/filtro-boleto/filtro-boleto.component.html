@@ -17,11 +17,15 @@
                            [(selected)]="tiposStatusBoletoSelecionados">
             </custom-select>
         </div>
+        <mat-form-field class="three">
+            <mat-label>Número:</mat-label>
+            <input matInput [(ngModel)]="filtro.numero" />
+        </mat-form-field>
         <mat-form-field class="six">
             <mat-label>Nome:</mat-label>
             <input matInput [(ngModel)]="filtro.nome" />
         </mat-form-field>
-        <div class="three buttons">
+        <div class="six buttons">
             <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
             <button mat-raised-button color="primary" (click)="pesquisarBoletos()">Pesquisar</button>
         </div>

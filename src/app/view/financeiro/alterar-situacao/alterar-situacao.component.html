@@ -1,0 +1,35 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Alterar situação de boleto</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <h4 class="nome-disabled">Aluno: {{boleto.aluno.nome}}</h4>
+            <h4 class="nome-disabled">Número: {{boleto.seuNumero}}</h4>
+            <h4 class="nome-disabled">Vencimento: {{boleto.dataVencimentoStr}}</h4>
+            <h4 class="nome-disabled">Valor: {{boleto.valorStr}}</h4>
+        </div>
+        <div class="form-grid">
+            <div class="four">
+                <custom-select label='Nova Situação:'
+                               field='name'
+                               [options]="tiposStatusBoletoOptions"
+                               [(selected)]="tipoStatusBoletoSelecionado">
+                </custom-select>
+            </div>
+            <custom-datetimepicker [(value)]="data" name='Data' class="four" *ngIf="ehBaixa() || ehLiquidacao()">
+            </custom-datetimepicker>
+            <mat-form-field class="four" *ngIf="ehLiquidacao()">
+                <mat-label>Valor Pago:</mat-label>
+                <input matInput 
+                    type="text"
+                    [textMask]="{mask: moneyMask}"
+                    [(ngModel)]="valor">
+            </mat-form-field>
+        </div>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

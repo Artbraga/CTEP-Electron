@@ -3,6 +3,7 @@ export class FiltroBoleto {
     dataVencimentoAte: Date;
     statusId: number[];
     nome: string;
+    numero: string;
     pagina: number;
     tamanhoPagina: number;
 }

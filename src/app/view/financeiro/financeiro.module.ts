@@ -29,6 +29,7 @@ import { FinanceiroMenuComponent } from './financeiro-menu.component';
 import { CustomPaginatorModule } from 'src/app/custom-components/custom-paginator/custom-paginator.module';
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { TextMaskModule } from 'angular2-text-mask';
+import { AlterarSituacaoComponent } from './alterar-situacao/alterar-situacao.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { TextMaskModule } from 'angular2-text-mask';
         RelatorioComponent, 
         TabelaBoletoComponent, 
         FiltroBoletoComponent,
-        CalculadoraComponent
+        CalculadoraComponent,
+        AlterarSituacaoComponent
     ],
     imports: [
         AppRoutingModule,
