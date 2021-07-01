@@ -27,6 +27,8 @@ import { CustomTableModule } from 'src/app/custom-components/custom-table/custom
 import { SharedModule } from 'src/app/custom-components/shared/shared.module';
 import { FinanceiroMenuComponent } from './financeiro-menu.component';
 import { CustomPaginatorModule } from 'src/app/custom-components/custom-paginator/custom-paginator.module';
+import { CalculadoraComponent } from './calculadora/calculadora.component';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
     declarations: [
@@ -34,7 +36,8 @@ import { CustomPaginatorModule } from 'src/app/custom-components/custom-paginato
         ConsultaBoletoComponent, 
         RelatorioComponent, 
         TabelaBoletoComponent, 
-        FiltroBoletoComponent
+        FiltroBoletoComponent,
+        CalculadoraComponent
     ],
     imports: [
         AppRoutingModule,
@@ -56,10 +59,12 @@ import { CustomPaginatorModule } from 'src/app/custom-components/custom-paginato
         MatExpansionModule,
         MatDatepickerModule,
         CustomTableModule,
+        TextMaskModule,
         CustomDatetimepickerModule,
         CustomSelectModule,
         CustomAutocompleteModule,
         CustomPaginatorModule
-    ]
+    ],
+    exports: [CalculadoraComponent]
 })
 export class FinanceiroModule { }

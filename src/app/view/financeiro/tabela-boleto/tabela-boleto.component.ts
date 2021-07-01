@@ -8,6 +8,7 @@ import { PageTableResult } from 'src/app/custom-components/page-table-result';
 import { Boleto } from 'src/model/boleto.model';
 import { FinanceiroService } from 'src/services/financeiro.service';
 import { RoutingService } from 'src/services/routing.service';
+import { CalculadoraComponent } from '../calculadora/calculadora.component';
 
 @Component({
     selector: 'tabela-boleto',
@@ -20,26 +21,34 @@ export class TabelaBoletoComponent extends BaseTable<Boleto> implements OnInit {
     @Output() paginar = new EventEmitter<number>();
 
     constructor(public dialog: MatDialog,
-        public financeiroService: FinanceiroService,
-        public notificationService: NotificationService,
-        private routingService: RoutingService,
-        private router: Router) {
+                public financeiroService: FinanceiroService,
+                public notificationService: NotificationService,
+                private routingService: RoutingService,
+                private router: Router) {
         super();
         this.pageList = new PageTableResult<Boleto>();
     }
 
     ngOnInit() {
-        this.columns.push({ key: 'nome', header: 'Nome', field: 'nome' } as Coluna);
-        this.columns.push({ key: 'cpf', header: 'CPF', field: 'cpf' } as Coluna);
-        this.columns.push({ key: 'telefone', header: 'Telefone', field: 'telefone' } as Coluna);
-        this.columns.push({ key: 'celular', header: 'Celular', field: 'celular' } as Coluna);
-        this.columns.push({ key: 'matricula', header: 'Matrículas', field: 'matriculas' } as Coluna);
-        this.columns.push({ key: 'turmas', header: 'Turmas', field: 'turmas' } as Coluna);
-        this.columns.push({ key: 'status', header: 'Situação', field: 'tipoStatusAluno' } as Coluna);
+        this.columns.push({ key: 'nome', header: 'Nome', field: 'aluno.nome' } as Coluna);
+        this.columns.push({ key: 'seuNumero', header: 'Número', field: 'seuNumero' } as Coluna);
+        this.columns.push({ key: 'vencimento', header: 'Vencimento', field: 'dataVencimentoStr' } as Coluna);
+        this.columns.push({ key: 'valor', header: 'Valor', field: 'valor' } as Coluna);
+        this.columns.push({ key: 'pagamento', header: 'Data do Pagamento', field: 'dataPagamentoStr' } as Coluna);
+        this.columns.push({ key: 'valorPago', header: 'Valor Pago', field: 'valorPago' } as Coluna);
+        this.columns.push({ key: 'status', header: 'Situação', field: 'status' } as Coluna);
         this.columns.push({ key: 'buttons', bodyTemplateName: 'acoesTemplate' } as Coluna);
     }
 
     paginacao(event: PageEvent) {
         this.paginar.emit(event.pageIndex);
+    }
+
+    calcular(boleto: Boleto) {
+        const dialogRef = this.dialog.open(CalculadoraComponent, {
+            data: boleto,
+            width: '50vw',
+            panelClass: 'calculadora'
+        });
     }
 }

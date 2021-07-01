@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MaskPatterns } from '../../../../model/enums/mask.enum';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { NotificationService } from '../../../custom-components/notification/notification.service';
 import { NotificationType } from '../../../custom-components/notification/toaster/toaster';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Boleto } from 'src/model/boleto.model';
 
 @Component({
     selector: 'calculadora',
@@ -36,11 +37,22 @@ export class CalculadoraComponent implements OnInit {
     valorJuros: number;
     valorMulta: number;
     valorTotal: number;
+    modal: boolean;
 
-    constructor(private notificationService: NotificationService) { }
+    constructor(private notificationService: NotificationService,
+                @Optional() @Inject(MAT_DIALOG_DATA) public data: Boleto) { }
 
     ngOnInit(): void {
         this.limpar();
+        if (this.data != null) {
+            console.log(this.data);
+            this.modal = true;
+            this.valor = this.data.valor.toString();
+            this.juros = this.data.valorJuros.toString().replace('.', ',');
+            this.multa = this.data.percentualMulta.toString();
+            this.vencimento = this.data.dataVencimento;
+            this.calcular();
+        }
     }
 
     calcular() {

@@ -38,7 +38,11 @@ export class ConsultaBoletoComponent implements OnInit {
         }
         this.financeiroService.filtrarBoletos(this.filtro).subscribe(data => {
             this.pageList = data;
-            this.pageList.lista = data.lista.map(x => Object.assign(new Boleto(), x));
+            this.pageList.lista = data.lista.map(x => {
+                const boleto = Object.assign(new Boleto(), x);
+                boleto.corrigirInformacoes();
+                return boleto;
+            });
         });
     }
 

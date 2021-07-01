@@ -2,13 +2,14 @@
     <mat-card>
         <custom-table [columns]="columns" [listOfElements]="pageList.lista" [maxHeigth]='heigthTabela'>
             <ng-template let-element customTemplate="acoesTemplate">
-                <!-- <div style="text-align: end;">
+                <div style="text-align: end;">
                     <button mat-icon-button color="primary"
-                            matTooltip="Ficha do Aluno"
-                            (click)="visualizarAluno(element)">
-                        <i class="material-icons">assignment</i>
+                            matTooltip="Calcular mensalidade"
+                            (click)="calcular(element)"
+                            *ngIf="element.status=='Em Aberto'">
+                        <mat-icon>calculate</mat-icon>
                     </button>
-                    <button mat-icon-button color="primary"
+                    <!-- <button mat-icon-button color="primary"
                             matTooltip="Editar Aluno"
                             (click)="editarAluno(element)">
                         <i class="material-icons">edit</i>
@@ -17,8 +18,8 @@
                             matTooltip="Excluir Aluno"
                             (click)="excluirAluno(element)">
                         <i class="material-icons">delete</i>
-                    </button>
-                </div> -->
+                    </button> -->
+                </div>
             </ng-template>
         </custom-table>
         <custom-paginator [pageList]="pageList" (paginacao)="paginacao($event)"></custom-paginator>

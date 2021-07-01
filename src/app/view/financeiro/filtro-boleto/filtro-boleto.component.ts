@@ -21,6 +21,7 @@ export class FiltroBoletoComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.tiposStatusBoletoOptions = TipoStatusBoletoEnum.List();
+        this.limpar();
     }
 
     pesquisarBoletos() {
