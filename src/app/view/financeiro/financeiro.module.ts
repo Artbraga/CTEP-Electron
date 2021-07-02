@@ -30,6 +30,7 @@ import { CustomPaginatorModule } from 'src/app/custom-components/custom-paginato
 import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { AlterarSituacaoComponent } from './alterar-situacao/alterar-situacao.component';
+import { AdicionarBoletoComponent } from './adicionar-boleto/adicionar-boleto.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { AlterarSituacaoComponent } from './alterar-situacao/alterar-situacao.co
         TabelaBoletoComponent, 
         FiltroBoletoComponent,
         CalculadoraComponent,
-        AlterarSituacaoComponent
+        AlterarSituacaoComponent,
+        AdicionarBoletoComponent
     ],
     imports: [
         AppRoutingModule,
