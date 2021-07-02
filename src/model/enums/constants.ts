@@ -27,5 +27,6 @@ export const FormularioProfessorRoute = 'formularioProfessor';
 // Financeiro
 export const FiltroBoletoParameter = 'filtroBoleto';
 export const ConsultaBoletoRoute = 'consultaBoleto';
+export const AdicionarBoletoRoute = 'adicionarBoleto';
 
 export const HomeRoute = 'home';

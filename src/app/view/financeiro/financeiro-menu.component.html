@@ -9,6 +9,10 @@
             <a class="two" [routerLink]="['', { outlets: { secondRouter: ['consultaBoleto'] } }]" (click)="mudarRota()">
                 <mat-icon>person_add</mat-icon><span>Consultar Boletos</span>
             </a>
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['adicionarBoleto'] } }]" (click)="mudarRota()">
+                <mat-icon>receipt</mat-icon><span>Adicionar Boletos</span>
+            </a>
+
         </div>
     </mat-expansion-panel>
 </mat-accordion>
