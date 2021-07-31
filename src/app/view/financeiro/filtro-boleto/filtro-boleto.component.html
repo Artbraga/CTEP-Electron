@@ -9,6 +9,19 @@
         </custom-datetimepicker>
         <custom-datetimepicker [(value)]="filtro.dataVencimentoAte" name='Data de Vencimento (Até)' class="three">
         </custom-datetimepicker>
+        <custom-datetimepicker [(value)]="filtro.dataPagamentoDe" name='Data de Pagamento (De)' class="three">
+        </custom-datetimepicker>
+        <custom-datetimepicker [(value)]="filtro.dataPagamentoAte" name='Data de Pagamento (Até)' class="three">
+        </custom-datetimepicker>
+
+        <mat-form-field class="six">
+            <mat-label>Nome:</mat-label>
+            <input matInput [(ngModel)]="filtro.nome" />
+        </mat-form-field>
+        <mat-form-field class="three">
+            <mat-label>Número:</mat-label>
+            <input matInput [(ngModel)]="filtro.numero" />
+        </mat-form-field>
         <div class="three">
             <custom-select label='Situação:'
                            field='name'
@@ -17,15 +30,7 @@
                            [(selected)]="tiposStatusBoletoSelecionados">
             </custom-select>
         </div>
-        <mat-form-field class="three">
-            <mat-label>Número:</mat-label>
-            <input matInput [(ngModel)]="filtro.numero" />
-        </mat-form-field>
-        <mat-form-field class="six">
-            <mat-label>Nome:</mat-label>
-            <input matInput [(ngModel)]="filtro.nome" />
-        </mat-form-field>
-        <div class="six buttons">
+        <div class="thwelve buttons">
             <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
             <button mat-raised-button color="primary" (click)="pesquisarBoletos()">Pesquisar</button>
         </div>

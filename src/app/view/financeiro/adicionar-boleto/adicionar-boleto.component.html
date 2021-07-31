@@ -11,12 +11,13 @@
     <mat-card>
         <div class="form-grid">
             <div class="six" >
-                <custom-select label='Aluno:'
-                               field='nomeMatricula'
-                               [options]="alunosOptions"
-                               [(selected)]="alunoSelecionado"
-                               (filter)="pesquisarAluno($event)">
-                </custom-select>
+                <custom-autocomplete 
+                    label='Aluno:'
+                    field='nomeMatricula'
+                    [options]="alunosOptions"
+                    [(selected)]="alunoSelecionado"
+                    (filter)="pesquisarAluno($event)">
+                </custom-autocomplete>
             </div>
             <mat-form-field class="three" >
                 <mat-label>Número:</mat-label>

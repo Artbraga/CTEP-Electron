@@ -9,7 +9,7 @@ import { PageTableResult } from 'src/app/custom-components/page-table-result';
 
 @Injectable({ providedIn: 'root', })
 export class FinanceiroService extends BaseService<Professor> {
-
+    
     constructor(http: HttpClient) {
         super(http, 'Financeiro');
     }
@@ -25,4 +25,11 @@ export class FinanceiroService extends BaseService<Professor> {
 
         return this.http.post<boolean>(url, boleto);
     }
+
+    verificarExistenciaBoletos(numero: string, parcelas: number): Observable<boolean> {
+        const url = this.baseURL + `/VerificarExistenciaBoletos`;
+
+        return this.http.post<boolean>(url, {numero, parcelas});
+    }
+
 }

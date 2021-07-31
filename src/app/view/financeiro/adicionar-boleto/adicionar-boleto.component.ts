@@ -79,26 +79,22 @@ export class AdicionarBoletoComponent extends BaseFormularioComponent<Boleto> im
 
     validar(): boolean {
         let valida = true;
-        // if (this.cursoSelecionado == null) {
-        //     valida = false;
-        //     this.notificationService.addNotification('Erro!', 'É necessário selecionar o curso ao aqual a turma será associada.', NotificationType.Error);
-        // }
-        // if (!this.stringValida(this.element.codigo)) {
-        //     valida = false;
-        //     this.notificationService.addNotification('Erro!', 'É necessário preencher o código da turma.', NotificationType.Error);
-        // }
-        // if (!this.stringValida(this.element.diasDaSemana)) {
-        //     valida = false;
-        //     this.notificationService.addNotification('Erro!', 'É necessário preencher o(s) dia(s) da semana da turma.', NotificationType.Error);
-        // }
-        // if (!this.stringValida(this.element.horaInicio) || !this.stringValida(this.element.horaFim)) {
-        //     valida = false;
-        //     this.notificationService.addNotification('Erro!', 'É necessário preencher o horário de início e fim da turma.', NotificationType.Error);
-        // }
-        // if (this.element.dataInicio == null) {
-        //     valida = false;
-        //     this.notificationService.addNotification('Erro!', 'É necessário preencher a data de início da turma.', NotificationType.Error);
-        // }
+        if (this.alunoSelecionado == null) {
+            valida = false;
+            this.notificationService.addNotification('Erro!', 'É necessário selecionar um aluno para associar os boletos.', NotificationType.Error);
+        }
+        if (!this.stringValida(this.element.seuNumero)) {
+            valida = false;
+            this.notificationService.addNotification('Erro!', 'É necessário preencher o número base dos boletos.', NotificationType.Error);
+        }
+        if (this.numeroParcelas == null || this.numeroParcelas <= 0) {
+            valida = false;
+            this.notificationService.addNotification('Erro!', 'Digite um número válido para a quantidade de boletos.', NotificationType.Error);
+        }
+        if (this.element.dataVencimento == null) {
+            valida = false;
+            this.notificationService.addNotification('Erro!', 'É necessário preencher a data de vencimento base do parcelamento.', NotificationType.Error);
+        }
         return valida;
     }
 
@@ -113,17 +109,7 @@ export class AdicionarBoletoComponent extends BaseFormularioComponent<Boleto> im
 
     salvar() {
         if (this.validar()) {
-            // this.element.curso = this.cursoSelecionado;
-            // this.turmaService.salvar(this.element).subscribe(data => {
-            //     if (data != null) {
-            //         if (this.element.id != null) {
-            //             this.voltar();
-            //         }
-            //         this.element = new Turma();
-            //         this.cursoSelecionado = null;
-            //         this.notificationService.addNotification('Sucesso!', 'A turma foi salva com sucesso.', NotificationType.Success);
-            //     }
-            // });
+            this.financeiroService.verificarExistenciaBoletos()
         }
     }
 

@@ -61,7 +61,7 @@ export class TabelaBoletoComponent extends BaseTable<Boleto> implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
                 this.dialog.open(AlterarSituacaoComponent, { data: boleto, width: '50vw' }).afterClosed().subscribe(res => {
-                    if (result) this.pesquisar.emit();
+                    if (res) this.pesquisar.emit();
                 });
             }
         });
