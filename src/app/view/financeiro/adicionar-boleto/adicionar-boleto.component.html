@@ -48,26 +48,26 @@
                         [textMask]="{mask: moneyMask}"
                         [(ngModel)]="element.valorJuros">
             </mat-form-field>
-            <div class="six buttons">
-                <button mat-raised-button color="accent" (click)="limpar()">Voltar</button>
-                <button *ngIf="!isEdicao" mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+            <div class="buttons">
+                <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
+                <button mat-raised-button color="primary" (click)="gerarParcelas()">Gerar Parcelas</button>
             </div>
         </div>
     </mat-card>
-    <mat-card *ngIf="isEdicao">
+    <mat-card *ngIf="mostrarParcelamento">
         <div class="form-grid">
             <div class="six">
-                <mat-card-subtitle>Professores</mat-card-subtitle>
+                <mat-card-subtitle>Parcelas</mat-card-subtitle>
             </div>
         </div>
         <custom-table [columns]="columns" [listOfElements]="boletosGeracao">
             <ng-template let-element customTemplate="acoesTemplate">
                 <div style="text-align: end;">
-                    <button mat-icon-button color="primary"
+                    <!-- <button mat-icon-button color="primary"
                             matTooltip="Remover Professor"
                             (click)="excluirProfessor(element)">
                         <i class="material-icons">delete</i>
-                    </button>
+                    </button> -->
                 </div>
             </ng-template>
         </custom-table>

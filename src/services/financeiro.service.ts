@@ -19,6 +19,12 @@ export class FinanceiroService extends BaseService<Professor> {
 
         return this.http.post<PageTableResult<Boleto>>(url, filtro);
     }
+    
+    salvarBoletos(boletos: Boleto[]): Observable<boolean> {
+        const url = this.baseURL + `/SalvarBoletos`;
+
+        return this.http.post<boolean>(url, boletos);
+    }
 
     alterarStatusBoleto(boleto: Boleto): Observable<boolean> {
         const url = this.baseURL + `/AlterarStatusBoleto`;

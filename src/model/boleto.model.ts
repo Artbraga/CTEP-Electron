@@ -32,7 +32,12 @@ export class Boleto {
     get valorPagoStr(): string {
         return this.valorComoString(this.valorPago);
     }
-
+    get valorJurosStr(): string {
+        return this.valorComoString(this.valorJuros);
+    }
+    get percentualMultaStr(): string {
+        return this.percentualMulta.toString() + "%";
+    }
 
     corrigirInformacoes() {
         if (this.dataVencimento != null) {

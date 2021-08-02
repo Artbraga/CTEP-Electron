@@ -3,23 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BaseFormularioComponent } from 'src/app/base/base-formulario.component';
 import { Coluna } from 'src/app/custom-components/base-table';
-import { ModalConfirmacaoComponent } from 'src/app/custom-components/modal-confirmacao/modal-confirmacao.component';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
 import { Aluno } from 'src/model/aluno.model';
 import { Boleto } from 'src/model/boleto.model';
-import { IdTurmaParameter, RotaVoltarParameter, FormularioTurmaRoute, NotasTurmaRoute } from 'src/model/enums/constants';
 import { FiltroAluno } from 'src/model/filters/aluno.filter';
-import { RegistroTurma } from 'src/model/registro-turma.model';
-import { TurmaProfessor } from 'src/model/turma-professor.model';
-import { Turma } from 'src/model/turma.model';
 import { AlunoService } from 'src/services/aluno.service';
 import { FinanceiroService } from 'src/services/financeiro.service';
-import { RoutingService } from 'src/services/routing.service';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
-import { FinalizarTurmaComponent } from '../../turma/finalizar-turma/finalizar-turma.component';
-import { RegistroTurmaComponent } from '../../turma/registro-turma/registro-turma.component';
-import { TurmaProfessorComponent } from '../../turma/turma-professor/turma-professor.component';
 
 @Component({
     selector: 'app-adicionar-boleto',
@@ -52,11 +43,11 @@ export class AdicionarBoletoComponent extends BaseFormularioComponent<Boleto> im
 
     numeroParcelas: number = 1;
     boletosGeracao: Boleto[];
+    mostrarParcelamento: boolean;
 
     constructor(private alunoService: AlunoService,
                 private financeiroService: FinanceiroService,
                 private notificationService: NotificationService,
-                private routingService: RoutingService,
                 private router: Router,
                 public dialog: MatDialog) {
         super(new Boleto());
@@ -67,6 +58,8 @@ export class AdicionarBoletoComponent extends BaseFormularioComponent<Boleto> im
         this.columns.push({ key: 'seuNumero', header: 'Número', field: 'seuNumero' } as Coluna);
         this.columns.push({ key: 'vencimento', header: 'Vencimento', field: 'dataVencimentoStr' } as Coluna);
         this.columns.push({ key: 'valor', header: 'Valor', field: 'valorStr' } as Coluna);
+        this.columns.push({ key: 'multa', header: 'Multa', field: 'percentualMultaStr' } as Coluna);
+        this.columns.push({ key: 'juros', header: 'Juros', field: 'valorJurosStr' } as Coluna);
     }
 
     pesquisarAluno(value: string) {
@@ -104,28 +97,46 @@ export class AdicionarBoletoComponent extends BaseFormularioComponent<Boleto> im
 
     limpar() {
         this.element = new Boleto();
+        this.alunoSelecionado = null;
         this.numeroParcelas = 1;
+        this.mostrarParcelamento = false;
+        this.boletosGeracao = [];
     }
 
-    salvar() {
+    gerarParcelas() {
+        this.mostrarParcelamento = false;
         if (this.validar()) {
-            this.financeiroService.verificarExistenciaBoletos()
+            this.financeiroService.verificarExistenciaBoletos(this.element.seuNumero, this.numeroParcelas).subscribe(data => {
+                if (data) {
+                    this.notificationService.addNotification('Erro!', 'Já existem boletos cadastrados com o número informado.', NotificationType.Error);
+                    return;
+                }
+                this.mostrarParcelamento = true;
+                this.boletosGeracao = [];
+                for (let i = 1; i <= this.numeroParcelas; i++) {
+                    const novoBoleto = new Boleto();
+                    novoBoleto.seuNumero = `${this.element.seuNumero}/${i<10?'0':''}${i}`;
+                    novoBoleto.aluno = this.alunoSelecionado;
+                    const novaData = new Date(this.element.dataVencimento);
+                    novaData.setMonth(novaData.getMonth() + i - 1);
+                    novoBoleto.dataVencimento = novaData;
+                    novoBoleto.valor = this.lerValor(this.element.valor.toString());
+                    novoBoleto.valorJuros = this.lerValor(this.element.valorJuros.toString());
+                    novoBoleto.percentualMulta = this.lerValor(this.element.percentualMulta.toString());
+                    this.boletosGeracao.push(novoBoleto);
+                }
+            });
         }
     }
 
-    excluirProfessor(professor: TurmaProfessor) {
-        // const dialogRef = this.dialog.open(ModalConfirmacaoComponent, {
-        //     data: { mensagem: `Deseja remover o professor da turma?` }
-        // });
-        // dialogRef.afterClosed().subscribe(result => {
-        //     if (result) {
-        //         this.turmaService.excluirProfessor(professor.id).subscribe(data => {
-        //             if (data) {
-        //                 this.notificationService.addNotification('Sucesso!', 'Professor removido.', NotificationType.Success);
-        //                 this.carregarProfessoresDaTurma();
-        //             }
-        //         });
-        //     }
-        // });
+    salvar() {
+        this.financeiroService.salvarBoletos(this.boletosGeracao).subscribe(data => {
+            this.notificationService.addNotification('Sucesso!', 'Boletos salvos com sucesso!.', NotificationType.Success);
+            this.limpar();
+        });
+    }
+
+    lerValor(valor: string): number {
+        return Number.parseFloat(valor.replace('R$ ', '').replace('%', '').replace(',', '.'));
     }
 }

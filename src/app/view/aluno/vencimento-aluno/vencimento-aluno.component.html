@@ -13,5 +13,5 @@
             </div>
         </ng-template>
     </custom-table>
-    <custom-paginator [pageList]="pageList" (paginacao)="paginacao($event)"></custom-paginator>
+    <custom-paginator *ngif="pageList.total > pageList.tamanhoPagina" [pageList]="pageList" (paginacao)="paginacao($event)"></custom-paginator>
 </div>

@@ -45,6 +45,19 @@ body {
     }
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+   
+::-webkit-scrollbar-thumb {
+    background: $gray; 
+    border-radius: 4px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: $black; 
+}
+
 h1 {
     font-family: "Roboto-Black"!important;
     color: $primary;
