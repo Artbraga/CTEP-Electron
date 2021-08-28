@@ -26,6 +26,7 @@ export class VencimentoAlunoComponent extends BaseTable<Aluno> implements OnInit
                 private router: Router) {
         super();
         this.pageList = new PageTableResult<Aluno>();
+        //this.fatorConversao = 150;
     }
 
     ngOnInit() {

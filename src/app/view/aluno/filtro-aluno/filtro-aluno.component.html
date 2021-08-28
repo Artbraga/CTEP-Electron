@@ -9,11 +9,15 @@
             <mat-label>Nome:</mat-label>
             <input matInput [(ngModel)]="filtro.nome" />
         </mat-form-field>
-        <mat-form-field class="three">
+        <mat-form-field class="two">
             <mat-label>CPF:</mat-label>
             <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="filtro.cpf">
         </mat-form-field>
-        <div class="three">
+        <mat-form-field class="two">
+            <mat-label>Matrícula:</mat-label>
+            <input matInput [(ngModel)]="filtro.matricula" />
+        </mat-form-field>
+        <div class="two">
             <custom-select label='Situação:'
                            field='name'
                            [multiple]='true'
@@ -21,7 +25,11 @@
                            [(selected)]="tiposStatusAlunoSelecionados">
             </custom-select>
         </div>
-        <div class="three">
+        <custom-datetimepicker [(value)]="filtro.dataMatriculaDe" name='Data de Matrícula (De)' class="two">
+        </custom-datetimepicker>
+        <custom-datetimepicker [(value)]="filtro.dataMatriculaAte" name='Data de Matrícula (Até)' class="two">
+        </custom-datetimepicker>
+        <div class="two">
             <custom-select label='Curso:'
                            field='nome'
                            placeholder='Todos'
@@ -30,7 +38,7 @@
                            (select)="cursoSelected()">
             </custom-select>
         </div>
-        <div class="three">
+        <div class="two">
             <custom-autocomplete label='Turma:'
                            field='codigo'
                            [options]="turmasOptions"
@@ -39,10 +47,6 @@
                            (select)="turmaSelected()">
             </custom-autocomplete>
         </div>
-        <mat-form-field class="three">
-            <mat-label>Matrícula:</mat-label>
-            <input matInput [(ngModel)]="filtro.matricula" />
-        </mat-form-field>
         <div class="three buttons">
             <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
             <button mat-raised-button color="primary" (click)="pesquisarAlunos()">Pesquisar</button>
