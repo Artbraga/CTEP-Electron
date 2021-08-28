@@ -5,6 +5,8 @@ export class FiltroAluno {
     cursoId: number;
     matricula: string;
     situacaoId: number[];
+    dataMatriculaDe: Date;
+    dataMatriculaAte: Date;
     pagina: number;
     tamanhoPagina: number;
 }

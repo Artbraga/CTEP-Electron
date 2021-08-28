@@ -6,10 +6,11 @@ export abstract class BaseTable<T> {
     @Input() list: T[] = [];
     @Input() pageList = new PageTableResult<T>();
     @Output() listChange = new EventEmitter();
+    fatorConversao = 140;
 
     get heigthTabela(): string {
         const t = $('.tabela');
-        return  window.innerHeight - t.offset().top - 140 + 'px';
+        return  window.innerHeight - t.offset().top - this.fatorConversao + 'px';
     }
 
     columns: Coluna[] = [];

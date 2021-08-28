@@ -21,7 +21,7 @@
                 <mat-label>Código de conclusão Sistec:</mat-label>
                 <input matInput [(ngModel)]="element.codigoSistec" />
             </mat-form-field>
-            <custom-datetimepicker [(value)]="dataConclusao" name='Data de Conclusão' class="six" *ngIf="ehConclusao()">
+            <custom-datetimepicker [(value)]="element.dataConclusao" name='Data de Conclusão' class="six" *ngIf="ehConclusao()">
             </custom-datetimepicker>
             <mat-form-field class="twelve">
                 <mat-label>Registro:</mat-label>

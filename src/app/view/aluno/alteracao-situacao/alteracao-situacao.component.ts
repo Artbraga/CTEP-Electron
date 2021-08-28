@@ -23,7 +23,6 @@ export class AlteracaoSituacaoComponent extends BaseFormularioComponent<MudancaS
     turmaDesabilitada: boolean;
     tiposStatusAlunoOptions: SelectItem<number>[];
     tiposStatusAlunoSelecionado: SelectItem<number>;
-    dataConclusao = new Date();
 
     constructor(private alunoService: AlunoService,
                 private notificationService: NotificationService,
@@ -55,7 +54,6 @@ export class AlteracaoSituacaoComponent extends BaseFormularioComponent<MudancaS
                 this.element.turmaId = this.turmaAtualSelecionada.turma.id;
                 this.element.alunoId = this.data.id;
                 this.element.situacaoId = this.tiposStatusAlunoSelecionado.value;
-                this.element.dataConclusao = this.dataConclusao;
                 if (!this.ehConclusao()) {
                     this.element.codigoSistec = null;
                     this.element.dataConclusao = null;
@@ -111,6 +109,10 @@ export class AlteracaoSituacaoComponent extends BaseFormularioComponent<MudancaS
         if (this.tiposStatusAlunoSelecionado == null) {
             valido = false;
             this.notificationService.addNotification('Erro!', 'Selecione um status novo para o aluno.', NotificationType.Error);
+        }
+        if (this.ehConclusao() && this.element.dataConclusao == null) {
+            valido = false;
+            this.notificationService.addNotification('Erro!', 'Informe a data de conclusão.', NotificationType.Error);
         }
         return valido;
     }
