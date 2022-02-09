@@ -22,4 +22,10 @@ export const FormularioUsuarioRoute = 'formularioUsuario';
 // Professor
 export const IdProfessorParameter = 'idProfessor';
 
+// Curso Livre
+export const IdTurmaCursoLivreParameter = 'idTurmaCursoLivre';
+export const FiltroTurmaCursoLivreParameter = 'filtroTurmaCursoLivre';
+export const CursoLivreRoute = 'cursosLivres';
+export const FormularioTurmaCursoLivreRoute = 'turmaCursoLivre';
+
 export const HomeRoute = 'home';

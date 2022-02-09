@@ -12,6 +12,9 @@
             <a class="two" [routerLink]="['', { outlets: { secondRouter: ['pesquisarTurma'] } }]" (click)="mudarRota()">
                 <mat-icon>list</mat-icon><span>Pesquisar Turmas</span>
             </a>
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['cursosLivres'] } }]" (click)="mudarRota()">
+                <mat-icon>class</mat-icon><span>Cursos Livres</span>
+            </a>
         </div>
     </mat-expansion-panel>
 </mat-accordion>

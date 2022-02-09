@@ -295,26 +295,28 @@ export class FichaAlunoComponent implements OnInit {
             this.changeIconTurma[index] = false;
         } else {
             this.expandedTurma = this.expandedTurma.concat([element]);
-            forkJoin([
-                this.disciplinaService.listarDisciplinasDeUmCurso(element.turma.curso.id),
-                this.notaAlunoService.listarNotasDeUmAluno(this.element.id)
-            ]).subscribe(([disciplinas, notas]) => {
-                const notasCurso = [];
-                disciplinas.forEach(d => {
-                    let nota = notas.find(x => x.disciplinaId === d.id);
-                    if (nota == null) {
-                        nota = new NotaAluno();
-                        nota.disciplina = d;
-                        nota.disciplinaId = d.id;
-                    } else {
-                        nota.disciplina = d;
-                        nota.valorNota = parseFloat(nota.valorNota.toString().replace(',', '.'));
-                    }
-                    notasCurso.push(nota);
-                });
-                element.notas = notasCurso;
-            });
             this.changeIconTurma[index] = true;
+            if (element.notas == null || element.notas.length == 0) {
+                forkJoin([
+                    this.disciplinaService.listarDisciplinasDeUmCurso(element.turma.curso.id),
+                    this.notaAlunoService.listarNotasDeUmAluno(this.element.id)
+                ]).subscribe(([disciplinas, notas]) => {
+                    const notasCurso = [];
+                    disciplinas.forEach(d => {
+                        let nota = notas.find(x => x.disciplinaId === d.id);
+                        if (nota == null) {
+                            nota = new NotaAluno();
+                            nota.disciplina = d;
+                            nota.disciplinaId = d.id;
+                        } else {
+                            nota.disciplina = d;
+                            nota.valorNota = parseFloat(nota.valorNota.toString().replace(',', '.'));
+                        }
+                        notasCurso.push(nota);
+                    });
+                    element.notas = notasCurso;
+                });
+            }
         }
     }
 }

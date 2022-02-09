@@ -32,6 +32,9 @@ import { FinalizarTurmaComponent } from './finalizar-turma/finalizar-turma.compo
 import { TurmaProfessorComponent } from './turma-professor/turma-professor.component';
 import { NotasTurmaComponent } from './notas-turma/notas-turma.component';
 import { AdicionarNotaComponent } from './notas-turma/adicionar-nota/adicionar-nota.component';
+import { CursoLivreComponent } from './curso-livre/curso-livre.component';
+import { FormularioTurmaCursoLivreComponent } from './curso-livre/formulario-turma-curso-livre/formulario-turma-curso-livre.component';
+import { FormularioAlunoCursoLivreComponent } from './curso-livre/formulario-aluno-curso-livre/formulario-aluno-curso-livre.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +48,9 @@ import { AdicionarNotaComponent } from './notas-turma/adicionar-nota/adicionar-n
         TurmaProfessorComponent,
         NotasTurmaComponent,
         AdicionarNotaComponent,
+        CursoLivreComponent,
+        FormularioTurmaCursoLivreComponent,
+        FormularioAlunoCursoLivreComponent,
     ],
     imports: [
         AppRoutingModule,
