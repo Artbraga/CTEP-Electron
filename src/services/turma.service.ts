@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Turma } from '../model/turma.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FiltroTurma } from 'src/model/filters/turma.filter';
 import { RegistroTurma } from 'src/model/registro-turma.model';
 import { TurmaProfessor } from 'src/model/turma-professor.model';

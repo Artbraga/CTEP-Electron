@@ -14,11 +14,13 @@ import { ProfessorMenuComponent } from './view/professor/professor-menu.componen
 import { FormularioProfessorComponent } from './view/professor/formulario-professor/formulario-professor.component';
 import { TabelaProfessorComponent } from './view/professor/tabela-professor/tabela-professor.component';
 import { TabelaUsuarioComponent } from './view/usuario/tabela-usuario/tabela-usuario.component';
-import { AdicionarBoletoRoute, ConsultaBoletoRoute, FichaAlunoRoute, FormularioAlunoRoute, FormularioProfessorRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, TabelaProfessorRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
-import { NotasTurmaComponent } from './view/turma/notas-turma/notas-turma.component';
 import { FinanceiroMenuComponent } from './view/financeiro/financeiro-menu.component';
 import { ConsultaBoletoComponent } from './view/financeiro/consulta-boleto/consulta-boleto.component';
 import { AdicionarBoletoComponent } from './view/financeiro/adicionar-boleto/adicionar-boleto.component';
+import { AdicionarBoletoRoute, ConsultaBoletoRoute, CursoLivreRoute, FichaAlunoRoute, FormularioAlunoRoute, FormularioProfessorRoute, FormularioTurmaCursoLivreRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, TabelaProfessorRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
+import { NotasTurmaComponent } from './view/turma/notas-turma/notas-turma.component';
+import { CursoLivreComponent } from './view/turma/curso-livre/curso-livre.component';
+import { FormularioTurmaCursoLivreComponent } from './view/turma/curso-livre/formulario-turma-curso-livre/formulario-turma-curso-livre.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -40,6 +42,10 @@ const routes: Routes = [
     { path: 'financeiro', component: FinanceiroMenuComponent },
     { path: ConsultaBoletoRoute, component: ConsultaBoletoComponent, outlet: 'secondRouter' },
     { path: AdicionarBoletoRoute, component: AdicionarBoletoComponent, outlet: 'secondRouter' },
+    { path: 'tabelaProfessor', component: TabelaProfessorComponent, outlet: 'secondRouter' },
+    { path: 'formularioProfessor', component: FormularioProfessorComponent, outlet: 'secondRouter' },
+    { path: CursoLivreRoute, component: CursoLivreComponent, outlet: 'secondRouter' },
+    { path: FormularioTurmaCursoLivreRoute, component: FormularioTurmaCursoLivreComponent, outlet: 'secondRouter' },
 ];
 
 @NgModule({

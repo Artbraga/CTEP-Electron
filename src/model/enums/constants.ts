@@ -29,4 +29,10 @@ export const FiltroBoletoParameter = 'filtroBoleto';
 export const ConsultaBoletoRoute = 'consultaBoleto';
 export const AdicionarBoletoRoute = 'adicionarBoleto';
 
+// Curso Livre
+export const IdTurmaCursoLivreParameter = 'idTurmaCursoLivre';
+export const FiltroTurmaCursoLivreParameter = 'filtroTurmaCursoLivre';
+export const CursoLivreRoute = 'cursosLivres';
+export const FormularioTurmaCursoLivreRoute = 'turmaCursoLivre';
+
 export const HomeRoute = 'home';

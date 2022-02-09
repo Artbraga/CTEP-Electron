@@ -57,8 +57,8 @@ export class NotasTurmaComponent extends BaseFormularioComponent<any> implements
     carregarTabela() {
         this.columns = [];
         this.list = [];
-        this.columns.push({ key: 'nome', header: 'Aluno', field: 'nomeAluno' } as Coluna);
-        this.columns.push({ key: 'matricula', header: 'Matrícula', field: 'matricula' } as Coluna);
+        this.columns.push({ key: 'nome', header: 'Aluno', field: 'nomeAluno', classBody: 'nome' } as Coluna);
+        this.columns.push({ key: 'matricula', header: 'Matrícula', field: 'matricula', classBody: 'matricula' } as Coluna);
         forkJoin([
             this.disciplinaService.listarDisciplinasDeUmCurso(this.turma.curso.id),
             this.alunoService.buscarAlunosENotasDeTurma(this.turma.id)
@@ -67,7 +67,7 @@ export class NotasTurmaComponent extends BaseFormularioComponent<any> implements
             this.alunos = alunos;
 
             disciplinas.forEach(d => {
-                this.columns.push({ key: d.nome, header: d.nome, field: d.nome } as Coluna);
+                this.columns.push({ key: d.nome, header: d.nome, field: d.nome, classBody: 'nota' } as Coluna);
             });
             alunos.forEach(al => {
                 const obj: { [id: string]: string } = {};

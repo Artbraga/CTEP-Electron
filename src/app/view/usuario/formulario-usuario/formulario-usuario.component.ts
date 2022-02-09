@@ -92,7 +92,7 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
         }
         if (!this.stringValida(this.element.telefone)) {
             valido = false;
-            this.notificationService.addNotification('Erro!', 'É necessário preencher o nome do usuário.', NotificationType.Error);
+            this.notificationService.addNotification('Erro!', 'É necessário preencher o telefone do usuário.', NotificationType.Error);
         }
         if (this.perfilSelecionado == null) {
             valido = false;

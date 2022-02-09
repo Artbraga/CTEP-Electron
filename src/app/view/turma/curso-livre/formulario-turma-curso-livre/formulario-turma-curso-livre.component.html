@@ -1,0 +1,58 @@
+<div class="formulario">
+    <div class="header">
+        <div class="six">
+            <h1>{{isEdicao ? 'Gerenciar' : 'Cadastro de' }} Turma de Curso Livre</h1>
+        </div>
+        <div class="six buttons">
+            <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
+            <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+        </div>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="four" >
+                <custom-select label='Curso:'
+                               field='nome'
+                               [options]="cursosOptions"
+                               [(selected)]="cursoSelecionado"
+                               [disabled]='isEdicao'>
+                </custom-select>
+            </div>
+            <div class="four">
+                <custom-datetimepicker [(value)]="element.data" name='Data'>
+                </custom-datetimepicker>
+            </div>
+            <mat-form-field class="two">
+                <mat-label>Horário de Início:</mat-label>
+                <input matInput [textMask]="{mask: masks.Hora}" [(ngModel)]="element.horaInicio">
+            </mat-form-field>
+            <mat-form-field class="two">
+                <mat-label>Horário de Fim:</mat-label>
+                <input matInput [textMask]="{mask: masks.Hora}" [(ngModel)]="element.horaFim">
+            </mat-form-field>
+        </div>
+    </mat-card>
+    <mat-card *ngIf="isEdicao">
+        <div class="form-grid">
+            <div class="six">
+                <mat-card-subtitle>Alunos</mat-card-subtitle>
+            </div>
+            <div class="buttons">
+                <button mat-button color="accent" (click)="adicionarAluno()">
+                    <mat-icon>add</mat-icon>Adicionar
+                </button>
+            </div>
+        </div>
+        <custom-table [columns]="columnsAlunos" [listOfElements]="element.participacoesCursoLivre">
+            <ng-template let-element customTemplate="acoesTemplate">
+                <div style="text-align: end;">
+                    <button mat-icon-button color="primary"
+                            matTooltip="Remover Aluno"
+                            (click)="excluirAluno(element)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </ng-template>
+        </custom-table>
+    </mat-card>
+</div>
