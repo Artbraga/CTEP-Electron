@@ -1,0 +1,69 @@
+<div class="pesquisa">
+    <div style="display: flex;">
+        <h1>Curso Livre</h1>
+        <div class="buttons">
+            <button mat-raised-button color="primary" (click)="adicionarTurma()">
+                <mat-icon>class</mat-icon> Adicionar Turma
+            </button>
+        </div>
+    </div>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'50px'">
+            <mat-panel-title> Filtro </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-grid">
+            <div class="three">
+                <custom-select
+                    label="Curso:"
+                    field="nome"
+                    placeholder="Todos"
+                    [options]="cursosOptions"
+                    [(selected)]="cursoSelecionado">
+                </custom-select>
+            </div>
+            <custom-datetimepicker [(value)]="filtro.dataDe" name='Data (De)' class="two">
+            </custom-datetimepicker>
+            <custom-datetimepicker [(value)]="filtro.dataAte" name='Data (Até)' class="two">
+            </custom-datetimepicker>
+            <div class="two checkbox">
+                <mat-checkbox class="example-margin"
+                            [(ngModel)]="filtro.realizado"
+                            color="primary">
+                    Realizados
+                </mat-checkbox>
+            </div>
+            <div class="three buttons">
+                <button mat-raised-button color="accent" (click)="limpar()">
+                    Limpar
+                </button>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="pesquisarTurmas()">
+                    Pesquisar
+                </button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+    
+    <div class="tabela">
+        <mat-card>
+            <custom-table [columns]="columns" [listOfElements]="list" [maxHeigth]='heigthTabela'>
+                <ng-template let-element customTemplate="acoesTemplate">
+                    <div style="text-align: end;">
+                        <button mat-icon-button color="primary"
+                                matTooltip="Gerenciar Turma"
+                                (click)="editarTurma(element)">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button mat-icon-button color="primary"
+                                matTooltip="Excluir Turma"
+                                (click)="excluirTurma(element)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </ng-template>
+            </custom-table>
+        </mat-card>
+    </div>
+</div>

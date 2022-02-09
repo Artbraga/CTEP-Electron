@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
 import { NotaAlunoService } from 'src/services/nota-aluno.service';
-import { AlunoNotas } from '../../../../../model/aluno-notas.entity';
+import { AlunoNotas } from '../../../../../model/aluno-notas.model';
 import { Disciplina } from '../../../../../model/disciplina.model';
 import { NotaAluno } from '../../../../../model/nota-aluno.model';
 import { Professor } from '../../../../../model/professor.model';

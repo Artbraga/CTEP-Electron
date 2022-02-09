@@ -1,0 +1,49 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Cadastrar aluno em curso</h2>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="twelve">
+                <custom-autocomplete 
+                           field='nome'
+                           [options]="alunosOptions"
+                           [(selected)]="alunoSelecionado"
+                           (filter)="pesquisar($event)"
+                           (selectedChange)="onSelect($event)">
+                </custom-autocomplete>
+            </div>
+        </div>
+        <div class="form-grid">
+            <mat-form-field class="twelve">
+                <mat-label>Nome:</mat-label>
+                <input matInput [(ngModel)]="element.nome" [disabled]="!podeEditar">
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>CPF:</mat-label>
+                <input matInput [textMask]="{mask: masks.CPF}" [(ngModel)]="element.cpf" [disabled]="!podeEditar">
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>RG:</mat-label>
+                <input matInput [(ngModel)]="element.rg" [disabled]="!podeEditar">
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>Órgão Emissor:</mat-label>
+                <input matInput [(ngModel)]="element.orgaoEmissor" [disabled]="!podeEditar">
+            </mat-form-field>
+            <mat-form-field class="six">
+                <mat-label>Celular:</mat-label>
+                <input matInput [textMask]="{mask: masks.Celular}" [(ngModel)]="element.celular" [disabled]="!podeEditar">
+            </mat-form-field>
+            <mat-form-field class="twelve">
+                <mat-label>Endereço:</mat-label>
+                <input matInput [(ngModel)]="element.endereco" [disabled]="!podeEditar">
+            </mat-form-field>
+        </div>
+        <mat-checkbox [(ngModel)]="editarAluno" color="primary">Editar Informações</mat-checkbox>
+    </mat-card>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="closeModal(true)">Salvar</button>
+    </div>
+</div>

@@ -14,8 +14,10 @@ import { ProfessorMenuComponent } from './view/professor/professor-menu.componen
 import { FormularioProfessorComponent } from './view/professor/formulario-professor/formulario-professor.component';
 import { TabelaProfessorComponent } from './view/professor/tabela-professor/tabela-professor.component';
 import { TabelaUsuarioComponent } from './view/usuario/tabela-usuario/tabela-usuario.component';
-import { FichaAlunoRoute, FormularioAlunoRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
+import { CursoLivreRoute, FichaAlunoRoute, FormularioAlunoRoute, FormularioTurmaCursoLivreRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
 import { NotasTurmaComponent } from './view/turma/notas-turma/notas-turma.component';
+import { CursoLivreComponent } from './view/turma/curso-livre/curso-livre.component';
+import { FormularioTurmaCursoLivreComponent } from './view/turma/curso-livre/formulario-turma-curso-livre/formulario-turma-curso-livre.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,6 +36,8 @@ const routes: Routes = [
     { path: 'professor', component: ProfessorMenuComponent },
     { path: 'tabelaProfessor', component: TabelaProfessorComponent, outlet: 'secondRouter' },
     { path: 'formularioProfessor', component: FormularioProfessorComponent, outlet: 'secondRouter' },
+    { path: CursoLivreRoute, component: CursoLivreComponent, outlet: 'secondRouter' },
+    { path: FormularioTurmaCursoLivreRoute, component: FormularioTurmaCursoLivreComponent, outlet: 'secondRouter' },
 ];
 
 @NgModule({
