@@ -5,13 +5,15 @@ export class TipoStatusAlunoEnum {
     public static Concluido = { name: 'Concluído', value: 2 };
     public static Trancado = { name: 'Trancado', value: 3 };
     public static Abandono = { name: 'Abandono', value: 4 };
+    public static AguardandoConclusao = { name: 'Aguardando conclusão', value: 5 };
 
     public static List(): SelectItem<number>[] {
         return [
             TipoStatusAlunoEnum.Ativo,
             TipoStatusAlunoEnum.Concluido,
             TipoStatusAlunoEnum.Trancado,
-            TipoStatusAlunoEnum.Abandono
+            TipoStatusAlunoEnum.Abandono,
+            TipoStatusAlunoEnum.AguardandoConclusao
         ];
     }
 
