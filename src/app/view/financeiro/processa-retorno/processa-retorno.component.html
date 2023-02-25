@@ -1,0 +1,50 @@
+<div class="formulario">
+    <div class="header">
+        <div class="six">
+            <h1>Processar Retorno</h1>
+        </div>
+        <div class="six buttons">
+        </div>
+    </div>
+    <mat-card *ngIf="retornos == null">
+        <div class="buttons">
+            <input type="file" class="file-input" (change)="onFileSelected($event)" multiple #fileUpload>
+            <button mat-raised-button color="primary" (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>Anexar
+            </button>
+            <button mat-raised-button color="accent" (click)="limparAnexos()">
+                Limpar
+            </button>
+            <button mat-raised-button color="primary" (click)="processar()" [disabled]="arquivos.length == 0">
+                Processar
+            </button>
+        </div>
+        <div class="anexos">
+            <ng-container *ngFor="let arquivo of arquivos">
+                <span class="arquivo-anexo">
+                    {{arquivo.name}}
+                    <button mat-button class="close" (click)="removeAnexo(arquivo)">
+                        x
+                    </button>
+                </span>
+            </ng-container>
+        </div>
+    </mat-card>
+
+    <mat-tab-group *ngIf="retornos != null">
+        <ng-container *ngFor="let r of retornos">
+            <mat-tab label="{{r.numero}}">
+                <div class="form-grid">
+                    <div class="three">
+                        <div class="field">
+                            <span>Data de Referência</span>
+                            <span class="campo">{{ r.dataReferenciaStr }}</span>
+                        </div>
+                    </div>
+                </div>
+                <custom-table [columns]="columns" [listOfElements]="r.movimentacoes">
+                </custom-table>
+            </mat-tab>
+        </ng-container>
+    </mat-tab-group>
+</div>

@@ -1,7 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
 import { BaseTable, Coluna } from 'src/app/custom-components/base-table';
 import { ModalConfirmacaoComponent } from 'src/app/custom-components/modal-confirmacao/modal-confirmacao.component';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
@@ -21,12 +20,11 @@ export class TabelaBoletoComponent extends BaseTable<Boleto> implements OnInit {
 
     @Output() pesquisar = new EventEmitter<any>();
     @Output() paginar = new EventEmitter<number>();
+    @Input() paginavel = true;
 
     constructor(public dialog: MatDialog,
                 public financeiroService: FinanceiroService,
-                public notificationService: NotificationService,
-                private routingService: RoutingService,
-                private router: Router) {
+                public notificationService: NotificationService) {
         super();
         this.pageList = new PageTableResult<Boleto>();
     }

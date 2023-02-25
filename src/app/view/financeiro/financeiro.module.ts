@@ -31,6 +31,8 @@ import { CalculadoraComponent } from './calculadora/calculadora.component';
 import { TextMaskModule } from 'angular2-text-mask';
 import { AlterarSituacaoComponent } from './alterar-situacao/alterar-situacao.component';
 import { AdicionarBoletoComponent } from './adicionar-boleto/adicionar-boleto.component';
+import { ProcessaRetornoComponent } from './processa-retorno/processa-retorno.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,8 @@ import { AdicionarBoletoComponent } from './adicionar-boleto/adicionar-boleto.co
         FiltroBoletoComponent,
         CalculadoraComponent,
         AlterarSituacaoComponent,
-        AdicionarBoletoComponent
+        AdicionarBoletoComponent,
+        ProcessaRetornoComponent
     ],
     imports: [
         AppRoutingModule,
@@ -57,6 +60,7 @@ import { AdicionarBoletoComponent } from './adicionar-boleto/adicionar-boleto.co
         MatInputModule,
         MatMenuModule,
         MatIconModule,
+        MatTabsModule,
         MatCheckboxModule,
         MatTooltipModule,
         MatDialogModule,

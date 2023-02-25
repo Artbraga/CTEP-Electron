@@ -28,6 +28,7 @@ export const FormularioProfessorRoute = 'formularioProfessor';
 export const FiltroBoletoParameter = 'filtroBoleto';
 export const ConsultaBoletoRoute = 'consultaBoleto';
 export const AdicionarBoletoRoute = 'adicionarBoleto';
+export const ProcessarRetornoRoute = 'processarRetorno';
 
 // Curso Livre
 export const IdTurmaCursoLivreParameter = 'idTurmaCursoLivre';

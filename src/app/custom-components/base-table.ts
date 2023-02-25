@@ -10,6 +10,7 @@ export abstract class BaseTable<T> {
 
     get heigthTabela(): string {
         const t = $('.tabela');
+        if (t.offset() == null) return '50vh'
         return  window.innerHeight - t.offset().top - this.fatorConversao + 'px';
     }
 
@@ -35,7 +36,7 @@ export abstract class BaseTable<T> {
         }
     }
 
-    public resolveField(obj: any, field: string) {
+    private resolveField(obj: any, field: string) {
         if (field == null || field.trim() == '') {
             return null;
         }

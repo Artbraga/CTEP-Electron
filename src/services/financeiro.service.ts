@@ -6,6 +6,7 @@ import { Professor } from '../model/professor.model';
 import { FiltroBoleto } from 'src/model/filters/boleto.filter';
 import { Boleto } from 'src/model/boleto.model';
 import { PageTableResult } from 'src/app/custom-components/page-table-result';
+import { RetornoArquivo } from 'src/model/retorno-arquivo.model';
 
 @Injectable({ providedIn: 'root', })
 export class FinanceiroService extends BaseService<Professor> {
@@ -36,6 +37,15 @@ export class FinanceiroService extends BaseService<Professor> {
         const url = this.baseURL + `/VerificarExistenciaBoletos`;
 
         return this.http.post<boolean>(url, {numero, parcelas});
+    }
+    
+    lerArquivos(arquivos: File[]): Observable<RetornoArquivo[]> {
+        const url = this.baseURL + `/LerArquivos`;
+        let formData = new FormData();
+        arquivos.forEach(a => {
+            formData.append(a.name, a);
+        })
+        return this.http.post<RetornoArquivo[]>(url, formData);
     }
 
 }

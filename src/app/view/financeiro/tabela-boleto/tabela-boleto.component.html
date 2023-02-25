@@ -18,7 +18,7 @@
                 </div>
             </ng-template>
         </custom-table>
-        <custom-paginator [pageList]="pageList" (paginacao)="paginacao($event)"></custom-paginator>
+        <custom-paginator *ngIf="paginavel" [pageList]="pageList" (paginacao)="paginacao($event)"></custom-paginator>
 
     </mat-card>
 </div>

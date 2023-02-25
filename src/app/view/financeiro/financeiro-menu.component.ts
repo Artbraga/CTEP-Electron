@@ -19,5 +19,4 @@ export class FinanceiroMenuComponent implements OnInit {
         this.expanded = false;
         this.routingService.limparParametros();
     }
-
 }
