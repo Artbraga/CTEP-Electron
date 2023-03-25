@@ -3,10 +3,12 @@
         <div class="six">
             <h1>Processar Retorno</h1>
         </div>
-        <div class="six buttons">
+        <div class="six buttons" *ngIf="retornos.length">
+            <button mat-raised-button color="accent" (click)="cancelar()">Voltar</button>
+            <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
         </div>
     </div>
-    <mat-card *ngIf="retornos == null">
+    <mat-card *ngIf="!retornos.length">
         <div class="buttons">
             <input type="file" class="file-input" (change)="onFileSelected($event)" multiple #fileUpload>
             <button mat-raised-button color="primary" (click)="fileUpload.click()">
@@ -31,19 +33,43 @@
         </div>
     </mat-card>
 
-    <mat-tab-group *ngIf="retornos != null">
+    <mat-tab-group *ngIf="retornos.length">
         <ng-container *ngFor="let r of retornos">
-            <mat-tab label="{{r.numero}}">
-                <div class="form-grid">
-                    <div class="three">
-                        <div class="field">
-                            <span>Data de Referência</span>
-                            <span class="campo">{{ r.dataReferenciaStr }}</span>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    {{r.numero}}
+                    <button mat-icon-button class="tab-close" (click)="removerRetorno(r)"><mat-icon>close</mat-icon></button>
+                </ng-template>
+                <ng-template matTabContent>
+                    <div class="form-grid">
+                        <div class="three">
+                            <div class="field">
+                                <span>Tipo</span>
+                                <span class="campo">{{ r.tipo }}</span>
+                            </div>
+                        </div>
+                        <div class="three">
+                            <div class="field">
+                                <span>Data de Referência</span>
+                                <span class="campo">{{ r.dataReferenciaStr }}</span>
+                            </div>
+                        </div>
+                        <div class="three">
+                            <div class="field">
+                                <span>Situação</span>
+                                <span class="campo">{{ r.status }}</span>
+                            </div>
+                        </div>
+                        <div class="three">
+                            <div class="field">
+                                <span>Data de Processamento</span>
+                                <span class="campo">{{ tratarString(r.dataLeituraStr) }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <custom-table [columns]="columns" [listOfElements]="r.movimentacoes">
-                </custom-table>
+                    <custom-table [columns]="columns" [listOfElements]="r.movimentacoes">
+                    </custom-table>
+                </ng-template>
             </mat-tab>
         </ng-container>
     </mat-tab-group>

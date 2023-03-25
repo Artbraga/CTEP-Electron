@@ -11,7 +11,11 @@ export class RetornoArquivo {
     movimentacoes: Boleto[];
 
     get dataReferenciaStr(): string {
-        return BaseConverter.DateToStringOnlyDate(new Date(this.dataReferencia));
+        return BaseConverter.DateToStringOnlyDate(this.dataReferencia);
+    }
+
+    get dataLeituraStr(): string {
+        return BaseConverter.DateToStringOnlyDate(this.dataLeitura);
     }
 
     corrigirInformacoes() {
@@ -25,6 +29,6 @@ export class RetornoArquivo {
             let boleto = Object.assign(new Boleto(), b)
             boleto.corrigirInformacoes()
             return boleto;
-        });
+        }).sort((a, b) => a.aluno.nome > b.aluno.nome ? 1 : -1);
     }
 }

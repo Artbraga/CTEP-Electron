@@ -7,10 +7,12 @@ import { FiltroBoleto } from 'src/model/filters/boleto.filter';
 import { Boleto } from 'src/model/boleto.model';
 import { PageTableResult } from 'src/app/custom-components/page-table-result';
 import { RetornoArquivo } from 'src/model/retorno-arquivo.model';
+import { TratamentoRequest } from 'src/model/tratamento-request.model';
+import { RegistroRetorno } from 'src/model/registro-retorno.model';
 
 @Injectable({ providedIn: 'root', })
 export class FinanceiroService extends BaseService<Professor> {
-    
+
     constructor(http: HttpClient) {
         super(http, 'Financeiro');
     }
@@ -20,7 +22,7 @@ export class FinanceiroService extends BaseService<Professor> {
 
         return this.http.post<PageTableResult<Boleto>>(url, filtro);
     }
-    
+
     salvarBoletos(boletos: Boleto[]): Observable<boolean> {
         const url = this.baseURL + `/SalvarBoletos`;
 
@@ -38,14 +40,20 @@ export class FinanceiroService extends BaseService<Professor> {
 
         return this.http.post<boolean>(url, {numero, parcelas});
     }
-    
-    lerArquivos(arquivos: File[]): Observable<RetornoArquivo[]> {
+
+    lerArquivos(arquivos: File[]): Observable<TratamentoRequest<RetornoArquivo>[]> {
         const url = this.baseURL + `/LerArquivos`;
         let formData = new FormData();
         arquivos.forEach(a => {
             formData.append(a.name, a);
         })
-        return this.http.post<RetornoArquivo[]>(url, formData);
+        return this.http.post<TratamentoRequest<RetornoArquivo>[]>(url, formData);
+    }
+
+    processarMovimentacoes(retornos: RetornoArquivo[]): Observable<RegistroRetorno[]> {
+        const url = this.baseURL + `/ProcessarMovimentacoes`;
+
+        return this.http.post<RegistroRetorno[]>(url, retornos);
     }
 
 }

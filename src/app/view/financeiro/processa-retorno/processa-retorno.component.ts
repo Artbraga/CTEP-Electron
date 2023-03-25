@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Coluna } from 'src/app/custom-components/base-table';
-import { Boleto } from 'src/model/boleto.model';
+import { NotificationService } from 'src/app/custom-components/notification/notification.service';
+import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
 import { RetornoArquivo } from 'src/model/retorno-arquivo.model';
 import { FinanceiroService } from 'src/services/financeiro.service';
 
@@ -12,10 +13,11 @@ import { FinanceiroService } from 'src/services/financeiro.service';
 export class ProcessaRetornoComponent implements OnInit {
 
     arquivos: File[] = [];
-    retornos: RetornoArquivo[];
-    columns: Coluna[] = [];
+    retornos: RetornoArquivo[] = [];
+    readonly columns: Coluna[] = [];
 
-    constructor(private financeiroService: FinanceiroService) { }
+    constructor(private financeiroService: FinanceiroService,
+                private notificationService: NotificationService) { }
 
     ngOnInit(): void {
         this.columns.push({ key: 'nome', header: 'Nome', field: 'aluno.nome' } as Coluna);
@@ -46,11 +48,37 @@ export class ProcessaRetornoComponent implements OnInit {
 
     processar() {
         this.financeiroService.lerArquivos(this.arquivos).subscribe(data => {
-            this.retornos = data.map(x => {
-                let ret = Object.assign(new RetornoArquivo(), x)
+            this.retornos = [];
+            data.forEach(x => {
+                if (x.possuiErro) {
+                    this.notificationService.addNotification("Retorno", x.mensagem, NotificationType.Error);
+                }
+                let ret = Object.assign(new RetornoArquivo(), x.objetoTratado);
                 ret.corrigirInformacoes();
-                return ret;
-            });
+                this.retornos.push(ret);
+            })
+            this.retornos.sort((a, b) => a.dataReferencia > b.dataReferencia ? 1 : -1);
         });
+    }
+
+    tratarString(str: string): string {
+        if (str != null && str != '') {
+            return str.toString();
+        }
+        return '---';
+    }
+
+    cancelar() {
+        this.arquivos = [];
+        this.retornos = [];
+    }
+
+    removerRetorno(ret: RetornoArquivo) {
+        this.retornos = this.retornos.filter(x => x !== ret);
+        if (this.retornos.length == 0) this.cancelar();
+    }
+
+    salvar() {
+
     }
 }
