@@ -15,7 +15,7 @@ export class Boleto {
     status: string;
 
     aluno: Aluno;
-    
+
     get dataEmissaoStr(): string {
         return BaseConverter.DateToStringOnlyDate(this.dataEmissao);
     }
@@ -23,7 +23,7 @@ export class Boleto {
         return BaseConverter.DateToStringOnlyDate(this.dataVencimento);
     }
     get dataPagamentoStr(): string {
-        return BaseConverter.DateToStringOnlyDate(this.dataPagamento);
+        return this.dataPagamento ? BaseConverter.DateToStringOnlyDate(this.dataPagamento) : '';
     }
 
     get valorStr(): string {

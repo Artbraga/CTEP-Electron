@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Coluna } from 'src/app/custom-components/base-table';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
+import { RegistroRetorno } from 'src/model/registro-retorno.model';
 import { RetornoArquivo } from 'src/model/retorno-arquivo.model';
 import { FinanceiroService } from 'src/services/financeiro.service';
 
@@ -14,6 +15,7 @@ export class ProcessaRetornoComponent implements OnInit {
 
     arquivos: File[] = [];
     retornos: RetornoArquivo[] = [];
+    registrosProcessados: RegistroRetorno[];
     readonly columns: Coluna[] = [];
 
     constructor(private financeiroService: FinanceiroService,
@@ -79,6 +81,8 @@ export class ProcessaRetornoComponent implements OnInit {
     }
 
     salvar() {
-
+        this.financeiroService.processarMovimentacoes(this.retornos).subscribe(data => {
+            console.log(data)
+        });
     }
 }

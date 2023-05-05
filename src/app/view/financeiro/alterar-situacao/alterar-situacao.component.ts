@@ -28,7 +28,7 @@ export class AlterarSituacaoComponent implements OnInit {
         decimalSymbol: ',',
         requireDecimal: true
     });
-    
+
     tiposStatusBoletoOptions: SelectItem<number>[];
     tipoStatusBoletoSelecionado: SelectItem<number>;
     data = new Date();
@@ -36,7 +36,7 @@ export class AlterarSituacaoComponent implements OnInit {
 
     constructor(private financeiroService: FinanceiroService,
                 private notificationService: NotificationService,
-                private dialogRef: MatDialogRef<TurmaAlunoComponent>,
+                private dialogRef: MatDialogRef<AlterarSituacaoComponent>,
         @Inject(MAT_DIALOG_DATA) public boleto: Boleto) {
     }
 
@@ -45,17 +45,18 @@ export class AlterarSituacaoComponent implements OnInit {
     }
 
     closeModal(salvar: boolean) {
+        let boleto = Object.assign(new Boleto(), this.boleto)
         if (salvar) {
             if (this.validar()) {
-                this.boleto.status = this.tipoStatusBoletoSelecionado.name;
+                boleto.status = this.tipoStatusBoletoSelecionado.name;
                 if (this.ehBaixa()) {
-                    this.boleto.dataPagamento = this.data;
-                    this.boleto.valorPago = null;
+                    boleto.dataPagamento = this.data;
+                    boleto.valorPago = null;
                 } else if (this.ehLiquidacao()) {
-                    this.boleto.dataPagamento = this.data;
-                    this.boleto.valorPago = this.lerValor(this.valor);
+                    boleto.dataPagamento = this.data;
+                    boleto.valorPago = this.lerValor(this.valor);
                 }
-                this.financeiroService.alterarStatusBoleto(this.boleto).subscribe(data => {
+                this.financeiroService.alterarStatusBoleto(boleto).subscribe(data => {
                     if (data) {
                         this.notificationService.addNotification('Sucesso!', 'Situação do boleto alterada com sucesso.', NotificationType.Success);
                         this.dialogRef.close(true);
