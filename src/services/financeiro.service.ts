@@ -9,6 +9,7 @@ import { PageTableResult } from 'src/app/custom-components/page-table-result';
 import { RetornoArquivo } from 'src/model/retorno-arquivo.model';
 import { TratamentoRequest } from 'src/model/tratamento-request.model';
 import { RegistroRetorno } from 'src/model/registro-retorno.model';
+import { FiltroRetorno } from 'src/model/filters/retorno.filter';
 
 @Injectable({ providedIn: 'root', })
 export class FinanceiroService extends BaseService<Professor> {
@@ -56,4 +57,9 @@ export class FinanceiroService extends BaseService<Professor> {
         return this.http.post<RegistroRetorno[]>(url, retornos);
     }
 
+    listarRetornos(filtro: FiltroRetorno): Observable<PageTableResult<RetornoArquivo>> {
+        const url = this.baseURL + `/FiltrarRetornos`;
+
+        return this.http.post<PageTableResult<RetornoArquivo>>(url, filtro);
+    }
 }

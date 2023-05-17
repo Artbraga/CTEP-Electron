@@ -14,6 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -33,18 +34,22 @@ import { AlterarSituacaoComponent } from './alterar-situacao/alterar-situacao.co
 import { AdicionarBoletoComponent } from './adicionar-boleto/adicionar-boleto.component';
 import { ProcessaRetornoComponent } from './processa-retorno/processa-retorno.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ConsultaRetornoComponent } from './consulta-retorno/consulta-retorno.component';
+import { TabelaRetornoComponent } from './tabela-retorno/tabela-retorno.component';
 
 @NgModule({
     declarations: [
         FinanceiroMenuComponent,
-        ConsultaBoletoComponent, 
-        RelatorioComponent, 
-        TabelaBoletoComponent, 
+        ConsultaBoletoComponent,
+        RelatorioComponent,
+        TabelaBoletoComponent,
         FiltroBoletoComponent,
         CalculadoraComponent,
         AlterarSituacaoComponent,
         AdicionarBoletoComponent,
-        ProcessaRetornoComponent
+        ProcessaRetornoComponent,
+        ConsultaRetornoComponent,
+        TabelaRetornoComponent
     ],
     imports: [
         AppRoutingModule,
@@ -58,6 +63,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatCardModule,
         MatButtonModule,
         MatInputModule,
+        MatListModule,
         MatMenuModule,
         MatIconModule,
         MatTabsModule,

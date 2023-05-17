@@ -17,11 +17,12 @@ import { TabelaUsuarioComponent } from './view/usuario/tabela-usuario/tabela-usu
 import { FinanceiroMenuComponent } from './view/financeiro/financeiro-menu.component';
 import { ConsultaBoletoComponent } from './view/financeiro/consulta-boleto/consulta-boleto.component';
 import { AdicionarBoletoComponent } from './view/financeiro/adicionar-boleto/adicionar-boleto.component';
-import { AdicionarBoletoRoute, ConsultaBoletoRoute, CursoLivreRoute, FichaAlunoRoute, FormularioAlunoRoute, FormularioProfessorRoute, FormularioTurmaCursoLivreRoute, FormularioTurmaRoute, FormularioUsuarioRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, ProcessarRetornoRoute, TabelaProfessorRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
+import { AdicionarBoletoRoute, ConsultaBoletoRoute, CursoLivreRoute, FichaAlunoRoute, FormularioAlunoRoute, FormularioProfessorRoute, FormularioTurmaCursoLivreRoute, FormularioTurmaRoute, FormularioUsuarioRoute, ListarRetornoRoute, NotasTurmaRoute, PesquisarAlunoRoute, PesquisarTurmaRoute, ProcessarRetornoRoute, TabelaProfessorRoute, TabelaUsuarioRoute } from 'src/model/enums/constants';
 import { NotasTurmaComponent } from './view/turma/notas-turma/notas-turma.component';
 import { CursoLivreComponent } from './view/turma/curso-livre/curso-livre.component';
 import { FormularioTurmaCursoLivreComponent } from './view/turma/curso-livre/formulario-turma-curso-livre/formulario-turma-curso-livre.component';
 import { ProcessaRetornoComponent } from './view/financeiro/processa-retorno/processa-retorno.component';
+import { ConsultaRetornoComponent } from './view/financeiro/consulta-retorno/consulta-retorno.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -44,6 +45,7 @@ const routes: Routes = [
     { path: ConsultaBoletoRoute, component: ConsultaBoletoComponent, outlet: 'secondRouter' },
     { path: AdicionarBoletoRoute, component: AdicionarBoletoComponent, outlet: 'secondRouter' },
     { path: ProcessarRetornoRoute, component: ProcessaRetornoComponent, outlet: 'secondRouter' },
+    { path: ListarRetornoRoute, component: ConsultaRetornoComponent, outlet: 'secondRouter' },
     { path: 'tabelaProfessor', component: TabelaProfessorComponent, outlet: 'secondRouter' },
     { path: 'formularioProfessor', component: FormularioProfessorComponent, outlet: 'secondRouter' },
     { path: CursoLivreRoute, component: CursoLivreComponent, outlet: 'secondRouter' },

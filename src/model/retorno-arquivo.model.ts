@@ -25,7 +25,7 @@ export class RetornoArquivo {
         if (this.dataLeitura != null) {
             this.dataLeitura = BaseConverter.StringToDate(this.dataLeitura.toString());
         }
-        this.movimentacoes = this.movimentacoes.map(b => {
+        this.movimentacoes = this.movimentacoes?.map(b => {
             let boleto = Object.assign(new Boleto(), b)
             boleto.corrigirInformacoes()
             return boleto;

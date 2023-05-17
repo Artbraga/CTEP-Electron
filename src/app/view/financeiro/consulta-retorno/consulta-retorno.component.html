@@ -1,0 +1,7 @@
+
+<div class="pesquisa">
+    <div style="display: flex;">
+        <h1>Consultar Retornos</h1>
+    </div>
+    <tabela-retorno [pageList]="pageList" (pesquisar)="pesquisar()" (paginar)="paginar($event)" (exportar)="exportarPesquisa()"></tabela-retorno>
+</div>

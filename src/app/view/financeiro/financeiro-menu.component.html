@@ -15,6 +15,9 @@
             <a class="two" [routerLink]="['', { outlets: { secondRouter: ['processarRetorno'] } }]" (click)="mudarRota()">
                 <mat-icon>summarize</mat-icon><span>Processar Retorno</span>
             </a>
+            <a class="two" [routerLink]="['', { outlets: { secondRouter: ['listarRetornos'] } }]" (click)="mudarRota()">
+                <mat-icon>view_list</mat-icon><span>Listar Retornos</span>
+            </a>
         </div>
     </mat-expansion-panel>
 </mat-accordion>
