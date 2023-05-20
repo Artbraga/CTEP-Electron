@@ -1,6 +1,6 @@
 <div class="tabela">
     <mat-card>
-        <custom-table [columns]="columns" [listOfElements]="pageList.lista" [maxHeigth]='heigthTabela'>
+        <custom-table [columns]="columns" [colGroups]="columnGroups" [listOfElements]="pageList.lista" [maxHeigth]='heigthTabela'>
             <ng-template let-element let-column="column" let-index='rowIndex' customTemplate="expand">
                 <button mat-icon-button color="primary" class="toggleButton" (click)="expandTable(element)">
                     <mat-icon class="material-icons">{{changeIconRetorno[index] ? 'expand_less' : 'expand_more'}}</mat-icon>
@@ -9,11 +9,11 @@
 
             <ng-template let-element customTemplate="expandedDetailTemplate">
                 <div [@detailExpand]="expandedRetornos.includes(element) ? 'expanded' : 'collapsed'">
-                    <mat-selection-list [multiple]="false">
-                        <mat-list-option *ngFor="let registro of element.retornos">
+                    <mat-list>
+                        <mat-list-item *ngFor="let registro of element.registros">
                           {{registro.registro}}
-                        </mat-list-option>
-                      </mat-selection-list>
+                        </mat-list-item>
+                    </mat-list>
                 </div>
             </ng-template>
         </custom-table>

@@ -48,14 +48,14 @@ body {
 ::-webkit-scrollbar {
     width: 8px;
 }
-   
+
 ::-webkit-scrollbar-thumb {
-    background: $gray; 
+    background: $gray;
     border-radius: 4px;
 }
-  
+
 ::-webkit-scrollbar-thumb:hover {
-    background: $black; 
+    background: $black;
 }
 
 h1 {
@@ -434,4 +434,17 @@ button.mat-raised-button {
             border-color: $secondary;
         }
     }
-} 
+}
+
+tbody .mat-list-base {
+    .mat-list-item:nth-child(odd) {
+        background-color: #fff;
+    }
+    .mat-list-item:nth-child(even) {
+        background-color: $off-white;
+    }
+    .mat-list-item {
+        height: 30px;
+        font-size: 12px;
+    }
+}

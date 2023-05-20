@@ -19,6 +19,7 @@ export class ConsultaRetornoComponent implements OnInit {
 
     ngOnInit(): void {
         this.pesquisar();
+        this.pageList = new PageTableResult<RetornoArquivo>();
     }
 
     pesquisar() {
@@ -32,21 +33,6 @@ export class ConsultaRetornoComponent implements OnInit {
         });
     }
 
-    exportarPesquisa() {
-        // if (this.pageList.lista == null || this.pageList.lista.length == 0) {
-        //     this.notificationService.addNotification('Atenção', 'A pesquisa não possui resultados a serem exportados.', NotificationType.Warnning);
-        //     return;
-        // }
-
-        // this.alunoService.baixarPesquisa(this.filtro).subscribe(data => {
-        //     if (data) {
-        //         this.baixarArquivoService.downloadFile(data, 'exportação.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        //     }
-        // },
-        //     err => {
-        //         this.notificationService.addNotification('Erro', 'Erro ao baixar a pesquisa!', NotificationType.Error);
-        //     });
-    }
 
     paginar(pagina: number) {
         this.filtro.pagina = pagina;

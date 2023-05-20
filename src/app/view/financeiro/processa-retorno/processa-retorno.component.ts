@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Coluna } from 'src/app/custom-components/base-table';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
 import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
+import { ListarRetornoRoute } from 'src/model/enums/constants';
 import { RegistroRetorno } from 'src/model/registro-retorno.model';
 import { RetornoArquivo } from 'src/model/retorno-arquivo.model';
 import { FinanceiroService } from 'src/services/financeiro.service';
@@ -19,7 +21,8 @@ export class ProcessaRetornoComponent implements OnInit {
     readonly columns: Coluna[] = [];
 
     constructor(private financeiroService: FinanceiroService,
-                private notificationService: NotificationService) { }
+                private notificationService: NotificationService,
+                private router: Router) { }
 
     ngOnInit(): void {
         this.columns.push({ key: 'nome', header: 'Nome', field: 'aluno.nome' } as Coluna);
@@ -82,7 +85,10 @@ export class ProcessaRetornoComponent implements OnInit {
 
     salvar() {
         this.financeiroService.processarMovimentacoes(this.retornos).subscribe(data => {
-            console.log(data)
+            data.forEach(ret => {
+                this.notificationService.addNotification("Retorno", ret.registro, NotificationType.Success);
+            })
+            this.router.navigate([{ outlets: { secondRouter: ListarRetornoRoute } }]);
         });
     }
 }
