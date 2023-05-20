@@ -13,13 +13,6 @@ body {
         .formulario,
         .pesquisa,
         .tabela {
-            h1 {
-                font-weight: 800;
-                font-family: "Roboto-Black";
-                color: $primary;
-                text-transform: uppercase;
-                margin: 5px;
-            }
             .mat-card {
                 margin-bottom: 20px;
                 box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
@@ -50,6 +43,26 @@ body {
         text-decoration: unset;
         color: unset;
     }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $gray;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $black;
+}
+
+h1 {
+    font-family: "Roboto-Black"!important;
+    color: $primary;
+    text-transform: uppercase;
+    margin: 5px;
 }
 
 .mat-sidenav-container {
@@ -421,4 +434,17 @@ button.mat-raised-button {
             border-color: $secondary;
         }
     }
-} 
+}
+
+tbody .mat-list-base {
+    .mat-list-item:nth-child(odd) {
+        background-color: #fff;
+    }
+    .mat-list-item:nth-child(even) {
+        background-color: $off-white;
+    }
+    .mat-list-item {
+        height: 30px;
+        font-size: 12px;
+    }
+}

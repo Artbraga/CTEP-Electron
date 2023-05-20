@@ -7,6 +7,8 @@ import { MaskPatterns } from 'src/model/enums/mask.enum';
 import { SelectItem } from 'src/app/custom-components/custom-select/custom-select.component';
 import { Turma } from 'src/model/turma.model';
 import { TipoStatusAlunoEnum } from 'src/model/enums/tipo-status-aluno.enum';
+import { RoutingService } from 'src/services/routing.service';
+import { FiltroAlunoParameter } from 'src/model/enums/constants';
 
 @Component({
     selector: 'filtro-aluno',
@@ -29,9 +31,12 @@ export class FiltroAlunoComponent implements AfterViewInit {
     tiposStatusAlunoOptions: SelectItem<number>[];
     tiposStatusAlunoSelecionados: SelectItem<number>[];
 
+    expanded: boolean = true;
+
     constructor(
         private cursoService: CursoService,
-        private turmaService: TurmaService
+        private turmaService: TurmaService,
+        private routingService: RoutingService
     ) {}
 
     ngAfterViewInit(): void {
@@ -44,6 +49,9 @@ export class FiltroAlunoComponent implements AfterViewInit {
             this.tiposStatusAlunoSelecionados = this.tiposStatusAlunoOptions.filter(x => this.filtro.situacaoId.includes(x.value));
         } else {
             this.tiposStatusAlunoSelecionados = [TipoStatusAlunoEnum.Ativo];
+        }
+        if (this.routingService.possuiValor(FiltroAlunoParameter)) {
+            this.expanded = false;
         }
     }
 

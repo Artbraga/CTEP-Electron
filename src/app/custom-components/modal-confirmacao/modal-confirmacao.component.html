@@ -15,7 +15,7 @@
 
         <div class="modal-footer">
             <button class="material-icons" *ngIf="showClearBtn()" [mat-dialog-close]="false">clear</button>
-            <button class="material-icons" [mat-dialog-close]="true">done</button>
+            <button class="material-icons" [mat-dialog-close]="true" cdkFocusInitial>done</button>
         </div>
     </div>
 </app-dialog>

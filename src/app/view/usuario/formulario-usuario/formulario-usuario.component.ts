@@ -65,7 +65,7 @@ export class FormularioUsuarioComponent extends BaseFormularioComponent<Usuario>
             this.usuarioService.salvar(this.element).subscribe(data => {
                 this.notificationService.addNotification('Sucesso!', 'Usuário salvo com sucesso.', NotificationType.Success);
                 if (this.element.id != null) {
-                    this.notificationService.addNotification('Senha padrão.', 'A senha será .', NotificationType.Notification);
+                    //this.notificationService.addNotification('Senha padrão.', 'A senha será .', NotificationType.Notification);
                 }
             });
         }

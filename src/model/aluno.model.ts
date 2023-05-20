@@ -1,4 +1,5 @@
 import { BaseConverter } from '../app/custom-components/base-converter';
+import { TipoStatusAlunoEnum } from './enums/tipo-status-aluno.enum';
 import { RegistroAluno } from './registro-aluno.model';
 import { TurmaAluno } from './turma-aluno.model';
 import { Turma } from './turma.model';
@@ -54,6 +55,14 @@ export class Aluno {
         return this.turmasAluno.map(x => x.matricula).join(', ');
     }
 
+    get nomeMatricula(): string {
+        let turmaAtiva = this.turmasAluno.filter(x => x.tipoStatusAluno == TipoStatusAlunoEnum.Ativo.name);
+        if (turmaAtiva.length > 0) {
+            let matricula = turmaAtiva[0].matricula;
+            return `${matricula} - ${this.nome}`;
+        }
+        return `${this.nome}`;
+    }
 
     corrigirInformacoes() {
         if (this.dataMatricula != null) {

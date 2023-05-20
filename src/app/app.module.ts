@@ -23,12 +23,12 @@ import { HttpErrorHandleInterceptor } from '../services/interceptors/httpErrorHa
 import { HttpLoadingInterceptor } from '../services/interceptors/httpLoadingInterceptor';
 import { AlunoModule } from './view/aluno/aluno.module';
 import { TurmaModule } from './view/turma/turma.module';
-import { CalculadoraComponent } from './view/painel-geral/calculadora/calculadora.component';
 import { CustomDatetimepickerModule } from './custom-components/custom-datetimepicker/custom-datetimepicker.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ModalConfirmacaoModule } from './custom-components/modal-confirmacao/modal-confirmacao.module';
 import { UsuarioModule } from './view/usuario/usuario.module';
 import { ProfessorModule } from './view/professor/professor.module';
+import { FinanceiroModule } from './view/financeiro/financeiro.module';
 
 @NgModule({
     declarations: [
@@ -36,7 +36,6 @@ import { ProfessorModule } from './view/professor/professor.module';
         HomeComponent,
         PainelGeralComponent,
         ModalLoginComponent,
-        CalculadoraComponent
     ],
     imports: [
         BrowserModule,
@@ -60,6 +59,7 @@ import { ProfessorModule } from './view/professor/professor.module';
         TurmaModule,
         UsuarioModule,
         ProfessorModule,
+        FinanceiroModule,
         ModalConfirmacaoModule,
         TextMaskModule
     ],

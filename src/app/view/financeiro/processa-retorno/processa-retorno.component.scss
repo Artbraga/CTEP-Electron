@@ -1,0 +1,46 @@
+@import "../../../../theming.scss";
+
+.file-input {
+    display: none;
+}
+.anexos {
+    padding-top: 10px;
+    .arquivo-anexo {
+        background-color: $off-white;
+        border-radius: 10px;
+        margin: 5px;
+        padding: 5px 10px;
+        display: inline-block;
+        button {
+            padding: 5px;
+            min-width: 0;
+            line-height: unset;
+        }
+    }
+}
+
+.form-grid {
+    margin: 10px;
+    span {
+        font-weight: bolder;
+        font-size: 14px;
+        color: #4d575b;
+        &.campo {
+            font-weight: bold;
+            font-size: 16px;
+            color: black;
+        }
+    }
+    .field {
+        display: grid;
+        border: 2px solid #0f084b;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin: 5px;
+    }
+}
+
+.tab-close {
+    position: absolute;
+    right: 0;
+}

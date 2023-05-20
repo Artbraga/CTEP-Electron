@@ -21,6 +21,15 @@ export const FormularioUsuarioRoute = 'formularioUsuario';
 
 // Professor
 export const IdProfessorParameter = 'idProfessor';
+export const TabelaProfessorRoute = 'tabelaProfessor';
+export const FormularioProfessorRoute = 'formularioProfessor';
+
+// Financeiro
+export const FiltroBoletoParameter = 'filtroBoleto';
+export const ConsultaBoletoRoute = 'consultaBoleto';
+export const AdicionarBoletoRoute = 'adicionarBoleto';
+export const ProcessarRetornoRoute = 'processarRetorno';
+export const ListarRetornoRoute = 'listarRetornos';
 
 // Curso Livre
 export const IdTurmaCursoLivreParameter = 'idTurmaCursoLivre';

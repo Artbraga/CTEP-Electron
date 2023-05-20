@@ -1,6 +1,6 @@
 <div class="formulario">
     <div class="header">
-        <h1>Calculadora de mensalidades</h1>
+        <h1>Calculadora de mensalidade</h1>
     </div>
 
     <div class="form-grid">
@@ -9,22 +9,25 @@
             <input matInput 
                     type="text"
                     [textMask]="{mask: moneyMask}"
-                    [(ngModel)]="valor">
+                    [(ngModel)]="valor"
+                    [disabled]="modal">
         </mat-form-field>
         <mat-form-field class="four">
             <mat-label>Multa:</mat-label>
             <input matInput 
                     [textMask]="{mask: percentMask}"
-                    [(ngModel)]="multa">
+                    [(ngModel)]="multa"
+                    [disabled]="modal">
         </mat-form-field>
         <mat-form-field class="four">
             <mat-label>Juros ao dia:</mat-label>
             <input matInput 
                     [textMask]="{mask: moneyMask}"
-                    [(ngModel)]="juros">
+                    [(ngModel)]="juros"
+                    [disabled]="modal">
         </mat-form-field>
         <div class="four">
-            <custom-datetimepicker [(value)]="vencimento" name='Vencimento'>
+            <custom-datetimepicker [(value)]="vencimento" name='Vencimento' [disabled]="modal">
             </custom-datetimepicker>
         </div>
         <div class="four">
@@ -32,7 +35,7 @@
             </custom-datetimepicker>
         </div>
         <div class="four buttons">
-            <button mat-mini-fab color="accent" (click)="limpar()"><mat-icon>clear</mat-icon></button>
+            <button mat-mini-fab color="accent" (click)="limpar()" *ngIf="!modal"><mat-icon>clear</mat-icon></button>
             <button mat-mini-fab color="primary" (click)="calcular()"><mat-icon>calculate</mat-icon></button>
         </div>
         <div class="resultado">

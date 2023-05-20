@@ -46,5 +46,6 @@ export class Turma {
         this.anoInicio = null;
 
         this.registros = [];
+        this.professores = [];
     }
 }

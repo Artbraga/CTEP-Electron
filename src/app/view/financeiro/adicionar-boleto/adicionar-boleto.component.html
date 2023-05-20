@@ -1,0 +1,75 @@
+<div class="formulario">
+    <div class="header">
+        <div class="six">
+            <h1>Adicionar Boletos</h1>
+        </div>
+        <div class="six buttons">
+            <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
+            <button *ngIf="!isEdicao" mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+        </div>
+    </div>
+    <mat-card>
+        <div class="form-grid">
+            <div class="six" >
+                <custom-autocomplete 
+                    label='Aluno:'
+                    field='nomeMatricula'
+                    [options]="alunosOptions"
+                    [(selected)]="alunoSelecionado"
+                    (filter)="pesquisarAluno($event)">
+                </custom-autocomplete>
+            </div>
+            <mat-form-field class="three" >
+                <mat-label>Número:</mat-label>
+                <input matInput [(ngModel)]="element.seuNumero">
+            </mat-form-field>
+            <mat-form-field class="three" >
+                <mat-label>Número de parcelas:</mat-label>
+                    <input matInput type="number" [(ngModel)]="numeroParcelas">
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>Valor:</mat-label>
+                <input matInput 
+                    type="text"
+                    [textMask]="{mask: moneyMask}"
+                    [(ngModel)]="element.valor">
+            </mat-form-field>
+            <custom-datetimepicker [(value)]="element.dataVencimento" name='Data de Vencimento' class="three" >
+            </custom-datetimepicker>
+            <mat-form-field class="three">
+                <mat-label>Multa:</mat-label>
+                <input matInput 
+                        [textMask]="{mask: percentMask}"
+                        [(ngModel)]="element.percentualMulta">
+            </mat-form-field>
+            <mat-form-field class="three">
+                <mat-label>Juros ao dia:</mat-label>
+                <input matInput 
+                        [textMask]="{mask: moneyMask}"
+                        [(ngModel)]="element.valorJuros">
+            </mat-form-field>
+            <div class="buttons">
+                <button mat-raised-button color="accent" (click)="limpar()">Limpar</button>
+                <button mat-raised-button color="primary" (click)="gerarParcelas()">Gerar Parcelas</button>
+            </div>
+        </div>
+    </mat-card>
+    <mat-card *ngIf="mostrarParcelamento">
+        <div class="form-grid">
+            <div class="six">
+                <mat-card-subtitle>Parcelas</mat-card-subtitle>
+            </div>
+        </div>
+        <custom-table [columns]="columns" [listOfElements]="boletosGeracao">
+            <ng-template let-element customTemplate="acoesTemplate">
+                <div style="text-align: end;">
+                    <!-- <button mat-icon-button color="primary"
+                            matTooltip="Remover Professor"
+                            (click)="excluirProfessor(element)">
+                        <i class="material-icons">delete</i>
+                    </button> -->
+                </div>
+            </ng-template>
+        </custom-table>
+    </mat-card>
+</div>
