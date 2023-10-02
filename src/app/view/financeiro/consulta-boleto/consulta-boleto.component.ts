@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/custom-components/notification/notification.service';
+import { NotificationType } from 'src/app/custom-components/notification/toaster/toaster';
 import { PageTableResult } from 'src/app/custom-components/page-table-result';
 import { Boleto } from 'src/model/boleto.model';
 import { FiltroBoletoParameter } from 'src/model/enums/constants';
 import { FiltroBoleto } from 'src/model/filters/boleto.filter';
+import { BaixarArquivoService } from 'src/services/application-services/baixarArquivo.service';
 import { FinanceiroService } from 'src/services/financeiro.service';
 import { RoutingService } from 'src/services/routing.service';
 
@@ -17,7 +19,7 @@ export class ConsultaBoletoComponent implements OnInit {
     filtro: FiltroBoleto;
     pageList: PageTableResult<Boleto>;
     constructor(private financeiroService: FinanceiroService,
-               // private baixarArquivoService: BaixarArquivoService,
+                private baixarArquivoService: BaixarArquivoService,
                 private notificationService: NotificationService,
                 private routingService: RoutingService) { }
 
@@ -47,19 +49,19 @@ export class ConsultaBoletoComponent implements OnInit {
     }
 
     exportarPesquisa() {
-        // if (this.pageList.lista == null || this.pageList.lista.length == 0) {
-        //     this.notificationService.addNotification('Atenção', 'A pesquisa não possui resultados a serem exportados.', NotificationType.Warnning);
-        //     return;
-        // }
+        if (this.pageList.lista == null || this.pageList.lista.length == 0) {
+            this.notificationService.addNotification('Atenção', 'A pesquisa não possui resultados a serem exportados.', NotificationType.Warnning);
+            return;
+        }
 
-        // this.alunoService.baixarPesquisa(this.filtro).subscribe(data => {
-        //     if (data) {
-        //         this.baixarArquivoService.downloadFile(data, 'exportação.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        //     }
-        // },
-        //     err => {
-        //         this.notificationService.addNotification('Erro', 'Erro ao baixar a pesquisa!', NotificationType.Error);
-        //     });
+        this.financeiroService.baixarPesquisa(this.filtro).subscribe(data => {
+            if (data) {
+                this.baixarArquivoService.downloadFile(data, 'exportação_financeiro.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            }
+        },
+            err => {
+                this.notificationService.addNotification('Erro', 'Erro ao baixar a pesquisa!', NotificationType.Error);
+            });
     }
 
     paginar(pagina: number) {

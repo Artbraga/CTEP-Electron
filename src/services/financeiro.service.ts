@@ -62,4 +62,10 @@ export class FinanceiroService extends BaseService<Professor> {
 
         return this.http.post<PageTableResult<RetornoArquivo>>(url, filtro);
     }
+
+    baixarPesquisa(filtro: FiltroBoleto): Observable<any> {
+        const url = this.baseURL + `/BaixarPesquisa`;
+
+        return this.http.post(url, filtro);
+    }
 }
