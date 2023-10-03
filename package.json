@@ -33,6 +33,7 @@
                 ]
             },
             "electronPackagerConfig": {
+                "dir": "./src",
                 "packageManager": "yarn"
             },
             "electronWinstallerConfig": {
@@ -82,7 +83,7 @@
         "@angular/cli": "~9.0.6",
         "@angular/compiler-cli": "~9.0.6",
         "@angular/language-service": "~9.0.6",
-        "@electron-forge/maker-wix": "^6.0.0-beta.54",
+        "@electron-forge/maker-wix": "6.0.0-beta.54",
         "@types/jasmine": "~3.5.0",
         "@types/jasminewd2": "~2.0.3",
         "@types/jquery": "^3.5.5",
