@@ -1,24 +1,39 @@
 <div class="tabela">
     <mat-card>
-        <custom-table [columns]="columns" [listOfElements]="pageList.lista" [maxHeigth]='heigthTabela'>
+        <custom-table
+            [columns]="columns"
+            [listOfElements]="pageList.lista"
+            [maxHeigth]="heigthTabela"
+            [selectedElements]="linhasSelecionadas"
+            (elementClick)="selectLine($event)"
+        >
             <ng-template let-element customTemplate="acoesTemplate">
-                <div style="text-align: end;">
-                    <button mat-icon-button color="primary"
-                            matTooltip="Calcular mensalidade"
-                            (click)="calcular(element)"
-                            *ngIf="element.status=='Em Aberto'">
+                <div style="text-align: end" *ngIf="!selecaoHabilitada">
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        matTooltip="Calcular mensalidade"
+                        (click)="calcular(element)"
+                        *ngIf="element.status == 'Em Aberto'"
+                    >
                         <mat-icon>calculate</mat-icon>
                     </button>
-                    <button mat-icon-button color="primary"
-                            matTooltip="Alterar Situação"
-                            (click)="alterarSituacao(element)"
-                            *ngIf="element.status!='Liquidado'">
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        matTooltip="Alterar Situação"
+                        (click)="alterarSituacao(element)"
+                        *ngIf="element.status != 'Liquidado'"
+                    >
                         <mat-icon>edit</mat-icon>
                     </button>
                 </div>
             </ng-template>
         </custom-table>
-        <custom-paginator *ngIf="paginavel" [pageList]="pageList" (paginacao)="paginacao($event)"></custom-paginator>
-
+        <custom-paginator
+            *ngIf="paginavel"
+            [pageList]="pageList"
+            (paginacao)="paginacao($event)"
+        ></custom-paginator>
     </mat-card>
 </div>

@@ -36,6 +36,7 @@ import { ProcessaRetornoComponent } from './processa-retorno/processa-retorno.co
 import { MatTabsModule } from '@angular/material/tabs';
 import { ConsultaRetornoComponent } from './consulta-retorno/consulta-retorno.component';
 import { TabelaRetornoComponent } from './tabela-retorno/tabela-retorno.component';
+import { ListaSelecionadosComponent } from './lista-selecionados/lista-selecionados.component';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { TabelaRetornoComponent } from './tabela-retorno/tabela-retorno.componen
         AdicionarBoletoComponent,
         ProcessaRetornoComponent,
         ConsultaRetornoComponent,
-        TabelaRetornoComponent
+        TabelaRetornoComponent,
+        ListaSelecionadosComponent
     ],
     imports: [
         AppRoutingModule,

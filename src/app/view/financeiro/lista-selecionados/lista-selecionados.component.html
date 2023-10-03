@@ -1,0 +1,35 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2>Boletos Selecionados</h2>
+    </div>
+    <div class="tabela">
+        <mat-card>
+            <custom-table
+                [columns]="columns"
+                [listOfElements]="linhasSelecionadas"
+                [maxHeigth]="heigthTabela"
+            >
+                <ng-template let-element customTemplate="acoesTemplate">
+                    <div style="text-align: end">
+                        <button
+                            mat-icon-button
+                            color="primary"
+                            matTooltip="Calcular mensalidade"
+                            (click)="remover(element)"
+                        >
+                            <mat-icon>do_not_disturb_on</mat-icon>
+                        </button>
+                    </div>
+                </ng-template>
+            </custom-table>
+        </mat-card>
+    </div>
+    <div class="modal-footer">
+        <button mat-raised-button color="accent" (click)="closeModal(false)">
+            Cancelar
+        </button>
+        <button mat-raised-button color="primary" (click)="excluir()">
+            Excluir
+        </button>
+    </div>
+</div>
