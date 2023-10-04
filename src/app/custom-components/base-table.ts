@@ -1,7 +1,8 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter, Directive } from '@angular/core';
 import { PageTableResult } from './page-table-result';
 import * as $ from 'jquery';
 
+@Directive()
 export abstract class BaseTable<T> {
     @Input() list: T[] = [];
     @Input() pageList = new PageTableResult<T>();
