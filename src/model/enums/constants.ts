@@ -30,6 +30,7 @@ export const ConsultaBoletoRoute = "consultaBoleto";
 export const AdicionarBoletoRoute = "adicionarBoleto";
 export const ProcessarRetornoRoute = "processarRetorno";
 export const ListarRetornoRoute = "listarRetornos";
+export const RelatorioFinanceiroRoute = "relatorioFinanceiro";
 
 // Curso Livre
 export const IdTurmaCursoLivreParameter = "idTurmaCursoLivre";
