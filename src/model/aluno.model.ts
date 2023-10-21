@@ -1,4 +1,5 @@
 import { BaseConverter } from '../app/custom-components/base-converter';
+import { Boleto } from './boleto.model';
 import { TipoStatusAlunoEnum } from './enums/tipo-status-aluno.enum';
 import { RegistroAluno } from './registro-aluno.model';
 import { TurmaAluno } from './turma-aluno.model';
@@ -29,6 +30,7 @@ export class Aluno {
 
     registros: RegistroAluno[];
     turmasAluno: TurmaAluno[] = [];
+    boletos: Boleto[] = [];
 
     dataNascimento: Date;
     tipoStatusAluno: string;
@@ -89,6 +91,13 @@ export class Aluno {
                 reg = Object.assign(new RegistroAluno(), reg);
                 reg.data = BaseConverter.StringToDate(reg.data.toString());
                 return reg;
+            });
+        }
+        if (this.boletos != null) {
+            this.boletos = this.boletos.map(boleto => {
+                boleto = Object.assign(new Boleto(), boleto);
+                boleto.corrigirInformacoes();
+                return boleto;
             });
         }
     }

@@ -7,6 +7,7 @@ import { ListarRetornoRoute } from 'src/model/enums/constants';
 import { RegistroRetorno } from 'src/model/registro-retorno.model';
 import { RetornoArquivo } from 'src/model/retorno-arquivo.model';
 import { FinanceiroService } from 'src/services/financeiro.service';
+import * as $ from 'jquery';
 
 @Component({
     selector: 'app-processa-retorno',
@@ -19,6 +20,12 @@ export class ProcessaRetornoComponent implements OnInit {
     retornos: RetornoArquivo[] = [];
     registrosProcessados: RegistroRetorno[];
     readonly columns: Coluna[] = [];
+
+    get heigthTabela(): string {
+        const t = $('.tabela');
+        if (t.offset() == null) return '50vh'
+        return  window.innerHeight - t.offset().top - 30 + 'px';
+    }
 
     constructor(private financeiroService: FinanceiroService,
                 private notificationService: NotificationService,
