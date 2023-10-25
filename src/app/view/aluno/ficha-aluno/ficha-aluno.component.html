@@ -257,6 +257,23 @@
                 </ng-template>
             </custom-table>
         </mat-tab>
+        <mat-tab label="Financeiro">
+            <h4>Financeiro</h4>
+            <div style="display: flex;">
+                <h4 class="info-field">Aluno: {{element.nome}}</h4>
+            </div>
+            <custom-table [columns]="columnsFinanceiro" [listOfElements]="element.boletos">
+                <ng-template let-element customTemplate="acoesTemplate">
+                    <div style="text-align: end;">
+                        <button mat-icon-button color="primary"
+                                matTooltip="Excluir Registro"
+                                (click)="excluirRegistro(element)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+                </ng-template>
+            </custom-table>
+        </mat-tab>
     </mat-tab-group>
 </div>
 <ng-template #turmaCrachaTemplate>
