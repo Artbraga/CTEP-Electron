@@ -67,8 +67,10 @@
                             </div>
                         </div>
                     </div>
-                    <custom-table [columns]="columns" [listOfElements]="r.movimentacoes">
-                    </custom-table>
+                    <div class="tabela">
+                        <custom-table [columns]="columns" [listOfElements]="r.movimentacoes" [maxHeigth]="heigthTabela">
+                        </custom-table>
+                    </div>
                 </ng-template>
             </mat-tab>
         </ng-container>

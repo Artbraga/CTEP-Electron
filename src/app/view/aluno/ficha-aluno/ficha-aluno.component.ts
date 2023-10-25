@@ -49,6 +49,7 @@ export class FichaAlunoComponent implements OnInit {
     imagem: any;
     columnsRegistro: Coluna[] = [];
     columnsTurma: Coluna[] = [];
+    columnsFinanceiro: Coluna[] = [];
     expandedTurma: TurmaAluno[] = [];
     changeIconTurma: boolean[] = [];
     columnGroupsTurma: ColumnGroup[] = [
@@ -90,6 +91,38 @@ export class FichaAlunoComponent implements OnInit {
         this.columnsTurma.push({ key: 'status', header: 'Situação', groupKey: 'table', field: 'tipoStatusAluno' } as Coluna);
         this.columnsTurma.push({ key: 'buttons', groupKey: 'table', bodyTemplateName: 'acoesTemplate' } as Coluna);
         this.columnsTurma.push({ key: 'expandedDetail', classBody: 'rowexpansion', colspan: 7, groupKey: 'expandGroupping', bodyTemplateName: 'expandedDetailTemplate' } as Coluna);
+
+        this.columnsFinanceiro.push({
+            key: "seuNumero",
+            header: "Número",
+            field: "seuNumero",
+        } as Coluna);
+        this.columnsFinanceiro.push({
+            key: "vencimento",
+            header: "Vencimento",
+            field: "dataVencimentoStr",
+        } as Coluna);
+        this.columnsFinanceiro.push({
+            key: "valor",
+            header: "Valor",
+            field: "valorStr",
+        } as Coluna);
+        this.columnsFinanceiro.push({
+            key: "pagamento",
+            header: "Data do Pagamento",
+            field: "dataPagamentoStr",
+        } as Coluna);
+        this.columnsFinanceiro.push({
+            key: "valorPago",
+            header: "Valor Pago",
+            field: "valorPagoStr",
+        } as Coluna);
+        this.columnsFinanceiro.push({
+            key: "status",
+            header: "Situação",
+            field: "status",
+        } as Coluna);
+
     }
 
     ngOnInit(): void {
