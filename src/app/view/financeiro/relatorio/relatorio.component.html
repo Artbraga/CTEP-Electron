@@ -3,6 +3,22 @@
         <div class="six">
             <h1>Relatório Financeiro</h1>
         </div>
+        <div class="six">
+            <div class="four">
+                <custom-datetimepicker
+                    [(value)]="filter.dataInicio"
+                    name="Data Inicial"
+                >
+                </custom-datetimepicker>
+            </div>
+            <div class="four">
+                <custom-datetimepicker
+                    [(value)]="filter.dataFim"
+                    name="Data Final"
+                >
+                </custom-datetimepicker>
+            </div>
+        </div>
     </div>
     <mat-card>
         <faturamento></faturamento>

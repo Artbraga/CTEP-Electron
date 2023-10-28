@@ -1,8 +1,11 @@
-<base-chart
-    class="chart"
-    [datasets]="datasets"
-    [labels]="labels"
-    [options]="options"
-    [chartType]="'line'"
->
-</base-chart>
+<div style="display: block" class="chart">
+    <canvas
+        baseChart
+        [datasets]="dataSet"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [chartType]="'bar'"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"
+    ></canvas>
+</div>

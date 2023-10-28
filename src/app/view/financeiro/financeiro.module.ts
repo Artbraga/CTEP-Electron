@@ -39,7 +39,7 @@ import { TabelaRetornoComponent } from "./tabela-retorno/tabela-retorno.componen
 import { ListaSelecionadosComponent } from "./lista-selecionados/lista-selecionados.component";
 import { PagamentosMesComponent } from "./relatorio/pagamentos-mes/pagamentos-mes.component";
 import { FaturamentoComponent } from "./relatorio/faturamento/faturamento.component";
-import { ChartsModule } from "ng2-charts/ng2-charts";
+import { ChartsModule } from "ng2-charts";
 
 @NgModule({
     declarations: [
