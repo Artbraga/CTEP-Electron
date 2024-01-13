@@ -1,3 +1,54 @@
+<div class="form-grid">
+    <div class="three">
+        <h4>Visão geral</h4>
+    </div>
+    <div class="nine form-grid">
+        <mat-form-field class="four">
+            <mat-label>Data Inicial</mat-label>
+            <input
+                matInput
+                [matDatepicker]="dp1"
+                [(ngModel)]="filter.dataInicio"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dp1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+                #dp1
+                startView="multi-year"
+                (yearSelected)="chosenYearHandler($event, 'inicio')"
+                (monthSelected)="chosenMonthHandler($event, dp1, 'inicio')"
+            >
+            </mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="four">
+            <mat-label>Data Final</mat-label>
+            <input
+                matInput
+                [matDatepicker]="dp2"
+                [(ngModel)]="filter.dataFim"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dp2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+                #dp2
+                startView="multi-year"
+                (yearSelected)="chosenYearHandler($event, 'fim')"
+                (monthSelected)="chosenMonthHandler($event, dp2, 'fim')"
+            >
+            </mat-datepicker>
+        </mat-form-field>
+        <div class="four buttons">
+            <button mat-raised-button color="primary" (click)="buscar()">
+                Pesquisar
+            </button>
+        </div>
+    </div>
+</div>
+
 <div style="display: block" class="chart">
     <canvas
         baseChart
