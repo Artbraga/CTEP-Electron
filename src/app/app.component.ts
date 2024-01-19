@@ -13,15 +13,16 @@ import { MatIconRegistry } from "@angular/material/icon";
     styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-    public usuario$: Observable<Usuario>;
+    public usuarioLogado$: Observable<boolean>;
     constructor(
-        private usuarioService: UsuarioService,
+        usuarioService: UsuarioService,
         private matIconRegistry: MatIconRegistry,
         private domSanitizer: DomSanitizer,
         public dialog: MatDialog
     ) {
-        this.usuario$.subscribe((usr) => {
-            if (!usuarioService.usuarioLogado()) {
+        this.usuarioLogado$ = usuarioService.logado.asObservable();
+        this.usuarioLogado$.subscribe((usr) => {
+            if (!usr) {
                 this.logar();
             }
         });
@@ -37,6 +38,7 @@ export class AppComponent {
                 "assets/icons/ms_excel.svg"
             )
         );
+        setInterval(() => usuarioService.usuarioLogado(), 60000);
     }
 
     logar() {

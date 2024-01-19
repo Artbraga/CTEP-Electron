@@ -1,14 +1,16 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { BaseService } from "./base.service";
 import { Usuario } from "../model/usuario.model";
 import { Perfil } from "../model/perfil.model";
+import { environment } from "src/environments/environment";
+import jwt_decode from "jwt-decode";
 
 @Injectable({ providedIn: "root" })
 export class UsuarioService extends BaseService<Usuario> {
-    private lock: boolean = false;
+    logado: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(http: HttpClient) {
         super(http, "Usuario");
@@ -60,33 +62,31 @@ export class UsuarioService extends BaseService<Usuario> {
 
     public deslogar() {
         localStorage.removeItem("token");
+        this.logado.next(false);
     }
 
-    public buscarUsuarioLogado(): Usuario {
-        return this.usuario.value;
-    }
-
-    public logar(usuario: Usuario): Observable<any> {
-        const url = this.baseURL + "/";
+    public logar(usuario: Usuario): Observable<boolean> {
+        const url = `${environment.apiUrl}Login`;
+        usuario.escolaId = environment.escolaId;
 
         return this.http.post(url, usuario, { responseType: "text" }).pipe(
             map((token) => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem("token", token);
-                this.usuarioLogado();
+                this.logado.next(true);
+                return this.usuarioLogado();
             })
         );
     }
 
     public renovarToken(): Observable<any> {
-        const url = this.baseURL + "/RenovarToken";
-        this.lock = true;
+        const url = `${environment.apiUrl}Login/RenovarToken`;
 
         return this.http.post(url, {}, { responseType: "text" }).pipe(
             map((token) => {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem("token", token);
-                this.lock = false;
+                this.logado.next(true);
             })
         );
     }
@@ -97,17 +97,14 @@ export class UsuarioService extends BaseService<Usuario> {
         const now = new Date();
         const nowPlus15min = new Date();
         nowPlus15min.setMinutes(now.getMinutes() + 15);
-        if (
-            this.expiracaoSessao > now &&
-            this.expiracaoSessao < nowPlus15min &&
-            !this.lock
-        ) {
+        if (this.expiracaoSessao > now && this.expiracaoSessao < nowPlus15min) {
             this.renovarToken().subscribe();
         }
         if (this.expiracaoSessao < now) {
             this.deslogar();
             return false;
         } else {
+            this.logado.next(true);
             return true;
         }
     }
@@ -128,5 +125,11 @@ export class UsuarioService extends BaseService<Usuario> {
         const url = this.baseURL + "/BuscarPerfisComUsuarios";
 
         return this.http.get<Perfil[]>(url);
+    }
+
+    public excluirUsuario(id: number): Observable<boolean> {
+        const url = this.baseURL + "/Deletar/" + id;
+
+        return this.http.delete<boolean>(url);
     }
 }

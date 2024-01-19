@@ -1,8 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Usuario } from "../../model/usuario.model";
 import { MatDialogRef } from "@angular/material/dialog";
 import { UsuarioService } from "../../services/usuario.service";
-import { NotificationService } from "../custom-components/notification/notification.service";
 import { BaseFormularioComponent } from "../base/base-formulario.component";
 import { environment } from "../../environments/environment";
 
@@ -28,7 +27,7 @@ export class ModalLoginComponent extends BaseFormularioComponent<Usuario> {
     login() {
         if (this.validar()) {
             this.usuarioService.logar(this.element).subscribe((data) => {
-                this.dialogRef.close(data);
+                if (data) this.dialogRef.close(data);
             });
         }
     }
