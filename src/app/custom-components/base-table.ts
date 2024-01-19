@@ -1,17 +1,17 @@
-import { Input, Output, EventEmitter } from '@angular/core';
-import { PageTableResult } from './page-table-result';
-import * as $ from 'jquery';
+import { Input, Output, EventEmitter } from "@angular/core";
+import { PageTableResult } from "./page-table-result";
+import * as $ from "jquery";
 
 export abstract class BaseTable<T> {
     @Input() list: T[] = [];
     @Input() pageList = new PageTableResult<T>();
     @Output() listChange = new EventEmitter();
-    fatorConversao = 0;
+    fatorConversao = 140;
 
     get heigthTabela(): string {
-        const t = $('.tabela');
-        if (t.offset() == null) return '50vh'
-        return  window.innerHeight - t.offset().top - this.fatorConversao + 'px';
+        const t = $(".tabela");
+        if (t.offset() == null) return "50vh";
+        return window.innerHeight - t.offset().top - this.fatorConversao + "px";
     }
 
     columns: Coluna[] = [];
@@ -19,17 +19,17 @@ export abstract class BaseTable<T> {
     dynamicColumns: { key: string; col: Coluna }[];
 
     ordenarTabela(ordem) {
-        if (ordem.dir == 'asc') {
+        if (ordem.dir == "asc") {
             this.list.sort((a, b) =>
                 this.resolveField(a, ordem.sortField) <
-                    this.resolveField(b, ordem.sortField)
+                this.resolveField(b, ordem.sortField)
                     ? -1
                     : 1
             );
-        } else if (ordem.dir == 'desc') {
+        } else if (ordem.dir == "desc") {
             this.list.sort((a, b) =>
                 this.resolveField(a, ordem.sortField) <
-                    this.resolveField(b, ordem.sortField)
+                this.resolveField(b, ordem.sortField)
                     ? 1
                     : -1
             );
@@ -37,15 +37,15 @@ export abstract class BaseTable<T> {
     }
 
     private resolveField(obj: any, field: string) {
-        if (field == null || field.trim() == '') {
+        if (field == null || field.trim() == "") {
             return null;
         }
-        let fields = field.split('.');
+        let fields = field.split(".");
         if (fields.length > 1) {
             const campo = fields[0];
             fields = fields.slice(1);
             if (obj[campo] != null) {
-                return this.resolveField(obj[campo], fields.join('.'));
+                return this.resolveField(obj[campo], fields.join("."));
             }
         }
         return obj[field];
@@ -55,7 +55,7 @@ export abstract class BaseTable<T> {
 export class Coluna {
     key: string;
     header?: string;
-    field = '';
+    field = "";
     empty?: boolean;
     headerTemplateName?: string;
     bodyTemplateName?: string;

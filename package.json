@@ -69,6 +69,7 @@
         "electron-squirrel-startup": "^1.0.0",
         "file-saver": "^2.0.5",
         "jquery": "^3.6.0",
+        "jwt-decode": "^3.1.2",
         "moment": "^2.27.0",
         "ngx-electron": "^2.2.0",
         "reflect-metadata": "^0.1.9",

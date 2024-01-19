@@ -3,10 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'https://localhost:5000/api/',
-  // apiUrl: 'http://cteptst.brazilsouth.cloudapp.azure.com/ctep-api/api/',
-  loginAutomatico: true
+    production: false,
+    apiUrl: "https://localhost:5000/api/",
+    // apiUrl: 'http://cteptst.brazilsouth.cloudapp.azure.com/ctep-api/api/',
+    loginAutomatico: true,
+    escolaId: 1,
 };
 
 /*
