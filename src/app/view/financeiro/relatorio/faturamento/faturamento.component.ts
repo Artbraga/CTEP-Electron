@@ -54,9 +54,6 @@ export class FaturamentoComponent implements OnInit {
         this.buscar();
     }
 
-    public SystemName: string = "MF1";
-    firstCopy = false;
-
     public dataSet: Array<any> = [
         {
             data: 0,
@@ -85,9 +82,7 @@ export class FaturamentoComponent implements OnInit {
                 display: true,
                 align: "top",
                 anchor: "end",
-                //color: "#2756B3",
                 color: "#222",
-
                 font: {
                     family: "FontAwesome",
                     size: 14,
@@ -97,12 +92,8 @@ export class FaturamentoComponent implements OnInit {
         },
     };
 
-    public chartClicked(e: any): void {
-        console.log(e);
-    }
-    public chartHovered(e: any): void {
-        console.log(e);
-    }
+    public chartClicked(e: any): void {}
+    public chartHovered(e: any): void {}
 
     buscar(): void {
         this.financeiroService

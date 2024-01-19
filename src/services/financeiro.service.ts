@@ -95,4 +95,10 @@ export class FinanceiroService extends BaseService<Professor> {
 
         return this.http.post<RelatorioMensal[]>(url, filtro);
     }
+
+    pagamentos(filtro: RelatorioMensalFilter): Observable<RelatorioMensal> {
+        const url = this.baseURL + `/PagamentoMes`;
+
+        return this.http.post<RelatorioMensal>(url, filtro);
+    }
 }

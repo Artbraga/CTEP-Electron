@@ -45,6 +45,9 @@ export class AppComponent {
         const dialogRef = this.dialog.open(ModalLoginComponent, {
             width: "50vw",
             disableClose: true,
+            hasBackdrop: true,
+            backdropClass: "login-backdrop",
+            closeOnNavigation: false,
         });
 
         dialogRef.afterClosed().subscribe((result) => {});

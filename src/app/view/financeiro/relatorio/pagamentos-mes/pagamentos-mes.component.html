@@ -1,1 +1,42 @@
-<p>pagamentos-mes works!</p>
+<div class="card">
+    <div class="form-grid">
+        <div class="three">
+            <h4>Situação atual</h4>
+        </div>
+        <mat-form-field class="three">
+            <mat-label>Mês/Ano</mat-label>
+            <input
+                matInput
+                [matDatepicker]="dp1"
+                [(ngModel)]="dataSelecionada"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dp1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+                #dp1
+                startView="multi-year"
+                (yearSelected)="chosenYearHandler($event)"
+                (monthSelected)="chosenMonthHandler($event, dp1)"
+            >
+            </mat-datepicker>
+        </mat-form-field>
+        <div class="three buttons">
+            <button mat-mini-fab color="primary" (click)="buscar()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div style="display: block" class="chart">
+        <canvas
+            baseChart
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="'pie'"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+        ></canvas>
+    </div>
+</div>
