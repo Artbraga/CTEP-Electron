@@ -1,43 +1,76 @@
-
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <mat-icon aria-hidden="false" (mouseover)="desenhar('in')">menu</mat-icon>
-        <h4 class="logado">Usuário logado: {{usuarioLogado.nome}}</h4>
-        <mat-icon aria-hidden="false" class="logout" matTooltip="Sair do sistema." (click)="logout()">logout</mat-icon>
+        <mat-icon aria-hidden="false" (mouseover)="desenhar('in')"
+            >menu</mat-icon
+        >
+        <h4 class="logado">Usuário logado: {{ nomeUsuario }}</h4>
+        <mat-icon
+            aria-hidden="false"
+            class="logout"
+            matTooltip="Sair do sistema."
+            (click)="logout()"
+            >logout</mat-icon
+        >
     </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-sidenav-container [hasBackdrop]="false">
-    <mat-sidenav #sidenav
-                 [fixedInViewport]="false"
-                 [mode]="'over'"
-                 disableClose>
-        <section  (mouseout)="desenhar('out')" (mouseover)="desenhar('in')" class="items">
-            <a class='logo' routerLink="/">
-                <img src="assets/images/logo.png" alt="">
+    <mat-sidenav
+        #sidenav
+        [fixedInViewport]="false"
+        [mode]="'over'"
+        disableClose
+    >
+        <section
+            (mouseout)="desenhar('out')"
+            (mouseover)="desenhar('in')"
+            class="items"
+        >
+            <a class="logo" routerLink="/">
+                <img src="assets/images/logo.png" alt="" />
             </a>
-            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('aluno')">
+            <a
+                class="menu-item"
+                (mouseover)="desenhar('in')"
+                (click)="redirecionar('aluno')"
+            >
                 <mat-icon aria-hidden="false">person</mat-icon>
                 <span>Aluno</span>
             </a>
-            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('turma')">
+            <a
+                class="menu-item"
+                (mouseover)="desenhar('in')"
+                (click)="redirecionar('turma')"
+            >
                 <mat-icon aria-hidden="false">school</mat-icon>
                 <span>Turma</span>
             </a>
-            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('professor')">
+            <a
+                class="menu-item"
+                (mouseover)="desenhar('in')"
+                (click)="redirecionar('professor')"
+            >
                 <mat-icon aria-hidden="false">record_voice_over</mat-icon>
                 <span>Professor</span>
             </a>
-            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('financeiro')">
+            <a
+                class="menu-item"
+                (mouseover)="desenhar('in')"
+                (click)="redirecionar('financeiro')"
+            >
                 <mat-icon aria-hidden="false">payments</mat-icon>
                 <span>Financeiro</span>
             </a>
-            <a class="menu-item" (mouseover)="desenhar('in')" (click)="redirecionar('usuario')">
+            <a
+                class="menu-item"
+                (mouseover)="desenhar('in')"
+                (click)="redirecionar('usuario')"
+            >
                 <mat-icon aria-hidden="false">manage_accounts</mat-icon>
                 <span>Usuário</span>
             </a>
         </section>
-        <span class="version">Versão do Sistema: {{version}}</span>
+        <span class="version">Versão do Sistema: {{ version }}</span>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
