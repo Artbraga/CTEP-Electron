@@ -457,4 +457,10 @@ tbody .mat-list-base {
 
 .login-backdrop {
     background-color: white;
+    background-image: url("./assets/images/logo-opac.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 90% auto;
+    opacity: 0.95 !important;
 }
