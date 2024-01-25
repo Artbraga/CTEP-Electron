@@ -3,7 +3,9 @@
         <mat-icon aria-hidden="false" (mouseover)="desenhar('in')"
             >menu</mat-icon
         >
-        <h4 class="logado">Usuário logado: {{ nomeUsuario }}</h4>
+        <h4 class="logado" *ngIf="usuarioLogado">
+            Usuário logado: {{ nomeUsuario }}
+        </h4>
         <mat-icon
             aria-hidden="false"
             class="logout"
@@ -73,9 +75,11 @@
         <span class="version">Versão do Sistema: {{ version }}</span>
     </mat-sidenav>
     <mat-sidenav-content>
-        <router-outlet></router-outlet>
-        <div class="secondRouter">
-            <router-outlet name="secondRouter"></router-outlet>
-        </div>
+        <ng-container *ngIf="usuarioLogado">
+            <router-outlet></router-outlet>
+            <div class="secondRouter">
+                <router-outlet name="secondRouter"></router-outlet>
+            </div>
+        </ng-container>
     </mat-sidenav-content>
 </mat-sidenav-container>

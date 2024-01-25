@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ctep-geral": {
+    "secretaria_facil": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ctep-geral:build"
+            "browserTarget": "secretaria_facil:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ctep-geral:build:production"
+              "browserTarget": "secretaria_facil:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ctep-geral:build"
+            "browserTarget": "secretaria_facil:build"
           }
         },
         "lint": {
@@ -99,16 +99,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ctep-geral:serve"
+            "devServerTarget": "secretaria_facil:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ctep-geral:serve:production"
+              "devServerTarget": "secretaria_facil:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ctep-geral"
+  "defaultProject": "secretaria_facil"
 }
