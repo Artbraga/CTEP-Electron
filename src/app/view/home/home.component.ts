@@ -20,6 +20,10 @@ export class HomeComponent implements OnInit {
         return this.usuarioService.nomeUsuario;
     }
 
+    get usuarioLogado(): boolean {
+        return this.usuarioService.usuarioLogado();
+    }
+
     constructor(
         private usuarioService: UsuarioService,
         private router: Router,

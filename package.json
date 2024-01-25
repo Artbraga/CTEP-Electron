@@ -1,8 +1,8 @@
 {
-    "name": "secretaria_facil_ctep",
-    "productName": "secretaria_facil_ctep",
-    "version": "1.5.0",
-    "description": "Secretaria Fácil - CTEP",
+    "name": "secretaria_facil",
+    "productName": "secretaria_facil",
+    "version": "1.5.1",
+    "description": "Secretaria Fácil",
     "main": "src/index.ts",
     "scripts": {
         "build": "ng build --base-href ./",

@@ -18,18 +18,21 @@ export class UsuarioService extends BaseService<Usuario> {
 
     get nomeUsuario(): string {
         const token = localStorage.getItem("token");
+        if (token == null) return;
         const decoded = jwt_decode(token);
         return decoded["unique_name"];
     }
 
     get loginUsuario(): string {
         const token = localStorage.getItem("token");
+        if (token == null) return;
         const decoded = jwt_decode(token);
         return decoded["login"];
     }
 
     get idUsuario(): string {
         const token = localStorage.getItem("token");
+        if (token == null) return;
         const decoded = jwt_decode(token);
         return decoded[
             "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid"
@@ -38,24 +41,28 @@ export class UsuarioService extends BaseService<Usuario> {
 
     get idAluno(): string {
         const token = localStorage.getItem("token");
+        if (token == null) return;
         const decoded = jwt_decode(token);
         return decoded["idaluno"];
     }
 
     get perfilUsuario(): string {
         const token = localStorage.getItem("token");
+        if (token == null) return;
         const decoded = jwt_decode(token);
         return decoded["role"][0];
     }
 
     get permissoesUsuario(): string {
         const token = localStorage.getItem("token");
+        if (token == null) return;
         const decoded = jwt_decode(token);
         return decoded["role"].slice(1);
     }
 
     get expiracaoSessao(): Date {
         const token = localStorage.getItem("token");
+        if (token == null) return;
         const decoded = jwt_decode(token);
         return new Date(decoded["exp"] * 1000);
     }
