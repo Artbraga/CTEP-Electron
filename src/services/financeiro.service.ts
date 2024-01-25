@@ -10,6 +10,8 @@ import { RetornoArquivo } from "src/model/retorno-arquivo.model";
 import { TratamentoRequest } from "src/model/tratamento-request.model";
 import { RegistroRetorno } from "src/model/registro-retorno.model";
 import { FiltroRetorno } from "src/model/filters/retorno.filter";
+import { RelatorioMensalFilter } from "src/model/filters/relatorio-mensal.filter";
+import { RelatorioMensal } from "src/model/relatorio-mensal.model";
 
 @Injectable({ providedIn: "root" })
 export class FinanceiroService extends BaseService<Professor> {
@@ -84,5 +86,19 @@ export class FinanceiroService extends BaseService<Professor> {
         const url = this.baseURL + `/ExcluirBoletos`;
 
         return this.http.post(url, ids);
+    }
+
+    relatorioMensal(
+        filtro: RelatorioMensalFilter
+    ): Observable<RelatorioMensal[]> {
+        const url = this.baseURL + `/RelatorioMensal`;
+
+        return this.http.post<RelatorioMensal[]>(url, filtro);
+    }
+
+    pagamentos(filtro: RelatorioMensalFilter): Observable<RelatorioMensal> {
+        const url = this.baseURL + `/PagamentoMes`;
+
+        return this.http.post<RelatorioMensal>(url, filtro);
     }
 }

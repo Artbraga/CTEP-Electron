@@ -1,7 +1,8 @@
-import { Perfil } from './perfil.model';
+import { Perfil } from "./perfil.model";
 
 export class Usuario {
     id: number;
+    escolaId: number;
     nome: string;
     login: string;
     senha: string;

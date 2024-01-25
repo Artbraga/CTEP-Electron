@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="form-grid">
+        <div class="three">
+            <h4>Projeção geral</h4>
+        </div>
+        <mat-form-field class="three">
+            <mat-label>De</mat-label>
+            <input
+                matInput
+                [matDatepicker]="dp1"
+                [(ngModel)]="filter.dataInicio"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dp1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+                #dp1
+                startView="multi-year"
+                (yearSelected)="chosenYearHandler($event, 'inicio')"
+                (monthSelected)="chosenMonthHandler($event, dp1, 'inicio')"
+            >
+            </mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="three">
+            <mat-label>Até</mat-label>
+            <input
+                matInput
+                [matDatepicker]="dp2"
+                [(ngModel)]="filter.dataFim"
+            />
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="dp2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker
+                #dp2
+                startView="multi-year"
+                (yearSelected)="chosenYearHandler($event, 'fim')"
+                (monthSelected)="chosenMonthHandler($event, dp2, 'fim')"
+            >
+            </mat-datepicker>
+        </mat-form-field>
+        <div class="three buttons">
+            <button mat-mini-fab color="primary" (click)="buscar()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div style="display: block" class="chart">
+        <canvas
+            baseChart
+            [datasets]="dataSet"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [chartType]="'bar'"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+        ></canvas>
+    </div>
+</div>
