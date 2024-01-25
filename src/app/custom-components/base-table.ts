@@ -7,7 +7,7 @@ export abstract class BaseTable<T> {
     @Input() list: T[] = [];
     @Input() pageList = new PageTableResult<T>();
     @Output() listChange = new EventEmitter();
-    fatorConversao = 0;
+    fatorConversao = 140;
 
     get heigthTabela(): string {
         const t = $(".tabela");
