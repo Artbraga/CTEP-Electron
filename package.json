@@ -1,7 +1,7 @@
 {
     "name": "secretaria_facil",
     "productName": "secretaria_facil",
-    "version": "1.5.1",
+    "version": "1.5.2",
     "description": "Secretaria Fácil",
     "main": "src/index.ts",
     "scripts": {
