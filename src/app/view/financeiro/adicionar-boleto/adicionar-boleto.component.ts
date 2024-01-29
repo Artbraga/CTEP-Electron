@@ -161,22 +161,20 @@ export class AdicionarBoletoComponent
                     if (data) {
                         this.notificationService.addNotification(
                             "Erro!",
-                            "Já existem boletos cadastrados com o número informado.",
+                            "Já existem boleto(s) cadastrado(s) com o número informado.",
                             NotificationType.Error
                         );
                         return;
                     }
                     this.mostrarParcelamento = true;
                     this.boletosGeracao = [];
-                    for (let i = 1; i <= this.numeroParcelas; i++) {
+                    if (this.numeroParcelas == 1) {
                         const novoBoleto = new Boleto();
-                        novoBoleto.seuNumero = `${this.element.seuNumero}/${
-                            i < 10 ? "0" : ""
-                        }${i}`;
                         novoBoleto.aluno = this.alunoSelecionado;
-                        const novaData = new Date(this.element.dataVencimento);
-                        novaData.setMonth(novaData.getMonth() + i - 1);
-                        novoBoleto.dataVencimento = novaData;
+                        novoBoleto.seuNumero = `${this.element.seuNumero}`;
+                        novoBoleto.dataVencimento = new Date(
+                            this.element.dataVencimento
+                        );
                         novoBoleto.valor = this.lerValor(
                             this.element.valor.toString()
                         );
@@ -188,6 +186,30 @@ export class AdicionarBoletoComponent
                         );
                         novoBoleto.dataEmissao = new Date();
                         this.boletosGeracao.push(novoBoleto);
+                    } else {
+                        for (let i = 1; i <= this.numeroParcelas; i++) {
+                            const novoBoleto = new Boleto();
+                            novoBoleto.seuNumero = `${this.element.seuNumero}/${
+                                i < 10 ? "0" : ""
+                            }${i}`;
+                            novoBoleto.aluno = this.alunoSelecionado;
+                            const novaData = new Date(
+                                this.element.dataVencimento
+                            );
+                            novaData.setMonth(novaData.getMonth() + i - 1);
+                            novoBoleto.dataVencimento = novaData;
+                            novoBoleto.valor = this.lerValor(
+                                this.element.valor.toString()
+                            );
+                            novoBoleto.valorJuros = this.lerValor(
+                                this.element.valorJuros?.toString() || "0"
+                            );
+                            novoBoleto.percentualMulta = this.lerValor(
+                                this.element.percentualMulta?.toString() || "0"
+                            );
+                            novoBoleto.dataEmissao = new Date();
+                            this.boletosGeracao.push(novoBoleto);
+                        }
                     }
                 });
         }
