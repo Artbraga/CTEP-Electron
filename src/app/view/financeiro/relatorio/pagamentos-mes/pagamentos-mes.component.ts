@@ -10,6 +10,7 @@ import {
 } from "@angular/material/core";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { Moment } from "moment";
+import { Utils } from "src/app/custom-components/shared/utils";
 import { RelatorioMensalFilter } from "src/model/filters/relatorio-mensal.filter";
 import { FinanceiroService } from "src/services/financeiro.service";
 
@@ -50,6 +51,21 @@ export class PagamentosMesComponent implements OnInit {
 
     public pieChartData: number[] = [0, 0, 0];
     public pieChartLabels: string[] = ["Em Aberto", "Pago", "Negativado"];
+
+    public options: any = {
+        responsive: true,
+        locale: "br-BR",
+        tooltips: {
+            enabled: true,
+            titleAlign: "center",
+            callbacks: {
+                label: (item) =>
+                    `${this.pieChartLabels[item.index]}: ${Utils.formatMoney(
+                        this.pieChartData[item.index]
+                    )}`,
+            },
+        },
+    };
 
     public chartClicked(e: any): void {}
 

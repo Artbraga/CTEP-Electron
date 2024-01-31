@@ -10,6 +10,7 @@ import {
 } from "@angular/material/core";
 import { MatDatepicker } from "@angular/material/datepicker";
 import { Moment } from "moment";
+import { Utils } from "src/app/custom-components/shared/utils";
 import { RelatorioMensalFilter } from "src/model/filters/relatorio-mensal.filter";
 import { FinanceiroService } from "src/services/financeiro.service";
 
@@ -76,19 +77,39 @@ export class FaturamentoComponent implements OnInit {
 
     public lineChartOptions: any = {
         responsive: true,
-        scales: {},
-        plugins: {
-            datalabels: {
-                display: true,
-                align: "top",
-                anchor: "end",
-                color: "#222",
-                font: {
-                    family: "FontAwesome",
-                    size: 14,
+        locale: "br-BR",
+        scales: {
+            yAxes: {
+                beginAtZero: true,
+                ticks: {
+                    callback: (value) => Utils.formatMoney(value),
                 },
             },
-            deferred: false,
+        },
+        tooltips: {
+            enabled: true,
+            titleAlign: "center",
+            callbacks: {
+                footer: function (item) {
+                    return (
+                        "Total: " +
+                        Utils.formatMoney(
+                            parseFloat(
+                                this._data.datasets[0].data[item[0].index]
+                            ) +
+                                parseFloat(
+                                    this._data.datasets[1].data[item[0].index]
+                                ) +
+                                parseFloat(
+                                    this._data.datasets[2].data[item[0].index]
+                                )
+                        )
+                    );
+                },
+                label: function (item) {
+                    return Utils.formatMoney(parseFloat(item.value));
+                },
+            },
         },
     };
 
@@ -100,9 +121,13 @@ export class FaturamentoComponent implements OnInit {
             .relatorioMensal(this.filter)
             .subscribe((data) => {
                 this.lineChartLabels = data.map((x) => x.mesAno);
-                this.dataSet[0].data = data.map((x) => x.valorAberto);
-                this.dataSet[1].data = data.map((x) => x.valorPago);
-                this.dataSet[2].data = data.map((x) => x.valorNegativado);
+                this.dataSet[0].data = data.map((x) =>
+                    x.valorAberto.toFixed(2)
+                );
+                this.dataSet[1].data = data.map((x) => x.valorPago.toFixed(2));
+                this.dataSet[2].data = data.map((x) =>
+                    x.valorNegativado.toFixed(2)
+                );
             });
     }
 

@@ -4,8 +4,20 @@
             <h1>Ficha do Aluno</h1>
         </div>
         <div class="six buttons">
-            <button *ngIf="rotaVoltar" mat-raised-button color="accent" (click)="voltar()">Voltar</button>
-            <button *ngIf="idAluno" mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+            <button
+                *ngIf="rotaVoltar"
+                mat-raised-button
+                color="accent"
+                (click)="voltar()"
+            >
+                Voltar
+            </button>
+            <button
+                *ngIf="idAluno"
+                mat-raised-button
+                color="primary"
+                [matMenuTriggerFor]="menu"
+            >
                 Ações <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -29,80 +41,101 @@
                     <mat-icon>print</mat-icon>
                     <span>Imprimir</span>
                 </button>
-                <button mat-menu-item (click)="cracha()" *ngIf="element.turmasAluno.length > 0">
+                <button
+                    mat-menu-item
+                    (click)="cracha()"
+                    *ngIf="element.turmasAluno.length > 0"
+                >
                     <mat-icon>portrait</mat-icon>
                     <span>Crachá</span>
                 </button>
             </mat-menu>
-
         </div>
     </div>
     <mat-tab-group ngxPrint>
         <mat-tab label="Informações">
             <h4>Informações Básicas</h4>
-            <div class="form-grid" >
+            <div class="form-grid">
                 <span class="imagem-perfil image">
-                    <ng-container *ngIf="imagem==null; else elseFoto">
-                        <img src="assets/images/empty-avatar.png" alt="">
+                    <ng-container *ngIf="imagem == null; else elseFoto">
+                        <img src="assets/images/empty-avatar.png" alt="" />
                     </ng-container>
                     <ng-template #elseFoto>
-                        <img src="{{imagem}}" alt=""><br>
+                        <img src="{{ imagem }}" alt="" /><br />
                     </ng-template>
                 </span>
                 <div class="perfil">
                     <div class="six">
                         <div class="field">
                             <span>Nome</span>
-                            <span class="campo">{{ tratarString(element.nome) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.nome)
+                            }}</span>
                         </div>
                     </div>
                     <div class="three">
                         <div class="field">
                             <span>Data de Nascimento</span>
-                            <span class="campo">{{ tratarString(element.dataNascimentoStr) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.dataNascimentoStr)
+                            }}</span>
                         </div>
                     </div>
                     <div class="three">
                         <div class="field">
                             <span>CPF</span>
-                            <span class="campo">{{ tratarString(element.cpf) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.cpf)
+                            }}</span>
                         </div>
                     </div>
                     <div class="three">
                         <div class="field">
                             <span>RG</span>
-                            <span class="campo">{{ tratarString(element.rg) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.rg)
+                            }}</span>
                         </div>
                     </div>
 
                     <div class="three">
                         <div class="field">
                             <span>Órgão Emissor</span>
-                            <span class="campo">{{ tratarString(element.orgaoEmissor) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.orgaoEmissor)
+                            }}</span>
                         </div>
                     </div>
                     <div class="three">
                         <div class="field">
                             <span>Sexo</span>
-                            <span class="campo">{{ getCampo('sexo', element) }}</span>
+                            <span class="campo">{{
+                                getCampo("sexo", element)
+                            }}</span>
                         </div>
                     </div>
                     <div class="three">
                         <div class="field">
                             <span>Naturalidade</span>
-                            <span class="campo">{{ tratarString(element.naturalidade) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.naturalidade)
+                            }}</span>
                         </div>
                     </div>
                     <div class="six">
                         <div class="field">
                             <span>Nome do Pai</span>
-                            <span class="campo">{{ tratarString(element.nomePai) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.nomePai)
+                            }}</span>
                         </div>
                     </div>
                     <div class="six">
                         <div class="field">
                             <span>Nome da Mãe</span>
-                            <span class="campo">{{ tratarString(element.nomeMae) }}</span>
+                            <span class="campo">{{
+                                tratarString(element.nomeMae)
+                            }}</span>
                         </div>
                     </div>
                 </div>
@@ -112,49 +145,65 @@
                 <div class="three">
                     <div class="field">
                         <span>Telefone</span>
-                        <span class="campo">{{ tratarString(element.telefone) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.telefone)
+                        }}</span>
                     </div>
                 </div>
                 <div class="three">
                     <div class="field">
                         <span>Celular</span>
-                        <span class="campo">{{ tratarString(element.celular) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.celular)
+                        }}</span>
                     </div>
                 </div>
                 <div class="three">
                     <div class="field">
                         <span>E-mail</span>
-                        <span class="campo">{{ tratarString(element.email) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.email)
+                        }}</span>
                     </div>
                 </div>
                 <div class="three">
                     <div class="field">
                         <span>CEP</span>
-                        <span class="campo">{{ tratarString(element.cep) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.cep)
+                        }}</span>
                     </div>
                 </div>
                 <div class="six">
                     <div class="field">
                         <span>Endereço</span>
-                        <span class="campo">{{ tratarString(element.endereco) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.endereco)
+                        }}</span>
                     </div>
                 </div>
                 <div class="two">
                     <div class="field">
                         <span>Complemento</span>
-                        <span class="campo">{{ tratarString(element.complemento) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.complemento)
+                        }}</span>
                     </div>
                 </div>
                 <div class="two">
                     <div class="field">
                         <span>Bairro</span>
-                        <span class="campo">{{ tratarString(element.bairro) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.bairro)
+                        }}</span>
                     </div>
                 </div>
                 <div class="two">
                     <div class="field">
                         <span>Cidade</span>
-                        <span class="campo">{{ tratarString(element.cidade) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.cidade)
+                        }}</span>
                     </div>
                 </div>
             </div>
@@ -162,95 +211,152 @@
                 <div class="three">
                     <div class="field">
                         <span>Data de Matrícula</span>
-                        <span class="campo">{{ tratarString(element.dataMatriculaStr) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.dataMatriculaStr)
+                        }}</span>
                     </div>
                 </div>
                 <div class="three">
                     <div class="field">
                         <span>Data de Validade</span>
-                        <span class="campo">{{ tratarString(element.dataValidadeStr) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.dataValidadeStr)
+                        }}</span>
                     </div>
                 </div>
                 <div class="six">
                     <div class="field">
                         <span>Curso Anterior</span>
-                        <span class="campo">{{ tratarString(element.cursoAnterior) }}</span>
+                        <span class="campo">{{
+                            tratarString(element.cursoAnterior)
+                        }}</span>
                     </div>
                 </div>
             </div>
-
         </mat-tab>
         <mat-tab label="Turmas e Notas">
             <h4>Turmas e Notas</h4>
-            <h4 class="info-field">Aluno: {{element.nome}}</h4>
-            <custom-table [columns]="columnsTurma" [colGroups]="columnGroupsTurma" [listOfElements]="element.turmasAluno">
+            <h4 class="info-field">Aluno: {{ element.nome }}</h4>
+            <custom-table
+                [columns]="columnsTurma"
+                [colGroups]="columnGroupsTurma"
+                [listOfElements]="element.turmasAluno"
+            >
                 <ng-template let-turmaAluno customTemplate="acoesTemplate">
-                    <div style="text-align: end;">
-                        <button mat-icon-button color="primary"
-                                matTooltip="Visualizar Notas"
-                                (click)="visualizarNotas(turmaAluno)">
+                    <div style="text-align: end">
+                        <button
+                            mat-icon-button
+                            color="primary"
+                            matTooltip="Visualizar Notas"
+                            (click)="visualizarNotas(turmaAluno)"
+                        >
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="primary"
-                                matTooltip="Gerar Histórico"
-                                (click)="gerarHistorico(turmaAluno)">
+                        <button
+                            mat-icon-button
+                            color="primary"
+                            matTooltip="Gerar Histórico"
+                            (click)="gerarHistorico(turmaAluno)"
+                        >
                             <mat-icon>summarize</mat-icon>
                         </button>
                     </div>
                 </ng-template>
-                <ng-template let-element let-column="column" let-index='rowIndex' customTemplate="expand">
-                    <button mat-icon-button color="primary" class="toggleButton" (click)="expandTable(element)">
-                        <mat-icon class="material-icons">{{changeIconTurma[index] ? 'expand_less' : 'expand_more'}}</mat-icon>
+                <ng-template
+                    let-element
+                    let-column="column"
+                    let-index="rowIndex"
+                    customTemplate="expand"
+                >
+                    <button
+                        mat-icon-button
+                        color="primary"
+                        class="toggleButton"
+                        (click)="expandTable(element)"
+                    >
+                        <mat-icon class="material-icons">{{
+                            changeIconTurma[index]
+                                ? "expand_less"
+                                : "expand_more"
+                        }}</mat-icon>
                     </button>
                 </ng-template>
 
-                <ng-template let-element customTemplate="expandedDetailTemplate">
-                    <div [@detailExpand]="expandedTurma.includes(element) ? 'expanded' : 'collapsed'">
+                <ng-template
+                    let-element
+                    customTemplate="expandedDetailTemplate"
+                >
+                    <div
+                        [@detailExpand]="
+                            expandedTurma.includes(element)
+                                ? 'expanded'
+                                : 'collapsed'
+                        "
+                    >
                         <div *ngIf="concluido(element)" class="form-grid">
                             <div class="three">
                                 <div class="field">
                                     <span>Código de conclusão do Sistec</span>
-                                    <span class="campo">{{ tratarString(element.codigoConlusaoSistec) }}</span>
+                                    <span class="campo">{{
+                                        tratarString(
+                                            element.codigoConlusaoSistec
+                                        )
+                                    }}</span>
                                 </div>
                             </div>
                             <div class="three">
                                 <div class="field">
                                     <span>Data de Conclusão</span>
-                                    <span class="campo">{{ tratarString(element.dataConclusaoStr) }}</span>
+                                    <span class="campo">{{
+                                        tratarString(element.dataConclusaoStr)
+                                    }}</span>
                                 </div>
                             </div>
                         </div>
                         <h4>Notas</h4>
                         <div class="form-grid">
-                            <div *ngFor="let nota of element.notas" class="three">
+                            <div
+                                *ngFor="let nota of element.notas"
+                                class="three"
+                            >
                                 <div class="field">
-                                    <span>{{nota.disciplina.nome}}</span>
-                                    <span class="campo">{{ tratarString(nota.valorNota) }}</span>
+                                    <span>{{ nota.disciplina.nome }}</span>
+                                    <span class="campo">{{
+                                        tratarString(nota.valorNota)
+                                    }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ng-template>
-
             </custom-table>
-
         </mat-tab>
         <mat-tab label="Registro">
             <h4>Registro do Aluno</h4>
-            <div style="display: flex;">
-                <h4 class="info-field">Aluno: {{element.nome}}</h4>
+            <div style="display: flex">
+                <h4 class="info-field">Aluno: {{ element.nome }}</h4>
                 <div class="buttons">
-                    <button mat-button color="accent" (click)="adicionarRegistro()">
+                    <button
+                        mat-button
+                        color="accent"
+                        (click)="adicionarRegistro()"
+                    >
                         <mat-icon>add</mat-icon>Adicionar
                     </button>
                 </div>
             </div>
-            <custom-table [columns]="columnsRegistro" [listOfElements]="element.registros">
+            <custom-table
+                [columns]="columnsRegistro"
+                [listOfElements]="element.registros"
+            >
                 <ng-template let-element customTemplate="acoesTemplate">
-                    <div style="text-align: end;">
-                        <button mat-icon-button color="primary"
-                                matTooltip="Excluir Registro"
-                                (click)="excluirRegistro(element)">
+                    <div style="text-align: end">
+                        <button
+                            mat-icon-button
+                            color="primary"
+                            matTooltip="Excluir Registro"
+                            (click)="excluirRegistro(element)"
+                        >
                             <i class="material-icons">delete</i>
                         </button>
                     </div>
@@ -259,28 +365,43 @@
         </mat-tab>
         <mat-tab label="Financeiro">
             <h4>Financeiro</h4>
-            <div style="display: flex;">
-                <h4 class="info-field">Aluno: {{element.nome}}</h4>
+            <div style="display: flex">
+                <h4 class="info-field">Aluno: {{ element.nome }}</h4>
             </div>
-            <custom-table [columns]="columnsFinanceiro" [listOfElements]="element.boletos">
-                <ng-template let-element customTemplate="acoesTemplate">
-                    <div style="text-align: end;">
-                        <button mat-icon-button color="primary"
+            <div class="tabela">
+                <custom-table
+                    [columns]="columnsFinanceiro"
+                    [listOfElements]="element.boletos"
+                    [maxHeigth]="heigthTabela"
+                >
+                    <ng-template let-element customTemplate="acoesTemplate">
+                        <div style="text-align: end">
+                            <button
+                                mat-icon-button
+                                color="primary"
                                 matTooltip="Excluir Registro"
-                                (click)="excluirRegistro(element)">
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </div>
-                </ng-template>
-            </custom-table>
+                                (click)="excluirRegistro(element)"
+                            >
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </div>
+                    </ng-template>
+                </custom-table>
+            </div>
         </mat-tab>
     </mat-tab-group>
 </div>
 <ng-template #turmaCrachaTemplate>
-    <div class="form-grid" style="display: flex;">
-        <div class="twelve form-field" style="height: 50px;">
-            <mat-radio-group aria-label="Select an option" [(ngModel)]="turmaCrachaSelecionada">
-                <mat-radio-button [value]="option" *ngFor="let option of turmaCrachaOptions">
+    <div class="form-grid" style="display: flex">
+        <div class="twelve form-field" style="height: 50px">
+            <mat-radio-group
+                aria-label="Select an option"
+                [(ngModel)]="turmaCrachaSelecionada"
+            >
+                <mat-radio-button
+                    [value]="option"
+                    *ngFor="let option of turmaCrachaOptions"
+                >
                     {{ option.turma.codigo }}
                 </mat-radio-button>
             </mat-radio-group>
