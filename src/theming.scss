@@ -1,13 +1,12 @@
 @import "~@angular/material/theming";
 @include mat-core();
 
-$primary:#0f084b;
-$secondary:#4f7cac;
-$gray:#4d575b;
-$light-gray:#75848a;
+$primary: #393e46;
+$secondary: #c59000;
+$gray: #505762;
+$light-gray: #f7f7f7;
 $black: #191716;
-$red: #520B03;
-$white: #F0F8FF;
+$red: #520b03;
+$white: #f0f0f0;
 $off-white: #edeeef;
-$gray-blue: #78849E;
-$light-blue: #bbced3;
+$tertiary: #f8b500;

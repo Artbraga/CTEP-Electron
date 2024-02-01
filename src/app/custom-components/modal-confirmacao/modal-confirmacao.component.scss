@@ -1,6 +1,6 @@
 @import "../../../theming.scss";
 ::ng-deep custom-select {
-    .mat-form-field-outline.ng-star-inserted{
+    .mat-form-field-outline.ng-star-inserted {
         background: $white;
         border-radius: 7px;
     }
@@ -8,15 +8,15 @@
 
 app-dialog,
 app-tutorial {
-  width: 350px;
-  height: 180px;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  border-radius: 10px;
+    width: 350px;
+    height: 180px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 10px;
 }
 .dialog {
     background-color: $off-white;
@@ -28,77 +28,77 @@ app-tutorial {
     padding: 15px;
     border-radius: 10px;
     .material-icons {
-      color: $white;
-      min-width: 0;
-      padding: 6px;
-      font-style: normal;
-      float: right;
+        color: $white;
+        min-width: 0;
+        padding: 6px;
+        font-style: normal;
+        float: right;
     }
     .modal-header {
-      height: 40px;
-      display: flex;
-      align-items: center;
-      h3 {
-        color: $primary;
-        margin: 0;
-        padding: 0;
-        font-size: 22px;
-      }
-      button {
-        position: absolute;
-        right: 15px;
-        top: 20px;
-        background-color: transparent;
-        box-shadow: none;
-        color: $white;
-        width: 20px;
-        height: 20px;
-        font-size: 20px;
-      }
+        height: 40px;
+        display: flex;
+        align-items: center;
+        h3 {
+            color: $primary;
+            margin: 0;
+            padding: 0;
+            font-size: 22px;
+        }
+        button {
+            position: absolute;
+            right: 15px;
+            top: 20px;
+            background-color: transparent;
+            box-shadow: none;
+            color: $white;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+        }
     }
     .modal-body {
-      min-height: 80px;
-      max-height: 100px;
-      .gridONS {
-        background-color: $off-white;
-        box-shadow: none;
-      }
-      p {
-        color: $primary;
-        font-size: 14px;
-        margin: 0;
-      }
+        min-height: 80px;
+        max-height: 100px;
+        .grid-confirmacao {
+            background-color: $off-white;
+            box-shadow: none;
+        }
+        p {
+            color: $primary;
+            font-size: 14px;
+            margin: 0;
+        }
     }
     .modal-footer {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      width: 100%;
-      height: 45px;
-      margin-top: 10px;
-      button {
-        border-radius: 50px;
-        margin-left: 10px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        &:nth-of-type(1) {
-          width: 45px;
-          height: 45px;
-          background-color: $light-gray;
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        height: 45px;
+        margin-top: 10px;
+        button {
+            border-radius: 50px;
+            margin-left: 10px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            &:nth-of-type(1) {
+                width: 45px;
+                height: 45px;
+                background-color: $secondary;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            &:nth-of-type(2) {
+                width: 45px;
+                height: 45px;
+                background-color: $primary;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 20px;
+            }
         }
-        &:nth-of-type(2) {
-          width: 45px;
-          height: 45px;
-          background-color: $primary;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-left: 20px;
-        }
-      }
     }
-  }
+}

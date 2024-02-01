@@ -1,4 +1,4 @@
-@import '../../../theming.scss';
+@import "../../../theming.scss";
 
 .mat-sidenav-container {
     display: flex;
@@ -13,8 +13,8 @@
 
 .mat-sidenav-transition {
     .mat-sidenav {
-        box-shadow: 8px 0px 14px 0px rgba(0,0,0,0.75);
-        border-right: 3px solid $light-blue;
+        box-shadow: 8px 0px 14px 0px rgba(0, 0, 0, 0.75);
+        border-right: 3px solid $tertiary;
     }
 }
 
@@ -26,13 +26,13 @@
     text-align: center;
     vertical-align: middle;
     font-size: 25px;
-    font-family: 'Roboto-Black';
+    font-family: "Roboto-Black";
     color: $white;
     width: auto;
     text-decoration: none;
     cursor: pointer;
-    &:hover{
-        background-color: $gray-blue;
+    &:hover {
+        background-color: $tertiary;
     }
     .mat-icon {
         margin: 0 10px 0 0;
@@ -43,9 +43,8 @@
     }
 }
 
-.logo img{
-    width: auto;
-    max-width: 300px;
+.logo img {
+    width: 280px;
     height: auto;
     max-height: 95px;
     outline: none;
@@ -65,7 +64,7 @@
 .mat-toolbar-row {
     background-color: $primary;
     z-index: 2;
-    box-shadow: 0px 8px 14px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.75);
     .mat-icon {
         top: -8px;
         font-size: 35px;
@@ -75,7 +74,7 @@
 }
 
 .logout {
-    cursor: pointer!important;
+    cursor: pointer !important;
     margin-left: auto;
     margin-right: 10px;
 }
