@@ -6,16 +6,28 @@
 
         <div class="modal-body">
             <div class="section modal-form">
-                <div class="gridONS" style="text-align: left;">
-                    <p>{{mensagem}}</p>
+                <div class="grid-confirmacao" style="text-align: left">
+                    <p>{{ mensagem }}</p>
                 </div>
                 <ng-container [ngTemplateOutlet]="modalTemplate"></ng-container>
             </div>
         </div>
 
         <div class="modal-footer">
-            <button class="material-icons" *ngIf="showClearBtn()" [mat-dialog-close]="false">clear</button>
-            <button class="material-icons" [mat-dialog-close]="true" cdkFocusInitial>done</button>
+            <button
+                class="material-icons"
+                *ngIf="showClearBtn()"
+                [mat-dialog-close]="false"
+            >
+                clear
+            </button>
+            <button
+                class="material-icons"
+                [mat-dialog-close]="true"
+                cdkFocusInitial
+            >
+                done
+            </button>
         </div>
     </div>
 </app-dialog>

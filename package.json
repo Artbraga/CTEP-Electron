@@ -34,7 +34,8 @@
             },
             "electronPackagerConfig": {
                 "dir": "./src",
-                "packageManager": "yarn"
+                "packageManager": "yarn",
+                "icon": "./src/favicon.ico"
             },
             "electronWinstallerConfig": {
                 "name": "build_electron"
